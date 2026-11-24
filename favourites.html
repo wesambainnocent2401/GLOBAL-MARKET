@@ -1,1 +1,733 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f6fa">
+
+    <meta name="description" content="View your saved advertisements, products, services and businesses on GLOBAL MARKET.">
+
+    <title>My Favorites | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f6fa;
+            color: #17243b;
+            font-family: Arial, sans-serif;
+        }
+
+        .favorites-page {
+            width: min(1150px, 94%);
+            margin: 35px auto 65px;
+        }
+
+        .favorites-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .favorites-heading h1 {
+            margin: 0 0 8px;
+            color: #14213d;
+            font-size: 29px;
+        }
+
+        .favorites-heading p {
+            margin: 0;
+            color: #788499;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .saved-count {
+            background: #fff;
+            border: 1px solid #e1e7ef;
+            padding: 11px 16px;
+            border-radius: 9px;
+            color: #17345e;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .favorites-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+            background: #fff;
+            border: 1px solid #e4e9f0;
+            border-radius: 12px;
+            padding: 17px;
+            margin-bottom: 20px;
+        }
+
+        .favorites-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            border: 1px solid #e0e6ef;
+            background: #fff;
+            color: #64738b;
+            padding: 10px 15px;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            background: #17345e;
+            border-color: #17345e;
+            color: #fff;
+        }
+
+        .favorites-search {
+            width: min(300px, 100%);
+            position: relative;
+        }
+
+        .favorites-search input {
+            width: 100%;
+            padding: 11px 13px;
+            border: 1px solid #dfe5ed;
+            border-radius: 7px;
+            outline: none;
+            font-size: 13px;
+        }
+
+        .favorites-search input:focus {
+            border-color: #b99045;
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .favorite-card {
+            background: #fff;
+            border: 1px solid #e5eaf1;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 16px rgba(20, 35, 60, .045);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .favorite-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 23px rgba(20, 35, 60, .09);
+        }
+
+        .favorite-image {
+            position: relative;
+            height: 190px;
+            background: #e9edf3;
+            overflow: hidden;
+        }
+
+        .favorite-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .favorite-type {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 6px 10px;
+            background: rgba(255,255,255,.95);
+            color: #17345e;
+            border-radius: 5px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .remove-favorite {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 34px;
+            height: 34px;
+            border: none;
+            border-radius: 50%;
+            background: #fff;
+            color: #d34d55;
+            font-size: 19px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,.12);
+        }
+
+        .remove-favorite:hover {
+            background: #fff0f0;
+        }
+
+        .favorite-details {
+            padding: 16px;
+        }
+
+        .favorite-details h3 {
+            margin: 0 0 8px;
+            font-size: 16px;
+            color: #172b4d;
+            line-height: 1.4;
+        }
+
+        .favorite-location {
+            color: #8993a3;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .favorite-description {
+            color: #68768a;
+            font-size: 12px;
+            line-height: 1.6;
+            min-height: 39px;
+            margin: 0 0 13px;
+        }
+
+        .favorite-price {
+            color: #17345e;
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .favorite-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .view-btn {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+            padding: 10px 8px;
+            border-radius: 7px;
+            background: #17345e;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .view-btn:hover {
+            background: #244a7c;
+        }
+
+        .empty-state {
+            background: #fff;
+            border: 1px solid #e4e9f0;
+            border-radius: 12px;
+            padding: 65px 20px;
+            text-align: center;
+        }
+
+        .empty-state .empty-icon {
+            font-size: 45px;
+            margin-bottom: 13px;
+        }
+
+        .empty-state h2 {
+            margin: 0 0 10px;
+            font-size: 19px;
+            color: #172b4d;
+        }
+
+        .empty-state p {
+            color: #7b8799;
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 0 auto 20px;
+            max-width: 420px;
+        }
+
+        .browse-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #17345e;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .browse-btn:hover {
+            background: #244a7c;
+        }
+
+        .demo-notice {
+            margin-top: 20px;
+            padding: 13px 15px;
+            border: 1px solid #f0dfb7;
+            background: #fffaf0;
+            border-radius: 9px;
+            color: #80652e;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 900px) {
+            .favorites-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 580px) {
+            .favorites-page {
+                margin-top: 24px;
+            }
+
+            .favorites-heading h1 {
+                font-size: 24px;
+            }
+
+            .favorites-toolbar {
+                align-items: stretch;
+            }
+
+            .favorites-search {
+                width: 100%;
+            }
+
+            .favorites-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .favorite-image {
+                height: 210px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SHARED HEADER -->
+    <div id="site-header"></div>
+
+    <main class="favorites-page">
+
+        <!-- PAGE HEADING -->
+        <section class="favorites-heading">
+            <div>
+                <h1>My Favorites ♡</h1>
+                <p>Keep track of the products, services and businesses you love.</p>
+            </div>
+
+            <div class="saved-count">
+                Saved: <span id="savedCount">6</span>
+            </div>
+        </section>
+
+        <!-- FILTERS AND SEARCH -->
+        <section class="favorites-toolbar">
+
+            <div class="favorites-tabs">
+                <button class="tab-btn active" data-filter="all" type="button">
+                    All Favorites
+                </button>
+
+                <button class="tab-btn" data-filter="advertisement" type="button">
+                    Advertisements
+                </button>
+
+                <button class="tab-btn" data-filter="business" type="button">
+                    Businesses
+                </button>
+            </div>
+
+            <div class="favorites-search">
+                <input
+                    type="search"
+                    id="favoriteSearch"
+                    placeholder="Search saved items..."
+                    aria-label="Search saved favorites"
+                >
+            </div>
+
+        </section>
+
+        <!-- FAVORITES -->
+        <section class="favorites-grid" id="favoritesGrid">
+
+            <!-- ITEM 1 -->
+            <article
+                class="favorite-card"
+                data-type="advertisement"
+                data-name="Toyota Land Cruiser Prado"
+            >
+                <div class="favorite-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=85"
+                        alt="Toyota-style SUV"
+                        loading="lazy"
+                    >
+
+                    <span class="favorite-type">Vehicle</span>
+
+                    <button
+                        class="remove-favorite"
+                        type="button"
+                        aria-label="Remove Toyota Land Cruiser Prado from favorites"
+                        title="Remove from favorites"
+                    >♥</button>
+                </div>
+
+                <div class="favorite-details">
+                    <h3>Toyota Land Cruiser Prado</h3>
+                    <div class="favorite-location">📍 Nairobi, Kenya</div>
+                    <p class="favorite-description">
+                        A spacious SUV advertisement with vehicle specifications and seller information.
+                    </p>
+                    <div class="favorite-price">KSh 2,850,000</div>
+
+                    <div class="favorite-actions">
+                        <a href="advertisement-details.html" class="view-btn">
+                            View Advertisement
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ITEM 2 -->
+            <article
+                class="favorite-card"
+                data-type="advertisement"
+                data-name="Modern Family House"
+            >
+                <div class="favorite-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=85"
+                        alt="Modern family house"
+                        loading="lazy"
+                    >
+
+                    <span class="favorite-type">Real Estate</span>
+
+                    <button
+                        class="remove-favorite"
+                        type="button"
+                        aria-label="Remove Modern Family House from favorites"
+                        title="Remove from favorites"
+                    >♥</button>
+                </div>
+
+                <div class="favorite-details">
+                    <h3>Modern Family House</h3>
+                    <div class="favorite-location">📍 Bungoma, Kenya</div>
+                    <p class="favorite-description">
+                        A sample property listing featuring a modern residential design.
+                    </p>
+                    <div class="favorite-price">KSh 8,500,000</div>
+
+                    <div class="favorite-actions">
+                        <a href="advertisement-details.html" class="view-btn">
+                            View Advertisement
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ITEM 3 -->
+            <article
+                class="favorite-card"
+                data-type="advertisement"
+                data-name="Professional Laptop"
+            >
+                <div class="favorite-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=85"
+                        alt="Laptop computer"
+                        loading="lazy"
+                    >
+
+                    <span class="favorite-type">Electronics</span>
+
+                    <button
+                        class="remove-favorite"
+                        type="button"
+                        aria-label="Remove Professional Laptop from favorites"
+                        title="Remove from favorites"
+                    >♥</button>
+                </div>
+
+                <div class="favorite-details">
+                    <h3>Professional Laptop</h3>
+                    <div class="favorite-location">📍 Kakamega, Kenya</div>
+                    <p class="favorite-description">
+                        A sample laptop listing suitable for office and everyday computing.
+                    </p>
+                    <div class="favorite-price">KSh 75,000</div>
+
+                    <div class="favorite-actions">
+                        <a href="advertisement-details.html" class="view-btn">
+                            View Advertisement
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ITEM 4 -->
+            <article
+                class="favorite-card"
+                data-type="business"
+                data-name="InnoTech Solutions"
+            >
+                <div class="favorite-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=85"
+                        alt="Modern business office"
+                        loading="lazy"
+                    >
+
+                    <span class="favorite-type">Business</span>
+
+                    <button
+                        class="remove-favorite"
+                        type="button"
+                        aria-label="Remove InnoTech Solutions from favorites"
+                        title="Remove from favorites"
+                    >♥</button>
+                </div>
+
+                <div class="favorite-details">
+                    <h3>InnoTech Solutions</h3>
+                    <div class="favorite-location">📍 Nairobi, Kenya</div>
+                    <p class="favorite-description">
+                        Sample technology business offering digital and IT-related services.
+                    </p>
+                    <div class="favorite-price">Technology Services</div>
+
+                    <div class="favorite-actions">
+                        <a href="business-profile.html" class="view-btn">
+                            View Business
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ITEM 5 -->
+            <article
+                class="favorite-card"
+                data-type="business"
+                data-name="Green Valley Farm"
+            >
+                <div class="favorite-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85"
+                        alt="Green agricultural farmland"
+                        loading="lazy"
+                    >
+
+                    <span class="favorite-type">Business</span>
+
+                    <button
+                        class="remove-favorite"
+                        type="button"
+                        aria-label="Remove Green Valley Farm from favorites"
+                        title="Remove from favorites"
+                    >♥</button>
+                </div>
+
+                <div class="favorite-details">
+                    <h3>Green Valley Farm</h3>
+                    <div class="favorite-location">📍 Trans Nzoia, Kenya</div>
+                    <p class="favorite-description">
+                        Sample agricultural business offering farm products and services.
+                    </p>
+                    <div class="favorite-price">Agricultural Services</div>
+
+                    <div class="favorite-actions">
+                        <a href="business-profile.html" class="view-btn">
+                            View Business
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ITEM 6 -->
+            <article
+                class="favorite-card"
+                data-type="advertisement"
+                data-name="Executive Office Furniture"
+            >
+                <div class="favorite-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=85"
+                        alt="Modern office furniture"
+                        loading="lazy"
+                    >
+
+                    <span class="favorite-type">Furniture</span>
+
+                    <button
+                        class="remove-favorite"
+                        type="button"
+                        aria-label="Remove Executive Office Furniture from favorites"
+                        title="Remove from favorites"
+                    >♥</button>
+                </div>
+
+                <div class="favorite-details">
+                    <h3>Executive Office Furniture</h3>
+                    <div class="favorite-location">📍 Eldoret, Kenya</div>
+                    <p class="favorite-description">
+                        Sample office furniture advertisement for modern workspaces.
+                    </p>
+                    <div class="favorite-price">KSh 45,000</div>
+
+                    <div class="favorite-actions">
+                        <a href="advertisement-details.html" class="view-btn">
+                            View Advertisement
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- EMPTY STATE -->
+        <section class="empty-state" id="emptyState" hidden>
+            <div class="empty-icon">♡</div>
+
+            <h2>No saved items found</h2>
+
+            <p>
+                You haven't saved anything in this section yet.
+                Explore GLOBAL MARKET and save items you would like to revisit.
+            </p>
+
+            <a href="index.html" class="browse-btn">
+                Explore GLOBAL MARKET
+            </a>
+        </section>
+
+        <div class="demo-notice">
+            <strong>Demo notice:</strong>
+            These are sample saved items. Removing a card updates this page only. Permanent favorites linked to a user's account will be implemented using the database during backend integration.
+        </div>
+
+    </main>
+
+    <!-- SHARED FOOTER -->
+    <div id="site-footer"></div>
+
+    <script src="layout.js" defer></script>
+
+    <script>
+        const favoritesGrid = document.getElementById("favoritesGrid");
+        const searchInput = document.getElementById("favoriteSearch");
+        const filterButtons = document.querySelectorAll(".tab-btn");
+
+        const savedCount = document.getElementById("savedCount");
+        const emptyState = document.getElementById("emptyState");
+
+        let activeFilter = "all";
+
+        function getFavoriteCards() {
+            return Array.from(
+                favoritesGrid.querySelectorAll(".favorite-card")
+            );
+        }
+
+        function updateSavedCount() {
+            savedCount.textContent = getFavoriteCards().length;
+        }
+
+        function filterFavorites() {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+
+            let visibleCount = 0;
+
+            getFavoriteCards().forEach(card => {
+                const type = card.dataset.type;
+                const name = card.dataset.name.toLowerCase();
+
+                const matchesFilter =
+                    activeFilter === "all" || type === activeFilter;
+
+                const matchesSearch = name.includes(searchTerm);
+
+                const shouldShow = matchesFilter && matchesSearch;
+
+                card.hidden = !shouldShow;
+
+                if (shouldShow) {
+                    visibleCount++;
+                }
+            });
+
+            favoritesGrid.hidden = visibleCount === 0;
+            emptyState.hidden = visibleCount !== 0;
+
+            updateSavedCount();
+        }
+
+        // FILTER BUTTONS
+        filterButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                filterButtons.forEach(item => {
+                    item.classList.remove("active");
+                });
+
+                button.classList.add("active");
+
+                activeFilter = button.dataset.filter;
+
+                filterFavorites();
+            });
+        });
+
+        // SEARCH
+        searchInput.addEventListener("input", filterFavorites);
+
+        // REMOVE FAVORITES
+        favoritesGrid.addEventListener("click", event => {
+            const removeButton = event.target.closest(".remove-favorite");
+
+            if (!removeButton) {
+                return;
+            }
+
+            const card = removeButton.closest(".favorite-card");
+
+            if (!card) {
+                return;
+            }
+
+            card.remove();
+
+            filterFavorites();
+        });
+
+        // INITIALIZE
+        filterFavorites();
+    </script>
+
+</body>
+</html>
+
