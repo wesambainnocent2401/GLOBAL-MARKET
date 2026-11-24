@@ -1,1 +1,304 @@
 
+<header class="gm-header">
+    <div class="gm-header-inner">
+
+        <a href="index.html" class="gm-brand">
+            <span class="gm-logo">GM</span>
+            <span class="gm-brand-text">
+                <strong>GLOBAL MARKET</strong>
+                <small>YOUR WORLD. ONE MARKETPLACE.</small>
+            </span>
+        </a>
+
+        <button class="gm-menu-toggle"
+                id="gmMenuToggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="gmNavigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="gm-navigation" id="gmNavigation">
+
+            <div class="gm-nav-links">
+                <a href="index.html">Home</a>
+                <a href="categories.html">Categories</a>
+                <a href="businesses.html">Businesses</a>
+                <a href="education.html">Education</a>
+                <a href="about.html">About Us</a>
+            </div>
+
+            <div class="gm-account-links">
+                <a href="login.html" class="gm-login">Login</a>
+                <a href="register.html" class="gm-register">
+                    Create Account
+                </a>
+            </div>
+
+        </nav>
+    </div>
+</header>
+
+<style>
+.gm-header {
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #e8edf3;
+    box-shadow: 0 3px 15px rgba(20, 40, 70, 0.05);
+    position: relative;
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+}
+
+.gm-header * {
+    box-sizing: border-box;
+}
+
+.gm-header-inner {
+    width: min(1200px, 94%);
+    min-height: 82px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.gm-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.gm-logo {
+    width: 45px;
+    height: 45px;
+    border-radius: 13px;
+    background: #102c50;
+    color: #ffffff;
+    display: grid;
+    place-items: center;
+    font-size: 17px;
+    font-weight: 800;
+    border: 2px solid #d5ad55;
+}
+
+.gm-brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.gm-brand-text strong {
+    color: #142c4b;
+    font-size: 17px;
+    letter-spacing: 0.4px;
+}
+
+.gm-brand-text small {
+    color: #a17b2c;
+    font-size: 9px;
+    letter-spacing: 0.7px;
+    font-weight: 700;
+}
+
+.gm-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 28px;
+    flex: 1;
+}
+
+.gm-nav-links,
+.gm-account-links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.gm-navigation a {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.gm-nav-links a {
+    color: #33445a;
+    padding: 10px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.gm-nav-links a:hover,
+.gm-nav-links a.active {
+    color: #b08736;
+    border-bottom-color: #c49a45;
+}
+
+.gm-account-links {
+    gap: 12px;
+}
+
+.gm-login {
+    color: #17395f;
+    padding: 11px 15px;
+}
+
+.gm-register {
+    background: #17395f;
+    color: #ffffff;
+    padding: 12px 17px;
+    border-radius: 7px;
+}
+
+.gm-register:hover {
+    background: #b08736;
+}
+
+.gm-menu-toggle {
+    display: none;
+    width: 43px;
+    height: 40px;
+    border: 1px solid #e1e7ee;
+    border-radius: 7px;
+    background: #ffffff;
+    padding: 9px;
+    cursor: pointer;
+}
+
+.gm-menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin: 4px 0;
+    background: #17395f;
+    border-radius: 5px;
+}
+
+@media (max-width: 900px) {
+    .gm-header-inner {
+        min-height: 72px;
+    }
+
+    .gm-menu-toggle {
+        display: block;
+    }
+
+    .gm-navigation {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 20px 5%;
+        background: #ffffff;
+        border-top: 1px solid #edf0f4;
+        box-shadow: 0 12px 20px rgba(20, 40, 70, 0.08);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+    }
+
+    .gm-navigation.open {
+        display: flex;
+    }
+
+    .gm-nav-links {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+
+    .gm-nav-links a {
+        padding: 14px 5px;
+        border-bottom: 1px solid #edf0f4;
+    }
+
+    .gm-account-links {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .gm-account-links a {
+        text-align: center;
+        padding: 13px;
+        border-radius: 7px;
+    }
+
+    .gm-login {
+        border: 1px solid #dce4ed;
+    }
+}
+
+@media (max-width: 400px) {
+    .gm-brand-text strong {
+        font-size: 14px;
+    }
+
+    .gm-brand-text small {
+        font-size: 8px;
+    }
+
+    .gm-logo {
+        width: 40px;
+        height: 40px;
+    }
+}
+</style>
+
+<script>
+(function () {
+    const menuButton = document.getElementById("gmMenuToggle");
+    const navigation = document.getElementById("gmNavigation");
+
+    if (!menuButton || !navigation) return;
+
+    function closeMenu() {
+        navigation.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Open navigation menu");
+    }
+
+    menuButton.addEventListener("click", function () {
+        const isOpen = navigation.classList.toggle("open");
+
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuButton.setAttribute(
+            "aria-label",
+            isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+    });
+
+    navigation.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("click", function (event) {
+        if (
+            !navigation.contains(event.target) &&
+            !menuButton.contains(event.target)
+        ) {
+            closeMenu();
+        }
+    });
+
+    const currentPage = window.location.pathname.split("/").pop() || "index.html";
+
+    navigation.querySelectorAll(".gm-nav-links a").forEach(function (link) {
+        const linkPage = link.getAttribute("href");
+
+        if (linkPage === currentPage) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
+        }
+    });
+})();
+</script>
+
