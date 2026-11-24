@@ -1,1 +1,822 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3f5f8">
+
+    <meta name="description" content="Manage and update your business profile on GLOBAL MARKET.">
+
+    <title>Edit Business Profile | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --navy: #142b49;
+            --blue: #244b75;
+            --gold: #c69b43;
+            --background: #f3f5f8;
+            --muted: #6b7788;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: #263548;
+            font-family: Arial, sans-serif;
+        }
+
+        .edit-hero {
+            padding: 35px 20px;
+            color: white;
+            background: linear-gradient(110deg, #142b49, #315b83);
+        }
+
+        .edit-hero-inner {
+            width: min(1050px, 94%);
+            margin: auto;
+        }
+
+        .edit-hero h1 {
+            margin: 0 0 9px;
+            font-size: 29px;
+        }
+
+        .edit-hero p {
+            margin: 0;
+            color: #e0e8f1;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .edit-container {
+            width: min(1050px, 94%);
+            margin: 30px auto 60px;
+        }
+
+        .edit-layout {
+            display: grid;
+            grid-template-columns: 245px minmax(0, 1fr);
+            gap: 22px;
+            align-items: start;
+        }
+
+        .edit-sidebar,
+        .edit-card {
+            background: white;
+            border: 1px solid #e5e9ef;
+            border-radius: 13px;
+            box-shadow: 0 7px 25px rgba(20,43,73,.04);
+        }
+
+        .edit-sidebar {
+            padding: 20px;
+        }
+
+        .business-preview {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #edf0f3;
+        }
+
+        .business-avatar {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 12px;
+            display: grid;
+            place-items: center;
+            border-radius: 16px;
+            background: #edf2f8;
+            color: var(--navy);
+            font-size: 27px;
+            font-weight: bold;
+            overflow: hidden;
+        }
+
+        .business-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .business-preview h3 {
+            margin: 0 0 6px;
+            color: var(--navy);
+            font-size: 15px;
+        }
+
+        .business-preview p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .sidebar-links {
+            display: grid;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .sidebar-links a {
+            padding: 11px 12px;
+            color: #526174;
+            text-decoration: none;
+            border-radius: 7px;
+            font-size: 13px;
+        }
+
+        .sidebar-links a.active,
+        .sidebar-links a:hover {
+            color: var(--navy);
+            background: #f0f4f9;
+            font-weight: bold;
+        }
+
+        .edit-card {
+            padding: 25px;
+        }
+
+        .card-heading {
+            padding-bottom: 18px;
+            margin-bottom: 22px;
+            border-bottom: 1px solid #edf0f3;
+        }
+
+        .card-heading h2 {
+            margin: 0 0 7px;
+            color: var(--navy);
+            font-size: 20px;
+        }
+
+        .card-heading p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section h3 {
+            margin: 0 0 17px;
+            color: var(--navy);
+            font-size: 16px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 17px;
+        }
+
+        .form-group {
+            min-width: 0;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #344256;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 13px;
+            border: 1px solid #dce3eb;
+            border-radius: 8px;
+            outline: none;
+            background: #fff;
+            color: #263548;
+            font: inherit;
+            font-size: 13px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(36,75,117,.08);
+        }
+
+        .form-group textarea {
+            min-height: 115px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: 6px;
+            color: #8490a0;
+            font-size: 11px;
+        }
+
+        .image-upload-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .image-upload {
+            padding: 15px;
+            background: #f8fafc;
+            border: 1px dashed #c4ceda;
+            border-radius: 9px;
+        }
+
+        .image-upload label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--navy);
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .image-upload input {
+            width: 100%;
+            font-size: 11px;
+        }
+
+        .image-upload img {
+            display: none;
+            width: 100%;
+            height: 120px;
+            margin-top: 12px;
+            border-radius: 7px;
+            object-fit: cover;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 13px;
+        }
+
+        .day-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 11px;
+            background: #f8fafc;
+            border-radius: 7px;
+            font-size: 12px;
+        }
+
+        .day-row input {
+            width: 110px;
+            padding: 7px;
+            border: 1px solid #dce3eb;
+            border-radius: 6px;
+            font-size: 11px;
+        }
+
+        .edit-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-top: 20px;
+            border-top: 1px solid #edf0f3;
+        }
+
+        .save-button,
+        .reset-button {
+            padding: 13px 22px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .save-button {
+            background: var(--navy);
+            color: white;
+        }
+
+        .save-button:hover {
+            background: var(--blue);
+        }
+
+        .reset-button {
+            background: #edf1f5;
+            color: #405168;
+        }
+
+        .form-message {
+            display: none;
+            margin-top: 17px;
+            padding: 13px;
+            border-radius: 7px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .form-message.success {
+            display: block;
+            color: #17613b;
+            background: #eaf8ef;
+        }
+
+        .form-message.error {
+            display: block;
+            color: #a32c2c;
+            background: #fff0f0;
+        }
+
+        .demo-note {
+            margin-top: 20px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 760px) {
+            .edit-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar-links {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .business-preview {
+                display: flex;
+                align-items: center;
+                gap: 13px;
+                text-align: left;
+            }
+
+            .business-avatar {
+                margin: 0;
+                flex-shrink: 0;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .edit-card {
+                padding: 17px;
+            }
+
+            .form-grid,
+            .image-upload-grid,
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .edit-hero h1 {
+                font-size: 24px;
+            }
+
+            .edit-actions button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="site-header"></div>
+
+    <main>
+
+        <section class="edit-hero">
+            <div class="edit-hero-inner">
+                <h1>Edit Business Profile</h1>
+                <p>
+                    Keep your business information accurate and up to date
+                    so customers can find and contact you.
+                </p>
+            </div>
+        </section>
+
+        <div class="edit-container">
+
+            <div class="edit-layout">
+
+                <aside class="edit-sidebar">
+
+                    <div class="business-preview">
+                        <div class="business-avatar" id="sidebarLogo">
+                            GM
+                        </div>
+
+                        <div>
+                            <h3 id="sidebarBusinessName">Your Business</h3>
+                            <p>Business profile</p>
+                        </div>
+                    </div>
+
+                    <nav class="sidebar-links">
+                        <a href="business-profile.html">Public Profile</a>
+                        <a href="edit-business-profile.html" class="active">Edit Profile</a>
+                        <a href="advertiser-dashboard.html">Dashboard</a>
+                        <a href="my-ads.html">My Advertisements</a>
+                        <a href="messages.html">Messages</a>
+                        <a href="profile.html">Account Settings</a>
+                    </nav>
+
+                </aside>
+
+                <section class="edit-card">
+
+                    <div class="card-heading">
+                        <h2>Business Details</h2>
+                        <p>
+                            Update the information displayed on your
+                            public business profile.
+                        </p>
+                    </div>
+
+                    <form id="editBusinessForm">
+
+                        <section class="form-section">
+
+                            <h3>Business Information</h3>
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+                                    <label for="businessName">Business Name *</label>
+                                    <input
+                                        type="text"
+                                        id="businessName"
+                                        name="businessName"
+                                        value="Innocent Tech Solutions"
+                                        maxlength="100"
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="category">Business Category *</label>
+                                    <select id="category" name="category" required>
+                                        <option value="Technology">Technology</option>
+                                        <option value="Agriculture">Agriculture</option>
+                                        <option value="Automotive">Automotive</option>
+                                        <option value="Beauty">Beauty & Personal Care</option>
+                                        <option value="Construction">Construction</option>
+                                        <option value="Education">Education</option>
+                                        <option value="Electronics">Electronics</option>
+                                        <option value="Fashion">Fashion</option>
+                                        <option value="Food">Food & Restaurants</option>
+                                        <option value="Health">Health</option>
+                                        <option value="Real Estate">Real Estate</option>
+                                        <option value="Retail">Retail</option>
+                                        <option value="Transport">Transport</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group full">
+                                    <label for="description">Business Description *</label>
+                                    <textarea
+                                        id="description"
+                                        name="description"
+                                        minlength="30"
+                                        maxlength="1500"
+                                        required
+                                    >We provide technology solutions, website development and digital services to individuals and businesses.</textarea>
+                                    <small>Describe your products, services and what makes your business useful to customers.</small>
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                        <section class="form-section">
+
+                            <h3>Contact Information</h3>
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+                                    <label for="phone">Business Phone *</label>
+                                    <input
+                                        type="tel"
+                                        id="phone"
+                                        name="phone"
+                                        value="+254712345678"
+                                        maxlength="20"
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Business Email *</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value="info@example.com"
+                                        maxlength="150"
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-group full">
+                                    <label for="website">Website / Social Media</label>
+                                    <input
+                                        type="url"
+                                        id="website"
+                                        name="website"
+                                        placeholder="https://example.com"
+                                        maxlength="250"
+                                    >
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                        <section class="form-section">
+
+                            <h3>Business Location</h3>
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+                                    <label for="county">County *</label>
+                                    <select id="county" name="county" required>
+                                        <option value="Bungoma">Bungoma</option>
+                                        <option value="Kakamega">Kakamega</option>
+                                        <option value="Busia">Busia</option>
+                                        <option value="Nairobi">Nairobi</option>
+                                        <option value="Kisumu">Kisumu</option>
+                                        <option value="Uasin Gishu">Uasin Gishu</option>
+                                        <option value="Nakuru">Nakuru</option>
+                                        <option value="Mombasa">Mombasa</option>
+                                        <option value="Kiambu">Kiambu</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="town">Town / City *</label>
+                                    <input
+                                        type="text"
+                                        id="town"
+                                        name="town"
+                                        value="Bungoma"
+                                        maxlength="100"
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-group full">
+                                    <label for="address">Physical Address</label>
+                                    <input
+                                        type="text"
+                                        id="address"
+                                        name="address"
+                                        placeholder="Street, estate or nearby landmark"
+                                        maxlength="200"
+                                    >
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                        <section class="form-section">
+
+                            <h3>Business Branding</h3>
+
+                            <div class="image-upload-grid">
+
+                                <div class="image-upload">
+                                    <label for="logo">Business Logo</label>
+                                    <input
+                                        type="file"
+                                        id="logo"
+                                        name="logo"
+                                        accept="image/png,image/jpeg,image/webp"
+                                    >
+                                    <img id="logoPreview" alt="New business logo preview">
+                                </div>
+
+                                <div class="image-upload">
+                                    <label for="cover">Business Cover Photo</label>
+                                    <input
+                                        type="file"
+                                        id="cover"
+                                        name="cover"
+                                        accept="image/png,image/jpeg,image/webp"
+                                    >
+                                    <img id="coverPreview" alt="New cover photo preview">
+                                </div>
+
+                            </div>
+
+                            <small class="form-hint">
+                                Select images up to 5MB each. Image previews are temporary;
+                                permanent uploads will use Supabase Storage.
+                            </small>
+
+                        </section>
+
+                        <section class="form-section">
+
+                            <h3>Business Opening Hours</h3>
+
+                            <div class="hours-grid">
+
+                                <div class="day-row">
+                                    <span>Monday</span>
+                                    <input type="text" name="monday" value="8 AM - 5 PM">
+                                </div>
+
+                                <div class="day-row">
+                                    <span>Tuesday</span>
+                                    <input type="text" name="tuesday" value="8 AM - 5 PM">
+                                </div>
+
+                                <div class="day-row">
+                                    <span>Wednesday</span>
+                                    <input type="text" name="wednesday" value="8 AM - 5 PM">
+                                </div>
+
+                                <div class="day-row">
+                                    <span>Thursday</span>
+                                    <input type="text" name="thursday" value="8 AM - 5 PM">
+                                </div>
+
+                                <div class="day-row">
+                                    <span>Friday</span>
+                                    <input type="text" name="friday" value="8 AM - 5 PM">
+                                </div>
+
+                                <div class="day-row">
+                                    <span>Saturday</span>
+                                    <input type="text" name="saturday" value="9 AM - 2 PM">
+                                </div>
+
+                                <div class="day-row">
+                                    <span>Sunday</span>
+                                    <input type="text" name="sunday" value="Closed">
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                        <div class="edit-actions">
+                            <button type="submit" class="save-button">
+                                Save Changes
+                            </button>
+
+                            <button type="reset" class="reset-button">
+                                Reset Form
+                            </button>
+                        </div>
+
+                        <div
+                            id="formMessage"
+                            class="form-message"
+                            role="status"
+                            aria-live="polite"
+                        ></div>
+
+                    </form>
+
+                    <p class="demo-note">
+                        Demo notice: This page currently displays sample business
+                        information. Changes are not permanently saved yet.
+                        Supabase authentication, database updates and image storage
+                        will be integrated in the backend stage.
+                    </p>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="layout.js" defer></script>
+
+    <script>
+        // GLOBAL MARKET - Edit Business Profile
+
+        const editForm = document.getElementById("editBusinessForm");
+        const formMessage = document.getElementById("formMessage");
+
+        const businessNameInput = document.getElementById("businessName");
+        const sidebarBusinessName = document.getElementById("sidebarBusinessName");
+
+        businessNameInput.addEventListener("input", function () {
+            sidebarBusinessName.textContent =
+                this.value.trim() || "Your Business";
+        });
+
+        function setupImagePreview(inputId, previewId) {
+            const input = document.getElementById(inputId);
+            const preview = document.getElementById(previewId);
+
+            input.addEventListener("change", function () {
+                const file = this.files[0];
+
+                if (!file) {
+                    preview.removeAttribute("src");
+                    preview.style.display = "none";
+                    return;
+                }
+
+                if (!file.type.startsWith("image/")) {
+                    alert("Please select a valid image.");
+                    this.value = "";
+                    preview.style.display = "none";
+                    return;
+                }
+
+                if (file.size > 5 * 1024 * 1024) {
+                    alert("Image must be smaller than 5MB.");
+                    this.value = "";
+                    preview.style.display = "none";
+                    return;
+                }
+
+                const reader = new FileReader();
+
+                reader.onload = function (event) {
+                    preview.src = event.target.result;
+                    preview.style.display = "block";
+
+                    if (inputId === "logo") {
+                        document.getElementById("sidebarLogo").innerHTML =
+                            '<img src="' + event.target.result + '" alt="Business logo">';
+                    }
+                };
+
+                reader.readAsDataURL(file);
+            });
+        }
+
+        setupImagePreview("logo", "logoPreview");
+        setupImagePreview("cover", "coverPreview");
+
+        editForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            if (!editForm.checkValidity()) {
+                editForm.reportValidity();
+                return;
+            }
+
+            formMessage.className = "form-message success";
+
+            formMessage.textContent =
+                "Your changes have passed the form checks. " +
+                "Permanent saving is not connected yet.";
+
+            formMessage.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        });
+
+        editForm.addEventListener("reset", function () {
+            setTimeout(function () {
+                sidebarBusinessName.textContent =
+                    businessNameInput.value || "Your Business";
+
+                formMessage.className = "form-message";
+                formMessage.textContent = "";
+
+                document.getElementById("sidebarLogo").textContent = "GM";
+
+                document.querySelectorAll(".image-upload img").forEach(function (image) {
+                    image.removeAttribute("src");
+                    image.style.display = "none";
+                });
+            }, 0);
+        });
+    </script>
+
+</body>
+</html>
+
