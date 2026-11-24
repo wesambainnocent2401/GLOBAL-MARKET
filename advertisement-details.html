@@ -1,1 +1,668 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f6f9">
+
+    <meta name="description" content="Explore product and service advertisements on GLOBAL MARKET. View photos, videos, prices and seller information.">
+
+    <title>Advertisement Details | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --ad-navy: #142c4c;
+            --ad-gold: #c49a42;
+            --ad-text: #26364a;
+            --ad-muted: #748195;
+            --ad-border: #e5eaf0;
+            --ad-bg: #f4f6f9;
+        }
+
+        body {
+            margin: 0;
+            background: var(--ad-bg);
+            color: var(--ad-text);
+            font-family: Arial, sans-serif;
+        }
+
+        .ad-page {
+            max-width: 1200px;
+            margin: auto;
+            padding: 25px 18px 55px;
+        }
+
+        .breadcrumb {
+            font-size: 13px;
+            color: var(--ad-muted);
+            margin-bottom: 22px;
+        }
+
+        .breadcrumb a {
+            color: var(--ad-navy);
+            text-decoration: none;
+        }
+
+        .ad-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.65fr) minmax(280px, .85fr);
+            gap: 25px;
+            align-items: start;
+        }
+
+        .ad-card {
+            background: white;
+            border: 1px solid var(--ad-border);
+            border-radius: 13px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .main-photo {
+            width: 100%;
+            height: 390px;
+            object-fit: cover;
+            border-radius: 10px;
+            background: #edf0f4;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 95px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .gallery img.active {
+            border-color: var(--ad-gold);
+        }
+
+        .demo-note {
+            background: #fff8e9;
+            color: #755b22;
+            padding: 11px 13px;
+            border-radius: 8px;
+            font-size: 12px;
+            margin-top: 13px;
+            line-height: 1.6;
+        }
+
+        .ad-title {
+            font-size: 27px;
+            line-height: 1.35;
+            color: var(--ad-navy);
+            margin: 12px 0;
+        }
+
+        .ad-meta {
+            color: var(--ad-muted);
+            font-size: 13px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .price {
+            font-size: 29px;
+            font-weight: bold;
+            color: var(--ad-navy);
+            margin: 12px 0;
+        }
+
+        .gold-text {
+            color: var(--ad-gold);
+        }
+
+        .section-title {
+            color: var(--ad-navy);
+            font-size: 19px;
+            margin: 0 0 17px;
+        }
+
+        .description {
+            color: #536174;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .seller-row {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .seller-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #e8edf3;
+        }
+
+        .seller-name {
+            color: var(--ad-navy);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .seller-info {
+            color: var(--ad-muted);
+            font-size: 12px;
+        }
+
+        .seller-link {
+            color: var(--ad-navy);
+            font-size: 13px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .details-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .detail-item {
+            background: #f7f9fb;
+            padding: 13px;
+            border-radius: 8px;
+        }
+
+        .detail-label {
+            font-size: 11px;
+            color: var(--ad-muted);
+            margin-bottom: 6px;
+        }
+
+        .detail-value {
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--ad-navy);
+        }
+
+        .action-btn {
+            display: block;
+            width: 100%;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            margin-top: 12px;
+            box-sizing: border-box;
+        }
+
+        .primary-btn {
+            background: var(--ad-navy);
+            color: white;
+        }
+
+        .secondary-btn {
+            background: #f4f6f9;
+            color: var(--ad-navy);
+            border: 1px solid var(--ad-border);
+        }
+
+        .gold-btn {
+            background: var(--ad-gold);
+            color: white;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .video-card {
+            background: #f7f9fb;
+            padding: 9px;
+            border-radius: 10px;
+            border: 1px solid var(--ad-border);
+        }
+
+        .video-card video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #17263a;
+            border-radius: 7px;
+            display: block;
+            object-fit: cover;
+        }
+
+        .video-caption {
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--ad-navy);
+            padding: 9px 3px 3px;
+        }
+
+        .video-empty {
+            padding: 25px 12px;
+            text-align: center;
+            color: var(--ad-muted);
+            font-size: 13px;
+            background: #f7f9fb;
+            border-radius: 8px;
+        }
+
+        .safety-note {
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--ad-muted);
+            background: #f7f9fb;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .report-link {
+            color: #a24a4a;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        @media (max-width: 800px) {
+            .ad-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .main-photo {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ad-page {
+                padding: 18px 12px 40px;
+            }
+
+            .ad-card {
+                padding: 14px;
+            }
+
+            .main-photo {
+                height: 240px;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 6px;
+            }
+
+            .gallery img {
+                height: 65px;
+            }
+
+            .ad-title {
+                font-size: 22px;
+            }
+
+            .price {
+                font-size: 25px;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Shared website header -->
+    <div id="site-header"></div>
+
+    <main class="ad-page">
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> /
+            <a href="categories.html">Categories</a> /
+            Advertisement Details
+        </div>
+
+        <div class="ad-layout">
+
+            <!-- LEFT COLUMN -->
+            <div>
+
+                <!-- Advertisement photos -->
+                <section class="ad-card">
+
+                    <img
+                        id="mainPhoto"
+                        class="main-photo"
+                        src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1100"
+                        alt="Advertised vehicle"
+                    >
+
+                    <div class="gallery">
+
+                        <img
+                            class="active"
+                            src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400"
+                            alt="Vehicle view one"
+                            onclick="changePhoto(this)"
+                        >
+
+                        <img
+                            src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400"
+                            alt="Vehicle view two"
+                            onclick="changePhoto(this)"
+                        >
+
+                        <img
+                            src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400"
+                            alt="Vehicle view three"
+                            onclick="changePhoto(this)"
+                        >
+
+                        <img
+                            src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=400"
+                            alt="Vehicle view four"
+                            onclick="changePhoto(this)"
+                        >
+
+                    </div>
+
+                    <div class="demo-note">
+                        DEMO ADVERTISEMENT: These are sample images and sample information.
+                        Real advertisements will display photos uploaded by their advertisers.
+                    </div>
+
+                </section>
+
+                <!-- Advertisement information -->
+                <section class="ad-card">
+
+                    <span class="gold-text">
+                        FEATURED ADVERTISEMENT
+                    </span>
+
+                    <h1 class="ad-title">
+                        Premium Modern Vehicle — Excellent Condition
+                    </h1>
+
+                    <div class="ad-meta">
+                        <span>Category: Vehicles</span>
+                        <span>Location: Nairobi, Kenya</span>
+                        <span>Posted: Sample listing</span>
+                    </div>
+
+                    <div class="price">
+                        KSh 2,850,000
+                    </div>
+
+                    <div class="description">
+                        Discover this attractive modern vehicle, presented as
+                        a sample advertisement on GLOBAL MARKET.
+
+                        The seller can provide further information about its
+                        features, condition, availability and viewing arrangements.
+
+                        Contact the advertiser directly for accurate details
+                        before making any purchase decision.
+                    </div>
+
+                </section>
+
+                <!-- Product specifications -->
+                <section class="ad-card">
+
+                    <h2 class="section-title">Advertisement Information</h2>
+
+                    <div class="details-list">
+
+                        <div class="detail-item">
+                            <div class="detail-label">Category</div>
+                            <div class="detail-value">Vehicles</div>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-label">Condition</div>
+                            <div class="detail-value">Sample information</div>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-label">Location</div>
+                            <div class="detail-value">Nairobi</div>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-label">Availability</div>
+                            <div class="detail-value">Contact seller</div>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- Advertiser videos -->
+                <section class="ad-card">
+
+                    <h2 class="section-title">
+                        Product & Service Videos
+                    </h2>
+
+                    <p class="description">
+                        Advertisers can upload at least five videos to
+                        demonstrate their products or services.
+                    </p>
+
+                    <div class="video-grid" id="videoGallery">
+
+                        <div class="video-empty">
+                            Video 1 — No video uploaded in this demo.
+                        </div>
+
+                        <div class="video-empty">
+                            Video 2 — No video uploaded in this demo.
+                        </div>
+
+                        <div class="video-empty">
+                            Video 3 — No video uploaded in this demo.
+                        </div>
+
+                        <div class="video-empty">
+                            Video 4 — No video uploaded in this demo.
+                        </div>
+
+                        <div class="video-empty">
+                            Video 5 — No video uploaded in this demo.
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- Seller information -->
+                <section class="ad-card">
+
+                    <h2 class="section-title">About the Advertiser</h2>
+
+                    <div class="seller-row">
+
+                        <img
+                            class="seller-avatar"
+                            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150"
+                            alt="Sample advertiser"
+                        >
+
+                        <div>
+                            <div class="seller-name">
+                                Global Motors Kenya
+                            </div>
+
+                            <div class="seller-info">
+                                Sample advertiser profile
+                            </div>
+
+                            <a href="business-profile.html" class="seller-link">
+                                View advertiser profile →
+                            </a>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section class="ad-card">
+
+                    <h2 class="section-title">Safety Information</h2>
+
+                    <div class="safety-note">
+                        Always verify products, sellers and business information
+                        before completing a transaction.
+
+                        Avoid sending money to unknown people without checking
+                        the advertisement and payment details.
+
+                        GLOBAL MARKET sample listings do not represent verified
+                        sellers or confirmed offers.
+                    </div>
+
+                    <br>
+
+                    <a href="contact.html" class="report-link">
+                        Report this advertisement
+                    </a>
+
+                </section>
+
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <aside>
+
+                <!-- Price and contact -->
+                <section class="ad-card">
+
+                    <span class="gold-text">ADVERTISEMENT PRICE</span>
+
+                    <div class="price">
+                        KSh 2,850,000
+                    </div>
+
+                    <p class="seller-info">
+                        Sample price — confirm with advertiser.
+                    </p>
+
+                    <a href="messages.html" class="action-btn primary-btn">
+                        Contact Advertiser
+                    </a>
+
+                    <a href="business-profile.html" class="action-btn secondary-btn">
+                        View Business Profile
+                    </a>
+
+                    <button
+                        class="action-btn gold-btn"
+                        type="button"
+                        onclick="saveFavourite()"
+                    >
+                        ♡ Save to Favourites
+                    </button>
+
+                </section>
+
+                <!-- Seller card -->
+                <section class="ad-card">
+
+                    <h2 class="section-title">Advertiser Details</h2>
+
+                    <div class="seller-name">
+                        Global Motors Kenya
+                    </div>
+
+                    <div class="seller-info">
+                        Nairobi, Kenya
+                    </div>
+
+                    <div class="seller-info" style="margin-top:10px;">
+                        Advertiser account: Sample
+                    </div>
+
+                </section>
+
+                <!-- Similar listings -->
+                <section class="ad-card">
+
+                    <h2 class="section-title">Explore More</h2>
+
+                    <p class="description">
+                        Discover more vehicles, properties, products and services.
+                    </p>
+
+                    <a href="category-listings.html?category=vehicles"
+                       class="action-btn secondary-btn">
+                        More Vehicles
+                    </a>
+
+                    <a href="category-listings.html?category=property"
+                       class="action-btn secondary-btn">
+                        Explore Properties
+                    </a>
+
+                    <a href="categories.html"
+                       class="action-btn secondary-btn">
+                        Browse All Categories
+                    </a>
+
+                </section>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+    <!-- Shared website footer -->
+    <div id="site-footer"></div>
+
+    <script>
+        // Change the main advertisement photo.
+        function changePhoto(image) {
+
+            const mainPhoto = document.getElementById("mainPhoto");
+
+            mainPhoto.src = image.src.replace("w=400", "w=1100");
+
+            document.querySelectorAll(".gallery img").forEach(function(photo) {
+                photo.classList.remove("active");
+            });
+
+            image.classList.add("active");
+        }
+
+        // Temporary demo favourite action.
+        function saveFavourite() {
+
+            alert(
+                "This is a demonstration. Favourites will be saved to your account after Supabase integration."
+            );
+
+        }
+    </script>
+
+    <script src="layout.js" defer></script>
+
+</body>
+</html>
+
