@@ -1,1 +1,1005 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Edit and manage your GLOBAL MARKET advertisements.">
+
+    <title>Edit Advertisement | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .edit-page {
+            background: #f2f4f8;
+            min-height: 100vh;
+            padding-bottom: 70px;
+        }
+
+        .edit-hero {
+            background: linear-gradient(120deg, #172b4d, #344d73);
+            padding: 45px 6%;
+            color: white;
+        }
+
+        .edit-hero h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .edit-hero p {
+            color: #dce4ef;
+            line-height: 1.7;
+        }
+
+        .edit-container {
+            width: 92%;
+            max-width: 1050px;
+            margin: 35px auto;
+        }
+
+        .edit-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 290px;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .edit-card {
+            background: white;
+            border-radius: 15px;
+            padding: 27px;
+            margin-bottom: 22px;
+            border: 1px solid #e6eaf0;
+            box-shadow: 0 5px 18px rgba(23,43,77,0.04);
+        }
+
+        .edit-card h2 {
+            color: #172b4d;
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        .section-description {
+            color: #8490a0;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 23px;
+        }
+
+        .edit-form-group {
+            margin-bottom: 19px;
+        }
+
+        .edit-form-group label {
+            display: block;
+            color: #34445d;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 9px;
+        }
+
+        .edit-form-group input,
+        .edit-form-group select,
+        .edit-form-group textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #dfe4ec;
+            border-radius: 9px;
+            outline: none;
+            font-size: 14px;
+            color: #263449;
+            background: white;
+            font-family: inherit;
+        }
+
+        .edit-form-group input:focus,
+        .edit-form-group select:focus,
+        .edit-form-group textarea:focus {
+            border-color: #c49b4b;
+        }
+
+        .edit-form-group textarea {
+            resize: vertical;
+            min-height: 125px;
+        }
+
+        .edit-two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .edit-media-info {
+            background: #fff9ed;
+            border: 1px solid #f0dfbb;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #755d32;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .media-upload-box {
+            border: 2px dashed #cfd7e3;
+            background: #f8fafc;
+            padding: 27px 15px;
+            text-align: center;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .media-upload-box .upload-icon {
+            font-size: 32px;
+            margin-bottom: 9px;
+        }
+
+        .media-upload-box h3 {
+            color: #172b4d;
+            font-size: 15px;
+            margin-bottom: 7px;
+        }
+
+        .media-upload-box p {
+            color: #8490a0;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .media-upload-box input {
+            display: none;
+        }
+
+        .media-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .media-preview {
+            position: relative;
+            height: 120px;
+            background: #e9edf3;
+            border-radius: 9px;
+            overflow: hidden;
+        }
+
+        .media-preview img,
+        .media-preview video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .media-remove {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 27px;
+            height: 27px;
+            border: none;
+            border-radius: 50%;
+            background: #fff;
+            color: #d64545;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .media-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(23,43,77,0.82);
+            color: white;
+            font-size: 10px;
+            padding: 6px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .media-counter {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            color: #778397;
+            font-size: 12px;
+            margin-top: 12px;
+        }
+
+        .media-counter strong {
+            color: #172b4d;
+        }
+
+        .edit-sidebar {
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar-card {
+            background: white;
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 18px;
+            border: 1px solid #e6eaf0;
+        }
+
+        .sidebar-card h3 {
+            color: #172b4d;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .status-line {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 11px 0;
+            border-bottom: 1px solid #edf0f4;
+            font-size: 12px;
+        }
+
+        .status-line:last-child {
+            border-bottom: none;
+        }
+
+        .status-line span:first-child {
+            color: #8490a0;
+        }
+
+        .status-line span:last-child {
+            color: #34445d;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .edit-tip {
+            background: #eef3fa;
+            padding: 15px;
+            border-radius: 10px;
+            color: #526681;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .edit-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .edit-save {
+            border: none;
+            background: #172b4d;
+            color: white;
+            padding: 14px 22px;
+            border-radius: 9px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .edit-cancel {
+            display: inline-block;
+            text-decoration: none;
+            background: #edf0f5;
+            color: #34445d;
+            padding: 14px 22px;
+            border-radius: 9px;
+            font-weight: 600;
+        }
+
+        .edit-message {
+            display: none;
+            padding: 13px;
+            margin-top: 15px;
+            background: #edf7ef;
+            color: #27643c;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        @media(max-width: 850px) {
+            .edit-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .edit-sidebar {
+                position: static;
+            }
+        }
+
+        @media(max-width: 550px) {
+            .edit-hero h1 {
+                font-size: 25px;
+            }
+
+            .edit-card {
+                padding: 19px;
+            }
+
+            .edit-two-columns {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .media-preview-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="announcement-bar">
+        YOUR WORLD. ONE MARKETPLACE.
+    </div>
+
+    <header class="main-header">
+        <div class="header-container">
+
+            <a href="index.html" class="logo">
+                <span class="logo-icon">G</span>
+                <span class="logo-text">GLOBAL MARKET</span>
+            </a>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="index.html">Home</a>
+                <a href="categories.html">Categories</a>
+                <a href="businesses.html">Businesses</a>
+                <a href="education.html">Education</a>
+                <a href="about.html">About Us</a>
+
+                <div class="mobile-auth-links">
+                    <a href="login.html">Login</a>
+                    <a href="register.html">Create Account</a>
+                </div>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="login-link">Login</a>
+                <a href="register.html" class="btn-primary">Get Started</a>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle"
+                aria-label="Open menu">☰</button>
+
+        </div>
+    </header>
+
+    <main class="edit-page">
+
+        <section class="edit-hero">
+            <h1>Edit Advertisement</h1>
+
+            <p>
+                Update your advertisement details, manage your media
+                and keep your listing information accurate.
+            </p>
+        </section>
+
+        <div class="edit-container">
+
+            <form id="editAdForm">
+
+                <div class="edit-layout">
+
+                    <div>
+
+                        <!-- BASIC INFORMATION -->
+
+                        <section class="edit-card">
+
+                            <h2>Advertisement Information</h2>
+
+                            <p class="section-description">
+                                Update the main information customers
+                                will see when viewing your advertisement.
+                            </p>
+
+                            <div class="edit-form-group">
+                                <label for="adTitle">
+                                    Advertisement Title *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="adTitle"
+                                    value="Premium Sports Sneakers"
+                                    required
+                                >
+                            </div>
+
+                            <div class="edit-two-columns">
+
+                                <div class="edit-form-group">
+                                    <label for="adCategory">
+                                        Category *
+                                    </label>
+
+                                    <select id="adCategory" required>
+                                        <option value="">Select category</option>
+                                        <option selected>Fashion & Clothing</option>
+                                        <option>Electronics</option>
+                                        <option>Home & Furniture</option>
+                                        <option>Vehicles</option>
+                                        <option>Beauty & Personal Care</option>
+                                        <option>Education</option>
+                                        <option>Professional Services</option>
+                                        <option>Agriculture</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="edit-form-group">
+                                    <label for="adCondition">
+                                        Product Condition
+                                    </label>
+
+                                    <select id="adCondition">
+                                        <option selected>Brand New</option>
+                                        <option>Used</option>
+                                        <option>Refurbished</option>
+                                        <option>Not Applicable</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="edit-two-columns">
+
+                                <div class="edit-form-group">
+                                    <label for="adPrice">
+                                        Price (KSh) *
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="adPrice"
+                                        min="0"
+                                        value="3500"
+                                        required
+                                    >
+                                </div>
+
+                                <div class="edit-form-group">
+                                    <label for="adLocation">
+                                        Location *
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="adLocation"
+                                        value="Nairobi, Kenya"
+                                        required
+                                    >
+                                </div>
+
+                            </div>
+
+                            <div class="edit-form-group">
+                                <label for="adDescription">
+                                    Advertisement Description *
+                                </label>
+
+                                <textarea
+                                    id="adDescription"
+                                    required
+                                >Comfortable premium sports sneakers suitable for everyday wear and sports activities. Available in different sizes.</textarea>
+                            </div>
+
+                        </section>
+
+                        <!-- CONTACT INFORMATION -->
+
+                        <section class="edit-card">
+
+                            <h2>Contact Information</h2>
+
+                            <p class="section-description">
+                                Provide the contact details customers
+                                can use to ask about your advertisement.
+                            </p>
+
+                            <div class="edit-two-columns">
+
+                                <div class="edit-form-group">
+                                    <label for="sellerName">
+                                        Advertiser Name *
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="sellerName"
+                                        value="Demo Sports Store"
+                                        required
+                                    >
+                                </div>
+
+                                <div class="edit-form-group">
+                                    <label for="sellerPhone">
+                                        Phone Number *
+                                    </label>
+
+                                    <input
+                                        type="tel"
+                                        id="sellerPhone"
+                                        placeholder="+254..."
+                                        required
+                                    >
+                                </div>
+
+                            </div>
+
+                            <div class="edit-form-group">
+                                <label for="sellerEmail">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="sellerEmail"
+                                    placeholder="seller@example.test"
+                                >
+                            </div>
+
+                        </section>
+
+                        <!-- PHOTO UPLOAD -->
+
+                        <section class="edit-card">
+
+                            <h2>Product & Service Photos</h2>
+
+                            <p class="section-description">
+                                Add genuine photographs showing the
+                                actual products or services you advertise.
+                            </p>
+
+                            <div class="edit-media-info">
+                                <strong>Photo guidance:</strong>
+                                Upload clear photos that belong to your
+                                advertisement. Use different angles and
+                                avoid misleading or unrelated images.
+                            </div>
+
+                            <label class="media-upload-box"
+                                for="photoUpload">
+
+                                <div class="upload-icon">📷</div>
+
+                                <h3>Upload Advertisement Photos</h3>
+
+                                <p>
+                                    Select multiple image files from
+                                    your phone.
+                                </p>
+
+                                <p>Supported formats: JPG, PNG, WEBP</p>
+
+                                <input
+                                    type="file"
+                                    id="photoUpload"
+                                    accept="image/jpeg,image/png,image/webp"
+                                    multiple
+                                >
+
+                            </label>
+
+                            <div class="media-preview-grid"
+                                id="photoPreview">
+
+                            </div>
+
+                            <div class="media-counter">
+                                <span>Selected photos</span>
+                                <strong id="photoCount">0</strong>
+                            </div>
+
+                        </section>
+
+                        <!-- VIDEO UPLOAD -->
+
+                        <section class="edit-card">
+
+                            <h2>Advertisement Videos</h2>
+
+                            <p class="section-description">
+                                Upload videos that help customers
+                                understand and view your products
+                                or services.
+                            </p>
+
+                            <div class="edit-media-info">
+                                <strong>Minimum requirement:</strong>
+                                Each advertisement must support at
+                                least five videos. Videos should be
+                                relevant to the advertised product
+                                or service.
+                            </div>
+
+                            <label class="media-upload-box"
+                                for="videoUpload">
+
+                                <div class="upload-icon">🎬</div>
+
+                                <h3>Upload Advertisement Videos</h3>
+
+                                <p>
+                                    Select at least five relevant videos
+                                    for this advertisement.
+                                </p>
+
+                                <p>Supported format: MP4</p>
+
+                                <input
+                                    type="file"
+                                    id="videoUpload"
+                                    accept="video/mp4"
+                                    multiple
+                                >
+
+                            </label>
+
+                            <div class="media-preview-grid"
+                                id="videoPreview">
+
+                            </div>
+
+                            <div class="media-counter">
+                                <span>Selected videos</span>
+                                <strong id="videoCount">0 / 5 minimum</strong>
+                            </div>
+
+                        </section>
+
+                        <!-- SAVE ACTIONS -->
+
+                        <section class="edit-card">
+
+                            <h2>Save Your Changes</h2>
+
+                            <p class="section-description">
+                                Review your information before submitting.
+                                Changes on this demonstration page are
+                                not sent to a live marketplace database.
+                            </p>
+
+                            <div class="edit-buttons">
+
+                                <button type="submit" class="edit-save">
+                                    Save Changes
+                                </button>
+
+                                <a href="my-ads.html" class="edit-cancel">
+                                    Cancel
+                                </a>
+
+                            </div>
+
+                            <div class="edit-message" id="editMessage">
+                                Your form passed the demonstration checks.
+                                No changes have been uploaded or saved
+                                to an online account.
+                            </div>
+
+                        </section>
+
+                    </div>
+
+                    <!-- SIDEBAR -->
+
+                    <aside class="edit-sidebar">
+
+                        <div class="sidebar-card">
+
+                            <h3>Advertisement Overview</h3>
+
+                            <div class="status-line">
+                                <span>Listing ID</span>
+                                <span>DEMO-001</span>
+                            </div>
+
+                            <div class="status-line">
+                                <span>Status</span>
+                                <span>Demo listing</span>
+                            </div>
+
+                            <div class="status-line">
+                                <span>Category</span>
+                                <span>Fashion</span>
+                            </div>
+
+                            <div class="status-line">
+                                <span>Photo uploads</span>
+                                <span id="sidePhotoCount">0</span>
+                            </div>
+
+                            <div class="status-line">
+                                <span>Video uploads</span>
+                                <span id="sideVideoCount">0 / 5</span>
+                            </div>
+
+                        </div>
+
+                        <div class="sidebar-card">
+
+                            <h3>Helpful Tips</h3>
+
+                            <div class="edit-tip">
+                                <strong>1. Use accurate details</strong>
+                                <p>Give customers clear product information.</p>
+                                <br>
+
+                                <strong>2. Upload real photos</strong>
+                                <p>Use images of the actual items or services.</p>
+                                <br>
+
+                                <strong>3. Add five videos</strong>
+                                <p>Provide at least five relevant videos.</p>
+                                <br>
+
+                                <strong>4. Check your price</strong>
+                                <p>Ensure the advertised price is correct.</p>
+                            </div>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+    <footer class="main-footer">
+
+        <div class="footer-grid">
+
+            <div class="footer-brand">
+                <h2>GLOBAL MARKET</h2>
+                <p>Your world. One marketplace.</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="index.html">Home</a>
+                <a href="categories.html">Categories</a>
+                <a href="businesses.html">Businesses</a>
+                <a href="education.html">Education</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Company</h3>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                <a href="terms.html">Terms</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Advertisers</h3>
+                <a href="advertise.html">Advertise</a>
+                <a href="advertiser-dashboard.html">Dashboard</a>
+                <a href="my-ads.html">My Advertisements</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                © <span id="currentYear"></span>
+                GLOBAL MARKET. All rights reserved.
+            </p>
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        const photoUpload = document.getElementById("photoUpload");
+        const videoUpload = document.getElementById("videoUpload");
+
+        const photoPreview = document.getElementById("photoPreview");
+        const videoPreview = document.getElementById("videoPreview");
+
+        const photoCount = document.getElementById("photoCount");
+        const videoCount = document.getElementById("videoCount");
+
+        let selectedPhotos = [];
+        let selectedVideos = [];
+
+        const MAX_FILE_SIZE = 100 * 1024 * 1024;
+
+        function displayMedia(files, container, type) {
+
+            container.innerHTML = "";
+
+            files.forEach((file, index) => {
+
+                const preview = document.createElement("div");
+                preview.className = "media-preview";
+
+                const media = document.createElement(
+                    type === "photo" ? "img" : "video"
+                );
+
+                media.src = URL.createObjectURL(file);
+
+                if (type === "video") {
+                    media.controls = true;
+                    media.muted = true;
+                }
+
+                media.alt = file.name;
+
+                const name = document.createElement("div");
+                name.className = "media-name";
+                name.textContent = file.name;
+
+                const remove = document.createElement("button");
+                remove.type = "button";
+                remove.className = "media-remove";
+                remove.textContent = "×";
+                remove.setAttribute("aria-label", "Remove " + file.name);
+
+                remove.addEventListener("click", function () {
+
+                    if (type === "photo") {
+                        URL.revokeObjectURL(media.src);
+                        selectedPhotos.splice(index, 1);
+                    } else {
+                        URL.revokeObjectURL(media.src);
+                        selectedVideos.splice(index, 1);
+                    }
+
+                    updateMediaDisplay();
+
+                });
+
+                preview.appendChild(media);
+                preview.appendChild(name);
+                preview.appendChild(remove);
+
+                container.appendChild(preview);
+
+            });
+
+        }
+
+        function updateMediaDisplay() {
+
+            displayMedia(selectedPhotos, photoPreview, "photo");
+            displayMedia(selectedVideos, videoPreview, "video");
+
+            photoCount.textContent = selectedPhotos.length;
+            videoCount.textContent =
+                selectedVideos.length + " / 5 minimum";
+
+            document.getElementById("sidePhotoCount").textContent =
+                selectedPhotos.length;
+
+            document.getElementById("sideVideoCount").textContent =
+                selectedVideos.length + " / 5";
+
+        }
+
+        function addFiles(event, type) {
+
+            const incomingFiles = Array.from(event.target.files);
+
+            const currentFiles =
+                type === "photo" ? selectedPhotos : selectedVideos;
+
+            const validFiles = incomingFiles.filter(file => {
+
+                if (file.size > MAX_FILE_SIZE) {
+                    alert(file.name + " is larger than 100 MB.");
+                    return false;
+                }
+
+                if (type === "photo" && !file.type.startsWith("image/")) {
+                    alert("Please select valid image files.");
+                    return false;
+                }
+
+                if (type === "video" && file.type !== "video/mp4") {
+                    alert("Please select MP4 videos.");
+                    return false;
+                }
+
+                return true;
+
+            });
+
+            const combinedFiles = currentFiles.concat(validFiles);
+
+            const uniqueFiles = combinedFiles.filter((file, index, array) => {
+
+                return array.findIndex(other =>
+                    other.name === file.name &&
+                    other.size === file.size &&
+                    other.lastModified === file.lastModified
+                ) === index;
+
+            });
+
+            if (uniqueFiles.length > 20 && type === "photo") {
+                alert("A maximum of 20 photos is allowed in this demo.");
+                return;
+            }
+
+            if (uniqueFiles.length > 5 && type === "video") {
+                alert("A maximum of 5 videos is allowed in this demo.");
+                return;
+            }
+
+            if (type === "photo") {
+                selectedPhotos = uniqueFiles;
+            } else {
+                selectedVideos = uniqueFiles;
+            }
+
+            updateMediaDisplay();
+
+            event.target.value = "";
+
+        }
+
+        photoUpload.addEventListener("change", function(event) {
+            addFiles(event, "photo");
+        });
+
+        videoUpload.addEventListener("change", function(event) {
+            addFiles(event, "video");
+        });
+
+        document.getElementById("editAdForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                if (!this.checkValidity()) {
+                    this.reportValidity();
+                    return;
+                }
+
+                if (selectedVideos.length < 5) {
+                    alert(
+                        "Please select at least five videos before submitting."
+                    );
+
+                    document.getElementById("videoUpload")
+                        .scrollIntoView({ behavior: "smooth" });
+
+                    return;
+                }
+
+                const message = document.getElementById("editMessage");
+
+                message.style.display = "block";
+
+                message.scrollIntoView({ behavior: "smooth" });
+
+            });
+
+        updateMediaDisplay();
+
+    </script>
+
+</body>
+</html>
+
