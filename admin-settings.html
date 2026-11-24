@@ -1,1 +1,1061 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Manage GLOBAL MARKET platform settings.">
+
+    <title>Admin Settings | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .settings-page {
+            background: #F1F4F8;
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        .settings-hero {
+            background: linear-gradient(120deg, #172B4D, #29476D);
+            color: white;
+            padding: 48px 6%;
+        }
+
+        .settings-hero h1 {
+            font-size: clamp(27px, 5vw, 39px);
+            margin-bottom: 10px;
+        }
+
+        .settings-hero p {
+            color: #DCE5F1;
+            max-width: 650px;
+            line-height: 1.7;
+        }
+
+        .settings-container {
+            width: 90%;
+            max-width: 1150px;
+            margin: 35px auto;
+        }
+
+        .settings-notice {
+            background: #FFF8E9;
+            border: 1px solid #EAD8AF;
+            color: #705525;
+            border-radius: 12px;
+            padding: 15px 18px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .settings-layout {
+            display: grid;
+            grid-template-columns: 235px 1fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .settings-sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 16px;
+            box-shadow: 0 5px 20px rgba(20, 40, 70, 0.04);
+            position: sticky;
+            top: 15px;
+        }
+
+        .settings-sidebar h3 {
+            font-size: 13px;
+            color: #8993A2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 8px 10px 15px;
+        }
+
+        .settings-tab {
+            display: block;
+            width: 100%;
+            text-align: left;
+            border: none;
+            background: transparent;
+            padding: 13px 12px;
+            border-radius: 9px;
+            color: #526176;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        .settings-tab:hover,
+        .settings-tab.active {
+            background: #EEF3FA;
+            color: #172B4D;
+        }
+
+        .settings-tab.active {
+            border-left: 3px solid #D6AD58;
+        }
+
+        .settings-content {
+            min-width: 0;
+        }
+
+        .settings-section {
+            display: none;
+            background: white;
+            border-radius: 16px;
+            padding: 27px;
+            box-shadow: 0 5px 20px rgba(20, 40, 70, 0.04);
+        }
+
+        .settings-section.active {
+            display: block;
+        }
+
+        .section-heading {
+            border-bottom: 1px solid #E9EDF2;
+            padding-bottom: 18px;
+            margin-bottom: 24px;
+        }
+
+        .section-heading h2 {
+            color: #172B4D;
+            font-size: 22px;
+            margin-bottom: 7px;
+        }
+
+        .section-heading p {
+            color: #7B8798;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .settings-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 19px;
+        }
+
+        .setting-field {
+            margin-bottom: 19px;
+        }
+
+        .setting-field label {
+            display: block;
+            color: #293B54;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .setting-field input,
+        .setting-field select,
+        .setting-field textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #DCE3EC;
+            border-radius: 9px;
+            background: #FAFBFD;
+            color: #293B54;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .setting-field input:focus,
+        .setting-field select:focus,
+        .setting-field textarea:focus {
+            border-color: #D6AD58;
+            background: white;
+        }
+
+        .setting-field textarea {
+            min-height: 95px;
+            resize: vertical;
+        }
+
+        .setting-field small {
+            display: block;
+            color: #8993A2;
+            font-size: 12px;
+            margin-top: 7px;
+            line-height: 1.5;
+        }
+
+        .toggle-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 17px 0;
+            border-bottom: 1px solid #EDF0F4;
+        }
+
+        .toggle-row:last-child {
+            border-bottom: none;
+        }
+
+        .toggle-info {
+            flex: 1;
+        }
+
+        .toggle-info strong {
+            display: block;
+            color: #263B57;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .toggle-info p {
+            color: #8993A2;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 25px;
+            flex-shrink: 0;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .switch-slider {
+            position: absolute;
+            inset: 0;
+            cursor: pointer;
+            background: #CDD4DE;
+            border-radius: 30px;
+            transition: .3s;
+        }
+
+        .switch-slider::before {
+            content: "";
+            position: absolute;
+            height: 19px;
+            width: 19px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: .3s;
+        }
+
+        .switch input:checked + .switch-slider {
+            background: #263F66;
+        }
+
+        .switch input:checked + .switch-slider::before {
+            transform: translateX(21px);
+        }
+
+        .rule-highlight {
+            background: #F7F9FC;
+            border: 1px solid #E6EBF2;
+            border-left: 4px solid #D6AD58;
+            border-radius: 10px;
+            padding: 17px;
+            margin: 18px 0;
+        }
+
+        .rule-highlight strong {
+            color: #172B4D;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .rule-highlight p {
+            color: #778397;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .category-setting {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 12px;
+            border: 1px solid #E9EDF2;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            gap: 15px;
+        }
+
+        .category-setting strong {
+            color: #293B54;
+            font-size: 14px;
+        }
+
+        .category-setting small {
+            display: block;
+            color: #8993A2;
+            margin-top: 4px;
+        }
+
+        .settings-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .settings-save {
+            border: none;
+            background: #172B4D;
+            color: white;
+            padding: 13px 23px;
+            border-radius: 9px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .settings-save:hover {
+            background: #29476D;
+        }
+
+        .settings-reset {
+            background: #F0F2F5;
+            color: #4B5B70;
+            border: none;
+            padding: 13px 20px;
+            border-radius: 9px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .settings-footer-note {
+            color: #8993A2;
+            font-size: 12px;
+            margin-top: 22px;
+            line-height: 1.6;
+        }
+
+        @media(max-width: 800px) {
+            .settings-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-sidebar {
+                position: static;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 5px;
+            }
+
+            .settings-sidebar h3 {
+                grid-column: 1 / -1;
+            }
+
+            .settings-tab {
+                font-size: 12px;
+                padding: 11px 8px;
+            }
+        }
+
+        @media(max-width: 550px) {
+            .settings-form-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .settings-section {
+                padding: 20px 16px;
+            }
+
+            .settings-container {
+                width: 94%;
+            }
+
+            .settings-hero {
+                padding: 35px 5%;
+            }
+
+            .category-setting {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body class="settings-page">
+
+    <div class="announcement-bar">
+        YOUR WORLD. ONE MARKETPLACE.
+    </div>
+
+    <header class="main-header">
+        <div class="header-container">
+
+            <a href="index.html" class="logo">
+                <span class="logo-icon">G</span>
+                <span class="logo-text">GLOBAL MARKET</span>
+            </a>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="index.html">Home</a>
+                <a href="categories.html">Categories</a>
+                <a href="businesses.html">Businesses</a>
+                <a href="education.html">Education</a>
+                <a href="about.html">About Us</a>
+
+                <div class="mobile-auth-links">
+                    <a href="login.html">Login</a>
+                    <a href="register.html">Create Account</a>
+                </div>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="login-link">Login</a>
+                <a href="register.html" class="btn-primary">Get Started</a>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle"
+                aria-label="Open menu">☰</button>
+
+        </div>
+    </header>
+
+    <section class="settings-hero">
+        <h1>Platform Settings</h1>
+        <p>
+            Configure marketplace preferences, advertising requirements,
+            categories and administrative options from one place.
+        </p>
+    </section>
+
+    <main class="settings-container">
+
+        <div class="settings-notice">
+            <strong>Demonstration mode:</strong>
+            These controls are frontend examples. Changes do not update
+            the live marketplace or enforce security rules. Real settings
+            will require secure backend integration.
+        </div>
+
+        <div class="settings-layout">
+
+            <aside class="settings-sidebar">
+                <h3>Settings menu</h3>
+
+                <button class="settings-tab active" data-tab="general">
+                    ⚙ General Settings
+                </button>
+
+                <button class="settings-tab" data-tab="features">
+                    ◈ Platform Features
+                </button>
+
+                <button class="settings-tab" data-tab="advertising">
+                    ▣ Advertising Rules
+                </button>
+
+                <button class="settings-tab" data-tab="categories">
+                    ▦ Categories
+                </button>
+
+                <button class="settings-tab" data-tab="security">
+                    ♙ Security
+                </button>
+
+                <button class="settings-tab" data-tab="notifications">
+                    ♧ Notifications
+                </button>
+            </aside>
+
+            <div class="settings-content">
+
+                <!-- GENERAL SETTINGS -->
+                <section class="settings-section active" id="general">
+
+                    <div class="section-heading">
+                        <h2>General Settings</h2>
+                        <p>Manage the basic identity and contact information
+                            of GLOBAL MARKET.</p>
+                    </div>
+
+                    <div class="settings-form-grid">
+
+                        <div class="setting-field">
+                            <label for="siteName">Marketplace Name</label>
+                            <input type="text" id="siteName"
+                                value="GLOBAL MARKET">
+                        </div>
+
+                        <div class="setting-field">
+                            <label for="tagline">Marketplace Tagline</label>
+                            <input type="text" id="tagline"
+                                value="YOUR WORLD. ONE MARKETPLACE.">
+                        </div>
+
+                        <div class="setting-field">
+                            <label for="supportEmail">Support Email</label>
+                            <input type="email" id="supportEmail"
+                                placeholder="support@example.test">
+                        </div>
+
+                        <div class="setting-field">
+                            <label for="supportPhone">Support Phone</label>
+                            <input type="tel" id="supportPhone"
+                                placeholder="+254 7XX XXX XXX">
+                        </div>
+
+                        <div class="setting-field">
+                            <label for="country">Default Country</label>
+                            <select id="country">
+                                <option>Kenya</option>
+                                <option>Uganda</option>
+                                <option>Tanzania</option>
+                                <option>Rwanda</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="setting-field">
+                            <label for="currency">Default Currency</label>
+                            <select id="currency">
+                                <option value="KES">Kenyan Shilling (KSh)</option>
+                                <option value="UGX">Ugandan Shilling</option>
+                                <option value="TZS">Tanzanian Shilling</option>
+                                <option value="USD">US Dollar ($)</option>
+                            </select>
+                        </div>
+
+                        <div class="setting-field">
+                            <label for="language">Default Language</label>
+                            <select id="language">
+                                <option>English</option>
+                                <option>Kiswahili</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- PLATFORM FEATURES -->
+                <section class="settings-section" id="features">
+
+                    <div class="section-heading">
+                        <h2>Platform Features</h2>
+                        <p>Choose which marketplace features are intended
+                            to be available.</p>
+                    </div>
+
+                    <div class="toggle-list">
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Business Directory</strong>
+                                <p>Allow businesses to have public profiles.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Education Directory</strong>
+                                <p>Display schools, courses and learning
+                                    opportunities.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Favourites</strong>
+                                <p>Let users save interesting advertisements.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Messaging</strong>
+                                <p>Allow communication between users and
+                                    advertisers.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Reviews and Ratings</strong>
+                                <p>Allow users to submit feedback on listings.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Platform Notifications</strong>
+                                <p>Display account and listing notifications.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- ADVERTISING RULES -->
+                <section class="settings-section" id="advertising">
+
+                    <div class="section-heading">
+                        <h2>Advertising Rules</h2>
+                        <p>Set the content requirements for advertisements
+                            submitted to GLOBAL MARKET.</p>
+                    </div>
+
+                    <div class="rule-highlight">
+                        <strong>GLOBAL MARKET media requirement</strong>
+                        <p>
+                            Every advertisement must support at least
+                            <strong>5 videos</strong> and photographs
+                            uploaded by the advertiser showing their
+                            actual products or services.
+                        </p>
+                    </div>
+
+                    <div class="setting-field">
+                        <label for="minimumVideos">Minimum Videos Per Advertisement</label>
+                        <input type="number" id="minimumVideos"
+                            value="5" min="5">
+                        <small>The platform's intended minimum is five videos
+                            per advertisement.</small>
+                    </div>
+
+                    <div class="toggle-list">
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Require Advertiser Photos</strong>
+                                <p>Advertisers must provide their own
+                                    product or service photographs.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Require Five Videos</strong>
+                                <p>Advertisements must include at least
+                                    five video uploads.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Media Review</strong>
+                                <p>Submitted photos and videos should be
+                                    reviewed before publication.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Administrator Approval</strong>
+                                <p>New advertisements should wait for
+                                    administrator approval.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Require Listing Description</strong>
+                                <p>Every advertisement should include
+                                    a clear description.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <div class="setting-field" style="margin-top:22px;">
+                        <label for="adGuidelines">Advertising Guidelines</label>
+                        <textarea id="adGuidelines">Upload genuine photographs and videos of the products or services being advertised. Ensure all information is accurate and that you have permission to use the submitted media.</textarea>
+                    </div>
+
+                </section>
+
+                <!-- CATEGORIES -->
+                <section class="settings-section" id="categories">
+
+                    <div class="section-heading">
+                        <h2>Marketplace Categories</h2>
+                        <p>Review the main categories planned for the
+                            GLOBAL MARKET directory.</p>
+                    </div>
+
+                    <div id="categoryList">
+
+                        <div class="category-setting">
+                            <div>
+                                <strong>Electronics</strong>
+                                <small>Phones, computers and accessories</small>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="category-setting">
+                            <div>
+                                <strong>Fashion and Beauty</strong>
+                                <small>Clothing, footwear and beauty products</small>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="category-setting">
+                            <div>
+                                <strong>Home and Furniture</strong>
+                                <small>Home equipment and furniture</small>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="category-setting">
+                            <div>
+                                <strong>Vehicles and Transport</strong>
+                                <small>Cars, motorcycles and transport services</small>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="category-setting">
+                            <div>
+                                <strong>Education and Learning</strong>
+                                <small>Schools, courses and learning resources</small>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="category-setting">
+                            <div>
+                                <strong>Jobs and Opportunities</strong>
+                                <small>Employment, internships and opportunities</small>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="category-setting">
+                            <div>
+                                <strong>Professional Services</strong>
+                                <small>Business and professional services</small>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- SECURITY -->
+                <section class="settings-section" id="security">
+
+                    <div class="section-heading">
+                        <h2>Security Preferences</h2>
+                        <p>Review the security and moderation policies
+                            planned for the platform.</p>
+                    </div>
+
+                    <div class="toggle-list">
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Business Verification</strong>
+                                <p>Require business information to be
+                                    reviewed before verification.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Administrator Review</strong>
+                                <p>Require review of reported advertisements
+                                    and accounts.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Account Verification</strong>
+                                <p>Plan for verified email and phone
+                                    confirmation.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Administrative Activity Log</strong>
+                                <p>Keep records of important administrator
+                                    actions on the server.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <div class="rule-highlight">
+                        <strong>Important security note</strong>
+                        <p>
+                            Real administrator permissions, access control,
+                            account verification and audit logs must be
+                            implemented securely on the backend. Frontend
+                            switches cannot protect the platform by themselves.
+                        </p>
+                    </div>
+
+                </section>
+
+                <!-- NOTIFICATIONS -->
+                <section class="settings-section" id="notifications">
+
+                    <div class="section-heading">
+                        <h2>Notification Preferences</h2>
+                        <p>Choose the types of platform notifications
+                            administrators may want to receive.</p>
+                    </div>
+
+                    <div class="toggle-list">
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>New Advertisement Alerts</strong>
+                                <p>Notify administrators when new advertisements
+                                    are submitted.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>New Business Applications</strong>
+                                <p>Notify administrators when businesses
+                                    request verification.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>User Reports</strong>
+                                <p>Receive alerts about reported content
+                                    and accounts.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <strong>Platform Updates</strong>
+                                <p>Receive important platform administration
+                                    updates.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <div class="settings-actions">
+                    <button type="button" class="settings-reset"
+                        id="resetSettings">Reset Form</button>
+
+                    <button type="button" class="settings-save"
+                        id="saveSettings">Save Settings</button>
+                </div>
+
+                <p class="settings-footer-note">
+                    GLOBAL MARKET administration interface · Demonstration
+                    version. Settings shown here are not connected to a
+                    production database.
+                </p>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+
+        <div class="footer-grid">
+
+            <div class="footer-brand">
+                <h2>GLOBAL MARKET</h2>
+                <p>Your world. One marketplace.</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="index.html">Home</a>
+                <a href="categories.html">Categories</a>
+                <a href="businesses.html">Businesses</a>
+                <a href="education.html">Education</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Company</h3>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                <a href="terms.html">Terms</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Account</h3>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© <span id="currentYear"></span> GLOBAL MARKET. All rights reserved.</p>
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        // SETTINGS TABS
+        const tabs = document.querySelectorAll(".settings-tab");
+        const sections = document.querySelectorAll(".settings-section");
+
+        tabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+
+                const target = tab.dataset.tab;
+
+                tabs.forEach(item => item.classList.remove("active"));
+                sections.forEach(section => section.classList.remove("active"));
+
+                tab.classList.add("active");
+                document.getElementById(target).classList.add("active");
+
+            });
+        });
+
+        // DEMONSTRATION SAVE
+        document.getElementById("saveSettings").addEventListener("click", () => {
+            alert(
+                "Settings preview complete!\n\n" +
+                "This demonstration page does not save changes to a database. " +
+                "Backend integration will be required."
+            );
+        });
+
+        // RESET CURRENT PAGE FORM
+        document.getElementById("resetSettings").addEventListener("click", () => {
+            const confirmed = confirm(
+                "Reset the settings form to its original values?"
+            );
+
+            if (confirmed) {
+                window.location.reload();
+            }
+        });
+    </script>
+
+</body>
+</html>
+
