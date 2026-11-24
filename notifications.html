@@ -1,1 +1,587 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f6fa">
+
+    <meta name="description" content="View your GLOBAL MARKET account notifications and important updates.">
+
+    <title>Notifications | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f6fa;
+            color: #17243b;
+            font-family: Arial, sans-serif;
+        }
+
+        .notifications-page {
+            width: min(1100px, 94%);
+            margin: 35px auto 65px;
+        }
+
+        .notification-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .notification-heading h1 {
+            margin: 0 0 8px;
+            font-size: 29px;
+            color: #14213d;
+        }
+
+        .notification-heading p {
+            margin: 0;
+            color: #748096;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .mark-all-btn {
+            border: 1px solid #d9e0eb;
+            background: #fff;
+            color: #17345e;
+            border-radius: 8px;
+            padding: 11px 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .mark-all-btn:hover {
+            border-color: #c39a45;
+            color: #9b762d;
+        }
+
+        .notification-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 22px;
+        }
+
+        .summary-card {
+            background: #fff;
+            border: 1px solid #e5eaf1;
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 4px 14px rgba(20, 35, 60, .035);
+        }
+
+        .summary-card span {
+            display: block;
+            color: #7a8699;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .summary-card strong {
+            display: block;
+            font-size: 25px;
+            color: #17345e;
+        }
+
+        .notification-panel {
+            background: #fff;
+            border: 1px solid #e5eaf1;
+            border-radius: 13px;
+            overflow: hidden;
+            box-shadow: 0 5px 18px rgba(20, 35, 60, .04);
+        }
+
+        .notification-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 17px 20px;
+            border-bottom: 1px solid #edf0f5;
+        }
+
+        .notification-toolbar h2 {
+            font-size: 17px;
+            margin: 0;
+            color: #172b4d;
+        }
+
+        .notification-filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 12px;
+            border: 1px solid #e0e5ed;
+            border-radius: 20px;
+            background: #fff;
+            color: #637087;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .filter-btn.active {
+            background: #17345e;
+            border-color: #17345e;
+            color: #fff;
+        }
+
+        .notification-list {
+            min-height: 250px;
+        }
+
+        .notification-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 19px 20px;
+            border-bottom: 1px solid #edf0f5;
+            transition: background .2s;
+        }
+
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+
+        .notification-item:hover {
+            background: #fafbfd;
+        }
+
+        .notification-item.unread {
+            background: #f5f8ff;
+        }
+
+        .notification-icon {
+            width: 43px;
+            height: 43px;
+            min-width: 43px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            background: #edf2fb;
+            font-size: 20px;
+        }
+
+        .notification-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .notification-content h3 {
+            margin: 1px 0 6px;
+            font-size: 14px;
+            color: #172b4d;
+        }
+
+        .notification-content p {
+            margin: 0;
+            color: #6e7b90;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .notification-time {
+            display: block;
+            margin-top: 8px;
+            color: #98a2b2;
+            font-size: 11px;
+        }
+
+        .notification-actions {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .unread-dot {
+            width: 9px;
+            height: 9px;
+            min-width: 9px;
+            background: #c49a46;
+            border-radius: 50%;
+        }
+
+        .read-btn {
+            border: none;
+            background: transparent;
+            color: #526a8c;
+            font-size: 11px;
+            cursor: pointer;
+            padding: 6px;
+        }
+
+        .read-btn:hover {
+            color: #bd913b;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 55px 20px;
+            color: #7c8798;
+        }
+
+        .empty-state .empty-icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .empty-state h3 {
+            color: #253653;
+            margin: 0 0 8px;
+            font-size: 17px;
+        }
+
+        .empty-state p {
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .demo-notice {
+            margin-top: 18px;
+            padding: 13px 15px;
+            border: 1px solid #f0dfb7;
+            background: #fffaf0;
+            border-radius: 9px;
+            color: #80652e;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 650px) {
+            .notifications-page {
+                margin-top: 24px;
+            }
+
+            .notification-heading h1 {
+                font-size: 24px;
+            }
+
+            .notification-summary {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .summary-card {
+                padding: 14px;
+            }
+
+            .summary-card strong {
+                font-size: 22px;
+            }
+
+            .notification-toolbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .notification-item {
+                padding: 15px 12px;
+                gap: 10px;
+            }
+
+            .notification-icon {
+                width: 37px;
+                height: 37px;
+                min-width: 37px;
+                font-size: 17px;
+            }
+
+            .notification-actions {
+                gap: 3px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SHARED HEADER -->
+    <div id="site-header"></div>
+
+    <main class="notifications-page">
+
+        <section class="notification-heading">
+            <div>
+                <h1>Notifications</h1>
+                <p>Stay informed about what's happening in your GLOBAL MARKET account.</p>
+            </div>
+
+            <button class="mark-all-btn" id="markAllBtn" type="button">
+                Mark all as read
+            </button>
+        </section>
+
+        <!-- SUMMARY -->
+        <section class="notification-summary">
+
+            <div class="summary-card">
+                <span>Total notifications</span>
+                <strong id="totalCount">5</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Unread notifications</span>
+                <strong id="unreadCount">3</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Read notifications</span>
+                <strong id="readCount">2</strong>
+            </div>
+
+        </section>
+
+        <!-- NOTIFICATION PANEL -->
+        <section class="notification-panel">
+
+            <div class="notification-toolbar">
+                <h2>Your activity</h2>
+
+                <div class="notification-filters">
+                    <button class="filter-btn active" data-filter="all" type="button">
+                        All
+                    </button>
+
+                    <button class="filter-btn" data-filter="unread" type="button">
+                        Unread
+                    </button>
+
+                    <button class="filter-btn" data-filter="read" type="button">
+                        Read
+                    </button>
+                </div>
+            </div>
+
+            <div class="notification-list" id="notificationList">
+
+                <!-- NOTIFICATION 1 -->
+                <article class="notification-item unread" data-read="false">
+                    <div class="notification-icon">💬</div>
+
+                    <div class="notification-content">
+                        <h3>New message received</h3>
+                        <p>You have received a new inquiry about one of your advertised products.</p>
+                        <span class="notification-time">10 minutes ago</span>
+                    </div>
+
+                    <div class="notification-actions">
+                        <span class="unread-dot"></span>
+                        <button class="read-btn" type="button">Mark read</button>
+                    </div>
+                </article>
+
+                <!-- NOTIFICATION 2 -->
+                <article class="notification-item unread" data-read="false">
+                    <div class="notification-icon">📢</div>
+
+                    <div class="notification-content">
+                        <h3>Advertisement submitted</h3>
+                        <p>Your advertisement has been submitted and is awaiting review.</p>
+                        <span class="notification-time">1 hour ago</span>
+                    </div>
+
+                    <div class="notification-actions">
+                        <span class="unread-dot"></span>
+                        <button class="read-btn" type="button">Mark read</button>
+                    </div>
+                </article>
+
+                <!-- NOTIFICATION 3 -->
+                <article class="notification-item unread" data-read="false">
+                    <div class="notification-icon">🏪</div>
+
+                    <div class="notification-content">
+                        <h3>Complete your business profile</h3>
+                        <p>Add your business information, contact details and photos to improve your business listing.</p>
+                        <span class="notification-time">Yesterday</span>
+                    </div>
+
+                    <div class="notification-actions">
+                        <span class="unread-dot"></span>
+                        <button class="read-btn" type="button">Mark read</button>
+                    </div>
+                </article>
+
+                <!-- NOTIFICATION 4 -->
+                <article class="notification-item" data-read="true">
+                    <div class="notification-icon">🔔</div>
+
+                    <div class="notification-content">
+                        <h3>Welcome to GLOBAL MARKET</h3>
+                        <p>Thank you for joining GLOBAL MARKET. You can now explore listings and set up your account.</p>
+                        <span class="notification-time">2 days ago</span>
+                    </div>
+
+                    <div class="notification-actions"></div>
+                </article>
+
+                <!-- NOTIFICATION 5 -->
+                <article class="notification-item" data-read="true">
+                    <div class="notification-icon">🛡️</div>
+
+                    <div class="notification-content">
+                        <h3>Account security reminder</h3>
+                        <p>Keep your account information private and use a strong password.</p>
+                        <span class="notification-time">3 days ago</span>
+                    </div>
+
+                    <div class="notification-actions"></div>
+                </article>
+
+            </div>
+
+            <div class="empty-state" id="emptyState" hidden>
+                <div class="empty-icon">🔔</div>
+                <h3>No notifications found</h3>
+                <p>There are no notifications in this section right now.</p>
+            </div>
+
+        </section>
+
+        <div class="demo-notice">
+            <strong>Demo notice:</strong>
+            These are sample notifications for the website preview. Real notifications will be connected to user accounts and stored in the database when backend integration is implemented.
+        </div>
+
+    </main>
+
+    <!-- SHARED FOOTER -->
+    <div id="site-footer"></div>
+
+    <script src="layout.js" defer></script>
+
+    <script>
+        const notificationList = document.getElementById("notificationList");
+        const notificationItems = document.querySelectorAll(".notification-item");
+        const filterButtons = document.querySelectorAll(".filter-btn");
+
+        const totalCount = document.getElementById("totalCount");
+        const unreadCount = document.getElementById("unreadCount");
+        const readCount = document.getElementById("readCount");
+
+        const emptyState = document.getElementById("emptyState");
+        const markAllBtn = document.getElementById("markAllBtn");
+
+        let currentFilter = "all";
+
+        function updateNotificationCounts() {
+            const items = document.querySelectorAll(".notification-item");
+
+            let unread = 0;
+            let read = 0;
+
+            items.forEach(item => {
+                if (item.dataset.read === "false") {
+                    unread++;
+                } else {
+                    read++;
+                }
+            });
+
+            totalCount.textContent = items.length;
+            unreadCount.textContent = unread;
+            readCount.textContent = read;
+        }
+
+        function markAsRead(item) {
+            item.dataset.read = "true";
+            item.classList.remove("unread");
+
+            const actions = item.querySelector(".notification-actions");
+
+            if (actions) {
+                actions.innerHTML = "";
+            }
+
+            updateNotificationCounts();
+            applyFilter();
+        }
+
+        function applyFilter() {
+            let visibleCount = 0;
+
+            notificationItems.forEach(item => {
+                const isRead = item.dataset.read === "true";
+
+                let shouldShow = true;
+
+                if (currentFilter === "unread") {
+                    shouldShow = !isRead;
+                } else if (currentFilter === "read") {
+                    shouldShow = isRead;
+                }
+
+                item.hidden = !shouldShow;
+
+                if (shouldShow) {
+                    visibleCount++;
+                }
+            });
+
+            emptyState.hidden = visibleCount > 0;
+            notificationList.hidden = visibleCount === 0;
+        }
+
+        notificationItems.forEach(item => {
+            const readButton = item.querySelector(".read-btn");
+
+            if (readButton) {
+                readButton.addEventListener("click", () => {
+                    markAsRead(item);
+                });
+            }
+        });
+
+        filterButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                filterButtons.forEach(filter => {
+                    filter.classList.remove("active");
+                });
+
+                button.classList.add("active");
+                currentFilter = button.dataset.filter;
+
+                applyFilter();
+            });
+        });
+
+        markAllBtn.addEventListener("click", () => {
+            notificationItems.forEach(item => {
+                item.dataset.read = "true";
+                item.classList.remove("unread");
+
+                const actions = item.querySelector(".notification-actions");
+
+                if (actions) {
+                    actions.innerHTML = "";
+                }
+            });
+
+            updateNotificationCounts();
+            applyFilter();
+        });
+
+        updateNotificationCounts();
+        applyFilter();
+    </script>
+
+</body>
+</html>
