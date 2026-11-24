@@ -1,1 +1,933 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#edf2f8">
+
+    <meta name="description" content="Create your GLOBAL MARKET account and connect with businesses, customers and opportunities.">
+
+    <title>Create Account | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #edf2f8;
+            color: #192b45;
+        }
+
+        .register-page {
+            padding: 45px 18px 60px;
+        }
+
+        .register-container {
+            width: 100%;
+            max-width: 1120px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            background: #ffffff;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 18px 55px rgba(26, 48, 78, 0.10);
+        }
+
+        /* Welcome section */
+
+        .register-welcome {
+            position: relative;
+            min-height: 850px;
+            padding: 45px 38px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #ffffff;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(13, 33, 60, 0.20) 0%,
+                    rgba(13, 33, 60, 0.94) 100%
+                ),
+                url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85")
+                center / cover no-repeat;
+        }
+
+        .welcome-brand {
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-brand h2 {
+            margin: 0;
+            font-size: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        .welcome-brand h2 span {
+            color: #e9bf68;
+        }
+
+        .welcome-brand p {
+            margin: 7px 0 0;
+            color: #e1e8f0;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-tag {
+            display: inline-block;
+            padding: 9px 14px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 30px;
+            background: rgba(255,255,255,0.12);
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .welcome-content h1 {
+            margin: 0 0 18px;
+            font-size: 37px;
+            line-height: 1.25;
+        }
+
+        .welcome-content h1 span {
+            color: #edc46f;
+        }
+
+        .welcome-content > p {
+            margin: 0;
+            max-width: 390px;
+            color: #e0e7ef;
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .welcome-benefits {
+            margin-top: 30px;
+            display: grid;
+            gap: 17px;
+        }
+
+        .benefit {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .benefit-icon {
+            width: 38px;
+            height: 38px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.14);
+            color: #edc46f;
+            font-size: 17px;
+        }
+
+        .benefit-text strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+
+        .benefit-text small {
+            color: #d3dce8;
+            font-size: 11px;
+        }
+
+        .welcome-bottom {
+            position: relative;
+            z-index: 1;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.22);
+            color: #d7dfeb;
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+        /* Registration form */
+
+        .register-form-section {
+            padding: 45px 48px;
+        }
+
+        .form-top {
+            margin-bottom: 30px;
+        }
+
+        .form-top .small-label {
+            color: #b18a3c;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .form-top h2 {
+            margin: 10px 0 8px;
+            color: #172a45;
+            font-size: 29px;
+        }
+
+        .form-top p {
+            margin: 0;
+            color: #7a8698;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            margin: 27px 0 17px;
+        }
+
+        .section-number {
+            width: 27px;
+            height: 27px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: #edf2f8;
+            color: #b18a3c;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .section-heading h3 {
+            margin: 0;
+            color: #20344f;
+            font-size: 14px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 17px 14px;
+        }
+
+        .form-group {
+            min-width: 0;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #33435a;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .required {
+            color: #c44a4a;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            height: 46px;
+            padding: 0 12px;
+            border: 1px solid #dce3ed;
+            border-radius: 8px;
+            outline: none;
+            background: #fbfcfe;
+            color: #263750;
+            font-family: inherit;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #c49a46;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(196,154,70,0.12);
+        }
+
+        .form-group input::placeholder {
+            color: #a5adba;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 65px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 11px;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            color: #a17b34;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .password-hint {
+            margin-top: 7px;
+            color: #8993a2;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        .account-type-note {
+            margin-top: 7px;
+            color: #8792a1;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        .terms-area {
+            margin-top: 24px;
+            padding: 15px;
+            border: 1px solid #e7ebf1;
+            border-radius: 10px;
+            background: #fafbfd;
+        }
+
+        .terms-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #68758a;
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+        .terms-check input {
+            margin-top: 3px;
+            accent-color: #b58b3b;
+        }
+
+        .terms-check a {
+            color: #a47b2f;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .terms-check a:hover {
+            text-decoration: underline;
+        }
+
+        .register-button {
+            width: 100%;
+            min-height: 50px;
+            margin-top: 22px;
+            border: none;
+            border-radius: 9px;
+            background: #172c49;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .register-button:hover {
+            background: #284568;
+            transform: translateY(-1px);
+        }
+
+        .register-button:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-message {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .form-message.error {
+            display: block;
+            background: #fff0f0;
+            color: #a32c2c;
+        }
+
+        .form-message.success {
+            display: block;
+            background: #eaf8ef;
+            color: #247341;
+        }
+
+        .login-prompt {
+            margin-top: 25px;
+            color: #7d8999;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .login-prompt a {
+            color: #a47b2f;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .form-security {
+            margin-top: 25px;
+            padding-top: 17px;
+            border-top: 1px solid #edf0f4;
+            color: #929baa;
+            text-align: center;
+            font-size: 10px;
+            line-height: 1.7;
+        }
+
+        /* Responsive design */
+
+        @media (max-width: 850px) {
+            .register-container {
+                grid-template-columns: 1fr;
+                max-width: 650px;
+            }
+
+            .register-welcome {
+                min-height: 410px;
+                padding: 30px;
+            }
+
+            .welcome-content h1 {
+                font-size: 31px;
+            }
+
+            .register-form-section {
+                padding: 38px 35px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .register-page {
+                padding: 20px 10px 35px;
+            }
+
+            .register-container {
+                border-radius: 14px;
+            }
+
+            .register-welcome {
+                min-height: 370px;
+                padding: 25px 22px;
+            }
+
+            .welcome-content h1 {
+                font-size: 27px;
+            }
+
+            .welcome-content > p {
+                font-size: 12px;
+            }
+
+            .welcome-benefits {
+                gap: 13px;
+                margin-top: 20px;
+            }
+
+            .register-form-section {
+                padding: 30px 20px;
+            }
+
+            .form-top h2 {
+                font-size: 25px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .form-group.full-width {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Shared website header -->
+    <div id="site-header"></div>
+
+    <main class="register-page">
+
+        <div class="register-container">
+
+            <!-- Welcome photograph and introduction -->
+            <section class="register-welcome">
+
+                <div class="welcome-brand">
+                    <h2>GLOBAL <span>MARKET</span></h2>
+                    <p>YOUR WORLD. ONE MARKETPLACE.</p>
+                </div>
+
+                <div class="welcome-content">
+
+                    <span class="welcome-tag">
+                        BE PART OF SOMETHING BIGGER
+                    </span>
+
+                    <h1>
+                        One Account.
+                        <span>Endless Possibilities.</span>
+                    </h1>
+
+                    <p>
+                        Join a growing marketplace where people discover
+                        products, promote businesses, find services and
+                        explore new opportunities.
+                    </p>
+
+                    <div class="welcome-benefits">
+
+                        <div class="benefit">
+                            <div class="benefit-icon">✦</div>
+                            <div class="benefit-text">
+                                <strong>Discover More</strong>
+                                <small>Explore products and services in one place.</small>
+                            </div>
+                        </div>
+
+                        <div class="benefit">
+                            <div class="benefit-icon">⌂</div>
+                            <div class="benefit-text">
+                                <strong>Grow Your Business</strong>
+                                <small>Give your business an online presence.</small>
+                            </div>
+                        </div>
+
+                        <div class="benefit">
+                            <div class="benefit-icon">↗</div>
+                            <div class="benefit-text">
+                                <strong>Find Opportunities</strong>
+                                <small>Connect with people and opportunities.</small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="welcome-bottom">
+                    A better way to connect, discover and grow.
+                    <br>
+                    GLOBAL MARKET — Your world. One marketplace.
+                </div>
+
+            </section>
+
+            <!-- Registration form -->
+            <section class="register-form-section">
+
+                <div class="form-top">
+                    <span class="small-label">Join our marketplace</span>
+
+                    <h2>Create Your Account</h2>
+
+                    <p>
+                        Complete the details below to get started.
+                        It only takes a few minutes.
+                    </p>
+                </div>
+
+                <form id="registerForm">
+
+                    <!-- Personal details -->
+                    <div class="section-heading">
+                        <span class="section-number">1</span>
+                        <h3>Personal Information</h3>
+                    </div>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="firstName">
+                                First name <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="firstName"
+                                name="firstName"
+                                placeholder="Your first name"
+                                autocomplete="given-name"
+                                maxlength="50"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName">
+                                Last name <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="lastName"
+                                name="lastName"
+                                placeholder="Your last name"
+                                autocomplete="family-name"
+                                maxlength="50"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="email">
+                                Email address <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="example@email.com"
+                                autocomplete="email"
+                                maxlength="254"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">
+                                Phone number <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="e.g. 0712345678"
+                                autocomplete="tel"
+                                maxlength="20"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="county">
+                                County
+                            </label>
+
+                            <select id="county" name="county">
+                                <option value="">Select county</option>
+                                <option>Mombasa</option>
+                                <option>Kwale</option>
+                                <option>Kilifi</option>
+                                <option>Tana River</option>
+                                <option>Lamu</option>
+                                <option>Taita Taveta</option>
+                                <option>Garissa</option>
+                                <option>Wajir</option>
+                                <option>Mandera</option>
+                                <option>Marsabit</option>
+                                <option>Isiolo</option>
+                                <option>Meru</option>
+                                <option>Tharaka Nithi</option>
+                                <option>Embu</option>
+                                <option>Kitui</option>
+                                <option>Machakos</option>
+                                <option>Makueni</option>
+                                <option>Nyandarua</option>
+                                <option>Nyeri</option>
+                                <option>Kirinyaga</option>
+                                <option>Murang'a</option>
+                                <option>Kiambu</option>
+                                <option>Turkana</option>
+                                <option>West Pokot</option>
+                                <option>Samburu</option>
+                                <option>Trans Nzoia</option>
+                                <option>Uasin Gishu</option>
+                                <option>Elgeyo Marakwet</option>
+                                <option>Nandi</option>
+                                <option>Baringo</option>
+                                <option>Laikipia</option>
+                                <option>Nakuru</option>
+                                <option>Narok</option>
+                                <option>Kajiado</option>
+                                <option>Kericho</option>
+                                <option>Bomet</option>
+                                <option>Kakamega</option>
+                                <option>Vihiga</option>
+                                <option>Bungoma</option>
+                                <option>Busia</option>
+                                <option>Siaya</option>
+                                <option>Kisumu</option>
+                                <option>Homa Bay</option>
+                                <option>Migori</option>
+                                <option>Kisii</option>
+                                <option>Nyamira</option>
+                                <option>Nairobi</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <!-- Account details -->
+                    <div class="section-heading">
+                        <span class="section-number">2</span>
+                        <h3>Account Information</h3>
+                    </div>
+
+                    <div class="form-grid">
+
+                        <div class="form-group full-width">
+                            <label for="accountType">
+                                Account type <span class="required">*</span>
+                            </label>
+
+                            <select
+                                id="accountType"
+                                name="accountType"
+                                required
+                            >
+                                <option value="">Choose account type</option>
+                                <option value="buyer">Buyer / Customer</option>
+                                <option value="seller">Seller</option>
+                                <option value="business">Business Owner</option>
+                                <option value="service-provider">Service Provider</option>
+                                <option value="job-seeker">Job Seeker</option>
+                                <option value="student">Student / Learner</option>
+                            </select>
+
+                            <p class="account-type-note">
+                                You can explore the marketplace after registering.
+                                Some activities may require additional profile details.
+                            </p>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="password">
+                                Create password <span class="required">*</span>
+                            </label>
+
+                            <div class="password-wrapper">
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    placeholder="Create a strong password"
+                                    autocomplete="new-password"
+                                    minlength="8"
+                                    maxlength="72"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-target="password"
+                                >
+                                    Show
+                                </button>
+                            </div>
+
+                            <p class="password-hint">
+                                Use at least 8 characters. A mixture of letters,
+                                numbers and symbols is recommended.
+                            </p>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="confirmPassword">
+                                Confirm password <span class="required">*</span>
+                            </label>
+
+                            <div class="password-wrapper">
+                                <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    placeholder="Enter your password again"
+                                    autocomplete="new-password"
+                                    minlength="8"
+                                    maxlength="72"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-target="confirmPassword"
+                                >
+                                    Show
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Terms -->
+                    <div class="terms-area">
+
+                        <label class="terms-check">
+                            <input
+                                type="checkbox"
+                                id="agreeTerms"
+                                name="agreeTerms"
+                                required
+                            >
+
+                            <span>
+                                I agree to the
+                                <a href="terms.html" target="_blank">
+                                    Terms and Conditions
+                                </a>
+                                and acknowledge the
+                                <a href="privacy.html" target="_blank">
+                                    Privacy Policy
+                                </a>
+                                of GLOBAL MARKET.
+                            </span>
+                        </label>
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="register-button"
+                        id="registerButton"
+                    >
+                        Create My Account →
+                    </button>
+
+                    <div
+                        class="form-message"
+                        id="formMessage"
+                        role="status"
+                        aria-live="polite"
+                    ></div>
+
+                </form>
+
+                <div class="login-prompt">
+                    Already have an account?
+                    <a href="login.html">Sign in instead</a>
+                </div>
+
+                <div class="form-security">
+                    Your information should be handled securely.
+                    <br>
+                    GLOBAL MARKET — Connecting people and opportunities.
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- Shared public footer -->
+    <div id="site-footer"></div>
+
+    <script src="layout.js" defer></script>
+
+    <script>
+        // Password visibility controls
+        document.querySelectorAll(".password-toggle").forEach(function(button) {
+
+            button.addEventListener("click", function() {
+
+                const targetId = button.dataset.target;
+                const input = document.getElementById(targetId);
+
+                if (input.type === "password") {
+                    input.type = "text";
+                    button.textContent = "Hide";
+                } else {
+                    input.type = "password";
+                    button.textContent = "Show";
+                }
+
+            });
+
+        });
+
+        // Registration form validation
+        const registerForm = document.getElementById("registerForm");
+        const registerButton = document.getElementById("registerButton");
+        const formMessage = document.getElementById("formMessage");
+
+        registerForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            formMessage.className = "form-message";
+            formMessage.textContent = "";
+
+            const firstName = document.getElementById("firstName").value.trim();
+            const lastName = document.getElementById("lastName").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const accountType = document.getElementById("accountType").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const agreeTerms = document.getElementById("agreeTerms").checked;
+
+            if (!firstName || !lastName || !email || !phone || !accountType) {
+                showMessage("Please complete all required personal and account details.", "error");
+                return;
+            }
+
+            if (password.length < 8) {
+                showMessage("Your password must contain at least 8 characters.", "error");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showMessage("Your passwords do not match. Please check them.", "error");
+                return;
+            }
+
+            if (!agreeTerms) {
+                showMessage("Please agree to the Terms and Conditions before continuing.", "error");
+                return;
+            }
+
+            showMessage(
+                "Your form has passed the basic checks. Supabase account registration will be connected during backend integration.",
+                "success"
+            );
+
+        });
+
+        function showMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.className = "form-message " + type;
+        }
+    </script>
+
+</body>
+</html>
+
