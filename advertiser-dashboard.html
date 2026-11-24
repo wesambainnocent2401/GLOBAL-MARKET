@@ -1,1 +1,946 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f6fa">
+
+    <meta name="description" content="Manage your advertisements and monitor their performance on GLOBAL MARKET.">
+
+    <title>Advertiser Dashboard | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f6fa;
+            color: #17243b;
+            font-family: Arial, sans-serif;
+        }
+
+        .dashboard-page {
+            width: min(1250px, 95%);
+            margin: 30px auto 60px;
+        }
+
+        .welcome-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .welcome-section h1 {
+            font-size: 27px;
+            color: #14213d;
+            margin: 0 0 8px;
+        }
+
+        .welcome-section p {
+            color: #778398;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .primary-btn {
+            display: inline-block;
+            background: #17345e;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+        }
+
+        .primary-btn:hover {
+            background: #244a7c;
+        }
+
+        .dashboard-layout {
+            display: grid;
+            grid-template-columns: 235px minmax(0, 1fr);
+            gap: 22px;
+            align-items: start;
+        }
+
+        /* SIDEBAR */
+
+        .dashboard-sidebar {
+            background: #fff;
+            border: 1px solid #e4e9f0;
+            border-radius: 12px;
+            padding: 17px 12px;
+            position: sticky;
+            top: 15px;
+        }
+
+        .sidebar-title {
+            color: #9aa4b3;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            padding: 10px 12px;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 12px;
+            margin-bottom: 4px;
+            border-radius: 7px;
+            color: #637188;
+            font-size: 13px;
+            text-decoration: none;
+            transition: .2s;
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background: #edf3fc;
+            color: #17345e;
+            font-weight: 700;
+        }
+
+        .sidebar-link .side-icon {
+            width: 21px;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        .sidebar-divider {
+            border: none;
+            border-top: 1px solid #edf0f5;
+            margin: 12px 0;
+        }
+
+        .sidebar-account {
+            background: #f7f9fc;
+            border-radius: 9px;
+            padding: 13px;
+            margin-top: 18px;
+        }
+
+        .sidebar-account strong {
+            display: block;
+            font-size: 12px;
+            color: #17345e;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-account span {
+            color: #8490a2;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        /* MAIN CONTENT */
+
+        .dashboard-main {
+            min-width: 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 13px;
+            margin-bottom: 22px;
+        }
+
+        .stat-card {
+            background: #fff;
+            border: 1px solid #e5eaf1;
+            border-radius: 11px;
+            padding: 17px;
+            box-shadow: 0 4px 14px rgba(20,35,60,.035);
+        }
+
+        .stat-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .stat-label {
+            color: #7c8799;
+            font-size: 12px;
+        }
+
+        .stat-icon {
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9px;
+            background: #edf2fb;
+            font-size: 17px;
+        }
+
+        .stat-number {
+            font-size: 26px;
+            font-weight: 800;
+            color: #17345e;
+        }
+
+        .stat-note {
+            font-size: 10px;
+            color: #929cad;
+            margin-top: 6px;
+        }
+
+        /* QUICK ACTIONS */
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .quick-action {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #e5eaf1;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: .2s;
+        }
+
+        .quick-action:hover {
+            border-color: #c4a15e;
+            transform: translateY(-2px);
+        }
+
+        .quick-action-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #edf2fb;
+            border-radius: 9px;
+            font-size: 19px;
+            flex-shrink: 0;
+        }
+
+        .quick-action strong {
+            display: block;
+            color: #17345e;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .quick-action span {
+            color: #8b96a7;
+            font-size: 10px;
+        }
+
+        /* CONTENT PANELS */
+
+        .dashboard-panels {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(230px, 1fr);
+            gap: 17px;
+        }
+
+        .panel {
+            background: #fff;
+            border: 1px solid #e5eaf1;
+            border-radius: 11px;
+            overflow: hidden;
+            margin-bottom: 18px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 17px;
+            border-bottom: 1px solid #edf0f5;
+        }
+
+        .panel-header h2 {
+            font-size: 15px;
+            margin: 0;
+            color: #172b4d;
+        }
+
+        .panel-header a {
+            color: #a77c32;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* RECENT ADS */
+
+        .ad-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-bottom: 1px solid #f0f2f6;
+        }
+
+        .ad-row:last-child {
+            border-bottom: none;
+        }
+
+        .ad-image {
+            width: 59px;
+            height: 52px;
+            border-radius: 7px;
+            object-fit: cover;
+            background: #edf0f5;
+            flex-shrink: 0;
+        }
+
+        .ad-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .ad-info strong {
+            display: block;
+            font-size: 12px;
+            color: #263753;
+            margin-bottom: 6px;
+        }
+
+        .ad-info span {
+            color: #8c96a6;
+            font-size: 10px;
+        }
+
+        .status {
+            padding: 6px 8px;
+            border-radius: 20px;
+            font-size: 9px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .status-active {
+            color: #23774c;
+            background: #e9f7ef;
+        }
+
+        .status-pending {
+            color: #9b742b;
+            background: #fff5df;
+        }
+
+        .status-rejected {
+            color: #b64040;
+            background: #fff0f0;
+        }
+
+        /* PERFORMANCE */
+
+        .performance-content {
+            padding: 18px;
+        }
+
+        .performance-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: #17345e;
+        }
+
+        .performance-description {
+            font-size: 11px;
+            color: #8994a5;
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+
+        .performance-bar {
+            margin-bottom: 16px;
+        }
+
+        .performance-bar-heading {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #65738a;
+            margin-bottom: 7px;
+        }
+
+        .bar-track {
+            height: 7px;
+            border-radius: 10px;
+            background: #edf0f5;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: #c5a05c;
+            border-radius: 10px;
+        }
+
+        .performance-footnote {
+            font-size: 10px;
+            color: #9aa4b3;
+            line-height: 1.6;
+            margin-top: 18px;
+        }
+
+        /* TIPS */
+
+        .tips-content {
+            padding: 17px;
+        }
+
+        .tip-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .tip-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .tip-icon {
+            font-size: 18px;
+        }
+
+        .tip-item strong {
+            display: block;
+            font-size: 12px;
+            color: #253753;
+            margin-bottom: 5px;
+        }
+
+        .tip-item p {
+            font-size: 11px;
+            line-height: 1.6;
+            color: #8590a1;
+            margin: 0;
+        }
+
+        .demo-notice {
+            margin-top: 5px;
+            padding: 13px 15px;
+            border: 1px solid #f0dfb7;
+            background: #fffaf0;
+            border-radius: 9px;
+            color: #80652e;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 1050px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-panels {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .dashboard-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-sidebar {
+                position: static;
+            }
+
+            .dashboard-sidebar nav {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 4px;
+            }
+
+            .sidebar-title,
+            .sidebar-divider,
+            .sidebar-account {
+                display: none;
+            }
+
+            .sidebar-link {
+                margin: 0;
+                padding: 11px 8px;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard-page {
+                margin-top: 22px;
+            }
+
+            .welcome-section h1 {
+                font-size: 23px;
+            }
+
+            .stats-grid {
+                gap: 9px;
+            }
+
+            .stat-card {
+                padding: 13px;
+            }
+
+            .stat-number {
+                font-size: 23px;
+            }
+
+            .stat-label {
+                font-size: 10px;
+            }
+
+            .ad-row {
+                gap: 8px;
+                padding: 12px 10px;
+            }
+
+            .ad-image {
+                width: 48px;
+                height: 45px;
+            }
+
+            .ad-info strong {
+                font-size: 11px;
+            }
+
+            .status {
+                font-size: 8px;
+                padding: 5px 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SHARED PUBLIC HEADER -->
+    <div id="site-header"></div>
+
+    <main class="dashboard-page">
+
+        <!-- WELCOME -->
+        <section class="welcome-section">
+            <div>
+                <h1>Advertiser Dashboard</h1>
+                <p>Manage your advertisements and monitor your marketplace activity.</p>
+            </div>
+
+            <a href="create-ad.html" class="primary-btn">
+                + Create Advertisement
+            </a>
+        </section>
+
+        <div class="dashboard-layout">
+
+            <!-- SIDEBAR -->
+            <aside class="dashboard-sidebar">
+
+                <div class="sidebar-title">ADVERTISER MENU</div>
+
+                <nav>
+                    <a href="advertiser-dashboard.html" class="sidebar-link active">
+                        <span class="side-icon">▦</span>
+                        Dashboard
+                    </a>
+
+                    <a href="create-ad.html" class="sidebar-link">
+                        <span class="side-icon">＋</span>
+                        Create Advertisement
+                    </a>
+
+                    <a href="my-ads.html" class="sidebar-link">
+                        <span class="side-icon">▤</span>
+                        My Advertisements
+                    </a>
+
+                    <a href="messages.html" class="sidebar-link">
+                        <span class="side-icon">✉</span>
+                        Messages
+                    </a>
+
+                    <a href="notifications.html" class="sidebar-link">
+                        <span class="side-icon">♧</span>
+                        Notifications
+                    </a>
+
+                    <a href="business-profile.html" class="sidebar-link">
+                        <span class="side-icon">⌂</span>
+                        Business Profile
+                    </a>
+
+                    <hr class="sidebar-divider">
+
+                    <a href="profile.html" class="sidebar-link">
+                        <span class="side-icon">♙</span>
+                        My Account
+                    </a>
+
+                    <a href="payment.html" class="sidebar-link">
+                        <span class="side-icon">▣</span>
+                        Payments
+                    </a>
+
+                    <a href="help.html" class="sidebar-link">
+                        <span class="side-icon">?</span>
+                        Help & Support
+                    </a>
+                </nav>
+
+                <div class="sidebar-account">
+                    <strong>GLOBAL MARKET</strong>
+                    <span>Your world. One marketplace.</span>
+                </div>
+
+            </aside>
+
+            <!-- DASHBOARD MAIN -->
+            <section class="dashboard-main">
+
+                <!-- STATISTICS -->
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Total Advertisements</span>
+                            <div class="stat-icon">📢</div>
+                        </div>
+                        <div class="stat-number">12</div>
+                        <div class="stat-note">All submitted advertisements</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Active Advertisements</span>
+                            <div class="stat-icon">✓</div>
+                        </div>
+                        <div class="stat-number">8</div>
+                        <div class="stat-note">Currently published</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Pending Review</span>
+                            <div class="stat-icon">◷</div>
+                        </div>
+                        <div class="stat-number">3</div>
+                        <div class="stat-note">Awaiting administrator review</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Rejected Advertisements</span>
+                            <div class="stat-icon">!</div>
+                        </div>
+                        <div class="stat-number">1</div>
+                        <div class="stat-note">Requires attention</div>
+                    </div>
+
+                </div>
+
+                <!-- QUICK ACTIONS -->
+                <section class="quick-actions">
+
+                    <a href="create-ad.html" class="quick-action">
+                        <div class="quick-action-icon">＋</div>
+                        <div>
+                            <strong>Post an Advertisement</strong>
+                            <span>Reach potential customers</span>
+                        </div>
+                    </a>
+
+                    <a href="my-ads.html" class="quick-action">
+                        <div class="quick-action-icon">▤</div>
+                        <div>
+                            <strong>Manage My Ads</strong>
+                            <span>Edit and track listings</span>
+                        </div>
+                    </a>
+
+                    <a href="messages.html" class="quick-action">
+                        <div class="quick-action-icon">✉</div>
+                        <div>
+                            <strong>View Messages</strong>
+                            <span>Respond to customer inquiries</span>
+                        </div>
+                    </a>
+
+                </section>
+
+                <!-- PANELS -->
+                <div class="dashboard-panels">
+
+                    <div>
+
+                        <!-- RECENT ADVERTISEMENTS -->
+                        <section class="panel">
+
+                            <div class="panel-header">
+                                <h2>Recent Advertisements</h2>
+                                <a href="my-ads.html">View all</a>
+                            </div>
+
+                            <div class="ad-row">
+                                <img
+                                    class="ad-image"
+                                    src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=200&q=80"
+                                    alt="SUV advertisement"
+                                >
+
+                                <div class="ad-info">
+                                    <strong>Toyota Land Cruiser Prado</strong>
+                                    <span>Vehicle · KSh 2,850,000</span>
+                                </div>
+
+                                <span class="status status-active">Active</span>
+                            </div>
+
+                            <div class="ad-row">
+                                <img
+                                    class="ad-image"
+                                    src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=200&q=80"
+                                    alt="Modern house advertisement"
+                                >
+
+                                <div class="ad-info">
+                                    <strong>Modern Family House</strong>
+                                    <span>Real Estate · KSh 8,500,000</span>
+                                </div>
+
+                                <span class="status status-pending">Pending</span>
+                            </div>
+
+                            <div class="ad-row">
+                                <img
+                                    class="ad-image"
+                                    src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=200&q=80"
+                                    alt="Laptop advertisement"
+                                >
+
+                                <div class="ad-info">
+                                    <strong>Professional Laptop</strong>
+                                    <span>Electronics · KSh 75,000</span>
+                                </div>
+
+                                <span class="status status-active">Active</span>
+                            </div>
+
+                            <div class="ad-row">
+                                <img
+                                    class="ad-image"
+                                    src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=200&q=80"
+                                    alt="Office furniture advertisement"
+                                >
+
+                                <div class="ad-info">
+                                    <strong>Executive Office Furniture</strong>
+                                    <span>Furniture · KSh 45,000</span>
+                                </div>
+
+                                <span class="status status-rejected">Rejected</span>
+                            </div>
+
+                        </section>
+
+                        <!-- PERFORMANCE -->
+                        <section class="panel">
+
+                            <div class="panel-header">
+                                <h2>Advertisement Performance</h2>
+                                <span style="font-size:10px;color:#8994a5;">
+                                    Sample overview
+                                </span>
+                            </div>
+
+                            <div class="performance-content">
+
+                                <div class="performance-number">2,450</div>
+
+                                <div class="performance-description">
+                                    Total advertisement views
+                                </div>
+
+                                <div class="performance-bar">
+                                    <div class="performance-bar-heading">
+                                        <span>Advertisement views</span>
+                                        <strong>2,450</strong>
+                                    </div>
+                                    <div class="bar-track">
+                                        <div class="bar-fill" style="width:85%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="performance-bar">
+                                    <div class="performance-bar-heading">
+                                        <span>Customer inquiries</span>
+                                        <strong>86</strong>
+                                    </div>
+                                    <div class="bar-track">
+                                        <div class="bar-fill" style="width:55%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="performance-bar">
+                                    <div class="performance-bar-heading">
+                                        <span>Saved advertisements</span>
+                                        <strong>34</strong>
+                                    </div>
+                                    <div class="bar-track">
+                                        <div class="bar-fill" style="width:35%"></div>
+                                    </div>
+                                </div>
+
+                                <p class="performance-footnote">
+                                    These figures are illustrative. Actual views,
+                                    inquiries and saves will be calculated from
+                                    recorded marketplace activity.
+                                </p>
+
+                            </div>
+                        </section>
+
+                    </div>
+
+                    <!-- RIGHT COLUMN -->
+                    <div>
+
+                        <section class="panel">
+
+                            <div class="panel-header">
+                                <h2>Advertising Tips</h2>
+                            </div>
+
+                            <div class="tips-content">
+
+                                <div class="tip-item">
+                                    <div class="tip-icon">📸</div>
+                                    <div>
+                                        <strong>Use clear photos</strong>
+                                        <p>Upload quality photos that accurately show your products or services.</p>
+                                    </div>
+                                </div>
+
+                                <div class="tip-item">
+                                    <div class="tip-icon">✍️</div>
+                                    <div>
+                                        <strong>Write clear descriptions</strong>
+                                        <p>Explain important details and include accurate information.</p>
+                                    </div>
+                                </div>
+
+                                <div class="tip-item">
+                                    <div class="tip-icon">💰</div>
+                                    <div>
+                                        <strong>Use realistic prices</strong>
+                                        <p>Display understandable prices and clarify when prices are negotiable.</p>
+                                    </div>
+                                </div>
+
+                                <div class="tip-item">
+                                    <div class="tip-icon">💬</div>
+                                    <div>
+                                        <strong>Respond to inquiries</strong>
+                                        <p>Reply promptly and communicate professionally with interested customers.</p>
+                                    </div>
+                                </div>
+
+                                <div class="tip-item">
+                                    <div class="tip-icon">🔄</div>
+                                    <div>
+                                        <strong>Keep listings updated</strong>
+                                        <p>Update availability, contact details and product information.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                        <section class="panel">
+
+                            <div class="panel-header">
+                                <h2>Account Shortcuts</h2>
+                            </div>
+
+                            <div class="tips-content">
+
+                                <div class="tip-item">
+                                    <div class="tip-icon">♙</div>
+                                    <div>
+                                        <strong>Personal Profile</strong>
+                                        <p><a href="profile.html">Update account information</a></p>
+                                    </div>
+                                </div>
+
+                                <div class="tip-item">
+                                    <div class="tip-icon">🏪</div>
+                                    <div>
+                                        <strong>Business Information</strong>
+                                        <p><a href="edit-business-profile.html">Manage your business profile</a></p>
+                                    </div>
+                                </div>
+
+                                <div class="tip-item">
+                                    <div class="tip-icon">♡</div>
+                                    <div>
+                                        <strong>Saved Items</strong>
+                                        <p><a href="favorites.html">View your favorites</a></p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+                </div>
+
+                <div class="demo-notice">
+                    <strong>Demo notice:</strong>
+                    This dashboard currently displays sample statistics and advertisements.
+                    Real account data, performance tracking and advertisement statuses
+                    will be loaded from Supabase after backend integration.
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- SHARED PUBLIC FOOTER -->
+    <div id="site-footer"></div>
+
+    <script src="layout.js" defer></script>
+
+</body>
+</html>
+
