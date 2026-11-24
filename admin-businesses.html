@@ -1,1 +1,954 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Business Verification | GLOBAL MARKET</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .business-admin-page {
+            background: #F2F5F9;
+            min-height: 100vh;
+        }
+
+        .business-hero {
+            background: linear-gradient(120deg, #172B4D, #354F73);
+            color: white;
+            padding: 42px 6%;
+        }
+
+        .business-hero h1 {
+            font-size: 29px;
+            margin-bottom: 9px;
+        }
+
+        .business-hero p {
+            color: #DCE5F1;
+            line-height: 1.7;
+        }
+
+        .demo-label {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 7px 13px;
+            border-radius: 20px;
+            background: #FFF0CE;
+            color: #805A17;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .business-container {
+            width: 92%;
+            max-width: 1250px;
+            margin: 30px auto;
+        }
+
+        .notice {
+            background: #FFF8E9;
+            border-left: 4px solid #D6AD58;
+            color: #73551E;
+            border-radius: 9px;
+            padding: 17px;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .business-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 21px;
+            border: 1px solid #E5E9EF;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(20,40,70,.04);
+        }
+
+        .stat-card span {
+            color: #778397;
+            font-size: 13px;
+        }
+
+        .stat-card h2 {
+            color: #172B4D;
+            font-size: 28px;
+            margin-top: 10px;
+        }
+
+        .stat-card small {
+            color: #8994A5;
+            font-size: 11px;
+        }
+
+        .business-panel {
+            background: white;
+            padding: 23px;
+            border: 1px solid #E5E9EF;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(20,40,70,.04);
+        }
+
+        .panel-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .panel-heading h2 {
+            color: #172B4D;
+            font-size: 20px;
+        }
+
+        .panel-heading p {
+            color: #8994A5;
+            font-size: 12px;
+            margin-top: 6px;
+        }
+
+        .filters {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 23px;
+        }
+
+        .filters input,
+        .filters select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #DDE3EB;
+            background: #FAFBFD;
+            border-radius: 9px;
+            outline: none;
+            font-size: 13px;
+            color: #263449;
+        }
+
+        .filters input:focus,
+        .filters select:focus {
+            border-color: #D6AD58;
+        }
+
+        .business-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .business-card {
+            overflow: hidden;
+            border: 1px solid #E5E9EF;
+            border-radius: 14px;
+            background: white;
+        }
+
+        .business-cover {
+            height: 175px;
+            position: relative;
+            background: #EAF0F8;
+        }
+
+        .business-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .verification-badge {
+            position: absolute;
+            top: 13px;
+            right: 13px;
+            padding: 7px 11px;
+            background: #FFF0CE;
+            color: #805A17;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .business-body {
+            padding: 19px;
+        }
+
+        .business-body h3 {
+            color: #172B4D;
+            font-size: 17px;
+            margin-bottom: 7px;
+        }
+
+        .business-category {
+            color: #A77B2D;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .business-description {
+            color: #778397;
+            font-size: 12px;
+            line-height: 1.7;
+            margin: 12px 0;
+        }
+
+        .business-meta {
+            display: grid;
+            gap: 7px;
+            color: #778397;
+            font-size: 11px;
+            margin-bottom: 15px;
+        }
+
+        .document-box {
+            background: #F5F7FA;
+            border: 1px solid #E5E9EF;
+            padding: 12px;
+            border-radius: 9px;
+            margin-bottom: 15px;
+        }
+
+        .document-box strong {
+            display: block;
+            color: #34445B;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        .document-box p {
+            color: #8994A5;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .document-box button {
+            border: none;
+            background: #EAF0F8;
+            color: #28456C;
+            padding: 8px 11px;
+            border-radius: 7px;
+            font-size: 10px;
+            font-weight: 700;
+            margin-top: 9px;
+            cursor: pointer;
+        }
+
+        .business-status {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 13px;
+        }
+
+        .pending {
+            background: #FFF4D9;
+            color: #91691C;
+        }
+
+        .verified {
+            background: #E5F6ED;
+            color: #237A4B;
+        }
+
+        .rejected {
+            background: #FCE9E9;
+            color: #AD4545;
+        }
+
+        .business-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .business-actions button {
+            border: none;
+            border-radius: 7px;
+            padding: 10px 13px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .approve-btn {
+            background: #172B4D;
+            color: white;
+        }
+
+        .review-btn {
+            background: #EAF0F8;
+            color: #28456C;
+        }
+
+        .reject-btn {
+            background: #FFF0E8;
+            color: #A34D2A;
+        }
+
+        .empty-state {
+            display: none;
+            padding: 35px;
+            text-align: center;
+            color: #8994A5;
+        }
+
+        .document-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            background: rgba(15,30,50,.7);
+        }
+
+        .document-modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 430px;
+            padding: 25px;
+            border-radius: 16px;
+        }
+
+        .modal-content h2 {
+            color: #172B4D;
+            margin-bottom: 13px;
+        }
+
+        .modal-content p {
+            color: #66758A;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .modal-close {
+            margin-top: 18px;
+            width: 100%;
+            padding: 12px;
+            background: #172B4D;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        @media(max-width: 850px) {
+            .business-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .business-list {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .filters input {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media(max-width: 520px) {
+            .business-hero h1 {
+                font-size: 24px;
+            }
+
+            .business-container {
+                width: 94%;
+            }
+
+            .business-panel {
+                padding: 14px;
+            }
+
+            .filters {
+                grid-template-columns: 1fr;
+            }
+
+            .filters input {
+                grid-column: auto;
+            }
+
+            .business-cover {
+                height: 155px;
+            }
+        }
+    </style>
+</head>
+
+<body class="business-admin-page">
+
+    <div class="announcement-bar">
+        YOUR WORLD. ONE MARKETPLACE.
+    </div>
+
+    <header class="main-header">
+        <div class="header-container">
+
+            <a href="index.html" class="logo">
+                <span class="logo-icon">G</span>
+                <span class="logo-text">GLOBAL MARKET</span>
+            </a>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="admin-dashboard.html">Dashboard</a>
+                <a href="admin-users.html">Users</a>
+                <a href="admin-ads.html">Advertisements</a>
+                <a href="admin-reports.html">Reports</a>
+                <a href="admin-settings.html">Settings</a>
+
+                <div class="mobile-auth-links">
+                    <a href="profile.html">My Profile</a>
+                    <a href="index.html">Visit Marketplace</a>
+                </div>
+            </nav>
+
+            <div class="header-actions">
+                <a href="index.html" class="login-link">Visit Marketplace</a>
+                <a href="admin-dashboard.html" class="btn-primary">Admin Home</a>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle"
+                aria-label="Open menu">☰</button>
+
+        </div>
+    </header>
+
+    <section class="business-hero">
+        <h1>Business Verification Centre</h1>
+        <p>
+            Review business profiles, inspect submitted documents
+            and manage verification requests.
+        </p>
+        <span class="demo-label">BUSINESS MANAGEMENT · DEMO</span>
+    </section>
+
+    <main class="business-container">
+
+        <div class="notice">
+            <strong>Important:</strong>
+            The businesses, photographs and document descriptions below
+            are sample content. No real business has been verified.
+            Real verification must involve checking authentic documents
+            and reliable business information.
+        </div>
+
+        <section class="business-stats">
+
+            <div class="stat-card">
+                <span>Total Businesses</span>
+                <h2>326</h2>
+                <small>Sample figure</small>
+            </div>
+
+            <div class="stat-card">
+                <span>Verified Businesses</span>
+                <h2>248</h2>
+                <small>Sample figure</small>
+            </div>
+
+            <div class="stat-card">
+                <span>Pending Verification</span>
+                <h2>58</h2>
+                <small>Sample figure</small>
+            </div>
+
+            <div class="stat-card">
+                <span>Rejected Requests</span>
+                <h2>20</h2>
+                <small>Sample figure</small>
+            </div>
+
+        </section>
+
+        <section class="business-panel">
+
+            <div class="panel-heading">
+                <div>
+                    <h2>Registered Business Profiles</h2>
+                    <p>Review the sample business submissions below.</p>
+                </div>
+                <span class="demo-label">SAMPLE RECORDS</span>
+            </div>
+
+            <div class="filters">
+
+                <input
+                    type="search"
+                    id="businessSearch"
+                    placeholder="Search business name or location..."
+                >
+
+                <select id="categoryFilter">
+                    <option value="all">All categories</option>
+                    <option value="retail">Retail</option>
+                    <option value="technology">Technology</option>
+                    <option value="education">Education</option>
+                    <option value="hospitality">Hospitality</option>
+                </select>
+
+                <select id="statusFilter">
+                    <option value="all">All statuses</option>
+                    <option value="pending">Pending</option>
+                    <option value="verified">Verified</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+
+            </div>
+
+            <div class="business-list" id="businessList">
+
+                <article class="business-card"
+                    data-category="retail"
+                    data-status="pending">
+
+                    <div class="business-cover">
+                        <img
+                            src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&auto=format&fit=crop"
+                            alt="Retail shop interior"
+                            loading="lazy"
+                        >
+                        <span class="verification-badge">DEMO BUSINESS</span>
+                    </div>
+
+                    <div class="business-body">
+
+                        <h3>Urban Style Collections</h3>
+                        <span class="business-category">RETAIL & FASHION</span>
+
+                        <p class="business-description">
+                            Sample fashion business profile featuring
+                            clothing, accessories and lifestyle products.
+                        </p>
+
+                        <div class="business-meta">
+                            <span>📍 Nairobi, Kenya</span>
+                            <span>📧 urbanstyle@example.test</span>
+                            <span>🆔 Business ID: BIZ-001</span>
+                        </div>
+
+                        <div class="document-box">
+                            <strong>📄 Business Document</strong>
+                            <p>
+                                Sample document placeholder.
+                                No authentic registration document attached.
+                            </p>
+                            <button data-action="document">
+                                View Document Information
+                            </button>
+                        </div>
+
+                        <span class="business-status pending">
+                            Pending Verification
+                        </span>
+
+                        <div class="business-actions">
+                            <button class="approve-btn" data-action="approve">
+                                Approve
+                            </button>
+                            <button class="review-btn" data-action="review">
+                                Review
+                            </button>
+                            <button class="reject-btn" data-action="reject">
+                                Reject
+                            </button>
+                        </div>
+
+                    </div>
+                </article>
+
+                <article class="business-card"
+                    data-category="technology"
+                    data-status="verified">
+
+                    <div class="business-cover">
+                        <img
+                            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900&auto=format&fit=crop"
+                            alt="Modern office workspace"
+                            loading="lazy"
+                        >
+                        <span class="verification-badge">DEMO BUSINESS</span>
+                    </div>
+
+                    <div class="business-body">
+
+                        <h3>Digital Solutions Hub</h3>
+                        <span class="business-category">TECHNOLOGY</span>
+
+                        <p class="business-description">
+                            Sample technology business offering web design,
+                            computer support and digital services.
+                        </p>
+
+                        <div class="business-meta">
+                            <span>📍 Bungoma, Kenya</span>
+                            <span>📧 digitalhub@example.test</span>
+                            <span>🆔 Business ID: BIZ-002</span>
+                        </div>
+
+                        <div class="document-box">
+                            <strong>📄 Business Document</strong>
+                            <p>
+                                Example document review placeholder.
+                                No real registration evidence is attached.
+                            </p>
+                            <button data-action="document">
+                                View Document Information
+                            </button>
+                        </div>
+
+                        <span class="business-status verified">
+                            Verified (Sample)
+                        </span>
+
+                        <div class="business-actions">
+                            <button class="approve-btn" data-action="approve">
+                                Approve
+                            </button>
+                            <button class="review-btn" data-action="review">
+                                Review
+                            </button>
+                            <button class="reject-btn" data-action="reject">
+                                Reject
+                            </button>
+                        </div>
+
+                    </div>
+                </article>
+
+                <article class="business-card"
+                    data-category="education"
+                    data-status="pending">
+
+                    <div class="business-cover">
+                        <img
+                            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=900&auto=format&fit=crop"
+                            alt="University campus"
+                            loading="lazy"
+                        >
+                        <span class="verification-badge">DEMO BUSINESS</span>
+                    </div>
+
+                    <div class="business-body">
+
+                        <h3>Bright Future Learning Centre</h3>
+                        <span class="business-category">EDUCATION</span>
+
+                        <p class="business-description">
+                            Sample education profile featuring learning
+                            resources, tutoring and academic support.
+                        </p>
+
+                        <div class="business-meta">
+                            <span>📍 Kakamega, Kenya</span>
+                            <span>📧 brightfuture@example.test</span>
+                            <span>🆔 Business ID: BIZ-003</span>
+                        </div>
+
+                        <div class="document-box">
+                            <strong>📄 Business Document</strong>
+                            <p>
+                                Sample education-document placeholder.
+                                Actual supporting documents are not attached.
+                            </p>
+                            <button data-action="document">
+                                View Document Information
+                            </button>
+                        </div>
+
+                        <span class="business-status pending">
+                            Pending Verification
+                        </span>
+
+                        <div class="business-actions">
+                            <button class="approve-btn" data-action="approve">
+                                Approve
+                            </button>
+                            <button class="review-btn" data-action="review">
+                                Review
+                            </button>
+                            <button class="reject-btn" data-action="reject">
+                                Reject
+                            </button>
+                        </div>
+
+                    </div>
+                </article>
+
+                <article class="business-card"
+                    data-category="hospitality"
+                    data-status="rejected">
+
+                    <div class="business-cover">
+                        <img
+                            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&auto=format&fit=crop"
+                            alt="Restaurant interior"
+                            loading="lazy"
+                        >
+                        <span class="verification-badge">DEMO BUSINESS</span>
+                    </div>
+
+                    <div class="business-body">
+
+                        <h3>Golden Plate Restaurant</h3>
+                        <span class="business-category">HOSPITALITY</span>
+
+                        <p class="business-description">
+                            Sample restaurant profile featuring dining,
+                            food services and hospitality.
+                        </p>
+
+                        <div class="business-meta">
+                            <span>📍 Eldoret, Kenya</span>
+                            <span>📧 goldenplate@example.test</span>
+                            <span>🆔 Business ID: BIZ-004</span>
+                        </div>
+
+                        <div class="document-box">
+                            <strong>📄 Business Document</strong>
+                            <p>
+                                Sample placeholder for a document that
+                                requires further verification.
+                            </p>
+                            <button data-action="document">
+                                View Document Information
+                            </button>
+                        </div>
+
+                        <span class="business-status rejected">
+                            Rejected (Sample)
+                        </span>
+
+                        <div class="business-actions">
+                            <button class="approve-btn" data-action="approve">
+                                Approve
+                            </button>
+                            <button class="review-btn" data-action="review">
+                                Review
+                            </button>
+                            <button class="reject-btn" data-action="reject">
+                                Reject
+                            </button>
+                        </div>
+
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="empty-state" id="emptyState">
+                No matching businesses found.
+            </div>
+
+        </section>
+
+    </main>
+
+    <div class="document-modal" id="documentModal">
+        <div class="modal-content">
+            <h2>Document Information</h2>
+            <p id="documentDetails">
+                This is a sample document placeholder.
+            </p>
+            <button class="modal-close" id="closeModal">Close</button>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+
+        <div class="footer-grid">
+
+            <div class="footer-brand">
+                <h2>GLOBAL MARKET</h2>
+                <p>Your world. One marketplace.</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="index.html">Home</a>
+                <a href="categories.html">Categories</a>
+                <a href="businesses.html">Businesses</a>
+                <a href="education.html">Education</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Company</h3>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                <a href="terms.html">Terms</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Account</h3>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© <span id="currentYear"></span> GLOBAL MARKET. All rights reserved.</p>
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        const businessSearch =
+            document.getElementById("businessSearch");
+
+        const categoryFilter =
+            document.getElementById("categoryFilter");
+
+        const statusFilter =
+            document.getElementById("statusFilter");
+
+        const businessList =
+            document.getElementById("businessList");
+
+        const emptyState =
+            document.getElementById("emptyState");
+
+        const documentModal =
+            document.getElementById("documentModal");
+
+        const documentDetails =
+            document.getElementById("documentDetails");
+
+        function filterBusinesses() {
+            const search =
+                businessSearch.value.toLowerCase().trim();
+
+            const category = categoryFilter.value;
+            const status = statusFilter.value;
+
+            let visibleCount = 0;
+
+            document.querySelectorAll(".business-card").forEach(card => {
+                const text = card.textContent.toLowerCase();
+
+                const matchesSearch = text.includes(search);
+
+                const matchesCategory =
+                    category === "all" ||
+                    card.dataset.category === category;
+
+                const matchesStatus =
+                    status === "all" ||
+                    card.dataset.status === status;
+
+                const visible =
+                    matchesSearch && matchesCategory && matchesStatus;
+
+                card.style.display = visible ? "" : "none";
+
+                if (visible) visibleCount++;
+            });
+
+            emptyState.style.display =
+                visibleCount === 0 ? "block" : "none";
+        }
+
+        businessSearch.addEventListener("input", filterBusinesses);
+        categoryFilter.addEventListener("change", filterBusinesses);
+        statusFilter.addEventListener("change", filterBusinesses);
+
+        businessList.addEventListener("click", function(event) {
+            const button =
+                event.target.closest("button[data-action]");
+
+            if (!button) return;
+
+            const card = button.closest(".business-card");
+            const action = button.dataset.action;
+
+            const businessName =
+                card.querySelector("h3").textContent;
+
+            if (action === "document") {
+                documentDetails.textContent =
+                    "Business: " + businessName +
+                    ". This page contains a demonstration placeholder only. " +
+                    "No actual registration document has been uploaded. " +
+                    "Real document review will be connected to secure storage.";
+
+                documentModal.classList.add("show");
+                return;
+            }
+
+            if (action === "review") {
+                alert(
+                    "Demo review: " + businessName +
+                    ". No actual verification has been performed."
+                );
+                return;
+            }
+
+            if (action === "approve" || action === "reject") {
+                const confirmed = confirm(
+                    "Demo action: " + action +
+                    " this sample business?"
+                );
+
+                if (!confirmed) return;
+
+                const newStatus =
+                    action === "approve" ? "verified" : "rejected";
+
+                card.dataset.status = newStatus;
+
+                const statusElement =
+                    card.querySelector(".business-status");
+
+                statusElement.textContent =
+                    newStatus === "verified"
+                        ? "Verified (Demo)"
+                        : "Rejected (Demo)";
+
+                statusElement.className =
+                    "business-status " + newStatus;
+
+                alert(
+                    "Demo only: the sample status has changed. " +
+                    "No real business has been approved or rejected."
+                );
+
+                filterBusinesses();
+            }
+        });
+
+        document.getElementById("closeModal")
+            .addEventListener("click", function() {
+                documentModal.classList.remove("show");
+            });
+
+        documentModal.addEventListener("click", function(event) {
+            if (event.target === documentModal) {
+                documentModal.classList.remove("show");
+            }
+        });
+    </script>
+
+</body>
+</html>
+
