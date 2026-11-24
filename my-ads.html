@@ -1,1 +1,805 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f6fa">
+
+    <meta name="description" content="Manage, edit and monitor your advertisements on GLOBAL MARKET.">
+
+    <title>My Advertisements | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f6fa;
+            color: #17243b;
+            font-family: Arial, sans-serif;
+        }
+
+        .ads-page {
+            width: min(1200px, 95%);
+            margin: 32px auto 60px;
+        }
+
+        .page-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .page-heading h1 {
+            margin: 0 0 8px;
+            color: #14213d;
+            font-size: 27px;
+        }
+
+        .page-heading p {
+            margin: 0;
+            color: #788499;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .create-btn {
+            display: inline-block;
+            padding: 12px 18px;
+            background: #17345e;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .create-btn:hover {
+            background: #244a7c;
+        }
+
+        /* SUMMARY */
+
+        .ads-summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 13px;
+            margin-bottom: 22px;
+        }
+
+        .summary-card {
+            background: #fff;
+            border: 1px solid #e4e9f0;
+            border-radius: 10px;
+            padding: 17px;
+        }
+
+        .summary-card span {
+            display: block;
+            color: #7c8799;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .summary-card strong {
+            color: #17345e;
+            font-size: 25px;
+        }
+
+        /* TOOLBAR */
+
+        .ads-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding: 16px;
+            background: #fff;
+            border: 1px solid #e4e9f0;
+            border-radius: 11px;
+            margin-bottom: 20px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .filter-btn {
+            border: 1px solid #e0e6ef;
+            background: #fff;
+            color: #66748b;
+            padding: 9px 12px;
+            border-radius: 7px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .filter-btn.active {
+            background: #17345e;
+            color: #fff;
+            border-color: #17345e;
+        }
+
+        .search-box {
+            width: min(270px, 100%);
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #dfe5ed;
+            border-radius: 7px;
+            font-size: 12px;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #bd974c;
+        }
+
+        /* AD LIST */
+
+        .ads-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .ad-card {
+            display: grid;
+            grid-template-columns: 175px minmax(0, 1fr);
+            gap: 17px;
+            background: #fff;
+            border: 1px solid #e5eaf1;
+            border-radius: 11px;
+            padding: 13px;
+            box-shadow: 0 4px 13px rgba(20,35,60,.035);
+        }
+
+        .ad-card[hidden] {
+            display: none;
+        }
+
+        .ad-image {
+            width: 100%;
+            height: 145px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: #edf0f5;
+        }
+
+        .ad-main {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .ad-heading {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .ad-heading h2 {
+            margin: 0 0 7px;
+            color: #1b2e4c;
+            font-size: 16px;
+        }
+
+        .ad-category {
+            color: #8b96a7;
+            font-size: 11px;
+        }
+
+        .status {
+            padding: 6px 9px;
+            border-radius: 20px;
+            font-size: 9px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .active-status {
+            color: #23774c;
+            background: #e9f7ef;
+        }
+
+        .pending-status {
+            color: #99702a;
+            background: #fff5df;
+        }
+
+        .rejected-status {
+            color: #b64040;
+            background: #fff0f0;
+        }
+
+        .draft-status {
+            color: #58677e;
+            background: #edf1f6;
+        }
+
+        .ad-description {
+            color: #758197;
+            font-size: 12px;
+            line-height: 1.6;
+            margin: 8px 0;
+        }
+
+        .ad-meta {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            color: #8792a3;
+            font-size: 10px;
+        }
+
+        .ad-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .ad-price {
+            color: #17345e;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .ad-actions {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 8px 11px;
+            border: 1px solid #e0e6ef;
+            background: #fff;
+            color: #53647f;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .action-btn:hover {
+            border-color: #c3a05e;
+            color: #9a742f;
+        }
+
+        .delete-btn {
+            color: #bd4545;
+        }
+
+        .delete-btn:hover {
+            border-color: #e8baba;
+            background: #fff6f6;
+        }
+
+        .empty-state {
+            background: #fff;
+            border: 1px solid #e5eaf1;
+            border-radius: 11px;
+            padding: 55px 20px;
+            text-align: center;
+        }
+
+        .empty-state .empty-icon {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .empty-state h2 {
+            color: #243653;
+            font-size: 18px;
+            margin: 0 0 9px;
+        }
+
+        .empty-state p {
+            color: #8590a1;
+            font-size: 12px;
+            line-height: 1.6;
+            margin: 0 auto 18px;
+            max-width: 420px;
+        }
+
+        .empty-state a {
+            display: inline-block;
+            padding: 11px 17px;
+            background: #17345e;
+            color: #fff;
+            border-radius: 7px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .demo-notice {
+            margin-top: 19px;
+            padding: 13px 15px;
+            background: #fffaf0;
+            border: 1px solid #f0dfb7;
+            border-radius: 9px;
+            color: #80652e;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 850px) {
+            .ads-summary {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .ads-page {
+                margin-top: 22px;
+            }
+
+            .page-heading h1 {
+                font-size: 23px;
+            }
+
+            .ads-toolbar {
+                align-items: stretch;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .ad-card {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .ad-image {
+                height: 190px;
+            }
+
+            .ad-heading h2 {
+                font-size: 14px;
+            }
+
+            .ad-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .ad-actions {
+                width: 100%;
+            }
+
+            .action-btn {
+                flex: 1;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="site-header"></div>
+
+    <main class="ads-page">
+
+        <section class="page-heading">
+            <div>
+                <h1>My Advertisements</h1>
+                <p>Manage your listings, check their status and keep your advertisements updated.</p>
+            </div>
+
+            <a href="create-ad.html" class="create-btn">
+                + Create New Ad
+            </a>
+        </section>
+
+        <!-- SUMMARY -->
+        <section class="ads-summary">
+
+            <div class="summary-card">
+                <span>Total Advertisements</span>
+                <strong id="totalAds">4</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Active</span>
+                <strong id="activeAds">1</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Pending</span>
+                <strong id="pendingAds">1</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Rejected / Draft</span>
+                <strong id="otherAds">2</strong>
+            </div>
+
+        </section>
+
+        <!-- FILTER AND SEARCH -->
+        <section class="ads-toolbar">
+
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all" type="button">
+                    All
+                </button>
+
+                <button class="filter-btn" data-filter="active" type="button">
+                    Active
+                </button>
+
+                <button class="filter-btn" data-filter="pending" type="button">
+                    Pending
+                </button>
+
+                <button class="filter-btn" data-filter="rejected" type="button">
+                    Rejected
+                </button>
+
+                <button class="filter-btn" data-filter="draft" type="button">
+                    Drafts
+                </button>
+            </div>
+
+            <div class="search-box">
+                <input
+                    type="search"
+                    id="adSearch"
+                    placeholder="Search your advertisements..."
+                    aria-label="Search advertisements"
+                >
+            </div>
+
+        </section>
+
+        <!-- ADVERTISEMENTS -->
+        <section class="ads-list" id="adsList">
+
+            <!-- AD 1 -->
+            <article class="ad-card" data-status="active" data-name="Toyota Land Cruiser Prado">
+
+                <img
+                    class="ad-image"
+                    src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=700&q=85"
+                    alt="SUV advertisement"
+                    loading="lazy"
+                >
+
+                <div class="ad-main">
+
+                    <div>
+                        <div class="ad-heading">
+                            <div>
+                                <h2>Toyota Land Cruiser Prado</h2>
+                                <div class="ad-category">Vehicles · Motor Vehicles</div>
+                            </div>
+
+                            <span class="status active-status">Active</span>
+                        </div>
+
+                        <p class="ad-description">
+                            Sample vehicle advertisement with specifications,
+                            location and seller contact information.
+                        </p>
+
+                        <div class="ad-meta">
+                            <span>📍 Nairobi</span>
+                            <span>Views: 1,240</span>
+                            <span>Posted: 20 Nov 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="ad-bottom">
+                        <div class="ad-price">KSh 2,850,000</div>
+
+                        <div class="ad-actions">
+                            <a href="advertisement-details.html" class="action-btn">View</a>
+                            <a href="edit-ad.html" class="action-btn">Edit</a>
+                            <button class="action-btn delete-btn" type="button">Delete</button>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+            <!-- AD 2 -->
+            <article class="ad-card" data-status="pending" data-name="Modern Family House">
+
+                <img
+                    class="ad-image"
+                    src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=700&q=85"
+                    alt="Modern family house"
+                    loading="lazy"
+                >
+
+                <div class="ad-main">
+
+                    <div>
+                        <div class="ad-heading">
+                            <div>
+                                <h2>Modern Family House</h2>
+                                <div class="ad-category">Real Estate · Houses</div>
+                            </div>
+
+                            <span class="status pending-status">Pending</span>
+                        </div>
+
+                        <p class="ad-description">
+                            Sample residential property listing awaiting administrator review.
+                        </p>
+
+                        <div class="ad-meta">
+                            <span>📍 Bungoma</span>
+                            <span>Views: 0</span>
+                            <span>Posted: 23 Nov 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="ad-bottom">
+                        <div class="ad-price">KSh 8,500,000</div>
+
+                        <div class="ad-actions">
+                            <a href="advertisement-details.html" class="action-btn">View</a>
+                            <a href="edit-ad.html" class="action-btn">Edit</a>
+                            <button class="action-btn delete-btn" type="button">Delete</button>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+            <!-- AD 3 -->
+            <article class="ad-card" data-status="rejected" data-name="Executive Office Furniture">
+
+                <img
+                    class="ad-image"
+                    src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=700&q=85"
+                    alt="Office furniture"
+                    loading="lazy"
+                >
+
+                <div class="ad-main">
+
+                    <div>
+                        <div class="ad-heading">
+                            <div>
+                                <h2>Executive Office Furniture</h2>
+                                <div class="ad-category">Furniture · Office Furniture</div>
+                            </div>
+
+                            <span class="status rejected-status">Rejected</span>
+                        </div>
+
+                        <p class="ad-description">
+                            Sample advertisement requiring corrections before resubmission.
+                        </p>
+
+                        <div class="ad-meta">
+                            <span>📍 Eldoret</span>
+                            <span>Views: 0</span>
+                            <span>Posted: 21 Nov 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="ad-bottom">
+                        <div class="ad-price">KSh 45,000</div>
+
+                        <div class="ad-actions">
+                            <a href="advertisement-details.html" class="action-btn">View</a>
+                            <a href="edit-ad.html" class="action-btn">Edit</a>
+                            <button class="action-btn delete-btn" type="button">Delete</button>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+            <!-- AD 4 -->
+            <article class="ad-card" data-status="draft" data-name="Professional Laptop">
+
+                <img
+                    class="ad-image"
+                    src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=85"
+                    alt="Laptop computer"
+                    loading="lazy"
+                >
+
+                <div class="ad-main">
+
+                    <div>
+                        <div class="ad-heading">
+                            <div>
+                                <h2>Professional Laptop</h2>
+                                <div class="ad-category">Electronics · Computers</div>
+                            </div>
+
+                            <span class="status draft-status">Draft</span>
+                        </div>
+
+                        <p class="ad-description">
+                            Sample advertisement saved for later completion and submission.
+                        </p>
+
+                        <div class="ad-meta">
+                            <span>📍 Kakamega</span>
+                            <span>Not published</span>
+                            <span>Saved: 22 Nov 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="ad-bottom">
+                        <div class="ad-price">KSh 75,000</div>
+
+                        <div class="ad-actions">
+                            <a href="edit-ad.html" class="action-btn">Continue Editing</a>
+                            <button class="action-btn delete-btn" type="button">Delete</button>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+        </section>
+
+        <!-- EMPTY STATE -->
+        <section class="empty-state" id="emptyState" hidden>
+            <div class="empty-icon">📢</div>
+            <h2>No advertisements found</h2>
+            <p>
+                There are no advertisements matching your search or selected status.
+                Create a new advertisement to get started.
+            </p>
+
+            <a href="create-ad.html">Create Advertisement</a>
+        </section>
+
+        <div class="demo-notice">
+            <strong>Demo notice:</strong>
+            The advertisements and statistics above are examples. Editing, deleting,
+            publishing and status changes will be connected to the user's actual
+            advertisements through Supabase during backend integration.
+        </div>
+
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="layout.js" defer></script>
+
+    <script>
+        const adsList = document.getElementById("adsList");
+        const searchInput = document.getElementById("adSearch");
+        const filterButtons = document.querySelectorAll(".filter-btn");
+
+        const totalAds = document.getElementById("totalAds");
+        const activeAds = document.getElementById("activeAds");
+        const pendingAds = document.getElementById("pendingAds");
+        const otherAds = document.getElementById("otherAds");
+
+        const emptyState = document.getElementById("emptyState");
+
+        let currentFilter = "all";
+
+        function getAds() {
+            return Array.from(adsList.querySelectorAll(".ad-card"));
+        }
+
+        function updateStatistics() {
+            const ads = getAds();
+
+            const active = ads.filter(ad => ad.dataset.status === "active").length;
+            const pending = ads.filter(ad => ad.dataset.status === "pending").length;
+            const other = ads.filter(ad =>
+                ["rejected", "draft"].includes(ad.dataset.status)
+            ).length;
+
+            totalAds.textContent = ads.length;
+            activeAds.textContent = active;
+            pendingAds.textContent = pending;
+            otherAds.textContent = other;
+        }
+
+        function applyFilters() {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+
+            let visible = 0;
+
+            getAds().forEach(ad => {
+                const matchesStatus =
+                    currentFilter === "all" ||
+                    ad.dataset.status === currentFilter;
+
+                const matchesSearch =
+                    ad.dataset.name.toLowerCase().includes(searchTerm);
+
+                const shouldShow = matchesStatus && matchesSearch;
+
+                ad.hidden = !shouldShow;
+
+                if (shouldShow) {
+                    visible++;
+                }
+            });
+
+            adsList.hidden = visible === 0;
+            emptyState.hidden = visible !== 0;
+
+            updateStatistics();
+        }
+
+        // FILTER BUTTONS
+        filterButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                filterButtons.forEach(item => {
+                    item.classList.remove("active");
+                });
+
+                button.classList.add("active");
+
+                currentFilter = button.dataset.filter;
+
+                applyFilters();
+            });
+        });
+
+        // SEARCH
+        searchInput.addEventListener("input", applyFilters);
+
+        // DELETE ADVERTISEMENT
+        adsList.addEventListener("click", event => {
+            const deleteButton = event.target.closest(".delete-btn");
+
+            if (!deleteButton) {
+                return;
+            }
+
+            const card = deleteButton.closest(".ad-card");
+
+            if (!card) {
+                return;
+            }
+
+            const title = card.dataset.name;
+
+            const confirmed = confirm(
+                `Are you sure you want to remove "${title}" from this demo page?`
+            );
+
+            if (!confirmed) {
+                return;
+            }
+
+            card.remove();
+
+            applyFilters();
+        });
+
+        // INITIALIZE
+        applyFilters();
+    </script>
+
+</body>
+</html>
+
