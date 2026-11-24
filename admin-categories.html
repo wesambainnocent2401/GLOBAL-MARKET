@@ -1,1 +1,1303 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3f6fb">
+    <meta name="description" content="Manage GLOBAL MARKET categories.">
+    <title>Category Management | GLOBAL MARKET</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --navy: #172b4d;
+            --navy-light: #243e65;
+            --gold: #c49a43;
+            --gold-light: #f8f0df;
+            --page: #f3f6fb;
+            --white: #fff;
+            --muted: #718096;
+            --border: #e5eaf1;
+            --green: #16845b;
+            --red: #c44e4e;
+            --shadow: 0 8px 28px rgba(28, 45, 75, .07);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: var(--page);
+            color: var(--navy);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button, input, select, textarea { font: inherit; }
+        button, a { -webkit-tap-highlight-color: transparent; }
+
+        .admin-header {
+            min-height: 72px;
+            padding: 0 5%;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .admin-logo {
+            color: var(--navy);
+            font-size: 21px;
+            font-weight: 900;
+            text-decoration: none;
+            letter-spacing: -.7px;
+        }
+
+        .admin-logo span { color: var(--gold); }
+
+        .admin-header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-preview-label {
+            background: var(--gold-light);
+            color: #8c6926;
+            padding: 8px 12px;
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .8px;
+        }
+
+        .header-link {
+            text-decoration: none;
+            color: var(--navy);
+            font-size: 13px;
+            font-weight: 700;
+            padding: 10px 13px;
+            border-radius: 9px;
+        }
+
+        .header-link:hover { background: #f1f4f8; }
+        .logout-link { color: var(--red); }
+
+        .admin-layout {
+            display: grid;
+            grid-template-columns: 245px minmax(0, 1fr);
+            min-height: calc(100vh - 72px);
+        }
+
+        .admin-sidebar {
+            background: #fff;
+            border-right: 1px solid var(--border);
+            padding: 25px 15px;
+        }
+
+        .sidebar-heading {
+            margin: 0 12px 16px;
+            color: #9aa5b5;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            font-weight: 800;
+        }
+
+        .sidebar-nav {
+            display: grid;
+            gap: 5px;
+        }
+
+        .sidebar-nav a {
+            text-decoration: none;
+            color: #627087;
+            padding: 12px 13px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            transition: .2s;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: #edf2f9;
+            color: var(--navy);
+        }
+
+        .sidebar-nav a.active {
+            border-left: 3px solid var(--gold);
+        }
+
+        .nav-icon {
+            width: 22px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .sidebar-note {
+            margin: 30px 5px 0;
+            padding: 15px;
+            background: #faf7ef;
+            border: 1px solid #f0e5cb;
+            border-radius: 13px;
+            font-size: 11px;
+            color: #806b43;
+            line-height: 1.6;
+        }
+
+        .admin-main {
+            padding: 30px;
+            max-width: 1500px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .mobile-menu {
+            display: none;
+            border: 0;
+            background: var(--navy);
+            color: white;
+            padding: 10px 13px;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        .page-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 22px;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.6px;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            margin: 0 0 9px;
+            font-size: clamp(25px, 4vw, 34px);
+            letter-spacing: -1px;
+        }
+
+        .page-description {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .preview-notice {
+            padding: 14px 17px;
+            background: #fff9ec;
+            border: 1px solid #f1e3c3;
+            color: #81652e;
+            border-radius: 12px;
+            font-size: 12px;
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+
+        .preview-notice strong { color: #72531e; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 15px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 19px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-label {
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 900;
+            margin: 10px 0 5px;
+        }
+
+        .stat-foot {
+            color: #9aa5b5;
+            font-size: 10px;
+        }
+
+        .stat-icon {
+            float: right;
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: #f0f4fa;
+            font-size: 17px;
+        }
+
+        .section-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: 17px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 11px;
+            margin: 6px 0 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .form-field label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .form-field input,
+        .form-field select,
+        .form-field textarea,
+        .filter-control {
+            width: 100%;
+            border: 1px solid #dfe5ed;
+            border-radius: 9px;
+            background: #fff;
+            color: var(--navy);
+            padding: 12px;
+            outline: none;
+            font-size: 12px;
+        }
+
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus,
+        .filter-control:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(196, 154, 67, .12);
+        }
+
+        .form-field textarea {
+            min-height: 75px;
+            resize: vertical;
+        }
+
+        .full-width { grid-column: 1 / -1; }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 17px;
+        }
+
+        .btn {
+            border: 0;
+            padding: 11px 17px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 800;
+            transition: .2s;
+        }
+
+        .btn:hover { transform: translateY(-1px); }
+
+        .btn-primary {
+            background: var(--navy);
+            color: #fff;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: #fff;
+        }
+
+        .btn-light {
+            background: #edf1f6;
+            color: var(--navy);
+        }
+
+        .btn-danger {
+            background: #fff0f0;
+            color: var(--red);
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .search-wrap { position: relative; }
+        .search-wrap input { padding-left: 37px; }
+        .search-symbol {
+            position: absolute;
+            left: 13px;
+            top: 12px;
+            color: #8793a5;
+        }
+
+        .results-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0 14px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 17px;
+        }
+
+        .category-card {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #fff;
+            transition: .2s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(28, 45, 75, .10);
+        }
+
+        .category-cover {
+            height: 105px;
+            position: relative;
+            background: linear-gradient(120deg, #e8edf5, #f7f1e6);
+        }
+
+        .category-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .category-cover::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(17, 34, 60, .18), transparent);
+            pointer-events: none;
+        }
+
+        .category-icon {
+            position: absolute;
+            z-index: 1;
+            bottom: -17px;
+            left: 15px;
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            background: #fff;
+            border: 2px solid #fff;
+            box-shadow: 0 3px 12px rgba(0,0,0,.1);
+            border-radius: 12px;
+            font-size: 21px;
+        }
+
+        .category-content { padding: 25px 15px 15px; }
+
+        .category-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .category-top h3 {
+            font-size: 14px;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .status {
+            padding: 5px 8px;
+            border-radius: 20px;
+            font-size: 9px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .status.active {
+            background: #e8f7ef;
+            color: var(--green);
+        }
+
+        .status.hidden {
+            background: #fff0f0;
+            color: var(--red);
+        }
+
+        .category-group {
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 800;
+            margin: 9px 0 7px;
+        }
+
+        .category-description {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.6;
+            min-height: 35px;
+            margin: 0 0 13px;
+        }
+
+        .category-meta {
+            color: #9aa5b5;
+            font-size: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #eef1f5;
+        }
+
+        .category-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 13px;
+        }
+
+        .category-actions button {
+            flex: 1;
+            padding: 9px 7px;
+            font-size: 10px;
+        }
+
+        .empty-state {
+            display: none;
+            text-align: center;
+            padding: 45px 15px;
+            border: 1px dashed #d8e0eb;
+            border-radius: 14px;
+            color: var(--muted);
+        }
+
+        .empty-state .empty-icon {
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .empty-state h3 {
+            color: var(--navy);
+            margin: 0 0 7px;
+        }
+
+        .guidelines {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 13px;
+        }
+
+        .guideline {
+            padding: 14px;
+            background: #f7f9fc;
+            border-radius: 11px;
+        }
+
+        .guideline strong {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        .guideline p {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .admin-footer {
+            text-align: center;
+            padding: 25px 10px;
+            color: #9aa5b5;
+            font-size: 10px;
+        }
+
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(16, 29, 49, .48);
+            z-index: 300;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+        }
+
+        .modal-backdrop.show { display: flex; }
+
+        .edit-modal {
+            width: 100%;
+            max-width: 530px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #fff;
+            border-radius: 17px;
+            padding: 23px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.2);
+        }
+
+        .modal-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .modal-heading h2 { margin: 0; font-size: 19px; }
+
+        .close-modal {
+            border: 0;
+            background: #f0f3f7;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 19px;
+        }
+
+        .sidebar-overlay {
+            display: none;
+        }
+
+        @media (max-width: 1100px) {
+            .category-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 760px) {
+            .admin-header { padding: 0 15px; min-height: 64px; }
+            .admin-logo { font-size: 18px; }
+            .admin-preview-label { display: none; }
+            .header-link { font-size: 11px; padding: 8px; }
+
+            .admin-layout { display: block; }
+            .admin-sidebar {
+                position: fixed;
+                z-index: 250;
+                top: 64px;
+                bottom: 0;
+                left: 0;
+                width: 260px;
+                overflow-y: auto;
+                transform: translateX(-105%);
+                transition: transform .25s ease;
+                box-shadow: 10px 0 30px rgba(0,0,0,.08);
+            }
+
+            .admin-sidebar.open { transform: translateX(0); }
+
+            .sidebar-overlay {
+                position: fixed;
+                inset: 64px 0 0;
+                z-index: 200;
+                background: rgba(15, 27, 45, .4);
+            }
+
+            .sidebar-overlay.show { display: block; }
+
+            .admin-main { padding: 19px 14px; }
+            .mobile-menu { display: inline-block; }
+            .page-top { align-items: center; }
+            .page-description { font-size: 12px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .filter-grid { grid-template-columns: 1fr 1fr; }
+            .search-wrap { grid-column: 1 / -1; }
+            .category-grid { grid-template-columns: 1fr 1fr; }
+            .guidelines { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 440px) {
+            .category-grid { grid-template-columns: 1fr; }
+            .stats-grid { gap: 9px; }
+            .stat-card { padding: 14px; }
+            .stat-value { font-size: 24px; }
+            .section-card { padding: 16px; }
+            .filter-grid { grid-template-columns: 1fr; }
+            .search-wrap { grid-column: auto; }
+            .page-top { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="admin-header">
+    <a href="admin-dashboard.html" class="admin-logo">
+        GLOBAL <span>MARKET</span>
+    </a>
+
+    <div class="admin-header-right">
+        <span class="admin-preview-label">ADMIN PREVIEW</span>
+        <a href="index.html" class="header-link">View Website ↗</a>
+        <a href="login.html" class="header-link logout-link">Logout</a>
+    </div>
+</header>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<div class="admin-layout">
+
+    <aside class="admin-sidebar" id="adminSidebar">
+        <p class="sidebar-heading">ADMINISTRATION</p>
+
+        <nav class="sidebar-nav">
+            <a href="admin-dashboard.html"><span class="nav-icon">▦</span> Dashboard</a>
+            <a href="admin-ads.html"><span class="nav-icon">▣</span> Advertisements</a>
+            <a href="admin-businesses.html"><span class="nav-icon">▤</span> Businesses</a>
+            <a href="admin-categories.html" class="active"><span class="nav-icon">▧</span> Categories</a>
+            <a href="admin-users.html"><span class="nav-icon">♙</span> Users</a>
+            <a href="admin-reports.html"><span class="nav-icon">▥</span> Reports</a>
+            <a href="admin-payments.html"><span class="nav-icon">◇</span> Payments</a>
+            <a href="admin-settings.html"><span class="nav-icon">⚙</span> Settings</a>
+            <a href="support.html"><span class="nav-icon">◉</span> Support</a>
+        </nav>
+
+        <div class="sidebar-note">
+            <strong>Category control</strong><br>
+            Keep the marketplace organised by managing the categories available to advertisers and visitors.
+        </div>
+    </aside>
+
+    <main class="admin-main">
+
+        <div class="page-top">
+            <div>
+                <div class="eyebrow">MARKETPLACE MANAGEMENT</div>
+                <h1>Category Management</h1>
+                <p class="page-description">
+                    Organise marketplace categories, control visibility and keep browsing simple.
+                </p>
+            </div>
+            <button class="mobile-menu" id="adminToggle" aria-expanded="false">
+                ☰ Menu
+            </button>
+        </div>
+
+        <div class="preview-notice">
+            <strong>Preview mode:</strong>
+            Changes on this page are temporary and remain in this page session only.
+            Connect Supabase later to save category changes permanently.
+        </div>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-icon">▧</span>
+                <div class="stat-label">TOTAL CATEGORIES</div>
+                <div class="stat-value" id="totalCount">20</div>
+                <div class="stat-foot">All marketplace categories</div>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-icon">✓</span>
+                <div class="stat-label">ACTIVE CATEGORIES</div>
+                <div class="stat-value" id="activeCount">20</div>
+                <div class="stat-foot">Visible in this preview</div>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-icon">◌</span>
+                <div class="stat-label">HIDDEN CATEGORIES</div>
+                <div class="stat-value" id="hiddenCount">0</div>
+                <div class="stat-foot">Not shown to visitors</div>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-icon">⌘</span>
+                <div class="stat-label">CATEGORY GROUPS</div>
+                <div class="stat-value" id="groupCount">7</div>
+                <div class="stat-foot">Main marketplace sections</div>
+            </div>
+        </section>
+
+        <section class="section-card" id="addCategorySection">
+            <div class="section-heading">
+                <div>
+                    <h2 id="formHeading">＋ Add New Category</h2>
+                    <p>Create a category for products, services or opportunities.</p>
+                </div>
+            </div>
+
+            <form id="categoryForm">
+                <div class="form-grid">
+
+                    <div class="form-field">
+                        <label for="categoryName">Category name *</label>
+                        <input type="text" id="categoryName" maxlength="55"
+                               placeholder="e.g. Mobile Phones" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="categoryGroup">Category group *</label>
+                        <select id="categoryGroup" required>
+                            <option value="">Choose a group</option>
+                            <option>Products</option>
+                            <option>Business & Services</option>
+                            <option>Property & Transport</option>
+                            <option>Education & Careers</option>
+                            <option>Food & Agriculture</option>
+                            <option>Entertainment & Community</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="categoryIcon">Category icon (emoji)</label>
+                        <input type="text" id="categoryIcon" maxlength="8"
+                               placeholder="e.g. 📱">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="categoryStatus">Initial status</label>
+                        <select id="categoryStatus">
+                            <option value="active">Active</option>
+                            <option value="hidden">Hidden</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field full-width">
+                        <label for="categoryDescription">Description *</label>
+                        <textarea id="categoryDescription" maxlength="180"
+                                  placeholder="Briefly describe what belongs in this category..."
+                                  required></textarea>
+                    </div>
+
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" id="saveCategoryBtn">
+                        Add Category
+                    </button>
+                    <button type="reset" class="btn btn-light" id="resetFormBtn">
+                        Clear Form
+                    </button>
+                    <button type="button" class="btn btn-danger" id="cancelEditBtn"
+                            hidden>
+                        Cancel Editing
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="section-card">
+            <div class="section-heading">
+                <div>
+                    <h2>Find Categories</h2>
+                    <p>Search and filter the category collection.</p>
+                </div>
+            </div>
+
+            <div class="filter-grid">
+                <div class="search-wrap">
+                    <span class="search-symbol">⌕</span>
+                    <input class="filter-control" type="search" id="searchInput"
+                           placeholder="Search name, description or group...">
+                </div>
+
+                <select class="filter-control" id="groupFilter">
+                    <option value="">All groups</option>
+                    <option>Products</option>
+                    <option>Business & Services</option>
+                    <option>Property & Transport</option>
+                    <option>Education & Careers</option>
+                    <option>Food & Agriculture</option>
+                    <option>Entertainment & Community</option>
+                    <option>Other</option>
+                </select>
+
+                <select class="filter-control" id="statusFilter">
+                    <option value="">All statuses</option>
+                    <option value="active">Active</option>
+                    <option value="hidden">Hidden</option>
+                </select>
+
+                <button class="btn btn-light" id="clearFiltersBtn" type="button">
+                    Clear Filters
+                </button>
+            </div>
+
+            <div class="results-line">
+                <span id="resultsCount">Showing 20 categories</span>
+                <span>Illustrative category images</span>
+            </div>
+
+            <div class="category-grid" id="categoryGrid"></div>
+
+            <div class="empty-state" id="emptyState">
+                <div class="empty-icon">⌕</div>
+                <h3>No categories found</h3>
+                <p>Try another search term or clear your filters.</p>
+                <button class="btn btn-light" id="emptyClearBtn" type="button">
+                    Clear Filters
+                </button>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <div class="section-heading">
+                <div>
+                    <h2>Category Management Guidelines</h2>
+                    <p>Simple rules for maintaining a well-organised marketplace.</p>
+                </div>
+            </div>
+
+            <div class="guidelines">
+                <div class="guideline">
+                    <strong>01. Keep names clear</strong>
+                    <p>Use simple category names that visitors can understand quickly.</p>
+                </div>
+
+                <div class="guideline">
+                    <strong>02. Avoid duplicates</strong>
+                    <p>Check existing categories before creating another similar section.</p>
+                </div>
+
+                <div class="guideline">
+                    <strong>03. Manage visibility</strong>
+                    <p>Hide categories that are temporarily unavailable instead of deleting them.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="admin-footer">
+            © 2026 GLOBAL MARKET · YOUR WORLD. ONE MARKETPLACE.
+            <br><br>
+            Category management preview · Backend connection pending
+        </footer>
+
+    </main>
+</div>
+
+<script>
+    const imageFallback =
+        "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=75";
+
+    let nextId = 21;
+    let editingId = null;
+
+    const categories = [
+        {
+            id: 1, name: "Electronics & Technology", group: "Products",
+            icon: "📱", status: "active",
+            description: "Phones, computers, electronics and digital accessories.",
+            image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=800&q=75"
+        },
+        {
+            id: 2, name: "Fashion & Clothing", group: "Products",
+            icon: "👗", status: "active",
+            description: "Clothing, shoes, bags, jewellery and fashion accessories.",
+            image: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&q=75"
+        },
+        {
+            id: 3, name: "Food & Beverages", group: "Food & Agriculture",
+            icon: "🍲", status: "active",
+            description: "Food products, groceries, drinks and catering supplies.",
+            image: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=75"
+        },
+        {
+            id: 4, name: "Hotels, Tourism & Hospitality", group: "Business & Services",
+            icon: "🏨", status: "active",
+            description: "Hotels, accommodation, travel and tourism services.",
+            image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=75"
+        },
+        {
+            id: 5, name: "Beauty & Personal Care", group: "Products",
+            icon: "💄", status: "active",
+            description: "Beauty products, cosmetics, skincare and grooming.",
+            image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&q=75"
+        },
+        {
+            id: 6, name: "Home, Furniture & Appliances", group: "Products",
+            icon: "🛋️", status: "active",
+            description: "Furniture, household equipment and home appliances.",
+            image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=75"
+        },
+        {
+            id: 7, name: "Sports & Fitness", group: "Products",
+            icon: "⚽", status: "active",
+            description: "Sports equipment, fitness products and outdoor gear.",
+            image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=75"
+        },
+        {
+            id: 8, name: "Pets & Animal Supplies", group: "Products",
+            icon: "🐾", status: "active",
+            description: "Pets, animal feeds, accessories and animal-care products.",
+            image: "https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800&q=75"
+        },
+        {
+            id: 9, name: "Vehicles & Transport", group: "Property & Transport",
+            icon: "🚗", status: "active",
+            description: "Cars, motorcycles, vehicle parts and transport services.",
+            image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&q=75"
+        },
+        {
+            id: 10, name: "Real Estate & Property", group: "Property & Transport",
+            icon: "🏠", status: "active",
+            description: "Houses, land, rentals and commercial property.",
+            image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=75"
+        },
+        {
+            id: 11, name: "Logistics & Delivery", group: "Business & Services",
+            icon: "🚚", status: "active",
+            description: "Courier, transport, shipping and delivery services.",
+            image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=75"
+        },
+        {
+            id: 12, name: "Professional & Business Services", group: "Business & Services",
+            icon: "💼", status: "active",
+            description: "Consulting, accounting, design and professional services.",
+            image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=75"
+        },
+        {
+            id: 13, name: "Construction & Industrial Equipment", group: "Business & Services",
+            icon: "🏗️", status: "active",
+            description: "Building materials, machinery and industrial equipment.",
+            image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=75"
+        },
+        {
+            id: 14, name: "Household & Personal Services", group: "Business & Services",
+            icon: "🧹", status: "active",
+            description: "Cleaning, repairs, maintenance and personal services.",
+            image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=75"
+        },
+        {
+            id: 15, name: "Agriculture & Farming", group: "Food & Agriculture",
+            icon: "🌱", status: "active",
+            description: "Farm produce, livestock, seeds and agricultural supplies.",
+            image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=75"
+        },
+        {
+            id: 16, name: "Education & Training", group: "Education & Careers",
+            icon: "🎓", status: "active",
+            description: "Schools, colleges, courses, tutoring and training.",
+            image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=75"
+        },
+        {
+            id: 17, name: "Jobs & Careers", group: "Education & Careers",
+            icon: "💻", status: "active",
+            description: "Job vacancies, internships and career opportunities.",
+            image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=75"
+        },
+        {
+            id: 18, name: "Entertainment & Events", group: "Entertainment & Community",
+            icon: "🎤", status: "active",
+            description: "Events, entertainment, music and event services.",
+            image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=75"
+        },
+        {
+            id: 19, name: "Organizations & Community", group: "Entertainment & Community",
+            icon: "🤝", status: "active",
+            description: "Community organisations, associations and initiatives.",
+            image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&q=75"
+        },
+        {
+            id: 20, name: "Other & Miscellaneous", group: "Other",
+            icon: "📦", status: "active",
+            description: "Listings that do not fit into the main categories.",
+            image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=75"
+        }
+    ];
+
+    const categoryGrid = document.getElementById("categoryGrid");
+    const categoryForm = document.getElementById("categoryForm");
+    const searchInput = document.getElementById("searchInput");
+    const groupFilter = document.getElementById("groupFilter");
+    const statusFilter = document.getElementById("statusFilter");
+
+    function updateStats() {
+        const active = categories.filter(item => item.status === "active").length;
+        const hidden = categories.length - active;
+        const groups = new Set(categories.map(item => item.group)).size;
+
+        document.getElementById("totalCount").textContent = categories.length;
+        document.getElementById("activeCount").textContent = active;
+        document.getElementById("hiddenCount").textContent = hidden;
+        document.getElementById("groupCount").textContent = groups;
+    }
+
+    function makeElement(tag, className, content) {
+        const element = document.createElement(tag);
+        if (className) element.className = className;
+        if (content !== undefined) element.textContent = content;
+        return element;
+    }
+
+    function createCategoryCard(item) {
+        const card = makeElement("article", "category-card");
+
+        const cover = makeElement("div", "category-cover");
+        const image = document.createElement("img");
+        image.src = item.image || imageFallback;
+        image.alt = item.name + " illustrative category image";
+        image.loading = "lazy";
+        image.onerror = function () {
+            this.onerror = null;
+            this.src = imageFallback;
+        };
+        cover.appendChild(image);
+
+        const icon = makeElement("span", "category-icon", item.icon || "📁");
+        cover.appendChild(icon);
+
+        const content = makeElement("div", "category-content");
+        const top = makeElement("div", "category-top");
+        const heading = makeElement("h3", "", item.name);
+        const status = makeElement(
+            "span",
+            "status " + item.status,
+            item.status === "active" ? "ACTIVE" : "HIDDEN"
+        );
+
+        top.append(heading, status);
+
+        const group = makeElement("div", "category-group", item.group);
+        const description = makeElement("p", "category-description", item.description);
+        const meta = makeElement("div", "category-meta", "Category ID: GM-" + String(item.id).padStart(3, "0"));
+
+        const actions = makeElement("div", "category-actions");
+
+        const editButton = makeElement("button", "btn btn-light", "✎ Edit");
+        editButton.type = "button";
+        editButton.addEventListener("click", () => openEditor(item.id));
+
+        const toggleButton = makeElement(
+            "button",
+            "btn " + (item.status === "active" ? "btn-danger" : "btn-primary"),
+            item.status === "active" ? "Hide" : "Activate"
+        );
+        toggleButton.type = "button";
+        toggleButton.addEventListener("click", () => toggleCategory(item.id));
+
+        actions.append(editButton, toggleButton);
+        content.append(top, group, description, meta, actions);
+        card.append(cover, content);
+
+        return card;
+    }
+
+    function renderCategories() {
+        const search = searchInput.value.trim().toLowerCase();
+        const group = groupFilter.value;
+        const status = statusFilter.value;
+
+        const filtered = categories.filter(item => {
+            const searchable = [
+                item.name,
+                item.description,
+                item.group
+            ].join(" ").toLowerCase();
+
+            return searchable.includes(search) &&
+                (!group || item.group === group) &&
+                (!status || item.status === status);
+        });
+
+        categoryGrid.replaceChildren();
+
+        filtered.forEach(item => {
+            categoryGrid.appendChild(createCategoryCard(item));
+        });
+
+        document.getElementById("resultsCount").textContent =
+            "Showing " + filtered.length + " of " + categories.length + " categories";
+
+        const empty = document.getElementById("emptyState");
+        empty.style.display = filtered.length ? "none" : "block";
+        categoryGrid.style.display = filtered.length ? "grid" : "none";
+
+        updateStats();
+    }
+
+    function resetEditor() {
+        editingId = null;
+        categoryForm.reset();
+        document.getElementById("formHeading").textContent = "＋ Add New Category";
+        document.getElementById("saveCategoryBtn").textContent = "Add Category";
+        document.getElementById("cancelEditBtn").hidden = true;
+    }
+
+    function openEditor(id) {
+        const item = categories.find(category => category.id === id);
+        if (!item) return;
+
+        editingId = id;
+        document.getElementById("categoryName").value = item.name;
+        document.getElementById("categoryGroup").value = item.group;
+        document.getElementById("categoryIcon").value = item.icon;
+        document.getElementById("categoryStatus").value = item.status;
+        document.getElementById("categoryDescription").value = item.description;
+
+        document.getElementById("formHeading").textContent = "✎ Edit Category";
+        document.getElementById("saveCategoryBtn").textContent = "Save Changes";
+        document.getElementById("cancelEditBtn").hidden = false;
+
+        document.getElementById("addCategorySection").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+
+    categoryForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("categoryName").value.trim();
+        const group = document.getElementById("categoryGroup").value;
+        const icon = document.getElementById("categoryIcon").value.trim() || "📁";
+        const status = document.getElementById("categoryStatus").value;
+        const description = document.getElementById("categoryDescription").value.trim();
+
+        if (!name || !group || !description) {
+            alert("Please complete all required fields.");
+            return;
+        }
+
+        const duplicate = categories.some(item =>
+            item.name.toLowerCase() === name.toLowerCase() &&
+            item.id !== editingId
+        );
+
+        if (duplicate) {
+            alert("A category with this name already exists.");
+            return;
+        }
+
+        if (editingId !== null) {
+            const item = categories.find(category => category.id === editingId);
+            if (!item) return;
+
+            item.name = name;
+            item.group = group;
+            item.icon = icon;
+            item.status = status;
+            item.description = description;
+
+            alert("Category updated in this preview.");
+        } else {
+            categories.push({
+                id: nextId++,
+                name,
+                group,
+                icon,
+                status,
+                description,
+                image: imageFallback
+            });
+
+            alert("Category added to this preview.");
+        }
+
+        resetEditor();
+        renderCategories();
+    });
+
+    function toggleCategory(id) {
+        const item = categories.find(category => category.id === id);
+        if (!item) return;
+
+        item.status = item.status === "active" ? "hidden" : "active";
+        renderCategories();
+    }
+
+    function clearFilters() {
+        searchInput.value = "";
+        groupFilter.value = "";
+        statusFilter.value = "";
+        renderCategories();
+    }
+
+    searchInput.addEventListener("input", renderCategories);
+    groupFilter.addEventListener("change", renderCategories);
+    statusFilter.addEventListener("change", renderCategories);
+
+    document.getElementById("clearFiltersBtn").addEventListener("click", clearFilters);
+    document.getElementById("emptyClearBtn").addEventListener("click", clearFilters);
+    document.getElementById("cancelEditBtn").addEventListener("click", resetEditor);
+
+    document.getElementById("resetFormBtn").addEventListener("click", function() {
+        setTimeout(resetEditor, 0);
+    });
+
+    // Mobile sidebar controls
+    const sidebar = document.getElementById("adminSidebar");
+    const toggle = document.getElementById("adminToggle");
+    const overlay = document.getElementById("sidebarOverlay");
+
+    function closeSidebar() {
+        sidebar.classList.remove("open");
+        overlay.classList.remove("show");
+        toggle.setAttribute("aria-expanded", "false");
+    }
+
+    toggle.addEventListener("click", function() {
+        const isOpen = sidebar.classList.toggle("open");
+        overlay.classList.toggle("show", isOpen);
+        toggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    overlay.addEventListener("click", closeSidebar);
+
+    sidebar.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", closeSidebar);
+    });
+
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Escape") closeSidebar();
+    });
+
+    renderCategories();
+</script>
+
+</body>
+</html>
+
