@@ -1,1 +1,674 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f7fb">
+
+    <meta name="description" content="Contact GLOBAL MARKET for marketplace assistance, advertising enquiries, business support and general questions.">
+
+    <title>Contact Us | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f7fb;
+            color: #17243a;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .contact-page {
+            min-height: 100vh;
+        }
+
+        .contact-hero {
+            padding: 75px 20px;
+            text-align: center;
+            color: white;
+            background:
+                linear-gradient(120deg, rgba(12, 32, 59, .96), rgba(28, 65, 105, .91)),
+                url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=85")
+                center/cover;
+        }
+
+        .contact-hero .eyebrow {
+            display: inline-block;
+            padding: 8px 15px;
+            border: 1px solid rgba(255,255,255,.3);
+            border-radius: 30px;
+            color: #f5d58a;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        .contact-hero h1 {
+            margin: 20px 0 12px;
+            font-size: clamp(32px, 6vw, 52px);
+        }
+
+        .contact-hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #e0e8f2;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .contact-container {
+            width: min(1120px, 92%);
+            margin: 55px auto;
+        }
+
+        .section-heading {
+            margin-bottom: 25px;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 10px;
+            color: #142b49;
+            font-size: 27px;
+        }
+
+        .section-heading p {
+            color: #68778b;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .contact-information,
+        .contact-form-card,
+        .faq-card {
+            background: white;
+            border: 1px solid #e5eaf1;
+            border-radius: 17px;
+            box-shadow: 0 8px 30px rgba(24, 45, 75, .05);
+        }
+
+        .contact-information {
+            padding: 28px;
+            background: #142b49;
+            color: white;
+        }
+
+        .contact-information h2 {
+            margin-top: 0;
+            font-size: 23px;
+        }
+
+        .contact-information > p {
+            color: #d0dbea;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 14px;
+            margin-top: 27px;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            width: 43px;
+            height: 43px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            background: rgba(255,255,255,.1);
+            border-radius: 12px;
+            color: #f3cf7d;
+            font-size: 19px;
+        }
+
+        .contact-item h3 {
+            margin: 2px 0 7px;
+            font-size: 14px;
+        }
+
+        .contact-item p {
+            margin: 0;
+            color: #d0dbea;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .contact-note {
+            margin-top: 30px;
+            padding: 15px;
+            border-left: 3px solid #d8ad55;
+            background: rgba(255,255,255,.07);
+            border-radius: 5px;
+            color: #e0e8f2;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .contact-form-card {
+            padding: 30px;
+        }
+
+        .contact-form-card h2 {
+            margin-top: 0;
+            color: #142b49;
+            font-size: 23px;
+        }
+
+        .contact-form-card > p {
+            margin-bottom: 25px;
+            color: #718096;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #293b54;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #dce3ec;
+            border-radius: 9px;
+            background: #fbfcfe;
+            color: #17243a;
+            font: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: .2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #c49b49;
+            box-shadow: 0 0 0 3px rgba(196,155,73,.12);
+        }
+
+        .form-group textarea {
+            min-height: 145px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 9px;
+            background: #142b49;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .submit-button:hover {
+            background: #24466e;
+            transform: translateY(-2px);
+        }
+
+        .form-status {
+            display: none;
+            margin-top: 15px;
+            padding: 13px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .form-status.success {
+            display: block;
+            background: #fff6e5;
+            color: #79551b;
+            border: 1px solid #f0d9a6;
+        }
+
+        .form-status.error {
+            display: block;
+            background: #fff0f0;
+            color: #a52d2d;
+            border: 1px solid #f1caca;
+        }
+
+        .form-disclaimer {
+            margin-top: 15px;
+            color: #8793a3;
+            font-size: 11px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* Contact FAQ */
+
+        .faq-section {
+            margin-top: 65px;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 17px;
+        }
+
+        .faq-card {
+            padding: 23px;
+        }
+
+        .faq-card h3 {
+            margin: 0 0 10px;
+            color: #1c3555;
+            font-size: 15px;
+        }
+
+        .faq-card p {
+            margin: 0;
+            color: #718096;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .contact-bottom {
+            margin-top: 45px;
+            padding: 35px 25px;
+            border-radius: 16px;
+            background: #eaf0f7;
+            text-align: center;
+        }
+
+        .contact-bottom h2 {
+            margin-top: 0;
+            color: #142b49;
+        }
+
+        .contact-bottom p {
+            max-width: 600px;
+            margin: 10px auto 20px;
+            color: #66758a;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .contact-bottom a {
+            display: inline-block;
+            padding: 12px 22px;
+            border-radius: 8px;
+            background: #142b49;
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 760px) {
+            .contact-hero {
+                padding: 60px 18px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .contact-information,
+            .contact-form-card {
+                padding: 23px;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                margin: 35px auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Shared Header -->
+    <div id="site-header"></div>
+
+    <main class="contact-page">
+
+        <!-- Hero Section -->
+        <section class="contact-hero">
+            <span class="eyebrow">WE ARE HERE TO HELP</span>
+
+            <h1>Contact GLOBAL MARKET</h1>
+
+            <p>
+                Have a question, suggestion or business enquiry?
+                Send us a message and let us know how we can help
+                you get the most out of GLOBAL MARKET.
+            </p>
+        </section>
+
+        <div class="contact-container">
+
+            <section class="contact-grid">
+
+                <!-- Contact Information -->
+                <aside class="contact-information">
+
+                    <h2>Get in Touch</h2>
+
+                    <p>
+                        Whether you are a buyer, seller, advertiser
+                        or business owner, we welcome your enquiries.
+                    </p>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">✉</div>
+
+                        <div>
+                            <h3>Email Support</h3>
+                            <p>
+                                Our official support email will be
+                                published here when support channels
+                                are configured.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">⌖</div>
+
+                        <div>
+                            <h3>Our Market</h3>
+                            <p>
+                                Serving buyers, sellers and businesses
+                                across Kenya.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">◷</div>
+
+                        <div>
+                            <h3>Support Enquiries</h3>
+                            <p>
+                                Submit your enquiry using the contact
+                                form. Support response arrangements
+                                will be announced as the platform develops.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="contact-note">
+                        Please do not submit passwords, payment PINs,
+                        bank details or other confidential information
+                        through this form.
+                    </div>
+
+                </aside>
+
+                <!-- Contact Form -->
+                <section class="contact-form-card">
+
+                    <h2>Send Us a Message</h2>
+
+                    <p>
+                        Complete the form below with accurate information
+                        so that your enquiry can be reviewed.
+                    </p>
+
+                    <form id="contactForm">
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+
+                                <input
+                                    type="text"
+                                    id="fullName"
+                                    name="fullName"
+                                    placeholder="Enter your full name"
+                                    maxlength="100"
+                                    autocomplete="name"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="example@email.com"
+                                    maxlength="150"
+                                    autocomplete="email"
+                                    required
+                                >
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number (Optional)</label>
+
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    placeholder="e.g. 07XX XXX XXX"
+                                    maxlength="20"
+                                    autocomplete="tel"
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Enquiry Category *</label>
+
+                                <select id="subject" name="subject" required>
+                                    <option value="">Select a category</option>
+                                    <option value="General Enquiry">General Enquiry</option>
+                                    <option value="Account Support">Account Support</option>
+                                    <option value="Advertising">Advertising</option>
+                                    <option value="Business Registration">Business Registration</option>
+                                    <option value="Payment Enquiry">Payment Enquiry</option>
+                                    <option value="Report an Issue">Report an Issue</option>
+                                    <option value="Partnership">Partnership</option>
+                                    <option value="Suggestion">Suggestion or Feedback</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Your Message *</label>
+
+                            <textarea
+                                id="message"
+                                name="message"
+                                placeholder="Write your message here..."
+                                minlength="10"
+                                maxlength="3000"
+                                required
+                            ></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-button">
+                            Send Message →
+                        </button>
+
+                        <div
+                            id="formStatus"
+                            class="form-status"
+                            role="status"
+                            aria-live="polite"
+                        ></div>
+
+                        <p class="form-disclaimer">
+                            This is currently a frontend demonstration.
+                            Your message will not be stored or sent until
+                            the Supabase backend is connected.
+                        </p>
+
+                    </form>
+
+                </section>
+
+            </section>
+
+            <!-- Frequently Asked Questions -->
+            <section class="faq-section">
+
+                <div class="section-heading">
+                    <h2>Contact & Support FAQs</h2>
+
+                    <p>
+                        Here are answers to some common questions
+                        about contacting GLOBAL MARKET.
+                    </p>
+                </div>
+
+                <div class="faq-grid">
+
+                    <article class="faq-card">
+                        <h3>1. How can I advertise my products?</h3>
+
+                        <p>
+                            Visit our Advertise page to learn about
+                            advertising opportunities and how to
+                            create an advertisement.
+                        </p>
+                    </article>
+
+                    <article class="faq-card">
+                        <h3>2. How can I register my business?</h3>
+
+                        <p>
+                            Visit the Business Registration page and
+                            provide the requested business information.
+                        </p>
+                    </article>
+
+                    <article class="faq-card">
+                        <h3>3. What if I experience a technical problem?</h3>
+
+                        <p>
+                            Select "Report an Issue" in the contact
+                            form and explain the problem you encountered.
+                        </p>
+                    </article>
+
+                    <article class="faq-card">
+                        <h3>4. Can I suggest a new feature?</h3>
+
+                        <p>
+                            Yes. Choose "Suggestion or Feedback" and
+                            describe the feature or improvement you
+                            would like to see.
+                        </p>
+                    </article>
+
+                </div>
+
+            </section>
+
+            <!-- Bottom CTA -->
+            <section class="contact-bottom">
+
+                <h2>Explore GLOBAL MARKET</h2>
+
+                <p>
+                    Discover products, services, businesses and
+                    opportunities in one convenient marketplace.
+                </p>
+
+                <a href="categories.html">
+                    Explore Categories →
+                </a>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- Shared Footer -->
+    <div id="site-footer"></div>
+
+    <script src="layout.js" defer></script>
+
+    <script>
+        // GLOBAL MARKET contact form
+        // Frontend validation only - backend integration pending.
+
+        const contactForm = document.getElementById("contactForm");
+        const formStatus = document.getElementById("formStatus");
+
+        contactForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            if (!contactForm.checkValidity()) {
+                contactForm.reportValidity();
+                return;
+            }
+
+            const name = document.getElementById("fullName").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            if (name.length < 2 || message.length < 10) {
+                formStatus.className = "form-status error";
+                formStatus.textContent =
+                    "Please enter a valid name and a message of at least 10 characters.";
+                return;
+            }
+
+            formStatus.className = "form-status success";
+
+            formStatus.textContent =
+                "Your form has passed frontend validation. However, your message has NOT been sent or saved because the Supabase backend is not yet connected.";
+
+        });
+    </script>
+
+</body>
+</html>
+
