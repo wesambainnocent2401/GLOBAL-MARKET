@@ -1,0 +1,771 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Management | GLOBAL MARKET</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .users-page {
+            background: #F2F5F9;
+            min-height: 100vh;
+        }
+
+        .users-hero {
+            background: linear-gradient(120deg, #172B4D, #354F73);
+            color: white;
+            padding: 38px 6%;
+        }
+
+        .users-hero h1 {
+            font-size: 29px;
+            margin-bottom: 9px;
+        }
+
+        .users-hero p {
+            color: #DCE5F1;
+            line-height: 1.7;
+        }
+
+        .demo-tag {
+            display: inline-block;
+            background: #FFF0CE;
+            color: #805A17;
+            border-radius: 20px;
+            padding: 7px 13px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 14px;
+        }
+
+        .users-container {
+            width: 92%;
+            max-width: 1250px;
+            margin: 30px auto;
+        }
+
+        .users-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .user-stat {
+            background: white;
+            padding: 21px;
+            border-radius: 14px;
+            border: 1px solid #E5E9EF;
+            box-shadow: 0 4px 15px rgba(20,40,70,.04);
+        }
+
+        .user-stat span {
+            color: #778397;
+            font-size: 13px;
+        }
+
+        .user-stat h2 {
+            color: #172B4D;
+            font-size: 27px;
+            margin-top: 10px;
+        }
+
+        .user-stat small {
+            color: #8994A5;
+            font-size: 11px;
+        }
+
+        .users-panel {
+            background: white;
+            border: 1px solid #E5E9EF;
+            border-radius: 16px;
+            padding: 23px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(20,40,70,.04);
+        }
+
+        .panel-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .panel-title h2 {
+            color: #172B4D;
+            font-size: 19px;
+        }
+
+        .panel-title p {
+            color: #8994A5;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .filter-area {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .filter-area input,
+        .filter-area select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #DDE3EB;
+            border-radius: 9px;
+            background: #FAFBFD;
+            color: #263449;
+            outline: none;
+            font-size: 13px;
+        }
+
+        .filter-area input:focus,
+        .filter-area select:focus {
+            border-color: #D6AD58;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        .users-table th {
+            text-align: left;
+            color: #778397;
+            background: #F6F8FB;
+            padding: 14px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .users-table td {
+            padding: 15px 14px;
+            border-bottom: 1px solid #EDF0F4;
+            font-size: 12px;
+            color: #34445B;
+        }
+
+        .user-name {
+            font-weight: 700;
+            color: #172B4D;
+        }
+
+        .user-email {
+            color: #8994A5;
+            display: block;
+            margin-top: 5px;
+            font-size: 11px;
+        }
+
+        .user-type {
+            background: #EEF2F8;
+            color: #354F73;
+            padding: 6px 9px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .status {
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .status-active {
+            background: #E5F6ED;
+            color: #237A4B;
+        }
+
+        .status-pending {
+            background: #FFF4D9;
+            color: #91691C;
+        }
+
+        .status-suspended {
+            background: #FCE9E9;
+            color: #AD4545;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            border: none;
+            border-radius: 7px;
+            padding: 8px 10px;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .view-btn {
+            background: #EAF0F8;
+            color: #28456C;
+        }
+
+        .suspend-btn {
+            background: #FFF0E8;
+            color: #A34D2A;
+        }
+
+        .activate-btn {
+            background: #E5F6ED;
+            color: #237A4B;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 35px;
+            color: #8994A5;
+            font-size: 13px;
+            display: none;
+        }
+
+        .user-notice {
+            background: #FFF8E9;
+            border-left: 4px solid #D6AD58;
+            color: #73551E;
+            border-radius: 9px;
+            padding: 17px;
+            line-height: 1.7;
+            font-size: 13px;
+            margin-bottom: 22px;
+        }
+
+        .profile-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(15,30,50,.65);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            z-index: 9999;
+        }
+
+        .profile-modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 420px;
+            border-radius: 16px;
+            padding: 25px;
+        }
+
+        .modal-content h2 {
+            color: #172B4D;
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            color: #66758A;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .modal-close {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: #172B4D;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        @media(max-width: 850px) {
+            .users-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .filter-area {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .filter-area input {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media(max-width: 520px) {
+            .users-hero h1 {
+                font-size: 24px;
+            }
+
+            .users-container {
+                width: 94%;
+            }
+
+            .users-panel {
+                padding: 15px;
+            }
+
+            .user-stat {
+                padding: 15px;
+            }
+
+            .user-stat h2 {
+                font-size: 23px;
+            }
+
+            .filter-area {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-area input {
+                grid-column: auto;
+            }
+
+            .panel-title {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body class="users-page">
+
+    <div class="announcement-bar">
+        YOUR WORLD. ONE MARKETPLACE.
+    </div>
+
+    <header class="main-header">
+        <div class="header-container">
+
+            <a href="index.html" class="logo">
+                <span class="logo-icon">G</span>
+                <span class="logo-text">GLOBAL MARKET</span>
+            </a>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="admin-dashboard.html">Dashboard</a>
+                <a href="admin-users.html">Users</a>
+                <a href="admin-ads.html">Advertisements</a>
+                <a href="admin-reports.html">Reports</a>
+                <a href="admin-settings.html">Settings</a>
+
+                <div class="mobile-auth-links">
+                    <a href="profile.html">My Profile</a>
+                    <a href="index.html">Visit Marketplace</a>
+                </div>
+            </nav>
+
+            <div class="header-actions">
+                <a href="index.html" class="login-link">Visit Marketplace</a>
+                <a href="admin-dashboard.html" class="btn-primary">Admin Home</a>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle"
+                aria-label="Open menu">☰</button>
+
+        </div>
+    </header>
+
+    <section class="users-hero">
+        <h1>User Management</h1>
+        <p>
+            Review registered members, advertisers and business accounts
+            from the GLOBAL MARKET administration centre.
+        </p>
+        <span class="demo-tag">DEMONSTRATION DATA</span>
+    </section>
+
+    <main class="users-container">
+
+        <div class="user-notice">
+            <strong>Important:</strong>
+            This is a frontend demonstration using sample user records.
+            Changes made here do not update real accounts or a database.
+        </div>
+
+        <section class="users-stats">
+
+            <div class="user-stat">
+                <span>Total Users</span>
+                <h2>2,450</h2>
+                <small>Sample figure</small>
+            </div>
+
+            <div class="user-stat">
+                <span>Active Accounts</span>
+                <h2>2,310</h2>
+                <small>Sample figure</small>
+            </div>
+
+            <div class="user-stat">
+                <span>Pending Accounts</span>
+                <h2>98</h2>
+                <small>Sample figure</small>
+            </div>
+
+            <div class="user-stat">
+                <span>Suspended Accounts</span>
+                <h2>42</h2>
+                <small>Sample figure</small>
+            </div>
+
+        </section>
+
+        <section class="users-panel">
+
+            <div class="panel-title">
+                <div>
+                    <h2>Registered Members</h2>
+                    <p>Search and review sample platform accounts.</p>
+                </div>
+                <span class="demo-tag">SAMPLE RECORDS</span>
+            </div>
+
+            <div class="filter-area">
+
+                <input
+                    type="search"
+                    id="userSearch"
+                    placeholder="Search name, email or user ID..."
+                    aria-label="Search users"
+                >
+
+                <select id="typeFilter" aria-label="Filter by user type">
+                    <option value="all">All account types</option>
+                    <option value="customer">Customer</option>
+                    <option value="advertiser">Advertiser</option>
+                    <option value="business">Business</option>
+                </select>
+
+                <select id="statusFilter" aria-label="Filter by status">
+                    <option value="all">All statuses</option>
+                    <option value="active">Active</option>
+                    <option value="pending">Pending</option>
+                    <option value="suspended">Suspended</option>
+                </select>
+
+            </div>
+
+            <div class="table-wrap">
+
+                <table class="users-table">
+
+                    <thead>
+                        <tr>
+                            <th>USER</th>
+                            <th>USER ID</th>
+                            <th>ACCOUNT TYPE</th>
+                            <th>JOINED</th>
+                            <th>STATUS</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="usersTableBody">
+
+                        <tr data-type="customer" data-status="active">
+                            <td>
+                                <span class="user-name">Daniel Mwangi</span>
+                                <span class="user-email">daniel@example.test</span>
+                            </td>
+                            <td>GM-1001</td>
+                            <td><span class="user-type">Customer</span></td>
+                            <td>12 Nov 2026</td>
+                            <td><span class="status status-active">Active</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn view-btn"
+                                        data-action="view">View</button>
+                                    <button class="action-btn suspend-btn"
+                                        data-action="suspend">Suspend</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr data-type="advertiser" data-status="active">
+                            <td>
+                                <span class="user-name">Grace Wanjiku</span>
+                                <span class="user-email">grace@example.test</span>
+                            </td>
+                            <td>GM-1002</td>
+                            <td><span class="user-type">Advertiser</span></td>
+                            <td>10 Nov 2026</td>
+                            <td><span class="status status-active">Active</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn view-btn"
+                                        data-action="view">View</button>
+                                    <button class="action-btn suspend-btn"
+                                        data-action="suspend">Suspend</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr data-type="business" data-status="pending">
+                            <td>
+                                <span class="user-name">Kevin Otieno</span>
+                                <span class="user-email">kevin@example.test</span>
+                            </td>
+                            <td>GM-1003</td>
+                            <td><span class="user-type">Business</span></td>
+                            <td>09 Nov 2026</td>
+                            <td><span class="status status-pending">Pending</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn view-btn"
+                                        data-action="view">View</button>
+                                    <button class="action-btn activate-btn"
+                                        data-action="activate">Activate</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr data-type="customer" data-status="suspended">
+                            <td>
+                                <span class="user-name">Mary Achieng</span>
+                                <span class="user-email">mary@example.test</span>
+                            </td>
+                            <td>GM-1004</td>
+                            <td><span class="user-type">Customer</span></td>
+                            <td>05 Nov 2026</td>
+                            <td><span class="status status-suspended">Suspended</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn view-btn"
+                                        data-action="view">View</button>
+                                    <button class="action-btn activate-btn"
+                                        data-action="activate">Activate</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr data-type="advertiser" data-status="pending">
+                            <td>
+                                <span class="user-name">Peter Kiptoo</span>
+                                <span class="user-email">peter@example.test</span>
+                            </td>
+                            <td>GM-1005</td>
+                            <td><span class="user-type">Advertiser</span></td>
+                            <td>03 Nov 2026</td>
+                            <td><span class="status status-pending">Pending</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn view-btn"
+                                        data-action="view">View</button>
+                                    <button class="action-btn activate-btn"
+                                        data-action="activate">Activate</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="empty-state" id="emptyState">
+                No matching users found.
+            </div>
+
+        </section>
+
+    </main>
+
+    <div class="profile-modal" id="profileModal">
+        <div class="modal-content">
+            <h2>Sample User Profile</h2>
+            <p id="profileDetails"></p>
+            <button class="modal-close" id="closeModal">Close</button>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+
+        <div class="footer-grid">
+
+            <div class="footer-brand">
+                <h2>GLOBAL MARKET</h2>
+                <p>Your world. One marketplace.</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="index.html">Home</a>
+                <a href="categories.html">Categories</a>
+                <a href="businesses.html">Businesses</a>
+                <a href="education.html">Education</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Company</h3>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                <a href="terms.html">Terms</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Account</h3>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© <span id="currentYear"></span> GLOBAL MARKET. All rights reserved.</p>
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        const searchInput = document.getElementById("userSearch");
+        const typeFilter = document.getElementById("typeFilter");
+        const statusFilter = document.getElementById("statusFilter");
+        const tableBody = document.getElementById("usersTableBody");
+        const emptyState = document.getElementById("emptyState");
+        const modal = document.getElementById("profileModal");
+        const profileDetails = document.getElementById("profileDetails");
+
+        function filterUsers() {
+            const search = searchInput.value.toLowerCase().trim();
+            const selectedType = typeFilter.value;
+            const selectedStatus = statusFilter.value;
+
+            let visibleCount = 0;
+
+            document.querySelectorAll("#usersTableBody tr").forEach(row => {
+                const text = row.textContent.toLowerCase();
+                const type = row.dataset.type;
+                const status = row.dataset.status;
+
+                const matchesSearch = text.includes(search);
+                const matchesType =
+                    selectedType === "all" || type === selectedType;
+                const matchesStatus =
+                    selectedStatus === "all" || status === selectedStatus;
+
+                const visible =
+                    matchesSearch && matchesType && matchesStatus;
+
+                row.style.display = visible ? "" : "none";
+
+                if (visible) visibleCount++;
+            });
+
+            emptyState.style.display =
+                visibleCount === 0 ? "block" : "none";
+        }
+
+        searchInput.addEventListener("input", filterUsers);
+        typeFilter.addEventListener("change", filterUsers);
+        statusFilter.addEventListener("change", filterUsers);
+
+        tableBody.addEventListener("click", function(event) {
+            const button = event.target.closest("button[data-action]");
+
+            if (!button) return;
+
+            const row = button.closest("tr");
+            const action = button.dataset.action;
+
+            const name = row.querySelector(".user-name").textContent;
+            const email = row.querySelector(".user-email").textContent;
+            const userId = row.cells[1].textContent;
+            const accountType = row.dataset.type;
+
+            if (action === "view") {
+                profileDetails.textContent =
+                    "Name: " + name +
+                    " | Email: " + email +
+                    " | User ID: " + userId +
+                    " | Account type: " + accountType +
+                    " | This is a demonstration profile, not a real account.";
+
+                modal.classList.add("show");
+                return;
+            }
+
+            if (action === "suspend") {
+                const confirmed = confirm(
+                    "Demo action: suspend " + name + "?"
+                );
+
+                if (!confirmed) return;
+
+                row.dataset.status = "suspended";
+
+                const statusCell = row.cells[4];
+                statusCell.innerHTML =
+                    '<span class="status status-suspended">Suspended</span>';
+
+                button.textContent = "Activate";
+                button.dataset.action = "activate";
+                button.className = "action-btn activate-btn";
+
+                alert(
+                    "Demo only: the sample account status has changed on this page. No real account was suspended."
+                );
+            }
+
+            if (action === "activate") {
+                const confirmed = confirm(
+                    "Demo action: activate " + name + "?"
+                );
+
+                if (!confirmed) return;
+
+                row.dataset.status = "active";
+
+                const statusCell = row.cells[4];
+                statusCell.innerHTML =
+                    '<span class="status status-active">Active</span>';
+
+                button.textContent = "Suspend";
+                button.dataset.action = "suspend";
+                button.className = "action-btn suspend-btn";
+
+                alert(
+                    "Demo only: the sample account status has changed on this page. No real account was activated."
+                );
+            }
+
+            filterUsers();
+        });
+
+        document.getElementById("closeModal")
+            .addEventListener("click", function() {
+                modal.classList.remove("show");
+            });
+
+        modal.addEventListener("click", function(event) {
+            if (event.target === modal) {
+                modal.classList.remove("show");
+            }
+        });
+    </script>
+
+</body>
+</html>
+
