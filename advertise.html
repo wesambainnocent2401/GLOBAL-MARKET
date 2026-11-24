@@ -1,1 +1,1155 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f7fb">
+
+    <meta name="description" content="Advertise products, services and businesses on GLOBAL MARKET. Reach customers and grow your business.">
+
+    <title>Advertise With Us | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f7fb;
+            color: #263950;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .advertise-hero {
+            position: relative;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            padding: 65px 7%;
+            background:
+                linear-gradient(90deg,
+                    rgba(13, 32, 57, .96) 0%,
+                    rgba(13, 32, 57, .86) 48%,
+                    rgba(13, 32, 57, .28) 100%),
+                url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1800")
+                center/cover no-repeat;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 650px;
+            color: white;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            margin-bottom: 17px;
+            padding: 8px 14px;
+            border: 1px solid rgba(227, 189, 113, .6);
+            border-radius: 30px;
+            color: #e3bd71;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .hero-content h1 {
+            margin: 0 0 19px;
+            font-size: clamp(32px, 5vw, 51px);
+            line-height: 1.15;
+        }
+
+        .hero-content h1 span {
+            color: #e3bd71;
+        }
+
+        .hero-content p {
+            max-width: 560px;
+            margin: 0 0 27px;
+            color: #e0e7ef;
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 14px 22px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            transition: .2s;
+        }
+
+        .primary-btn {
+            background: #d5ad62;
+            color: #172b43;
+        }
+
+        .primary-btn:hover {
+            background: #e7c784;
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            border: 1px solid rgba(255,255,255,.7);
+            color: white;
+        }
+
+        .secondary-btn:hover {
+            background: rgba(255,255,255,.12);
+        }
+
+        .section {
+            max-width: 1180px;
+            margin: auto;
+            padding: 65px 22px;
+        }
+
+        .section-heading {
+            max-width: 680px;
+            margin: 0 auto 38px;
+            text-align: center;
+        }
+
+        .section-heading .eyebrow {
+            color: #b28a3c;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            margin: 12px 0;
+            color: #172f4e;
+            font-size: 29px;
+        }
+
+        .section-heading p {
+            color: #7b899b;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .benefit-card {
+            padding: 26px;
+            border: 1px solid #e5eaf0;
+            border-radius: 13px;
+            background: white;
+            box-shadow: 0 7px 23px rgba(28, 49, 77, .04);
+        }
+
+        .benefit-icon {
+            display: grid;
+            width: 49px;
+            height: 49px;
+            margin-bottom: 18px;
+            place-items: center;
+            border-radius: 12px;
+            background: #f2f5fa;
+            font-size: 23px;
+        }
+
+        .benefit-card h3 {
+            margin: 0 0 11px;
+            color: #1c3655;
+            font-size: 16px;
+        }
+
+        .benefit-card p {
+            margin: 0;
+            color: #7c8999;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .advertising-section {
+            background: #eaf0f7;
+        }
+
+        .advertising-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .advertising-card {
+            overflow: hidden;
+            border: 1px solid #e1e7ef;
+            border-radius: 13px;
+            background: white;
+            transition: .25s;
+        }
+
+        .advertising-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 13px 30px rgba(26, 47, 76, .09);
+        }
+
+        .advertising-card img {
+            display: block;
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        .advertising-card-content {
+            padding: 22px;
+        }
+
+        .advertising-card-content h3 {
+            margin: 0 0 10px;
+            color: #1c3655;
+            font-size: 17px;
+        }
+
+        .advertising-card-content p {
+            min-height: 67px;
+            margin: 0 0 17px;
+            color: #7b899b;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .text-link {
+            color: #315d91;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .pricing-section {
+            background: #fff;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .pricing-card {
+            padding: 28px;
+            border: 1px solid #e1e7ef;
+            border-radius: 13px;
+            background: white;
+            text-align: center;
+        }
+
+        .pricing-card.featured {
+            border: 2px solid #d5ad62;
+            background: #fffdf8;
+        }
+
+        .pricing-card h3 {
+            margin: 0 0 12px;
+            color: #1c3655;
+            font-size: 18px;
+        }
+
+        .pricing-card .price {
+            margin: 15px 0;
+            color: #172f4e;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .pricing-card .price small {
+            color: #8290a0;
+            font-size: 11px;
+            font-weight: normal;
+        }
+
+        .pricing-card p {
+            min-height: 60px;
+            color: #7b899b;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .pricing-card ul {
+            margin: 20px 0;
+            padding: 0;
+            list-style: none;
+            text-align: left;
+        }
+
+        .pricing-card li {
+            margin-bottom: 12px;
+            color: #65768b;
+            font-size: 12px;
+        }
+
+        .pricing-card li::before {
+            content: "✓";
+            margin-right: 9px;
+            color: #b28a3c;
+            font-weight: bold;
+        }
+
+        .plan-btn {
+            display: block;
+            padding: 13px;
+            border-radius: 8px;
+            background: #142b49;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .plan-btn:hover {
+            background: #24466e;
+        }
+
+        .pricing-note {
+            margin-top: 25px;
+            color: #8491a2;
+            font-size: 12px;
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        .media-section {
+            background: #f4f7fb;
+        }
+
+        .media-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .media-panel img {
+            width: 100%;
+            height: 330px;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+
+        .media-content h2 {
+            margin: 0 0 15px;
+            color: #172f4e;
+            font-size: 27px;
+            line-height: 1.3;
+        }
+
+        .media-content p {
+            color: #78879a;
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .media-content ul {
+            padding-left: 19px;
+            color: #65768b;
+            font-size: 13px;
+            line-height: 2.1;
+        }
+
+        .cta-section {
+            margin: 20px auto 65px;
+            max-width: 1135px;
+            padding: 48px 25px;
+            border-radius: 17px;
+            background:
+                linear-gradient(110deg, #142b49, #25466a);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            margin: 0 0 13px;
+            font-size: 27px;
+        }
+
+        .cta-section p {
+            max-width: 600px;
+            margin: 0 auto 24px;
+            color: #dbe4ee;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .faq-item {
+            margin-bottom: 12px;
+            overflow: hidden;
+            border: 1px solid #e2e8ef;
+            border-radius: 9px;
+            background: white;
+        }
+
+        .faq-question {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 18px;
+            border: none;
+            background: white;
+            color: #1c3655;
+            font-size: 13px;
+            font-weight: bold;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 0 18px 18px;
+            color: #78879a;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-arrow {
+            transition: .2s;
+        }
+
+        @media (max-width: 800px) {
+            .benefit-grid,
+            .advertising-grid,
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .media-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .media-panel img {
+                height: 260px;
+            }
+
+            .cta-section {
+                margin: 15px 15px 45px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .advertise-hero {
+                min-height: 420px;
+                padding: 55px 22px;
+                background-position: 60% center;
+            }
+
+            .hero-content p {
+                font-size: 13px;
+            }
+
+            .benefit-grid,
+            .advertising-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 45px 16px;
+            }
+
+            .section-heading h2 {
+                font-size: 24px;
+            }
+
+            .advertising-card-content p,
+            .pricing-card p {
+                min-height: auto;
+            }
+
+            .cta-section h2 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Shared Header -->
+    <div id="site-header"></div>
+
+    <main>
+
+        <!-- HERO -->
+        <section class="advertise-hero">
+
+            <div class="hero-content">
+
+                <span class="hero-tag">
+                    GROW YOUR BUSINESS WITH US
+                </span>
+
+                <h1>
+                    Put Your Business <span>In The Spotlight.</span>
+                </h1>
+
+                <p>
+                    Showcase your products, promote your services
+                    and connect with potential customers through
+                    GLOBAL MARKET — your world, one marketplace.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a href="create-ad.html" class="primary-btn">
+                        Start Advertising →
+                    </a>
+
+                    <a href="#advertising-options" class="secondary-btn">
+                        Explore Advertising
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- BENEFITS -->
+        <section class="section">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">Why Advertise With Us?</span>
+
+                <h2>Give Your Business More Visibility</h2>
+
+                <p>
+                    GLOBAL MARKET brings different marketplace
+                    categories together in one place, making it
+                    easier for people to discover what you offer.
+                </p>
+
+            </div>
+
+            <div class="benefit-grid">
+
+                <article class="benefit-card">
+
+                    <div class="benefit-icon">🌍</div>
+
+                    <h3>Wider Exposure</h3>
+
+                    <p>
+                        Present your products and services to visitors
+                        exploring different marketplace categories.
+                    </p>
+
+                </article>
+
+                <article class="benefit-card">
+
+                    <div class="benefit-icon">📸</div>
+
+                    <h3>Rich Advertisements</h3>
+
+                    <p>
+                        Showcase your products using photographs
+                        and video content that explains your offer.
+                    </p>
+
+                </article>
+
+                <article class="benefit-card">
+
+                    <div class="benefit-icon">🏪</div>
+
+                    <h3>Business Presence</h3>
+
+                    <p>
+                        Create a business profile with information
+                        about your brand, location and services.
+                    </p>
+
+                </article>
+
+                <article class="benefit-card">
+
+                    <div class="benefit-icon">📱</div>
+
+                    <h3>Mobile Friendly</h3>
+
+                    <p>
+                        Reach visitors browsing the marketplace
+                        from smartphones, tablets and computers.
+                    </p>
+
+                </article>
+
+                <article class="benefit-card">
+
+                    <div class="benefit-icon">📊</div>
+
+                    <h3>Manage Your Listings</h3>
+
+                    <p>
+                        Access your advertiser dashboard to manage
+                        and monitor your submitted advertisements.
+                    </p>
+
+                </article>
+
+                <article class="benefit-card">
+
+                    <div class="benefit-icon">🤝</div>
+
+                    <h3>Customer Connections</h3>
+
+                    <p>
+                        Make it easier for interested visitors
+                        to contact your business about your offers.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- ADVERTISING OPTIONS -->
+        <section class="advertising-section" id="advertising-options">
+
+            <div class="section">
+
+                <div class="section-heading">
+
+                    <span class="eyebrow">Advertising Opportunities</span>
+
+                    <h2>Choose What You Want To Promote</h2>
+
+                    <p>
+                        Whether you sell products, offer professional
+                        services or run a company, GLOBAL MARKET
+                        provides different ways to showcase your offer.
+                    </p>
+
+                </div>
+
+                <div class="advertising-grid">
+
+                    <article class="advertising-card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900"
+                            alt="Clothing and fashion products in a shop"
+                            loading="lazy"
+                        >
+
+                        <div class="advertising-card-content">
+
+                            <h3>Products & Retail</h3>
+
+                            <p>
+                                Advertise electronics, fashion,
+                                furniture, groceries and other
+                                physical products.
+                            </p>
+
+                            <a href="create-ad.html?type=product"
+                               class="text-link">
+                                Advertise Products →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                    <article class="advertising-card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900"
+                            alt="Modern professional business office"
+                            loading="lazy"
+                        >
+
+                        <div class="advertising-card-content">
+
+                            <h3>Businesses & Companies</h3>
+
+                            <p>
+                                Promote your company, shop,
+                                organisation or registered business.
+                            </p>
+
+                            <a href="business-registration.html"
+                               class="text-link">
+                                Register Business →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                    <article class="advertising-card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900"
+                            alt="Professional team collaborating"
+                            loading="lazy"
+                        >
+
+                        <div class="advertising-card-content">
+
+                            <h3>Professional Services</h3>
+
+                            <p>
+                                Showcase consulting, repairs,
+                                design, construction and other
+                                professional services.
+                            </p>
+
+                            <a href="create-ad.html?type=service"
+                               class="text-link">
+                                Advertise Services →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                    <article class="advertising-card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900"
+                            alt="Modern residential property"
+                            loading="lazy"
+                        >
+
+                        <div class="advertising-card-content">
+
+                            <h3>Property & Real Estate</h3>
+
+                            <p>
+                                Showcase houses, apartments,
+                                commercial properties and land.
+                            </p>
+
+                            <a href="create-ad.html?type=property"
+                               class="text-link">
+                                Advertise Property →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                    <article class="advertising-card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=900"
+                            alt="Modern vehicle available for sale"
+                            loading="lazy"
+                        >
+
+                        <div class="advertising-card-content">
+
+                            <h3>Vehicles & Transport</h3>
+
+                            <p>
+                                Promote cars, motorcycles,
+                                commercial vehicles and transport services.
+                            </p>
+
+                            <a href="create-ad.html?type=vehicle"
+                               class="text-link">
+                                Advertise Vehicles →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                    <article class="advertising-card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=900"
+                            alt="University campus and education environment"
+                            loading="lazy"
+                        >
+
+                        <div class="advertising-card-content">
+
+                            <h3>Education & Training</h3>
+
+                            <p>
+                                Promote courses, training programmes,
+                                educational services and learning resources.
+                            </p>
+
+                            <a href="create-ad.html?type=education"
+                               class="text-link">
+                                Advertise Education →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- MEDIA FEATURES -->
+        <section class="media-section">
+
+            <div class="section">
+
+                <div class="media-panel">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1200"
+                        alt="Business owner presenting products to customers"
+                        loading="lazy"
+                    >
+
+                    <div class="media-content">
+
+                        <span class="eyebrow">
+                            Make Your Advertisement Stand Out
+                        </span>
+
+                        <h2>
+                            Let Customers See More Than Just A Product Name.
+                        </h2>
+
+                        <p>
+                            A good advertisement should help customers
+                            understand what you are offering. GLOBAL
+                            MARKET is designed to support rich
+                            advertisements with images and videos.
+                        </p>
+
+                        <ul>
+                            <li>Upload multiple product photographs.</li>
+                            <li>Include at least five videos per advertisement.</li>
+                            <li>Show product details and descriptions.</li>
+                            <li>Present your services and business information.</li>
+                            <li>Provide contact information for interested customers.</li>
+                        </ul>
+
+                        <a href="create-ad.html" class="primary-btn">
+                            Create An Advertisement →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- PRICING -->
+        <section class="pricing-section">
+
+            <div class="section">
+
+                <div class="section-heading">
+
+                    <span class="eyebrow">Advertising Plans</span>
+
+                    <h2>Flexible Advertising Opportunities</h2>
+
+                    <p>
+                        Explore the planned advertising options.
+                        Final prices, durations and payment terms
+                        will be displayed before an advertisement
+                        is submitted for payment.
+                    </p>
+
+                </div>
+
+                <div class="pricing-grid">
+
+                    <article class="pricing-card">
+
+                        <h3>Standard Listing</h3>
+
+                        <div class="price">To be announced</div>
+
+                        <p>
+                            For sellers and service providers
+                            starting their marketplace journey.
+                        </p>
+
+                        <ul>
+                            <li>Product or service listing</li>
+                            <li>Advertisement description</li>
+                            <li>Photo gallery</li>
+                            <li>Advertiser management tools</li>
+                        </ul>
+
+                        <a href="create-ad.html" class="plan-btn">
+                            Create Listing
+                        </a>
+
+                    </article>
+
+                    <article class="pricing-card featured">
+
+                        <h3>Featured Advertisement</h3>
+
+                        <div class="price">To be announced</div>
+
+                        <p>
+                            For advertisers seeking additional
+                            visibility through featured placements.
+                        </p>
+
+                        <ul>
+                            <li>Featured placement opportunity</li>
+                            <li>Product or service listing</li>
+                            <li>Photo and video gallery</li>
+                            <li>Advertiser management tools</li>
+                        </ul>
+
+                        <a href="create-ad.html?plan=featured"
+                           class="plan-btn">
+                            Explore Featured Ads
+                        </a>
+
+                    </article>
+
+                    <article class="pricing-card">
+
+                        <h3>Business Promotion</h3>
+
+                        <div class="price">To be announced</div>
+
+                        <p>
+                            For businesses wanting to establish
+                            a stronger presence on the platform.
+                        </p>
+
+                        <ul>
+                            <li>Business profile</li>
+                            <li>Products and services showcase</li>
+                            <li>Business contact information</li>
+                            <li>Business profile management</li>
+                        </ul>
+
+                        <a href="business-registration.html"
+                           class="plan-btn">
+                            Register Business
+                        </a>
+
+                    </article>
+
+                </div>
+
+                <p class="pricing-note">
+                    These are planned advertising options, not
+                    confirmed live packages. No payment should be
+                    made until official pricing and payment
+                    functionality are implemented.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+
+            <h2>Ready To Showcase Your Business?</h2>
+
+            <p>
+                Create an advertiser account, prepare your
+                advertisement and get ready to connect with
+                the GLOBAL MARKET community.
+            </p>
+
+            <a href="register.html" class="primary-btn">
+                Create Advertiser Account →
+            </a>
+
+        </section>
+
+        <!-- FAQ -->
+        <section class="section">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">Need More Information?</span>
+
+                <h2>Frequently Asked Questions</h2>
+
+                <p>
+                    Find answers to common questions about
+                    advertising on GLOBAL MARKET.
+                </p>
+
+            </div>
+
+            <div class="faq-list">
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        Who can advertise on GLOBAL MARKET?
+                        <span class="faq-arrow">⌄</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        Individuals, sellers, service providers
+                        and businesses can create advertisements,
+                        subject to the platform's rules and
+                        applicable verification requirements.
+                    </div>
+
+                </article>
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        Can I upload photographs and videos?
+                        <span class="faq-arrow">⌄</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        The planned advertisement system supports
+                        multiple photographs and at least five
+                        videos per advertisement. Upload storage
+                        will be connected through the platform backend.
+                    </div>
+
+                </article>
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        How much does advertising cost?
+                        <span class="faq-arrow">⌄</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        Advertising prices have not yet been
+                        finalised. Any applicable charges should
+                        be shown clearly before payment.
+                    </div>
+
+                </article>
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        Can I edit my advertisement later?
+                        <span class="faq-arrow">⌄</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        Advertisers are intended to manage their
+                        listings through their dashboard, including
+                        updating descriptions and media, subject
+                        to moderation rules.
+                    </div>
+
+                </article>
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        How can I get assistance?
+                        <span class="faq-arrow">⌄</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        Visit our Help Centre or contact the
+                        GLOBAL MARKET support team through the
+                        contact page.
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Shared Footer -->
+    <div id="site-footer"></div>
+
+    <script src="layout.js" defer></script>
+
+    <script>
+        // GLOBAL MARKET Advertising Page
+
+        // FAQ accordion
+        const faqItems = document.querySelectorAll(".faq-item");
+
+        faqItems.forEach(item => {
+
+            const question = item.querySelector(".faq-question");
+
+            question.addEventListener("click", function() {
+
+                const wasOpen = item.classList.contains("active");
+
+                faqItems.forEach(faq => {
+
+                    faq.classList.remove("active");
+
+                    faq.querySelector(".faq-question")
+                        .setAttribute("aria-expanded", "false");
+
+                });
+
+                if (!wasOpen) {
+
+                    item.classList.add("active");
+
+                    question.setAttribute("aria-expanded", "true");
+
+                }
+
+            });
+
+            question.setAttribute("aria-expanded", "false");
+
+        });
+
+    </script>
+
+</body>
+</html>
+
