@@ -1,1 +1,1192 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f6fa">
+
+    <meta name="description" content="Manage your personal account and profile information on GLOBAL MARKET.">
+
+    <title>My Profile | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --primary: #142d50;
+            --secondary: #244b78;
+            --gold: #c79b42;
+            --background: #f4f6fa;
+            --white: #ffffff;
+            --text: #263448;
+            --muted: #788597;
+            --border: #e6eaf0;
+            --green: #168653;
+            --red: #d34c4c;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        .profile-wrapper {
+            width: min(1100px, 94%);
+            margin: 35px auto 60px;
+        }
+
+        .page-heading {
+            margin-bottom: 24px;
+        }
+
+        .page-heading h1 {
+            color: var(--primary);
+            font-size: 27px;
+            margin: 0 0 8px;
+        }
+
+        .page-heading p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .demo-notice {
+            padding: 13px 15px;
+            border: 1px solid #f0dfb9;
+            background: #fff8e9;
+            color: #76561d;
+            border-radius: 9px;
+            font-size: 12px;
+            line-height: 1.6;
+            margin-bottom: 23px;
+        }
+
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 290px minmax(0, 1fr);
+            gap: 22px;
+            align-items: start;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        /* LEFT PROFILE CARD */
+
+        .profile-sidebar {
+            padding: 22px;
+            text-align: center;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 112px;
+            height: 112px;
+            margin: 0 auto 15px;
+        }
+
+        .profile-avatar {
+            width: 112px;
+            height: 112px;
+            border-radius: 50%;
+            border: 4px solid #f1e5ce;
+            background: #eaf0f8;
+            color: var(--primary);
+            object-fit: cover;
+            display: grid;
+            place-items: center;
+            font-size: 35px;
+            font-weight: 800;
+            overflow: hidden;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .camera-button {
+            position: absolute;
+            right: 0;
+            bottom: 3px;
+            width: 34px;
+            height: 34px;
+            border: 2px solid white;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            font-size: 15px;
+        }
+
+        .profile-sidebar h2 {
+            color: var(--primary);
+            font-size: 18px;
+            margin: 0 0 6px;
+        }
+
+        .profile-email {
+            color: var(--muted);
+            font-size: 12px;
+            overflow-wrap: anywhere;
+        }
+
+        .account-badge {
+            display: inline-block;
+            margin-top: 12px;
+            background: #edf2f9;
+            color: var(--secondary);
+            padding: 7px 11px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .profile-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 20px 0;
+        }
+
+        .completion-heading {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 9px;
+        }
+
+        .completion-heading strong {
+            color: var(--primary);
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 7px;
+            border-radius: 20px;
+            background: #edf0f4;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 60%;
+            height: 100%;
+            background: var(--gold);
+            border-radius: inherit;
+            transition: width .3s;
+        }
+
+        .completion-note {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.5;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .profile-menu {
+            display: grid;
+            gap: 5px;
+            text-align: left;
+        }
+
+        .profile-menu a {
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            color: #536175;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 7px;
+        }
+
+        .profile-menu a:hover,
+        .profile-menu a.active {
+            background: #edf2f9;
+            color: var(--primary);
+        }
+
+        .profile-menu a.active {
+            border-left: 3px solid var(--gold);
+        }
+
+        /* MAIN FORM */
+
+        .profile-main {
+            min-width: 0;
+        }
+
+        .form-card {
+            padding: 23px;
+            margin-bottom: 19px;
+        }
+
+        .form-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-heading h2 {
+            color: var(--primary);
+            font-size: 17px;
+            margin: 0 0 5px;
+        }
+
+        .form-heading p {
+            color: var(--muted);
+            font-size: 11px;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .edit-button {
+            padding: 9px 13px;
+            background: #edf2f9;
+            color: var(--primary);
+            border: none;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 17px;
+        }
+
+        .form-group {
+            min-width: 0;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            color: #536175;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            background: #fafbfd;
+            color: var(--text);
+            border-radius: 7px;
+            outline: none;
+            font-size: 12px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--secondary);
+        }
+
+        .form-group input:disabled,
+        .form-group select:disabled,
+        .form-group textarea:disabled {
+            background: #f5f6f8;
+            color: #6d7888;
+            cursor: not-allowed;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+            line-height: 1.6;
+        }
+
+        .field-note {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+            margin-top: 6px;
+        }
+
+        .form-actions {
+            display: none;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 22px;
+        }
+
+        .save-button,
+        .cancel-button {
+            border: none;
+            border-radius: 7px;
+            padding: 12px 18px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .save-button {
+            background: var(--primary);
+            color: white;
+        }
+
+        .cancel-button {
+            background: #edf0f4;
+            color: var(--text);
+        }
+
+        /* ACCOUNT INFORMATION */
+
+        .account-info {
+            display: grid;
+            gap: 0;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f2f5;
+            font-size: 12px;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-row span:first-child {
+            color: var(--muted);
+        }
+
+        .info-row strong {
+            color: var(--primary);
+            text-align: right;
+            overflow-wrap: anywhere;
+        }
+
+        .account-links {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 11px;
+        }
+
+        .account-link {
+            display: block;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 13px;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 700;
+            transition: .2s;
+        }
+
+        .account-link:hover {
+            background: #f2f5f9;
+        }
+
+        .account-link span {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 400;
+            margin-top: 5px;
+            line-height: 1.5;
+        }
+
+        .message-box {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 7px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .success-message {
+            display: block;
+            color: var(--green);
+            background: #e8f7ef;
+        }
+
+        .error-message {
+            display: block;
+            color: var(--red);
+            background: #fdeeee;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-sidebar {
+                display: grid;
+                grid-template-columns: 105px minmax(0, 1fr);
+                text-align: left;
+                align-items: center;
+                gap: 13px;
+            }
+
+            .avatar-wrapper {
+                width: 90px;
+                height: 90px;
+                margin: 0;
+            }
+
+            .profile-avatar {
+                width: 90px;
+                height: 90px;
+            }
+
+            .profile-sidebar .profile-divider,
+            .profile-sidebar .completion-heading,
+            .profile-sidebar .progress-track,
+            .profile-sidebar .completion-note,
+            .profile-sidebar .profile-menu {
+                grid-column: 1 / -1;
+            }
+
+            .profile-sidebar .profile-divider {
+                margin: 8px 0;
+            }
+
+            .profile-menu {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 520px) {
+            .profile-wrapper {
+                width: 93%;
+                margin-top: 23px;
+            }
+
+            .page-heading h1 {
+                font-size: 23px;
+            }
+
+            .profile-sidebar {
+                grid-template-columns: 75px minmax(0, 1fr);
+                padding: 15px;
+            }
+
+            .avatar-wrapper,
+            .profile-avatar {
+                width: 70px;
+                height: 70px;
+            }
+
+            .profile-avatar {
+                font-size: 25px;
+            }
+
+            .profile-sidebar h2 {
+                font-size: 15px;
+            }
+
+            .form-card {
+                padding: 16px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .account-links {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-menu a {
+                padding: 10px 7px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="site-header"></div>
+
+    <main class="profile-wrapper">
+
+        <section class="page-heading">
+            <h1>My Personal Profile</h1>
+            <p>Manage your personal information and account details.</p>
+        </section>
+
+        <div class="demo-notice">
+            <strong>Demo mode:</strong>
+            Profile changes are currently temporary and are not stored
+            in a database. Secure account storage and authentication
+            will be connected through Supabase later.
+        </div>
+
+        <div class="profile-layout">
+
+            <!-- PROFILE SIDEBAR -->
+            <aside class="profile-sidebar card">
+
+                <div class="avatar-wrapper">
+
+                    <div class="profile-avatar" id="avatarDisplay">
+                        W
+                    </div>
+
+                    <button
+                        type="button"
+                        class="camera-button"
+                        id="changePhotoButton"
+                        aria-label="Change profile photo"
+                    >
+                        📷
+                    </button>
+
+                    <input
+                        type="file"
+                        id="profilePhoto"
+                        accept="image/jpeg,image/png,image/webp"
+                        hidden
+                    >
+
+                </div>
+
+                <div>
+                    <h2 id="sidebarName">Your Name</h2>
+                    <div class="profile-email" id="sidebarEmail">
+                        your@email.com
+                    </div>
+                    <span class="account-badge">Marketplace Member</span>
+                </div>
+
+                <div class="profile-divider"></div>
+
+                <div class="completion-heading">
+                    <span>Profile completion</span>
+                    <strong id="completionPercent">60%</strong>
+                </div>
+
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+                <p class="completion-note">
+                    Add your personal details and location to make
+                    your profile more complete.
+                </p>
+
+                <div class="profile-divider"></div>
+
+                <nav class="profile-menu">
+
+                    <a href="profile.html" class="active">
+                        <span>♙</span> My Profile
+                    </a>
+
+                    <a href="advertiser-dashboard.html">
+                        <span>▦</span> Dashboard
+                    </a>
+
+                    <a href="my-ads.html">
+                        <span>▤</span> My Advertisements
+                    </a>
+
+                    <a href="messages.html">
+                        <span>✉</span> Messages
+                    </a>
+
+                    <a href="notifications.html">
+                        <span>♧</span> Notifications
+                    </a>
+
+                    <a href="favorites.html">
+                        <span>♡</span> Saved Items
+                    </a>
+
+                    <a href="help.html">
+                        <span>?</span> Help Centre
+                    </a>
+
+                </nav>
+
+            </aside>
+
+            <!-- PROFILE MAIN -->
+            <div class="profile-main">
+
+                <!-- PERSONAL DETAILS -->
+                <section class="form-card card">
+
+                    <div class="form-heading">
+                        <div>
+                            <h2>Personal Information</h2>
+                            <p>Update your name and contact information.</p>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="edit-button"
+                            id="editProfileButton"
+                        >
+                            Edit Profile
+                        </button>
+                    </div>
+
+                    <form id="profileForm">
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input
+                                    type="text"
+                                    id="firstName"
+                                    name="firstName"
+                                    placeholder="Enter first name"
+                                    value=""
+                                    disabled
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input
+                                    type="text"
+                                    id="lastName"
+                                    name="lastName"
+                                    placeholder="Enter last name"
+                                    value=""
+                                    disabled
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="Enter email address"
+                                    disabled
+                                    required
+                                >
+                                <small class="field-note">
+                                    Email verification will be handled through account authentication.
+                                </small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    placeholder="e.g. 07XXXXXXXX"
+                                    disabled
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="county">County</label>
+                                <select id="county" name="county" disabled>
+                                    <option value="">Select County</option>
+                                    <option>Baringo</option>
+                                    <option>Bomet</option>
+                                    <option>Bungoma</option>
+                                    <option>Busia</option>
+                                    <option>Elgeyo-Marakwet</option>
+                                    <option>Embu</option>
+                                    <option>Garissa</option>
+                                    <option>Homa Bay</option>
+                                    <option>Isiolo</option>
+                                    <option>Kajiado</option>
+                                    <option>Kakamega</option>
+                                    <option>Kericho</option>
+                                    <option>Kiambu</option>
+                                    <option>Kilifi</option>
+                                    <option>Kirinyaga</option>
+                                    <option>Kisii</option>
+                                    <option>Kisumu</option>
+                                    <option>Kitui</option>
+                                    <option>Kwale</option>
+                                    <option>Laikipia</option>
+                                    <option>Lamu</option>
+                                    <option>Machakos</option>
+                                    <option>Makueni</option>
+                                    <option>Mandera</option>
+                                    <option>Marsabit</option>
+                                    <option>Meru</option>
+                                    <option>Migori</option>
+                                    <option>Mombasa</option>
+                                    <option>Murang'a</option>
+                                    <option>Nairobi</option>
+                                    <option>Nakuru</option>
+                                    <option>Nandi</option>
+                                    <option>Narok</option>
+                                    <option>Nyamira</option>
+                                    <option>Nyandarua</option>
+                                    <option>Nyeri</option>
+                                    <option>Samburu</option>
+                                    <option>Siaya</option>
+                                    <option>Taita-Taveta</option>
+                                    <option>Tana River</option>
+                                    <option>Tharaka-Nithi</option>
+                                    <option>Trans Nzoia</option>
+                                    <option>Turkana</option>
+                                    <option>Uasin Gishu</option>
+                                    <option>Vihiga</option>
+                                    <option>Wajir</option>
+                                    <option>West Pokot</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="town">Town / City</label>
+                                <input
+                                    type="text"
+                                    id="town"
+                                    name="town"
+                                    placeholder="Enter town or city"
+                                    disabled
+                                >
+                            </div>
+
+                            <div class="form-group full">
+                                <label for="bio">About Me</label>
+                                <textarea
+                                    id="bio"
+                                    name="bio"
+                                    placeholder="Tell other marketplace users a little about yourself..."
+                                    disabled
+                                    maxlength="500"
+                                ></textarea>
+                                <small class="field-note">
+                                    Maximum 500 characters.
+                                </small>
+                            </div>
+
+                        </div>
+
+                        <div class="form-actions" id="formActions">
+
+                            <button type="submit" class="save-button">
+                                Save Changes
+                            </button>
+
+                            <button
+                                type="button"
+                                class="cancel-button"
+                                id="cancelEditButton"
+                            >
+                                Cancel
+                            </button>
+
+                        </div>
+
+                        <div
+                            id="formMessage"
+                            class="message-box"
+                            role="status"
+                            aria-live="polite"
+                        ></div>
+
+                    </form>
+
+                </section>
+
+                <!-- ACCOUNT DETAILS -->
+                <section class="form-card card">
+
+                    <div class="form-heading">
+                        <div>
+                            <h2>Account Information</h2>
+                            <p>General information about your marketplace account.</p>
+                        </div>
+                    </div>
+
+                    <div class="account-info">
+
+                        <div class="info-row">
+                            <span>Account Type</span>
+                            <strong>Personal Account</strong>
+                        </div>
+
+                        <div class="info-row">
+                            <span>Membership</span>
+                            <strong>Standard Member</strong>
+                        </div>
+
+                        <div class="info-row">
+                            <span>Account Status</span>
+                            <strong style="color:#168653;">Demo</strong>
+                        </div>
+
+                        <div class="info-row">
+                            <span>Registration Date</span>
+                            <strong>Not yet available</strong>
+                        </div>
+
+                        <div class="info-row">
+                            <span>Email Verification</span>
+                            <strong>Pending integration</strong>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- ACCOUNT SHORTCUTS -->
+                <section class="form-card card">
+
+                    <div class="form-heading">
+                        <div>
+                            <h2>Account Shortcuts</h2>
+                            <p>Quick access to important account features.</p>
+                        </div>
+                    </div>
+
+                    <div class="account-links">
+
+                        <a href="forgot-password.html" class="account-link">
+                            Change Password
+                            <span>Reset your account password securely.</span>
+                        </a>
+
+                        <a href="advertiser-dashboard.html" class="account-link">
+                            Advertiser Dashboard
+                            <span>Manage your marketplace advertisements.</span>
+                        </a>
+
+                        <a href="business-profile.html" class="account-link">
+                            Business Profile
+                            <span>View your public business storefront.</span>
+                        </a>
+
+                        <a href="contact.html" class="account-link">
+                            Contact Support
+                            <span>Get help with your marketplace account.</span>
+                        </a>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="layout.js" defer></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const profileForm =
+                document.getElementById("profileForm");
+
+            const editButton =
+                document.getElementById("editProfileButton");
+
+            const cancelButton =
+                document.getElementById("cancelEditButton");
+
+            const formActions =
+                document.getElementById("formActions");
+
+            const formMessage =
+                document.getElementById("formMessage");
+
+            const photoInput =
+                document.getElementById("profilePhoto");
+
+            const avatarDisplay =
+                document.getElementById("avatarDisplay");
+
+            const changePhotoButton =
+                document.getElementById("changePhotoButton");
+
+            const fields = profileForm.querySelectorAll(
+                "input, select, textarea"
+            );
+
+            let originalValues = {};
+            let photoUrl = null;
+
+            function getFormValues() {
+
+                const values = {};
+
+                fields.forEach(field => {
+                    if (field.type !== "file") {
+                        values[field.name] = field.value;
+                    }
+                });
+
+                return values;
+            }
+
+            function saveOriginalValues() {
+                originalValues = getFormValues();
+            }
+
+            function enableEditing() {
+
+                fields.forEach(field => {
+                    if (field.type !== "file") {
+                        field.disabled = false;
+                    }
+                });
+
+                formActions.style.display = "flex";
+                editButton.style.display = "none";
+
+                formMessage.className = "message-box";
+                formMessage.textContent = "";
+
+            }
+
+            function disableEditing() {
+
+                fields.forEach(field => {
+                    if (field.type !== "file") {
+                        field.disabled = true;
+                    }
+                });
+
+                formActions.style.display = "none";
+                editButton.style.display = "inline-block";
+
+            }
+
+            function updateProfileDisplay() {
+
+                const firstName =
+                    document.getElementById("firstName").value.trim();
+
+                const lastName =
+                    document.getElementById("lastName").value.trim();
+
+                const email =
+                    document.getElementById("email").value.trim();
+
+                const fullName =
+                    [firstName, lastName].filter(Boolean).join(" ");
+
+                document.getElementById("sidebarName").textContent =
+                    fullName || "Your Name";
+
+                document.getElementById("sidebarEmail").textContent =
+                    email || "your@email.com";
+
+                if (!photoUrl) {
+                    avatarDisplay.textContent =
+                        fullName
+                            ? fullName.charAt(0).toUpperCase()
+                            : "W";
+                }
+
+                updateCompletion();
+
+            }
+
+            function updateCompletion() {
+
+                const requiredFields = [
+                    "firstName",
+                    "lastName",
+                    "email",
+                    "phone",
+                    "county",
+                    "town"
+                ];
+
+                let completed = 0;
+
+                requiredFields.forEach(id => {
+
+                    const field = document.getElementById(id);
+
+                    if (field.value.trim()) {
+                        completed++;
+                    }
+
+                });
+
+                const percentage = Math.round(
+                    (completed / requiredFields.length) * 100
+                );
+
+                document.getElementById(
+                    "completionPercent"
+                ).textContent = percentage + "%";
+
+                document.getElementById(
+                    "progressFill"
+                ).style.width = percentage + "%";
+
+            }
+
+            editButton.addEventListener(
+                "click",
+                enableEditing
+            );
+
+            cancelButton.addEventListener("click", function () {
+
+                fields.forEach(field => {
+
+                    if (
+                        field.type !== "file" &&
+                        Object.prototype.hasOwnProperty.call(
+                            originalValues,
+                            field.name
+                        )
+                    ) {
+                        field.value = originalValues[field.name];
+                    }
+
+                });
+
+                updateProfileDisplay();
+                disableEditing();
+
+                formMessage.className = "message-box";
+                formMessage.textContent = "";
+
+            });
+
+            profileForm.addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                if (!profileForm.reportValidity()) {
+                    return;
+                }
+
+                updateProfileDisplay();
+                saveOriginalValues();
+                disableEditing();
+
+                formMessage.textContent =
+                    "Your profile changes have been applied to this demo page only. They have not been permanently saved.";
+
+                formMessage.className =
+                    "message-box success-message";
+
+            });
+
+            changePhotoButton.addEventListener(
+                "click",
+                function () {
+                    photoInput.click();
+                }
+            );
+
+            photoInput.addEventListener("change", function () {
+
+                const file = photoInput.files[0];
+
+                if (!file) return;
+
+                const allowedTypes = [
+                    "image/jpeg",
+                    "image/png",
+                    "image/webp"
+                ];
+
+                if (!allowedTypes.includes(file.type)) {
+                    alert("Please choose a JPG, PNG or WebP image.");
+                    photoInput.value = "";
+                    return;
+                }
+
+                if (file.size > 5 * 1024 * 1024) {
+                    alert("Profile image must not exceed 5MB.");
+                    photoInput.value = "";
+                    return;
+                }
+
+                if (photoUrl) {
+                    URL.revokeObjectURL(photoUrl);
+                }
+
+                photoUrl = URL.createObjectURL(file);
+
+                const image = document.createElement("img");
+
+                image.src = photoUrl;
+                image.alt = "Selected profile photo";
+
+                avatarDisplay.replaceChildren(image);
+
+            });
+
+            saveOriginalValues();
+            updateCompletion();
+
+            window.addEventListener("beforeunload", function () {
+
+                if (photoUrl) {
+                    URL.revokeObjectURL(photoUrl);
+                }
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>
+
