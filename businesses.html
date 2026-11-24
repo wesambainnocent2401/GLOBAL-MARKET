@@ -1,1 +1,840 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f6f9">
+
+    <meta name="description" content="Discover shops, companies, organisations and service providers across Kenya on GLOBAL MARKET.">
+
+    <title>Business Directory | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --business-navy: #142c4c;
+            --business-gold: #c49a42;
+            --business-muted: #748195;
+            --business-border: #e5eaf0;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f6f9;
+            color: #26364a;
+            font-family: Arial, sans-serif;
+        }
+
+        .business-page {
+            max-width: 1200px;
+            margin: auto;
+            padding: 25px 18px 55px;
+        }
+
+        .business-hero {
+            background:
+                linear-gradient(110deg, rgba(14,35,61,.94), rgba(20,44,76,.78)),
+                url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1400");
+            background-size: cover;
+            background-position: center;
+            padding: 65px 30px;
+            border-radius: 15px;
+            color: white;
+            margin-bottom: 25px;
+        }
+
+        .business-hero h1 {
+            font-size: 34px;
+            margin: 0 0 12px;
+        }
+
+        .business-hero p {
+            max-width: 620px;
+            line-height: 1.7;
+            color: #e5eaf1;
+            font-size: 14px;
+        }
+
+        .hero-button {
+            display: inline-block;
+            background: var(--business-gold);
+            color: white;
+            text-decoration: none;
+            padding: 13px 19px;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .directory-search {
+            display: grid;
+            grid-template-columns: 1fr 220px auto;
+            gap: 12px;
+            background: white;
+            padding: 17px;
+            border-radius: 12px;
+            border: 1px solid var(--business-border);
+            margin-bottom: 25px;
+        }
+
+        .directory-search input,
+        .directory-search select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px;
+            border: 1px solid var(--business-border);
+            border-radius: 7px;
+            background: #fff;
+            color: #26364a;
+            outline: none;
+            font-size: 13px;
+        }
+
+        .directory-search input:focus,
+        .directory-search select:focus {
+            border-color: var(--business-gold);
+        }
+
+        .search-button {
+            background: var(--business-navy);
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 7px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .directory-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 28px 0 17px;
+        }
+
+        .directory-heading h2 {
+            color: var(--business-navy);
+            font-size: 22px;
+            margin: 0;
+        }
+
+        .directory-heading p {
+            color: var(--business-muted);
+            font-size: 12px;
+        }
+
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .business-card {
+            background: white;
+            border: 1px solid var(--business-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .business-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(20,44,76,.09);
+        }
+
+        .business-cover {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            background: #e9edf2;
+        }
+
+        .business-content {
+            padding: 17px;
+        }
+
+        .business-category {
+            color: #9b762d;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .business-name {
+            font-size: 17px;
+            color: var(--business-navy);
+            margin: 9px 0;
+        }
+
+        .business-description {
+            color: #718096;
+            font-size: 13px;
+            line-height: 1.65;
+            min-height: 62px;
+        }
+
+        .business-location {
+            font-size: 12px;
+            color: var(--business-muted);
+            margin: 12px 0;
+        }
+
+        .business-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            border-top: 1px solid #edf0f4;
+            padding-top: 13px;
+        }
+
+        .status {
+            font-size: 11px;
+            color: #8b6c2d;
+            background: #fff6e4;
+            padding: 6px 9px;
+            border-radius: 20px;
+        }
+
+        .view-business {
+            color: var(--business-navy);
+            font-weight: bold;
+            font-size: 12px;
+            text-decoration: none;
+        }
+
+        .view-business:hover {
+            color: var(--business-gold);
+        }
+
+        .empty-state {
+            display: none;
+            background: white;
+            padding: 35px 20px;
+            border-radius: 12px;
+            text-align: center;
+            color: var(--business-muted);
+            border: 1px solid var(--business-border);
+        }
+
+        .join-banner {
+            margin-top: 35px;
+            padding: 30px;
+            border-radius: 13px;
+            background: #eaf0f7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .join-banner h2 {
+            color: var(--business-navy);
+            margin: 0 0 8px;
+        }
+
+        .join-banner p {
+            font-size: 13px;
+            color: var(--business-muted);
+            line-height: 1.6;
+        }
+
+        .join-button {
+            background: var(--business-navy);
+            color: white;
+            text-decoration: none;
+            padding: 13px 20px;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .demo-label {
+            font-size: 11px;
+            color: #755b22;
+            background: #fff8e9;
+            padding: 10px 12px;
+            border-radius: 7px;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 850px) {
+            .business-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .directory-search {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .search-button {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .business-page {
+                padding: 17px 12px 40px;
+            }
+
+            .business-hero {
+                padding: 40px 20px;
+            }
+
+            .business-hero h1 {
+                font-size: 26px;
+            }
+
+            .business-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .directory-search {
+                grid-template-columns: 1fr;
+            }
+
+            .join-banner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .directory-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="site-header"></div>
+
+    <main class="business-page">
+
+        <!-- Hero section -->
+        <section class="business-hero">
+
+            <h1>Discover Businesses Across Kenya</h1>
+
+            <p>
+                Explore shops, companies, professionals and service providers
+                in one marketplace. Find what you need and connect directly
+                with businesses.
+            </p>
+
+            <a href="business-registration.html" class="hero-button">
+                Register Your Business
+            </a>
+
+        </section>
+
+        <!-- Search and filter -->
+        <form class="directory-search" id="businessSearchForm">
+
+            <input
+                type="search"
+                id="businessSearch"
+                placeholder="Search business name or service..."
+                aria-label="Search businesses"
+            >
+
+            <select id="businessCategory" aria-label="Business category">
+
+                <option value="">All business categories</option>
+                <option value="technology">Technology</option>
+                <option value="fashion">Fashion & Clothing</option>
+                <option value="food">Food & Restaurants</option>
+                <option value="construction">Construction</option>
+                <option value="education">Education</option>
+                <option value="transport">Transport & Logistics</option>
+                <option value="agriculture">Agriculture</option>
+                <option value="professional">Professional Services</option>
+                <option value="retail">Retail & Shopping</option>
+
+            </select>
+
+            <button class="search-button" type="submit">
+                Search Businesses
+            </button>
+
+        </form>
+
+        <!-- Directory -->
+        <section>
+
+            <div class="directory-heading">
+
+                <div>
+                    <h2>Explore Businesses</h2>
+                    <p id="businessCount">Showing sample businesses</p>
+                </div>
+
+                <p>Find businesses that match your needs.</p>
+
+            </div>
+
+            <div class="business-grid" id="businessGrid">
+
+                <!-- Business 1 -->
+                <article class="business-card"
+                    data-category="technology"
+                    data-search="global tech solutions computers software networking technology">
+
+                    <img
+                        class="business-cover"
+                        src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=700"
+                        alt="Modern technology office"
+                    >
+
+                    <div class="business-content">
+
+                        <span class="business-category">Technology</span>
+
+                        <h3 class="business-name">
+                            Global Tech Solutions
+                        </h3>
+
+                        <p class="business-description">
+                            Technology products, computer accessories,
+                            software solutions and digital services.
+                        </p>
+
+                        <div class="business-location">
+                            Nairobi, Kenya
+                        </div>
+
+                        <div class="business-footer">
+                            <span class="status">Sample profile</span>
+                            <a href="business-details.html"
+                               class="view-business">
+                                View Business →
+                            </a>
+                        </div>
+
+                    </div>
+                </article>
+
+                <!-- Business 2 -->
+                <article class="business-card"
+                    data-category="fashion"
+                    data-search="urban style fashion clothing boutique shoes clothes">
+
+                    <img
+                        class="business-cover"
+                        src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=700"
+                        alt="Fashion retail shop"
+                    >
+
+                    <div class="business-content">
+
+                        <span class="business-category">Fashion & Clothing</span>
+
+                        <h3 class="business-name">
+                            Urban Style Boutique
+                        </h3>
+
+                        <p class="business-description">
+                            Discover clothing, shoes, fashion accessories
+                            and everyday style products.
+                        </p>
+
+                        <div class="business-location">
+                            Kisumu, Kenya
+                        </div>
+
+                        <div class="business-footer">
+                            <span class="status">Sample profile</span>
+                            <a href="business-details.html"
+                               class="view-business">
+                                View Business →
+                            </a>
+                        </div>
+
+                    </div>
+                </article>
+
+                <!-- Business 3 -->
+                <article class="business-card"
+                    data-category="food"
+                    data-search="fresh bites restaurant food catering meals">
+
+                    <img
+                        class="business-cover"
+                        src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=700"
+                        alt="Restaurant interior"
+                    >
+
+                    <div class="business-content">
+
+                        <span class="business-category">Food & Restaurants</span>
+
+                        <h3 class="business-name">
+                            Fresh Bites Restaurant
+                        </h3>
+
+                        <p class="business-description">
+                            Restaurant services, catering and freshly
+                            prepared meals for different occasions.
+                        </p>
+
+                        <div class="business-location">
+                            Bungoma, Kenya
+                        </div>
+
+                        <div class="business-footer">
+                            <span class="status">Sample profile</span>
+                            <a href="business-details.html"
+                               class="view-business">
+                                View Business →
+                            </a>
+                        </div>
+
+                    </div>
+                </article>
+
+                <!-- Business 4 -->
+                <article class="business-card"
+                    data-category="construction"
+                    data-search="prime builders construction contractors building materials">
+
+                    <img
+                        class="business-cover"
+                        src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700"
+                        alt="Construction project"
+                    >
+
+                    <div class="business-content">
+
+                        <span class="business-category">Construction</span>
+
+                        <h3 class="business-name">
+                            Prime Builders Kenya
+                        </h3>
+
+                        <p class="business-description">
+                            Building, renovation, construction management
+                            and property development services.
+                        </p>
+
+                        <div class="business-location">
+                            Nairobi, Kenya
+                        </div>
+
+                        <div class="business-footer">
+                            <span class="status">Sample profile</span>
+                            <a href="business-details.html"
+                               class="view-business">
+                                View Business →
+                            </a>
+                        </div>
+
+                    </div>
+                </article>
+
+                <!-- Business 5 -->
+                <article class="business-card"
+                    data-category="education"
+                    data-search="smart learning academy education training tutoring">
+
+                    <img
+                        class="business-cover"
+                        src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=700"
+                        alt="Education institution"
+                    >
+
+                    <div class="business-content">
+
+                        <span class="business-category">Education</span>
+
+                        <h3 class="business-name">
+                            Smart Learning Academy
+                        </h3>
+
+                        <p class="business-description">
+                            Educational support, tutoring, training
+                            and professional learning programmes.
+                        </p>
+
+                        <div class="business-location">
+                            Eldoret, Kenya
+                        </div>
+
+                        <div class="business-footer">
+                            <span class="status">Sample profile</span>
+                            <a href="business-details.html"
+                               class="view-business">
+                                View Business →
+                            </a>
+                        </div>
+
+                    </div>
+                </article>
+
+                <!-- Business 6 -->
+                <article class="business-card"
+                    data-category="transport"
+                    data-search="swift transport logistics delivery courier transport">
+
+                    <img
+                        class="business-cover"
+                        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=700"
+                        alt="Transport and logistics warehouse"
+                    >
+
+                    <div class="business-content">
+
+                        <span class="business-category">Transport & Logistics</span>
+
+                        <h3 class="business-name">
+                            Swift Transport Services
+                        </h3>
+
+                        <p class="business-description">
+                            Delivery, cargo transportation, logistics
+                            and distribution services.
+                        </p>
+
+                        <div class="business-location">
+                            Nakuru, Kenya
+                        </div>
+
+                        <div class="business-footer">
+                            <span class="status">Sample profile</span>
+                            <a href="business-details.html"
+                               class="view-business">
+                                View Business →
+                            </a>
+                        </div>
+
+                    </div>
+                </article>
+
+                <!-- Business 7 -->
+                <article class="business-card"
+                    data-category="agriculture"
+                    data-search="green harvest farms agriculture farming seeds crops">
+
+                    <img
+                        class="business-cover"
+                        src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=700"
+                        alt="Green agricultural farmland"
+                    >
+
+                    <div class="business-content">
+
+                        <span class="business-category">Agriculture</span>
+
+                        <h3 class="business-name">
+                            Green Harvest Farms
+                        </h3>
+
+                        <p class="business-description">
+                            Agricultural products, farm supplies,
+                            crop production and farming services.
+                        </p>
+
+                        <div class="business-location">
+                            Kakamega, Kenya
+                        </div>
+
+                        <div class="business-footer">
+                            <span class="status">Sample profile</span>
+                            <a href="business-details.html"
+                               class="view-business">
+                                View Business →
+                            </a>
+                        </div>
+
+                    </div>
+                </article>
+
+                <!-- Business 8 -->
+                <article class="business-card"
+                    data-category="professional"
+                    data-search="elite professional services accounting consulting business">
+
+                    <img
+                        class="business-cover"
+                        src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=700"
+                        alt="Professional business office"
+                    >
+
+                    <div class="business-content">
+
+                        <span class="business-category">Professional Services</span>
+
+                        <h3 class="business-name">
+                            Elite Professional Services
+                        </h3>
+
+                        <p class="business-description">
+                            Business consultancy, accounting,
+                            professional advice and support services.
+                        </p>
+
+                        <div class="business-location">
+                            Mombasa, Kenya
+                        </div>
+
+                        <div class="business-footer">
+                            <span class="status">Sample profile</span>
+                            <a href="business-details.html"
+                               class="view-business">
+                                View Business →
+                            </a>
+                        </div>
+
+                    </div>
+                </article>
+
+                <!-- Business 9 -->
+                <article class="business-card"
+                    data-category="retail"
+                    data-search="city mart supermarket retail shopping household products">
+
+                    <img
+                        class="business-cover"
+                        src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=700"
+                        alt="Retail supermarket products"
+                    >
+
+                    <div class="business-content">
+
+                        <span class="business-category">Retail & Shopping</span>
+
+                        <h3 class="business-name">
+                            City Mart Stores
+                        </h3>
+
+                        <p class="business-description">
+                            Household products, groceries, shopping
+                            essentials and general merchandise.
+                        </p>
+
+                        <div class="business-location">
+                            Thika, Kenya
+                        </div>
+
+                        <div class="business-footer">
+                            <span class="status">Sample profile</span>
+                            <a href="business-details.html"
+                               class="view-business">
+                                View Business →
+                            </a>
+                        </div>
+
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="empty-state" id="emptyState">
+                <h3>No businesses found</h3>
+                <p>Try another business name or category.</p>
+            </div>
+
+        </section>
+
+        <div class="demo-label">
+            NOTE: The businesses displayed here are sample demonstration
+            profiles. They are not verified or confirmed real businesses.
+            Actual business records will be loaded from Supabase later.
+        </div>
+
+        <!-- Business registration banner -->
+        <section class="join-banner">
+
+            <div>
+                <h2>Own a Business?</h2>
+
+                <p>
+                    Bring your business online. Create a profile, showcase
+                    your products and services, and help customers discover you.
+                </p>
+            </div>
+
+            <a href="business-registration.html" class="join-button">
+                List Your Business
+            </a>
+
+        </section>
+
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script>
+        const searchInput = document.getElementById("businessSearch");
+        const categorySelect = document.getElementById("businessCategory");
+        const searchForm = document.getElementById("businessSearchForm");
+
+        const businessCards = document.querySelectorAll(".business-card");
+        const emptyState = document.getElementById("emptyState");
+        const businessCount = document.getElementById("businessCount");
+
+        function filterBusinesses() {
+
+            const searchText = searchInput.value.toLowerCase().trim();
+            const selectedCategory = categorySelect.value;
+
+            let visibleCount = 0;
+
+            businessCards.forEach(function(card) {
+
+                const businessName = card.dataset.search.toLowerCase();
+                const businessCategory = card.dataset.category;
+
+                const matchesSearch =
+                    businessName.includes(searchText);
+
+                const matchesCategory =
+                    selectedCategory === "" ||
+                    businessCategory === selectedCategory;
+
+                if (matchesSearch && matchesCategory) {
+
+                    card.style.display = "block";
+                    visibleCount++;
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+            businessCount.textContent =
+                "Showing " + visibleCount + " sample businesses";
+
+            emptyState.style.display =
+                visibleCount === 0 ? "block" : "none";
+        }
+
+        searchForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+            filterBusinesses();
+
+        });
+
+        searchInput.addEventListener("input", filterBusinesses);
+
+        categorySelect.addEventListener("change", filterBusinesses);
+
+    </script>
+
+    <script src="layout.js" defer></script>
+
+</body>
+</html>
+
