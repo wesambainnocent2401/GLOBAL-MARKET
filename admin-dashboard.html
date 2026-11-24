@@ -1,1 +1,733 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .admin-page {
+            background: #F1F4F8;
+            min-height: 100vh;
+        }
+
+        .admin-hero {
+            background: linear-gradient(120deg, #172B4D, #304B70);
+            color: white;
+            padding: 42px 6%;
+        }
+
+        .admin-hero h1 {
+            font-size: 30px;
+            margin-bottom: 9px;
+        }
+
+        .admin-hero p {
+            color: #DCE5F1;
+            line-height: 1.7;
+        }
+
+        .demo-label {
+            display: inline-block;
+            background: #FFF0CE;
+            color: #805A17;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+
+        .admin-container {
+            width: 90%;
+            max-width: 1250px;
+            margin: 30px auto;
+        }
+
+        .section-heading {
+            margin-bottom: 20px;
+        }
+
+        .section-heading h2 {
+            color: #172B4D;
+            font-size: 22px;
+            margin-bottom: 6px;
+        }
+
+        .section-heading p {
+            color: #778397;
+            font-size: 14px;
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 35px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 23px;
+            border-radius: 15px;
+            border: 1px solid #E5E9EF;
+            box-shadow: 0 5px 18px rgba(20,40,70,.04);
+        }
+
+        .stat-card span {
+            color: #778397;
+            font-size: 13px;
+        }
+
+        .stat-card h3 {
+            font-size: 29px;
+            color: #172B4D;
+            margin: 12px 0 5px;
+        }
+
+        .stat-card small {
+            color: #8994A5;
+            font-size: 12px;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 22px;
+            margin-bottom: 30px;
+        }
+
+        .admin-panel {
+            background: white;
+            border: 1px solid #E5E9EF;
+            border-radius: 16px;
+            padding: 23px;
+            box-shadow: 0 5px 18px rgba(20,40,70,.04);
+        }
+
+        .panel-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .panel-heading h3 {
+            color: #172B4D;
+            font-size: 17px;
+        }
+
+        .panel-heading a {
+            color: #A77B2D;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .chart-area {
+            height: 205px;
+            display: flex;
+            align-items: end;
+            justify-content: space-around;
+            gap: 13px;
+            border-bottom: 1px solid #E5E9EF;
+            padding: 10px 5px 0;
+        }
+
+        .chart-column {
+            flex: 1;
+            text-align: center;
+        }
+
+        .chart-bar {
+            width: 100%;
+            max-width: 38px;
+            margin: auto;
+            border-radius: 7px 7px 0 0;
+            background: linear-gradient(180deg, #D6AD58, #E8D3A4);
+        }
+
+        .chart-column small {
+            display: block;
+            color: #778397;
+            margin-top: 9px;
+            font-size: 11px;
+        }
+
+        .activity-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 13px;
+            align-items: flex-start;
+            border-bottom: 1px solid #EDF0F4;
+            padding-bottom: 14px;
+        }
+
+        .activity-icon {
+            width: 37px;
+            height: 37px;
+            background: #F0F3F8;
+            color: #172B4D;
+            border-radius: 11px;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+        }
+
+        .activity-item strong {
+            display: block;
+            color: #263449;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .activity-item small {
+            color: #8994A5;
+            font-size: 11px;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 32px;
+        }
+
+        .quick-link {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+            border: 1px solid #E5E9EF;
+            text-decoration: none;
+            transition: .2s;
+        }
+
+        .quick-link:hover {
+            transform: translateY(-3px);
+            border-color: #D6AD58;
+        }
+
+        .quick-link .quick-icon {
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        .quick-link h3 {
+            color: #172B4D;
+            font-size: 15px;
+            margin-bottom: 7px;
+        }
+
+        .quick-link p {
+            color: #778397;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .task-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: #F7F9FC;
+            border-radius: 11px;
+        }
+
+        .task-item strong {
+            color: #263449;
+            font-size: 13px;
+        }
+
+        .task-item p {
+            color: #778397;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .task-item a {
+            color: #A77B2D;
+            font-weight: 700;
+            font-size: 12px;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .status-warning {
+            background: #FFF8E9;
+            border-left: 4px solid #D6AD58;
+            padding: 18px;
+            border-radius: 9px;
+            color: #73551E;
+            line-height: 1.7;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .security-note {
+            background: #EAF0F8;
+            padding: 20px;
+            border-radius: 13px;
+            color: #344966;
+            line-height: 1.7;
+            font-size: 13px;
+            margin-bottom: 30px;
+        }
+
+        @media(max-width: 850px) {
+            .admin-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width: 520px) {
+            .admin-hero {
+                padding: 32px 5%;
+            }
+
+            .admin-hero h1 {
+                font-size: 24px;
+            }
+
+            .admin-container {
+                width: 92%;
+            }
+
+            .admin-stats {
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 16px;
+            }
+
+            .stat-card h3 {
+                font-size: 23px;
+            }
+
+            .quick-links {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .quick-link {
+                padding: 15px;
+            }
+
+            .task-item {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body class="admin-page">
+
+    <div class="announcement-bar">
+        YOUR WORLD. ONE MARKETPLACE.
+    </div>
+
+    <header class="main-header">
+        <div class="header-container">
+
+            <a href="index.html" class="logo">
+                <span class="logo-icon">G</span>
+                <span class="logo-text">GLOBAL MARKET</span>
+            </a>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="admin-dashboard.html">Dashboard</a>
+                <a href="admin-users.html">Users</a>
+                <a href="admin-ads.html">Advertisements</a>
+                <a href="admin-reports.html">Reports</a>
+                <a href="admin-settings.html">Settings</a>
+
+                <div class="mobile-auth-links">
+                    <a href="profile.html">My Profile</a>
+                    <a href="index.html">Visit Marketplace</a>
+                </div>
+            </nav>
+
+            <div class="header-actions">
+                <a href="index.html" class="login-link">Visit Marketplace</a>
+                <a href="admin-dashboard.html" class="btn-primary">Admin Home</a>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle"
+                aria-label="Open menu">☰</button>
+
+        </div>
+    </header>
+
+    <section class="admin-hero">
+        <h1>Administration Centre</h1>
+        <p>
+            Manage GLOBAL MARKET, monitor marketplace activity,
+            review advertisements and oversee platform operations.
+        </p>
+        <span class="demo-label">DEMO DASHBOARD · SAMPLE DATA</span>
+    </section>
+
+    <main class="admin-container">
+
+        <div class="status-warning">
+            <strong>Demo environment:</strong>
+            The figures and activity below are sample information.
+            They are not live platform statistics.
+        </div>
+
+        <section>
+            <div class="section-heading">
+                <h2>Platform Overview</h2>
+                <p>Example marketplace statistics for demonstration.</p>
+            </div>
+
+            <div class="admin-stats">
+
+                <div class="stat-card">
+                    <span>Total Users</span>
+                    <h3>2,450</h3>
+                    <small>Demo figure</small>
+                </div>
+
+                <div class="stat-card">
+                    <span>Advertisers</span>
+                    <h3>684</h3>
+                    <small>Demo figure</small>
+                </div>
+
+                <div class="stat-card">
+                    <span>Total Advertisements</span>
+                    <h3>1,820</h3>
+                    <small>Demo figure</small>
+                </div>
+
+                <div class="stat-card">
+                    <span>Registered Businesses</span>
+                    <h3>326</h3>
+                    <small>Demo figure</small>
+                </div>
+
+                <div class="stat-card">
+                    <span>Pending Reviews</span>
+                    <h3>48</h3>
+                    <small>Demo figure</small>
+                </div>
+
+                <div class="stat-card">
+                    <span>Reported Listings</span>
+                    <h3>12</h3>
+                    <small>Demo figure</small>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="admin-grid">
+
+            <div class="admin-panel">
+
+                <div class="panel-heading">
+                    <h3>Marketplace Activity</h3>
+                    <span class="demo-label">DEMO</span>
+                </div>
+
+                <p style="font-size:12px;color:#778397;">
+                    Illustrative activity across seven sample periods.
+                </p>
+
+                <div class="chart-area">
+
+                    <div class="chart-column">
+                        <div class="chart-bar" style="height:55px;"></div>
+                        <small>Mon</small>
+                    </div>
+
+                    <div class="chart-column">
+                        <div class="chart-bar" style="height:90px;"></div>
+                        <small>Tue</small>
+                    </div>
+
+                    <div class="chart-column">
+                        <div class="chart-bar" style="height:72px;"></div>
+                        <small>Wed</small>
+                    </div>
+
+                    <div class="chart-column">
+                        <div class="chart-bar" style="height:125px;"></div>
+                        <small>Thu</small>
+                    </div>
+
+                    <div class="chart-column">
+                        <div class="chart-bar" style="height:105px;"></div>
+                        <small>Fri</small>
+                    </div>
+
+                    <div class="chart-column">
+                        <div class="chart-bar" style="height:155px;"></div>
+                        <small>Sat</small>
+                    </div>
+
+                    <div class="chart-column">
+                        <div class="chart-bar" style="height:135px;"></div>
+                        <small>Sun</small>
+                    </div>
+
+                </div>
+
+                <p style="font-size:11px;color:#8994A5;margin-top:12px;">
+                    Sample visual only. No live analytics connected.
+                </p>
+
+            </div>
+
+            <div class="admin-panel">
+
+                <div class="panel-heading">
+                    <h3>Recent Activity</h3>
+                </div>
+
+                <div class="activity-list">
+
+                    <div class="activity-item">
+                        <div class="activity-icon">👤</div>
+                        <div>
+                            <strong>New user registration</strong>
+                            <small>Demo activity · Today</small>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon">📢</div>
+                        <div>
+                            <strong>Advertisement submitted</strong>
+                            <small>Demo activity · Today</small>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon">🏢</div>
+                        <div>
+                            <strong>Business verification requested</strong>
+                            <small>Demo activity · Yesterday</small>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon">🚩</div>
+                        <div>
+                            <strong>Listing reported</strong>
+                            <small>Demo activity · Yesterday</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <div class="section-heading">
+                <h2>Administration Tools</h2>
+                <p>Access the main platform management sections.</p>
+            </div>
+
+            <div class="quick-links">
+
+                <a href="admin-users.html" class="quick-link">
+                    <div class="quick-icon">👥</div>
+                    <h3>User Management</h3>
+                    <p>Review user accounts and manage platform access.</p>
+                </a>
+
+                <a href="admin-ads.html" class="quick-link">
+                    <div class="quick-icon">📢</div>
+                    <h3>Advertisement Review</h3>
+                    <p>Review submissions, photos and required videos.</p>
+                </a>
+
+                <a href="admin-reports.html" class="quick-link">
+                    <div class="quick-icon">🚩</div>
+                    <h3>Reports Centre</h3>
+                    <p>Review reported listings and user complaints.</p>
+                </a>
+
+                <a href="admin-businesses.html" class="quick-link">
+                    <div class="quick-icon">🏢</div>
+                    <h3>Business Verification</h3>
+                    <p>Review business profiles and verification requests.</p>
+                </a>
+
+                <a href="admin-settings.html" class="quick-link">
+                    <div class="quick-icon">⚙️</div>
+                    <h3>Platform Settings</h3>
+                    <p>View the platform configuration area.</p>
+                </a>
+
+                <a href="index.html" class="quick-link">
+                    <div class="quick-icon">🌍</div>
+                    <h3>Visit Marketplace</h3>
+                    <p>Open the public GLOBAL MARKET homepage.</p>
+                </a>
+
+            </div>
+
+        </section>
+
+        <section class="admin-grid">
+
+            <div class="admin-panel">
+
+                <div class="panel-heading">
+                    <h3>Pending Tasks</h3>
+                    <a href="admin-ads.html">View all</a>
+                </div>
+
+                <div class="task-list">
+
+                    <div class="task-item">
+                        <div>
+                            <strong>Advertisement moderation</strong>
+                            <p>48 sample advertisements awaiting review.</p>
+                        </div>
+                        <a href="admin-ads.html">Review →</a>
+                    </div>
+
+                    <div class="task-item">
+                        <div>
+                            <strong>Reported listings</strong>
+                            <p>12 sample reports awaiting attention.</p>
+                        </div>
+                        <a href="admin-reports.html">Open →</a>
+                    </div>
+
+                    <div class="task-item">
+                        <div>
+                            <strong>Business verification</strong>
+                            <p>18 sample verification requests.</p>
+                        </div>
+                        <a href="admin-businesses.html">Review →</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="admin-panel">
+
+                <div class="panel-heading">
+                    <h3>Platform Health</h3>
+                </div>
+
+                <div class="activity-list">
+
+                    <div class="activity-item">
+                        <div class="activity-icon">🔐</div>
+                        <div>
+                            <strong>Admin access</strong>
+                            <small>Backend authorization required</small>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon">🗄️</div>
+                        <div>
+                            <strong>Database connection</strong>
+                            <small>Supabase integration pending</small>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon">📁</div>
+                        <div>
+                            <strong>Media storage</strong>
+                            <small>Online storage integration pending</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <div class="security-note">
+            <strong>Security reminder</strong><br>
+            This page is currently a frontend demonstration.
+            Before launch, connect Supabase authentication and enforce
+            administrator roles using database Row Level Security (RLS).
+            Never rely on hiding an HTML page or button as your only
+            access-control method.
+        </div>
+
+    </main>
+
+    <footer class="main-footer">
+
+        <div class="footer-grid">
+
+            <div class="footer-brand">
+                <h2>GLOBAL MARKET</h2>
+                <p>Your world. One marketplace.</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="index.html">Home</a>
+                <a href="categories.html">Categories</a>
+                <a href="businesses.html">Businesses</a>
+                <a href="education.html">Education</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Company</h3>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                <a href="terms.html">Terms</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Account</h3>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© <span id="currentYear"></span> GLOBAL MARKET. All rights reserved.</p>
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+
