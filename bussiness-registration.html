@@ -1,1 +1,781 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3f5f8">
+
+    <meta name="description" content="Register your business on GLOBAL MARKET and connect with customers locally and worldwide.">
+
+    <title>Register Your Business | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --business-navy: #142b49;
+            --business-blue: #244b75;
+            --business-gold: #c69b43;
+            --business-bg: #f3f5f8;
+            --business-muted: #697586;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--business-bg);
+            color: #202d3d;
+            font-family: Arial, sans-serif;
+        }
+
+        .registration-hero {
+            padding: 55px 20px;
+            text-align: center;
+            color: white;
+            background:
+                linear-gradient(110deg, rgba(17,39,66,.96), rgba(36,75,117,.91)),
+                url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1500");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .registration-hero .eyebrow {
+            color: #e7c77f;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .registration-hero h1 {
+            margin: 13px 0;
+            font-size: clamp(27px, 5vw, 42px);
+        }
+
+        .registration-hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #e0e7ef;
+            line-height: 1.7;
+        }
+
+        .registration-container {
+            width: min(950px, 92%);
+            margin: 35px auto 65px;
+        }
+
+        .registration-intro {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .registration-intro h2 {
+            margin-bottom: 9px;
+            color: var(--business-navy);
+        }
+
+        .registration-intro p {
+            color: var(--business-muted);
+            line-height: 1.6;
+        }
+
+        .registration-card {
+            padding: 30px;
+            background: white;
+            border: 1px solid #e4e8ee;
+            border-radius: 15px;
+            box-shadow: 0 10px 35px rgba(20,43,73,.06);
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #edf0f3;
+        }
+
+        .form-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .section-number {
+            display: grid;
+            width: 35px;
+            height: 35px;
+            place-items: center;
+            color: var(--business-navy);
+            background: #f8efd9;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .section-heading h3 {
+            margin: 0;
+            color: var(--business-navy);
+            font-size: 18px;
+        }
+
+        .section-heading p {
+            margin: 5px 0 0;
+            color: var(--business-muted);
+            font-size: 12px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 19px;
+        }
+
+        .form-group {
+            min-width: 0;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #29384a;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .required {
+            color: #c43e3e;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #dce2e9;
+            border-radius: 8px;
+            outline: none;
+            background: #fff;
+            color: #263548;
+            font: inherit;
+            font-size: 14px;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--business-blue);
+            box-shadow: 0 0 0 3px rgba(36,75,117,.09);
+        }
+
+        .form-group textarea {
+            min-height: 125px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .form-hint {
+            display: block;
+            margin-top: 7px;
+            color: #8490a0;
+            font-size: 11px;
+        }
+
+        .upload-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .upload-box {
+            padding: 18px;
+            text-align: center;
+            background: #f8fafc;
+            border: 1px dashed #b9c6d5;
+            border-radius: 10px;
+        }
+
+        .upload-box .upload-icon {
+            margin-bottom: 9px;
+            color: var(--business-blue);
+            font-size: 27px;
+        }
+
+        .upload-box h4 {
+            margin: 5px 0;
+            color: var(--business-navy);
+            font-size: 14px;
+        }
+
+        .upload-box p {
+            color: var(--business-muted);
+            font-size: 11px;
+        }
+
+        .upload-box input {
+            max-width: 100%;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .image-preview {
+            display: none;
+            width: 100%;
+            max-height: 150px;
+            margin-top: 12px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .terms-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 22px 0;
+            color: #566477;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .terms-check input {
+            margin-top: 4px;
+            accent-color: var(--business-blue);
+        }
+
+        .terms-check a {
+            color: var(--business-blue);
+            font-weight: bold;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 9px;
+            background: var(--business-navy);
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background .2s, transform .2s;
+        }
+
+        .submit-button:hover {
+            background: var(--business-blue);
+            transform: translateY(-1px);
+        }
+
+        .submit-button:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-message {
+            display: none;
+            margin-top: 18px;
+            padding: 13px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .form-message.error {
+            display: block;
+            color: #a32c2c;
+            background: #fff0f0;
+        }
+
+        .form-message.success {
+            display: block;
+            color: #17613b;
+            background: #eaf8ef;
+        }
+
+        .registration-note {
+            margin-top: 22px;
+            color: var(--business-muted);
+            font-size: 12px;
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        @media (max-width: 650px) {
+            .registration-hero {
+                padding: 40px 18px;
+            }
+
+            .registration-card {
+                padding: 20px 15px;
+            }
+
+            .form-grid,
+            .upload-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="site-header"></div>
+
+    <main>
+        <section class="registration-hero">
+            <span class="eyebrow">Grow with GLOBAL MARKET</span>
+            <h1>Register Your Business</h1>
+            <p>
+                Bring your business online, showcase your products and services,
+                and make it easier for customers to discover you.
+            </p>
+        </section>
+
+        <div class="registration-container">
+
+            <div class="registration-intro">
+                <h2>Create Your Business Profile</h2>
+                <p>
+                    Complete the details below to begin setting up your
+                    business presence on GLOBAL MARKET.
+                </p>
+            </div>
+
+            <form class="registration-card" id="businessRegistrationForm">
+
+                <section class="form-section">
+                    <div class="section-heading">
+                        <div class="section-number">01</div>
+                        <div>
+                            <h3>Business Information</h3>
+                            <p>Tell customers about your business.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="businessName">
+                                Business Name <span class="required">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="businessName"
+                                name="businessName"
+                                placeholder="e.g. Innocent Tech Solutions"
+                                maxlength="100"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="businessCategory">
+                                Business Category <span class="required">*</span>
+                            </label>
+                            <select id="businessCategory" name="businessCategory" required>
+                                <option value="">Select category</option>
+                                <option value="Agriculture">Agriculture</option>
+                                <option value="Automotive">Automotive</option>
+                                <option value="Beauty">Beauty & Personal Care</option>
+                                <option value="Construction">Construction</option>
+                                <option value="Education">Education & Training</option>
+                                <option value="Electronics">Electronics & Technology</option>
+                                <option value="Fashion">Fashion & Clothing</option>
+                                <option value="Food">Food & Restaurants</option>
+                                <option value="Health">Health & Wellness</option>
+                                <option value="Real Estate">Real Estate</option>
+                                <option value="Retail">Retail & Shopping</option>
+                                <option value="Transport">Transport & Logistics</option>
+                                <option value="Other">Other Services</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="businessType">
+                                Business Type
+                            </label>
+                            <select id="businessType" name="businessType">
+                                <option value="">Select business type</option>
+                                <option value="Sole Proprietorship">Sole Proprietorship</option>
+                                <option value="Partnership">Partnership</option>
+                                <option value="Limited Company">Limited Company</option>
+                                <option value="Community Organization">Community Organization</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registrationNumber">
+                                Registration Number
+                            </label>
+                            <input
+                                type="text"
+                                id="registrationNumber"
+                                name="registrationNumber"
+                                placeholder="Optional"
+                                maxlength="60"
+                            >
+                            <span class="form-hint">
+                                Provide this if your business is formally registered.
+                            </span>
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="businessDescription">
+                                Business Description <span class="required">*</span>
+                            </label>
+                            <textarea
+                                id="businessDescription"
+                                name="businessDescription"
+                                placeholder="Describe what your business does, the products you sell or the services you provide..."
+                                minlength="30"
+                                maxlength="1500"
+                                required
+                            ></textarea>
+                            <span class="form-hint">
+                                Write at least 30 characters and no more than 1,500.
+                            </span>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="form-section">
+                    <div class="section-heading">
+                        <div class="section-number">02</div>
+                        <div>
+                            <h3>Owner Contact Details</h3>
+                            <p>How can customers or the platform reach you?</p>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="ownerName">
+                                Owner / Contact Person <span class="required">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="ownerName"
+                                name="ownerName"
+                                placeholder="Full name"
+                                maxlength="100"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="businessPhone">
+                                Business Phone <span class="required">*</span>
+                            </label>
+                            <input
+                                type="tel"
+                                id="businessPhone"
+                                name="businessPhone"
+                                placeholder="e.g. 0712345678"
+                                maxlength="20"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="businessEmail">
+                                Business Email <span class="required">*</span>
+                            </label>
+                            <input
+                                type="email"
+                                id="businessEmail"
+                                name="businessEmail"
+                                placeholder="business@example.com"
+                                maxlength="150"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="businessWebsite">
+                                Website / Social Media Link
+                            </label>
+                            <input
+                                type="url"
+                                id="businessWebsite"
+                                name="businessWebsite"
+                                placeholder="https://example.com"
+                                maxlength="250"
+                            >
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="form-section">
+                    <div class="section-heading">
+                        <div class="section-number">03</div>
+                        <div>
+                            <h3>Business Location</h3>
+                            <p>Help customers find your business.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="county">
+                                County <span class="required">*</span>
+                            </label>
+                            <select id="county" name="county" required>
+                                <option value="">Select county</option>
+                                <option>Baringo</option>
+                                <option>Bomet</option>
+                                <option>Bungoma</option>
+                                <option>Busia</option>
+                                <option>Elgeyo-Marakwet</option>
+                                <option>Embu</option>
+                                <option>Garissa</option>
+                                <option>Homa Bay</option>
+                                <option>Isiolo</option>
+                                <option>Kajiado</option>
+                                <option>Kakamega</option>
+                                <option>Kericho</option>
+                                <option>Kiambu</option>
+                                <option>Kilifi</option>
+                                <option>Kirinyaga</option>
+                                <option>Kisii</option>
+                                <option>Kisumu</option>
+                                <option>Kitui</option>
+                                <option>Kwale</option>
+                                <option>Laikipia</option>
+                                <option>Lamu</option>
+                                <option>Machakos</option>
+                                <option>Makueni</option>
+                                <option>Mandera</option>
+                                <option>Marsabit</option>
+                                <option>Meru</option>
+                                <option>Migori</option>
+                                <option>Mombasa</option>
+                                <option>Murang'a</option>
+                                <option>Nairobi</option>
+                                <option>Nakuru</option>
+                                <option>Nandi</option>
+                                <option>Narok</option>
+                                <option>Nyamira</option>
+                                <option>Nyandarua</option>
+                                <option>Nyeri</option>
+                                <option>Samburu</option>
+                                <option>Siaya</option>
+                                <option>Taita-Taveta</option>
+                                <option>Tana River</option>
+                                <option>Tharaka-Nithi</option>
+                                <option>Trans Nzoia</option>
+                                <option>Turkana</option>
+                                <option>Uasin Gishu</option>
+                                <option>Vihiga</option>
+                                <option>Wajir</option>
+                                <option>West Pokot</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="town">
+                                Town / City <span class="required">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="town"
+                                name="town"
+                                placeholder="e.g. Bungoma"
+                                maxlength="100"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="physicalAddress">
+                                Physical Address / Area
+                            </label>
+                            <input
+                                type="text"
+                                id="physicalAddress"
+                                name="physicalAddress"
+                                placeholder="Street, estate, building or nearby landmark"
+                                maxlength="200"
+                            >
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="form-section">
+                    <div class="section-heading">
+                        <div class="section-number">04</div>
+                        <div>
+                            <h3>Business Branding</h3>
+                            <p>Add images that represent your business.</p>
+                        </div>
+                    </div>
+
+                    <div class="upload-grid">
+
+                        <div class="upload-box">
+                            <div class="upload-icon">▣</div>
+                            <h4>Business Logo</h4>
+                            <p>Recommended: square image, JPG or PNG.</p>
+
+                            <input
+                                type="file"
+                                id="businessLogo"
+                                name="businessLogo"
+                                accept="image/png,image/jpeg,image/webp"
+                            >
+
+                            <img
+                                id="logoPreview"
+                                class="image-preview"
+                                alt="Business logo preview"
+                            >
+                        </div>
+
+                        <div class="upload-box">
+                            <div class="upload-icon">▧</div>
+                            <h4>Cover Photo</h4>
+                            <p>Recommended: wide business or shop image.</p>
+
+                            <input
+                                type="file"
+                                id="businessCover"
+                                name="businessCover"
+                                accept="image/png,image/jpeg,image/webp"
+                            >
+
+                            <img
+                                id="coverPreview"
+                                class="image-preview"
+                                alt="Business cover preview"
+                            >
+                        </div>
+
+                    </div>
+
+                    <span class="form-hint">
+                        Image previews work in this demo. Permanent image storage
+                        will be connected through Supabase Storage later.
+                    </span>
+                </section>
+
+                <label class="terms-check">
+                    <input type="checkbox" id="agreeTerms" required>
+                    <span>
+                        I confirm that the information provided is accurate and
+                        I agree to the <a href="terms.html">Terms & Conditions</a>
+                        and <a href="privacy.html">Privacy Policy</a> of GLOBAL MARKET.
+                    </span>
+                </label>
+
+                <button type="submit" class="submit-button" id="submitButton">
+                    Submit Business Registration
+                </button>
+
+                <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+
+                <p class="registration-note">
+                    Submitting this form in the current frontend demo does not
+                    create a permanent business account. Business registration,
+                    authentication, image uploads and approval will be connected
+                    to Supabase in the backend integration stage.
+                </p>
+
+            </form>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="layout.js" defer></script>
+
+    <script>
+        // GLOBAL MARKET - Business Registration
+
+        function previewImage(inputId, previewId) {
+            const input = document.getElementById(inputId);
+            const preview = document.getElementById(previewId);
+
+            input.addEventListener("change", function () {
+                const file = this.files[0];
+
+                if (!file) {
+                    preview.removeAttribute("src");
+                    preview.style.display = "none";
+                    return;
+                }
+
+                if (!file.type.startsWith("image/")) {
+                    alert("Please select an image file.");
+                    this.value = "";
+                    preview.style.display = "none";
+                    return;
+                }
+
+                if (file.size > 5 * 1024 * 1024) {
+                    alert("Please choose an image smaller than 5MB.");
+                    this.value = "";
+                    preview.style.display = "none";
+                    return;
+                }
+
+                const reader = new FileReader();
+
+                reader.onload = function (event) {
+                    preview.src = event.target.result;
+                    preview.style.display = "block";
+                };
+
+                reader.readAsDataURL(file);
+            });
+        }
+
+        previewImage("businessLogo", "logoPreview");
+        previewImage("businessCover", "coverPreview");
+
+        const registrationForm = document.getElementById("businessRegistrationForm");
+        const formMessage = document.getElementById("formMessage");
+
+        registrationForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            if (!registrationForm.checkValidity()) {
+                registrationForm.reportValidity();
+                return;
+            }
+
+            formMessage.className = "form-message success";
+
+            formMessage.textContent =
+                "Your form is valid. Backend registration is not connected yet. " +
+                "Your details have not been submitted or permanently saved.";
+
+            formMessage.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        });
+    </script>
+
+</body>
+</html>
+
