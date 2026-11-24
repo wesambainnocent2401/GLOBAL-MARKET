@@ -1,1 +1,524 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Complete your GLOBAL MARKET payment securely.">
+
+    <title>Payment | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f3f6fa;
+            color: #172b4d;
+            font-family: Arial, sans-serif;
+        }
+
+        .payment-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .payment-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .payment-heading h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .payment-heading p {
+            color: #68778d;
+        }
+
+        .payment-layout {
+            display: grid;
+            grid-template-columns: 1.4fr 0.8fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .payment-card,
+        .summary-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 22px rgba(20, 40, 70, 0.07);
+        }
+
+        .payment-card h2,
+        .summary-card h2 {
+            margin-top: 0;
+            font-size: 21px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #dce3ec;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            background: #fff;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #d6a83e;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .method-option {
+            border: 1px solid #dce3ec;
+            border-radius: 10px;
+            padding: 15px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .method-option:has(input:checked) {
+            border: 2px solid #d6a83e;
+            background: #fffaf0;
+        }
+
+        .method-option input {
+            accent-color: #d6a83e;
+        }
+
+        .method-option span {
+            display: block;
+            margin-top: 8px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .method-icon {
+            font-size: 25px;
+        }
+
+        .payment-instructions {
+            background: #f7f9fc;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .payment-instructions.active {
+            display: block;
+        }
+
+        .payment-instructions p {
+            color: #66758a;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 13px 0;
+            border-bottom: 1px solid #edf0f4;
+            font-size: 14px;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .total-amount {
+            color: #c18b19;
+        }
+
+        .secure-note {
+            background: #f1f7f3;
+            color: #286344;
+            padding: 13px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+
+        .pay-button {
+            width: 100%;
+            border: none;
+            border-radius: 9px;
+            padding: 15px;
+            background: #142b4a;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .pay-button:hover {
+            background: #203e66;
+        }
+
+        .notice {
+            background: #fff7e6;
+            border: 1px solid #f0d99e;
+            color: #795719;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-top: 18px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #172b4d;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @media (max-width: 750px) {
+            .payment-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-heading h1 {
+                font-size: 25px;
+            }
+
+            .payment-container {
+                padding: 12px;
+                margin: 20px auto;
+            }
+
+            .payment-card,
+            .summary-card {
+                padding: 19px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SHARED HEADER -->
+    <div id="site-header"></div>
+
+    <main class="payment-container">
+
+        <div class="payment-heading">
+            <h1>Complete Your Payment</h1>
+            <p>Review your order and choose your preferred payment method.</p>
+        </div>
+
+        <div class="payment-layout">
+
+            <!-- PAYMENT FORM -->
+            <section class="payment-card">
+
+                <h2>Payment Details</h2>
+
+                <form id="paymentForm">
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input
+                            type="text"
+                            id="fullName"
+                            placeholder="Enter your full name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="example@email.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="07XXXXXXXX"
+                            required
+                        >
+                    </div>
+
+                    <h2>Choose Payment Method</h2>
+
+                    <div class="payment-methods">
+
+                        <label class="method-option">
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="mpesa"
+                                checked
+                            >
+                            <div class="method-icon">📱</div>
+                            <span>M-Pesa</span>
+                        </label>
+
+                        <label class="method-option">
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="card"
+                            >
+                            <div class="method-icon">💳</div>
+                            <span>Bank Card</span>
+                        </label>
+
+                        <label class="method-option">
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="bank"
+                            >
+                            <div class="method-icon">🏦</div>
+                            <span>Bank Transfer</span>
+                        </label>
+
+                    </div>
+
+                    <!-- M-PESA INSTRUCTIONS -->
+                    <div
+                        class="payment-instructions active"
+                        id="mpesaInstructions"
+                    >
+                        <h3>M-Pesa Payment</h3>
+                        <p>
+                            Once payment integration is activated,
+                            you will receive an M-Pesa payment prompt
+                            on your registered phone.
+                        </p>
+                    </div>
+
+                    <!-- CARD INSTRUCTIONS -->
+                    <div
+                        class="payment-instructions"
+                        id="cardInstructions"
+                    >
+                        <h3>Bank Card Payment</h3>
+                        <p>
+                            Card payments will be processed through
+                            a secure payment provider after integration.
+                            Do not enter your card details on this demo page.
+                        </p>
+                    </div>
+
+                    <!-- BANK INSTRUCTIONS -->
+                    <div
+                        class="payment-instructions"
+                        id="bankInstructions"
+                    >
+                        <h3>Bank Transfer</h3>
+                        <p>
+                            Bank account details and payment reference
+                            will be provided when bank payment services
+                            are configured.
+                        </p>
+                    </div>
+
+                    <button type="submit" class="pay-button">
+                        Continue to Payment
+                    </button>
+
+                    <div class="notice">
+                        <strong>Development notice:</strong>
+                        This page is currently a frontend demonstration.
+                        No money will be charged and no payment will be
+                        processed until a payment provider is connected.
+                    </div>
+
+                </form>
+
+                <a href="index.html" class="back-link">
+                    ← Back to Home
+                </a>
+
+            </section>
+
+            <!-- ORDER SUMMARY -->
+            <aside class="summary-card">
+
+                <h2>Payment Summary</h2>
+
+                <div class="summary-row">
+                    <span>Payment Description</span>
+                    <strong id="paymentDescription">
+                        Advertisement
+                    </strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Plan</span>
+                    <strong id="paymentPlan">
+                        Standard
+                    </strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <strong id="subtotal">KSh 0</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Additional Fees</span>
+                    <strong id="fees">KSh 0</strong>
+                </div>
+
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span class="total-amount" id="total">
+                        KSh 0
+                    </span>
+                </div>
+
+                <div class="secure-note">
+                    🔒 Your payment information should only be
+                    submitted through an officially integrated
+                    and secure payment provider.
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+    <!-- SHARED FOOTER -->
+    <div id="site-footer"></div>
+
+    <script src="layout.js" defer></script>
+
+    <script>
+        // PAYMENT METHOD SWITCHING
+
+        const methods = document.querySelectorAll(
+            'input[name="paymentMethod"]'
+        );
+
+        const instructions = {
+            mpesa: document.getElementById("mpesaInstructions"),
+            card: document.getElementById("cardInstructions"),
+            bank: document.getElementById("bankInstructions")
+        };
+
+        methods.forEach(method => {
+            method.addEventListener("change", function () {
+
+                Object.values(instructions).forEach(section => {
+                    section.classList.remove("active");
+                });
+
+                instructions[this.value].classList.add("active");
+            });
+        });
+
+
+        // PAYMENT SUMMARY
+
+        const params = new URLSearchParams(window.location.search);
+
+        const description =
+            params.get("description") || "Advertisement";
+
+        const plan =
+            params.get("plan") || "Standard";
+
+        const amount =
+            Number(params.get("amount")) || 0;
+
+        const fee = 0;
+        const totalAmount = amount + fee;
+
+        document.getElementById("paymentDescription").textContent =
+            description;
+
+        document.getElementById("paymentPlan").textContent =
+            plan;
+
+        document.getElementById("subtotal").textContent =
+            "KSh " + amount.toLocaleString("en-KE");
+
+        document.getElementById("fees").textContent =
+            "KSh " + fee.toLocaleString("en-KE");
+
+        document.getElementById("total").textContent =
+            "KSh " + totalAmount.toLocaleString("en-KE");
+
+
+        // FORM VALIDATION
+
+        document.getElementById("paymentForm").addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+                if (!this.checkValidity()) {
+                    this.reportValidity();
+                    return;
+                }
+
+                alert(
+                    "Your details have been validated. " +
+                    "Real payment processing is not yet available. " +
+                    "Please try again after payment integration."
+                );
+
+            }
+        );
+    </script>
+
+</body>
+</html>
+
