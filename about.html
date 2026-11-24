@@ -1,1 +1,770 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3f5f8">
+
+    <meta name="description" content="Learn about GLOBAL MARKET, a marketplace connecting buyers, sellers, businesses and service providers.">
+
+    <title>About Us | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --navy: #142b49;
+            --blue: #315b83;
+            --gold: #c69b43;
+            --background: #f3f5f8;
+            --muted: #697586;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: #263548;
+            font-family: Arial, sans-serif;
+        }
+
+        .about-hero {
+            position: relative;
+            min-height: 390px;
+            display: flex;
+            align-items: center;
+            padding: 65px 6%;
+            color: white;
+            background:
+                linear-gradient(100deg, rgba(15,35,59,.95), rgba(24,57,91,.68)),
+                url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1600");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 720px;
+        }
+
+        .eyebrow {
+            color: #e8c982;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .about-hero h1 {
+            margin: 16px 0;
+            font-size: clamp(32px, 5vw, 49px);
+            line-height: 1.15;
+        }
+
+        .about-hero p {
+            max-width: 650px;
+            color: #e0e8f1;
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        .hero-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 14px 22px;
+            border-radius: 7px;
+            background: var(--gold);
+            color: #172b42;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .about-container {
+            width: min(1120px, 92%);
+            margin: 55px auto 70px;
+        }
+
+        .section-heading {
+            max-width: 720px;
+            margin: 0 auto 30px;
+            text-align: center;
+        }
+
+        .section-heading span {
+            color: #a77d2e;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.7px;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            margin: 11px 0;
+            color: var(--navy);
+            font-size: clamp(23px, 4vw, 31px);
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 35px;
+            align-items: center;
+            margin-bottom: 65px;
+        }
+
+        .intro-text h2 {
+            margin: 0 0 16px;
+            color: var(--navy);
+            font-size: 28px;
+        }
+
+        .intro-text p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .intro-image {
+            width: 100%;
+            height: 330px;
+            object-fit: cover;
+            border-radius: 13px;
+            box-shadow: 0 12px 30px rgba(20,43,73,.12);
+        }
+
+        .purpose-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            margin-bottom: 65px;
+        }
+
+        .purpose-card {
+            padding: 25px;
+            background: white;
+            border: 1px solid #e5e9ef;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(20,43,73,.035);
+        }
+
+        .purpose-icon {
+            display: grid;
+            width: 48px;
+            height: 48px;
+            place-items: center;
+            margin-bottom: 16px;
+            border-radius: 11px;
+            background: #f5f0e4;
+            font-size: 23px;
+        }
+
+        .purpose-card h3 {
+            margin: 0 0 10px;
+            color: var(--navy);
+            font-size: 17px;
+        }
+
+        .purpose-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .features-section {
+            margin-bottom: 65px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .feature-card {
+            overflow: hidden;
+            background: white;
+            border: 1px solid #e4e9ef;
+            border-radius: 11px;
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 170px;
+            display: block;
+            object-fit: cover;
+        }
+
+        .feature-content {
+            padding: 18px;
+        }
+
+        .feature-content h3 {
+            margin: 0 0 9px;
+            color: var(--navy);
+            font-size: 16px;
+        }
+
+        .feature-content p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .how-section {
+            padding: 40px 25px;
+            margin-bottom: 65px;
+            background: white;
+            border: 1px solid #e5e9ef;
+            border-radius: 13px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 17px;
+        }
+
+        .step-card {
+            padding: 20px 12px;
+            text-align: center;
+        }
+
+        .step-number {
+            display: grid;
+            width: 42px;
+            height: 42px;
+            place-items: center;
+            margin: 0 auto 13px;
+            border-radius: 50%;
+            background: var(--navy);
+            color: white;
+            font-weight: bold;
+        }
+
+        .step-card h3 {
+            color: var(--navy);
+            font-size: 14px;
+        }
+
+        .step-card p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .values-section {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 35px;
+            align-items: center;
+            margin-bottom: 65px;
+        }
+
+        .values-section img {
+            width: 100%;
+            height: 330px;
+            object-fit: cover;
+            border-radius: 13px;
+        }
+
+        .values-content h2 {
+            margin: 0 0 15px;
+            color: var(--navy);
+            font-size: 27px;
+        }
+
+        .values-content p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .value-list {
+            display: grid;
+            gap: 13px;
+            margin-top: 20px;
+        }
+
+        .value-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .value-check {
+            display: grid;
+            width: 25px;
+            height: 25px;
+            flex-shrink: 0;
+            place-items: center;
+            border-radius: 50%;
+            background: #f5f0e4;
+            color: #89651f;
+            font-size: 13px;
+        }
+
+        .value-item strong {
+            color: var(--navy);
+            font-size: 13px;
+        }
+
+        .value-item p {
+            margin: 4px 0 0;
+            font-size: 12px;
+        }
+
+        .about-cta {
+            padding: 45px 25px;
+            text-align: center;
+            border-radius: 14px;
+            color: white;
+            background: linear-gradient(110deg, #142b49, #315b83);
+        }
+
+        .about-cta h2 {
+            margin: 0 0 12px;
+            font-size: 27px;
+        }
+
+        .about-cta p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: #e0e8f1;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .cta-actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .cta-actions a {
+            padding: 13px 20px;
+            border-radius: 7px;
+            color: var(--navy);
+            background: var(--gold);
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .cta-actions a.secondary {
+            color: white;
+            background: transparent;
+            border: 1px solid white;
+        }
+
+        @media (max-width: 850px) {
+            .purpose-grid,
+            .features-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 650px) {
+            .about-hero {
+                min-height: 340px;
+                padding: 45px 6%;
+            }
+
+            .intro-grid,
+            .values-section {
+                grid-template-columns: 1fr;
+            }
+
+            .intro-image,
+            .values-section img {
+                height: 230px;
+            }
+
+            .purpose-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .how-section {
+                padding: 30px 15px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="site-header"></div>
+
+    <main>
+
+        <section class="about-hero">
+            <div class="hero-content">
+                <span class="eyebrow">Discover GLOBAL MARKET</span>
+
+                <h1>Your World. One Marketplace.</h1>
+
+                <p>
+                    GLOBAL MARKET is designed to bring buyers, sellers,
+                    businesses and service providers together through
+                    one convenient digital marketplace.
+                </p>
+
+                <a href="categories.html" class="hero-button">
+                    Explore Marketplace →
+                </a>
+            </div>
+        </section>
+
+        <div class="about-container">
+
+            <section class="intro-grid">
+
+                <div class="intro-text">
+                    <h2>Who We Are</h2>
+
+                    <p>
+                        GLOBAL MARKET is a marketplace concept designed to
+                        make discovering products, services, businesses
+                        and opportunities easier.
+                    </p>
+
+                    <p>
+                        Our platform brings different marketplace categories
+                        together in one place. Instead of searching across
+                        many separate platforms, users can explore a variety
+                        of listings through one organized experience.
+                    </p>
+
+                    <p>
+                        From everyday products and professional services
+                        to educational opportunities, businesses and more,
+                        GLOBAL MARKET aims to create a connected digital
+                        marketplace for people and organizations.
+                    </p>
+                </div>
+
+                <img
+                    class="intro-image"
+                    src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1000"
+                    alt="People collaborating in a business meeting"
+                    loading="lazy"
+                >
+
+            </section>
+
+            <section>
+
+                <div class="section-heading">
+                    <span>Our Direction</span>
+                    <h2>Our Mission, Vision & Purpose</h2>
+                    <p>
+                        The ideas that guide the development of GLOBAL MARKET.
+                    </p>
+                </div>
+
+                <div class="purpose-grid">
+
+                    <article class="purpose-card">
+                        <div class="purpose-icon">🎯</div>
+                        <h3>Our Mission</h3>
+                        <p>
+                            To make it easier for people to discover products,
+                            services and businesses while providing sellers
+                            with an accessible digital marketplace.
+                        </p>
+                    </article>
+
+                    <article class="purpose-card">
+                        <div class="purpose-icon">🌍</div>
+                        <h3>Our Vision</h3>
+                        <p>
+                            To grow into a trusted and accessible marketplace
+                            that connects people, businesses and opportunities
+                            across communities and beyond.
+                        </p>
+                    </article>
+
+                    <article class="purpose-card">
+                        <div class="purpose-icon">💡</div>
+                        <h3>Our Purpose</h3>
+                        <p>
+                            To simplify online discovery, support business
+                            visibility and create opportunities for people
+                            to connect through technology.
+                        </p>
+                    </article>
+
+                </div>
+
+            </section>
+
+            <section class="features-section">
+
+                <div class="section-heading">
+                    <span>One Connected Platform</span>
+                    <h2>What You Can Discover</h2>
+                    <p>
+                        Explore different sections of the GLOBAL MARKET platform.
+                    </p>
+                </div>
+
+                <div class="features-grid">
+
+                    <article class="feature-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800"
+                            alt="Retail products displayed in a shop"
+                            loading="lazy"
+                        >
+                        <div class="feature-content">
+                            <h3>Products & Shopping</h3>
+                            <p>
+                                Explore products across different categories,
+                                compare listings and connect with sellers.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="feature-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800"
+                            alt="Modern business office"
+                            loading="lazy"
+                        >
+                        <div class="feature-content">
+                            <h3>Business Directory</h3>
+                            <p>
+                                Discover businesses, shops, companies and
+                                service providers.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="feature-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800"
+                            alt="Books in a learning environment"
+                            loading="lazy"
+                        >
+                        <div class="feature-content">
+                            <h3>Education & Learning</h3>
+                            <p>
+                                Explore educational institutions, training
+                                services and learning opportunities.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="feature-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800"
+                            alt="Modern commercial buildings"
+                            loading="lazy"
+                        >
+                        <div class="feature-content">
+                            <h3>Real Estate</h3>
+                            <p>
+                                Discover property listings, houses, land
+                                and commercial spaces.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="feature-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800"
+                            alt="Vehicle in an automotive workshop"
+                            loading="lazy"
+                        >
+                        <div class="feature-content">
+                            <h3>Vehicles & Automotive</h3>
+                            <p>
+                                Explore vehicles, automotive products
+                                and related services.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="feature-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800"
+                            alt="People working together"
+                            loading="lazy"
+                        >
+                        <div class="feature-content">
+                            <h3>Services & Opportunities</h3>
+                            <p>
+                                Discover professional services, jobs
+                                and other opportunities.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+
+            </section>
+
+            <section class="how-section">
+
+                <div class="section-heading">
+                    <span>Simple Experience</span>
+                    <h2>How GLOBAL MARKET Works</h2>
+                    <p>
+                        A simple process for discovering and promoting listings.
+                    </p>
+                </div>
+
+                <div class="steps-grid">
+
+                    <article class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Explore</h3>
+                        <p>
+                            Browse categories and discover products,
+                            businesses and services.
+                        </p>
+                    </article>
+
+                    <article class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Compare</h3>
+                        <p>
+                            Review listing information and identify
+                            options that meet your needs.
+                        </p>
+                    </article>
+
+                    <article class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Connect</h3>
+                        <p>
+                            Reach out to sellers and service providers
+                            through available contact options.
+                        </p>
+                    </article>
+
+                    <article class="step-card">
+                        <div class="step-number">4</div>
+                        <h3>Promote</h3>
+                        <p>
+                            Create an account and explore opportunities
+                            to advertise your own business.
+                        </p>
+                    </article>
+
+                </div>
+
+            </section>
+
+            <section class="values-section">
+
+                <img
+                    src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1000"
+                    alt="Team members working together"
+                    loading="lazy"
+                >
+
+                <div class="values-content">
+
+                    <h2>What We Value</h2>
+
+                    <p>
+                        We believe a useful marketplace should be simple
+                        to navigate, transparent in its information
+                        and accessible to different kinds of users.
+                    </p>
+
+                    <div class="value-list">
+
+                        <div class="value-item">
+                            <div class="value-check">✓</div>
+                            <div>
+                                <strong>Accessibility</strong>
+                                <p>Making discovery easier across devices.</p>
+                            </div>
+                        </div>
+
+                        <div class="value-item">
+                            <div class="value-check">✓</div>
+                            <div>
+                                <strong>Innovation</strong>
+                                <p>Using technology to improve everyday experiences.</p>
+                            </div>
+                        </div>
+
+                        <div class="value-item">
+                            <div class="value-check">✓</div>
+                            <div>
+                                <strong>Trust & Transparency</strong>
+                                <p>Encouraging accurate information and responsible connections.</p>
+                            </div>
+                        </div>
+
+                        <div class="value-item">
+                            <div class="value-check">✓</div>
+                            <div>
+                                <strong>Opportunity</strong>
+                                <p>Supporting visibility for businesses and service providers.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section class="about-cta">
+
+                <h2>Be Part of GLOBAL MARKET</h2>
+
+                <p>
+                    Whether you are searching for something, promoting a
+                    business or exploring opportunities, GLOBAL MARKET
+                    is being developed to bring these experiences together.
+                </p>
+
+                <div class="cta-actions">
+                    <a href="categories.html">Explore Categories</a>
+                    <a href="business-registration.html" class="secondary">
+                        Register Your Business
+                    </a>
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="layout.js" defer></script>
+
+</body>
+</html>
+
