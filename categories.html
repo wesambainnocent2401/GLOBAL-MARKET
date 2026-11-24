@@ -1,1 +1,513 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f7fb">
+
+    <meta name="description" content="Explore all product, service, business and opportunity categories on GLOBAL MARKET.">
+
+    <title>Explore Categories | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f7fb;
+            color: #192d46;
+            font-family: Arial, sans-serif;
+        }
+
+        .categories-page {
+            width: min(1200px, 92%);
+            margin: auto;
+            padding: 35px 0 60px;
+        }
+
+        .category-hero {
+            background: linear-gradient(120deg, #15395f, #315b80);
+            border-radius: 16px;
+            padding: 45px 35px;
+            color: white;
+            margin-bottom: 35px;
+        }
+
+        .category-hero span {
+            color: #e4bd6c;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .category-hero h1 {
+            font-size: clamp(28px, 5vw, 40px);
+            margin: 15px 0 10px;
+        }
+
+        .category-hero p {
+            color: #e1eaf4;
+            line-height: 1.8;
+            max-width: 650px;
+            font-size: 14px;
+        }
+
+        .category-search {
+            display: flex;
+            gap: 10px;
+            margin-top: 23px;
+            max-width: 650px;
+        }
+
+        .category-search input {
+            flex: 1;
+            min-width: 0;
+            padding: 14px;
+            border: none;
+            border-radius: 7px;
+            outline: none;
+        }
+
+        .category-search button {
+            padding: 14px 20px;
+            background: #d5ad55;
+            color: #142c4b;
+            border: none;
+            border-radius: 7px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .category-section-heading {
+            margin: 35px 0 20px;
+        }
+
+        .category-section-heading h2 {
+            color: #17395f;
+            font-size: 24px;
+            margin: 0 0 8px;
+        }
+
+        .category-section-heading p {
+            color: #7a8798;
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .category-card {
+            display: block;
+            background: white;
+            border: 1px solid #e5ebf2;
+            border-radius: 12px;
+            padding: 22px 18px;
+            text-decoration: none;
+            transition: .2s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            border-color: #d4ad59;
+            box-shadow: 0 10px 24px rgba(20,40,70,.08);
+        }
+
+        .category-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 13px;
+            display: grid;
+            place-items: center;
+            background: #edf3fa;
+            font-size: 25px;
+            margin-bottom: 16px;
+        }
+
+        .category-card h3 {
+            color: #17395f;
+            font-size: 15px;
+            margin: 0 0 9px;
+        }
+
+        .category-card p {
+            color: #77869a;
+            font-size: 12px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .category-arrow {
+            display: inline-block;
+            margin-top: 15px;
+            color: #a17b2c;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .category-help {
+            margin-top: 45px;
+            padding: 28px;
+            background: #eaf0f7;
+            border: 1px solid #dce5ef;
+            border-radius: 12px;
+        }
+
+        .category-help h2 {
+            color: #17395f;
+            margin: 0 0 10px;
+            font-size: 21px;
+        }
+
+        .category-help p {
+            color: #68788c;
+            line-height: 1.7;
+            font-size: 13px;
+        }
+
+        .category-help a {
+            display: inline-block;
+            margin-top: 8px;
+            background: #17395f;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .no-results {
+            display: none;
+            padding: 30px;
+            text-align: center;
+            background: white;
+            border-radius: 10px;
+            color: #77869a;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 850px) {
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 520px) {
+            .categories-page {
+                padding-top: 20px;
+            }
+
+            .category-hero {
+                padding: 30px 20px;
+            }
+
+            .category-search {
+                flex-direction: column;
+            }
+
+            .category-search button {
+                width: 100%;
+            }
+
+            .category-grid {
+                gap: 12px;
+            }
+
+            .category-card {
+                padding: 17px 13px;
+            }
+
+            .category-card h3 {
+                font-size: 13px;
+            }
+
+            .category-card p {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SHARED HEADER -->
+    <div id="site-header"></div>
+
+    <main class="categories-page">
+
+        <section class="category-hero">
+
+            <span>EXPLORE GLOBAL MARKET</span>
+
+            <h1>Discover Our Marketplace Categories</h1>
+
+            <p>
+                From electronics and fashion to education,
+                property, professional services and businesses,
+                explore different opportunities in one place.
+            </p>
+
+            <form class="category-search" id="categorySearch">
+                <input
+                    type="search"
+                    id="categoryKeyword"
+                    placeholder="Search for a category..."
+                    aria-label="Search categories"
+                >
+
+                <button type="submit">Search</button>
+            </form>
+
+        </section>
+
+        <section>
+
+            <div class="category-section-heading">
+                <h2>All Marketplace Categories</h2>
+                <p>Choose a category to explore available listings.</p>
+            </div>
+
+            <div class="category-grid" id="categoryGrid">
+
+                <a href="category-listings.html?category=electronics"
+                   class="category-card">
+                    <div class="category-icon">📱</div>
+                    <h3>Electronics & Technology</h3>
+                    <p>Phones, computers, accessories and technology.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=fashion"
+                   class="category-card">
+                    <div class="category-icon">👕</div>
+                    <h3>Fashion & Clothing</h3>
+                    <p>Clothing, footwear, bags and accessories.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=food"
+                   class="category-card">
+                    <div class="category-icon">🍎</div>
+                    <h3>Food & Beverages</h3>
+                    <p>Food products, groceries, drinks and supplies.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=hotels"
+                   class="category-card">
+                    <div class="category-icon">🏨</div>
+                    <h3>Hotels, Tourism & Hospitality</h3>
+                    <p>Hotels, accommodation and travel services.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=beauty"
+                   class="category-card">
+                    <div class="category-icon">💄</div>
+                    <h3>Beauty & Personal Care</h3>
+                    <p>Beauty products, salons and personal care.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=home"
+                   class="category-card">
+                    <div class="category-icon">🛋️</div>
+                    <h3>Home, Furniture & Appliances</h3>
+                    <p>Furniture, home equipment and appliances.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=sports"
+                   class="category-card">
+                    <div class="category-icon">⚽</div>
+                    <h3>Sports & Fitness</h3>
+                    <p>Sports equipment, fitness and recreation.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=pets"
+                   class="category-card">
+                    <div class="category-icon">🐾</div>
+                    <h3>Pets & Animal Supplies</h3>
+                    <p>Animal products, pet supplies and accessories.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=vehicles"
+                   class="category-card">
+                    <div class="category-icon">🚗</div>
+                    <h3>Vehicles & Transport</h3>
+                    <p>Vehicles, transport and automotive services.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=property"
+                   class="category-card">
+                    <div class="category-icon">🏠</div>
+                    <h3>Real Estate & Property</h3>
+                    <p>Land, houses, rentals and commercial property.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=logistics"
+                   class="category-card">
+                    <div class="category-icon">🚚</div>
+                    <h3>Logistics & Delivery</h3>
+                    <p>Courier, delivery and transportation services.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=professional-services"
+                   class="category-card">
+                    <div class="category-icon">💼</div>
+                    <h3>Professional & Business Services</h3>
+                    <p>Consulting, accounting and business support.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=construction"
+                   class="category-card">
+                    <div class="category-icon">🏗️</div>
+                    <h3>Construction & Industrial Equipment</h3>
+                    <p>Building materials, tools and machinery.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=household-services"
+                   class="category-card">
+                    <div class="category-icon">🧹</div>
+                    <h3>Household & Personal Services</h3>
+                    <p>Cleaning, repairs and personal assistance.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=agriculture"
+                   class="category-card">
+                    <div class="category-icon">🌱</div>
+                    <h3>Agriculture & Farming</h3>
+                    <p>Farm produce, equipment and agricultural supplies.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=education"
+                   class="category-card">
+                    <div class="category-icon">🎓</div>
+                    <h3>Education & Training</h3>
+                    <p>Schools, courses, tutoring and online learning.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=jobs"
+                   class="category-card">
+                    <div class="category-icon">📋</div>
+                    <h3>Jobs & Careers</h3>
+                    <p>Employment, internships and career opportunities.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=entertainment"
+                   class="category-card">
+                    <div class="category-icon">🎬</div>
+                    <h3>Entertainment & Events</h3>
+                    <p>Events, entertainment and creative services.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=organizations"
+                   class="category-card">
+                    <div class="category-icon">🤝</div>
+                    <h3>Organizations & Community</h3>
+                    <p>Community groups and organizations.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+                <a href="category-listings.html?category=other"
+                   class="category-card">
+                    <div class="category-icon">🌍</div>
+                    <h3>Other & Miscellaneous</h3>
+                    <p>Explore additional products and services.</p>
+                    <span class="category-arrow">Explore Category →</span>
+                </a>
+
+            </div>
+
+            <div class="no-results" id="noResults">
+                No matching categories found. Try another search.
+            </div>
+
+        </section>
+
+        <section class="category-help">
+
+            <h2>Can't Find What You're Looking For?</h2>
+
+            <p>
+                Contact our support team if you need assistance
+                finding a category or exploring the marketplace.
+            </p>
+
+            <a href="contact.html">Contact Support</a>
+
+        </section>
+
+    </main>
+
+    <!-- SHARED FOOTER -->
+    <div id="site-footer"></div>
+
+    <script src="layout.js" defer></script>
+
+    <script>
+        const categorySearch = document.getElementById("categorySearch");
+        const categoryKeyword = document.getElementById("categoryKeyword");
+        const categoryCards = document.querySelectorAll(".category-card");
+        const noResults = document.getElementById("noResults");
+
+        categorySearch.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const searchValue = categoryKeyword.value
+                .trim()
+                .toLowerCase();
+
+            let visibleCount = 0;
+
+            categoryCards.forEach(function(card) {
+                const matches = card.textContent
+                    .toLowerCase()
+                    .includes(searchValue);
+
+                card.style.display = matches ? "block" : "none";
+
+                if (matches) {
+                    visibleCount++;
+                }
+            });
+
+            noResults.style.display =
+                visibleCount === 0 ? "block" : "none";
+        });
+
+        categoryKeyword.addEventListener("input", function() {
+            if (categoryKeyword.value.trim() === "") {
+                categoryCards.forEach(function(card) {
+                    card.style.display = "block";
+                });
+
+                noResults.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+</html>
+
