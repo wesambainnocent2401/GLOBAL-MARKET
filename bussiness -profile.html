@@ -1,1 +1,838 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f6f9">
+
+    <meta name="description" content="Discover business profiles, products, services and contact information on GLOBAL MARKET.">
+
+    <title>Business Profile | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --navy: #142c4c;
+            --gold: #c49a42;
+            --text: #26364a;
+            --muted: #748195;
+            --border: #e5eaf0;
+            --background: #f4f6f9;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .profile-page {
+            max-width: 1180px;
+            margin: auto;
+            padding: 24px 18px 55px;
+        }
+
+        .breadcrumb {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb a {
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .cover {
+            height: 260px;
+            border-radius: 14px;
+            background:
+                linear-gradient(90deg, rgba(15,36,61,.65), rgba(15,36,61,.1)),
+                url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1400");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .profile-header {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            padding: 22px;
+            margin-top: -35px;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .identity {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            min-width: 0;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 4px solid white;
+            background: #edf0f4;
+            flex-shrink: 0;
+        }
+
+        .business-name {
+            color: var(--navy);
+            font-size: 24px;
+            margin: 0 0 8px;
+        }
+
+        .business-category {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .profile-status {
+            display: inline-block;
+            margin-top: 9px;
+            background: #fff6e5;
+            color: #896a2d;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .btn {
+            display: inline-block;
+            border: none;
+            border-radius: 7px;
+            padding: 12px 16px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--navy);
+            color: white;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: white;
+        }
+
+        .btn-light {
+            background: #eef2f7;
+            color: var(--navy);
+        }
+
+        .profile-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.7fr) minmax(260px, .8fr);
+            gap: 22px;
+            align-items: start;
+            margin-top: 23px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 21px;
+            margin-bottom: 18px;
+        }
+
+        .section-title {
+            font-size: 19px;
+            color: var(--navy);
+            margin: 0 0 16px;
+        }
+
+        .description {
+            font-size: 14px;
+            line-height: 1.85;
+            color: #5c6b80;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .stat {
+            text-align: center;
+            background: #f5f7fa;
+            padding: 14px 8px;
+            border-radius: 8px;
+        }
+
+        .stat strong {
+            display: block;
+            color: var(--navy);
+            font-size: 20px;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .product {
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            overflow: hidden;
+        }
+
+        .product img {
+            width: 100%;
+            height: 155px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-info {
+            padding: 12px;
+        }
+
+        .product-info h3 {
+            font-size: 14px;
+            color: var(--navy);
+            margin: 0 0 7px;
+        }
+
+        .product-info p {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .product-link {
+            display: inline-block;
+            color: var(--navy);
+            font-size: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 12px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 125px;
+            object-fit: cover;
+            border-radius: 8px;
+            background: #edf0f4;
+        }
+
+        .service {
+            background: #f5f7fa;
+            padding: 13px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #53647a;
+        }
+
+        .service:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #edf0f4;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-label {
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 5px;
+        }
+
+        .contact-value {
+            font-size: 13px;
+            color: var(--navy);
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-value a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .hours {
+            background: #fff7e8;
+            color: #856528;
+            border-radius: 8px;
+            padding: 13px;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .map-placeholder {
+            min-height: 145px;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 15px;
+            background: #eaf0f6;
+            border-radius: 9px;
+            font-size: 13px;
+            color: var(--navy);
+        }
+
+        .review {
+            padding: 13px 0;
+            border-bottom: 1px solid #edf0f4;
+        }
+
+        .review:last-child {
+            border-bottom: none;
+        }
+
+        .review strong {
+            font-size: 13px;
+            color: var(--navy);
+        }
+
+        .stars {
+            color: var(--gold);
+            margin: 6px 0;
+        }
+
+        .review p {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .demo-note {
+            background: #fff8e9;
+            color: #755b22;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .empty-message {
+            display: none;
+            color: var(--muted);
+            background: #f5f7fa;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .report-link {
+            display: inline-block;
+            color: #a24a4a;
+            font-size: 12px;
+            text-decoration: none;
+            margin-top: 14px;
+        }
+
+        @media (max-width: 800px) {
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .profile-page {
+                padding: 17px 12px 40px;
+            }
+
+            .cover {
+                height: 190px;
+            }
+
+            .profile-header {
+                padding: 15px;
+            }
+
+            .identity {
+                align-items: flex-start;
+                gap: 11px;
+            }
+
+            .logo {
+                width: 65px;
+                height: 65px;
+            }
+
+            .business-name {
+                font-size: 19px;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery img {
+                height: 90px;
+            }
+
+            .actions {
+                width: 100%;
+            }
+
+            .actions .btn {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="site-header"></div>
+
+    <main class="profile-page">
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> /
+            <a href="businesses.html">Businesses</a> /
+            Business Profile
+        </div>
+
+        <div class="cover"></div>
+
+        <!-- Business identity -->
+        <section class="profile-header">
+
+            <div class="identity">
+
+                <img
+                    class="logo"
+                    src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=250"
+                    alt="Global Tech Solutions logo"
+                >
+
+                <div>
+                    <h1 class="business-name" id="businessName">
+                        Global Tech Solutions
+                    </h1>
+
+                    <div class="business-category" id="businessCategory">
+                        Technology • Computers • Digital Services
+                    </div>
+
+                    <span class="profile-status" id="businessStatus">
+                        DEMO BUSINESS PROFILE
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="actions">
+
+                <a href="messages.html" class="btn btn-primary">
+                    Contact Business
+                </a>
+
+                <button class="btn btn-gold" id="saveBusinessButton">
+                    ♡ Save Business
+                </button>
+
+            </div>
+
+        </section>
+
+        <div class="profile-layout">
+
+            <!-- MAIN PROFILE CONTENT -->
+            <div>
+
+                <div class="demo-note">
+                    Demonstration profile: the business information,
+                    products, photographs and reviews below are examples.
+                    Real profiles will be populated from Supabase after
+                    backend integration.
+                </div>
+
+                <!-- About -->
+                <section class="card">
+
+                    <h2 class="section-title">About Our Business</h2>
+
+                    <p class="description">
+                        Welcome to Global Tech Solutions.
+
+                        This is a sample business profile showing how
+                        registered businesses will introduce themselves
+                        to customers on GLOBAL MARKET.
+
+                        Business owners will be able to provide their
+                        company history, mission, areas of operation,
+                        specialities and other important information.
+
+                        Customers will be able to explore the business
+                        and contact its representatives directly.
+                    </p>
+
+                    <div class="stats">
+
+                        <div class="stat">
+                            <strong>--</strong>
+                            <span>Products</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>--</strong>
+                            <span>Services</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>--</strong>
+                            <span>Reviews</span>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- Products -->
+                <section class="card">
+
+                    <h2 class="section-title">Our Products</h2>
+
+                    <div class="product-grid">
+
+                        <article class="product">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600"
+                                alt="Laptop computer"
+                                loading="lazy"
+                            >
+
+                            <div class="product-info">
+                                <h3>Laptop Computers</h3>
+
+                                <p>
+                                    Sample product description.
+                                    Product prices and availability
+                                    will be provided by the business.
+                                </p>
+
+                                <a href="category-listings.html"
+                                   class="product-link">
+                                    Explore products →
+                                </a>
+                            </div>
+
+                        </article>
+
+                        <article class="product">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600"
+                                alt="Smartphone"
+                                loading="lazy"
+                            >
+
+                            <div class="product-info">
+                                <h3>Smartphones</h3>
+
+                                <p>
+                                    Sample product description.
+                                    Actual product information will
+                                    come from the advertiser.
+                                </p>
+
+                                <a href="category-listings.html"
+                                   class="product-link">
+                                    Explore products →
+                                </a>
+                            </div>
+
+                        </article>
+
+                    </div>
+
+                    <div class="empty-message" id="productsEmpty">
+                        No products have been added yet.
+                    </div>
+
+                </section>
+
+                <!-- Services -->
+                <section class="card">
+
+                    <h2 class="section-title">Our Services</h2>
+
+                    <div class="service">
+                        <strong>Computer Support</strong><br>
+                        Sample service description.
+                    </div>
+
+                    <div class="service">
+                        <strong>Website Development</strong><br>
+                        Sample service description.
+                    </div>
+
+                    <div class="service">
+                        <strong>Technology Consultancy</strong><br>
+                        Sample service description.
+                    </div>
+
+                </section>
+
+                <!-- Business gallery -->
+                <section class="card">
+
+                    <h2 class="section-title">Business Gallery</h2>
+
+                    <div class="gallery">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400"
+                            alt="Business office"
+                            loading="lazy"
+                        >
+
+                        <img
+                            src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=400"
+                            alt="Office workspace"
+                            loading="lazy"
+                        >
+
+                        <img
+                            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400"
+                            alt="Business meeting space"
+                            loading="lazy"
+                        >
+
+                        <img
+                            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400"
+                            alt="Computer workspace"
+                            loading="lazy"
+                        >
+
+                        <img
+                            src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400"
+                            alt="Modern office"
+                            loading="lazy"
+                        >
+
+                        <img
+                            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400"
+                            alt="Office interior"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+                </section>
+
+                <!-- Reviews -->
+                <section class="card">
+
+                    <h2 class="section-title">Customer Reviews</h2>
+
+                    <div class="review">
+
+                        <strong>Sample Customer</strong>
+
+                        <div class="stars">★★★★★</div>
+
+                        <p>
+                            This is a sample review layout.
+                            Genuine reviews will be submitted
+                            by registered customers.
+                        </p>
+
+                    </div>
+
+                    <div class="review">
+
+                        <strong>Sample Visitor</strong>
+
+                        <div class="stars">★★★★☆</div>
+
+                        <p>
+                            This demonstration shows how customer
+                            feedback will appear on business profiles.
+                        </p>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+            <!-- SIDEBAR -->
+            <aside>
+
+                <!-- Contact details -->
+                <section class="card">
+
+                    <h2 class="section-title">Contact Information</h2>
+
+                    <div class="contact-item">
+                        <div class="contact-label">Location</div>
+                        <div class="contact-value">Nairobi, Kenya</div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value">
+                            Not supplied in this demo
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-label">Telephone</div>
+                        <div class="contact-value">
+                            Not supplied in this demo
+                        </div>
+                    </div>
+
+                    <a href="messages.html"
+                       class="btn btn-primary"
+                       style="display:block;margin-top:15px;">
+                        Send Business Message
+                    </a>
+
+                </section>
+
+                <!-- Opening hours -->
+                <section class="card">
+
+                    <h2 class="section-title">Opening Hours</h2>
+
+                    <div class="hours">
+                        Business hours will be displayed here
+                        when supplied by the registered owner.
+                    </div>
+
+                </section>
+
+                <!-- Location -->
+                <section class="card">
+
+                    <h2 class="section-title">Find Our Business</h2>
+
+                    <div class="map-placeholder">
+                        <div>
+                            <div style="font-size:27px;">📍</div>
+                            Business map and directions will be
+                            available after location information
+                            is provided.
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- Registration -->
+                <section class="card">
+
+                    <h2 class="section-title">Grow Your Business</h2>
+
+                    <p class="description">
+                        Create a business profile and showcase
+                        your products and services to customers.
+                    </p>
+
+                    <a href="business-registration.html"
+                       class="btn btn-gold"
+                       style="display:block;">
+                        Register Your Business
+                    </a>
+
+                    <a href="businesses.html"
+                       class="btn btn-light"
+                       style="display:block;margin-top:10px;">
+                        Browse Businesses
+                    </a>
+
+                    <a href="contact.html" class="report-link">
+                        Report this business
+                    </a>
+
+                </section>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script>
+        // Read a business ID from the page URL.
+        // Supabase will use this ID to load the correct business later.
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const businessId = urlParams.get("id");
+
+        // Demo save action.
+        document.getElementById("saveBusinessButton")
+            .addEventListener("click", function() {
+
+                alert(
+                    "Business favourites will be connected to registered user accounts after Supabase integration."
+                );
+
+            });
+
+        // Keep the ID available for future backend integration.
+        if (businessId) {
+            console.log("Business profile requested:", businessId);
+        }
+    </script>
+
+    <script src="layout.js" defer></script>
+
+</body>
+</html>
+
