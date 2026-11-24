@@ -1,1 +1,754 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f7fb">
+
+    <meta name="description" content="Explore vehicle, property, product and service listings on GLOBAL MARKET.">
+
+    <title>Marketplace Listings | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f7fb;
+            color: #192d46;
+            font-family: Arial, sans-serif;
+        }
+
+        .listings-page {
+            width: min(1200px, 92%);
+            margin: auto;
+            padding: 35px 0 60px;
+        }
+
+        .listing-hero {
+            padding: 40px;
+            background: linear-gradient(120deg, #15395f, #315b80);
+            border-radius: 16px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .listing-hero span {
+            color: #e4bd6c;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .listing-hero h1 {
+            font-size: clamp(27px, 5vw, 40px);
+            margin: 15px 0 10px;
+        }
+
+        .listing-hero p {
+            color: #e1eaf4;
+            max-width: 650px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .listing-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 25px 0 35px;
+            background: white;
+            padding: 17px;
+            border-radius: 11px;
+            border: 1px solid #e5ebf2;
+        }
+
+        .listing-controls input,
+        .listing-controls select {
+            flex: 1;
+            min-width: 150px;
+            padding: 13px;
+            border: 1px solid #dce4ed;
+            border-radius: 7px;
+            outline: none;
+            background: white;
+            color: #253c58;
+        }
+
+        .listing-controls button {
+            background: #17395f;
+            color: white;
+            padding: 13px 20px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .listing-section {
+            margin: 45px 0;
+        }
+
+        .listing-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .listing-heading h2 {
+            color: #17395f;
+            font-size: 23px;
+            margin: 0;
+        }
+
+        .listing-heading p {
+            color: #7a8798;
+            font-size: 13px;
+            margin: 7px 0 0;
+        }
+
+        .demo-label {
+            background: #fff3d9;
+            color: #8c681d;
+            border-radius: 20px;
+            padding: 7px 11px;
+            font-size: 10px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .listing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .listing-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e5ebf2;
+            transition: .2s ease;
+        }
+
+        .listing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(20,40,70,.09);
+        }
+
+        .listing-image-wrap {
+            height: 210px;
+            position: relative;
+            background: #e8edf3;
+            overflow: hidden;
+        }
+
+        .listing-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .3s;
+        }
+
+        .listing-card:hover .listing-image {
+            transform: scale(1.04);
+        }
+
+        .listing-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: white;
+            color: #17395f;
+            padding: 7px 10px;
+            border-radius: 5px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .listing-content {
+            padding: 17px;
+        }
+
+        .listing-category {
+            color: #a17b2c;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .listing-content h3 {
+            color: #17395f;
+            font-size: 16px;
+            margin: 9px 0;
+        }
+
+        .listing-description {
+            color: #77869a;
+            font-size: 12px;
+            line-height: 1.7;
+            min-height: 40px;
+        }
+
+        .listing-location {
+            color: #77869a;
+            font-size: 11px;
+            margin-top: 12px;
+        }
+
+        .listing-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            border-top: 1px solid #edf0f4;
+            margin-top: 15px;
+            padding-top: 14px;
+        }
+
+        .listing-price {
+            color: #17395f;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .listing-link {
+            color: white;
+            background: #17395f;
+            padding: 9px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .listing-link:hover {
+            background: #b08736;
+        }
+
+        .empty-results {
+            display: none;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            color: #77869a;
+        }
+
+        .demo-notice {
+            margin-top: 35px;
+            background: #fff8e9;
+            border: 1px solid #f0dfb7;
+            padding: 16px;
+            border-radius: 9px;
+            color: #806326;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 850px) {
+            .listing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            .listings-page {
+                padding-top: 20px;
+            }
+
+            .listing-hero {
+                padding: 27px 20px;
+            }
+
+            .listing-controls {
+                flex-direction: column;
+            }
+
+            .listing-controls input,
+            .listing-controls select,
+            .listing-controls button {
+                width: 100%;
+            }
+
+            .listing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .listing-image-wrap {
+                height: 220px;
+            }
+
+            .listing-heading h2 {
+                font-size: 19px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="site-header"></div>
+
+    <main class="listings-page">
+
+        <section class="listing-hero">
+            <span>GLOBAL MARKETPLACE</span>
+            <h1>Explore Products, Vehicles & Properties</h1>
+            <p>
+                Discover exciting products, beautiful homes,
+                residential estates, vehicles and services.
+                Browse the marketplace and explore what's available.
+            </p>
+        </section>
+
+        <form class="listing-controls" id="listingFilters">
+
+            <input
+                type="search"
+                id="listingSearch"
+                placeholder="Search listings..."
+                aria-label="Search listings"
+            >
+
+            <select id="listingCategory" aria-label="Filter by category">
+                <option value="">All Categories</option>
+                <option value="electronics">Electronics</option>
+                <option value="fashion">Fashion</option>
+                <option value="vehicles">Vehicles</option>
+                <option value="property">Property</option>
+                <option value="food">Food & Beverages</option>
+                <option value="services">Services</option>
+            </select>
+
+            <button type="submit">Find Listings</button>
+
+        </form>
+
+        <!-- VEHICLES -->
+        <section class="listing-section" id="vehicles">
+
+            <div class="listing-heading">
+                <div>
+                    <h2>Vehicles & Motors</h2>
+                    <p>Explore our vehicle gallery.</p>
+                </div>
+                <span class="demo-label">DEMO GALLERY</span>
+            </div>
+
+            <div class="listing-grid">
+
+                <article class="listing-card" data-category="vehicles">
+                    <div class="listing-image-wrap">
+                        <img class="listing-image"
+                             src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=85"
+                             alt="Luxury Mercedes-Benz vehicle"
+                             loading="lazy">
+                        <span class="listing-tag">Luxury Vehicle</span>
+                    </div>
+                    <div class="listing-content">
+                        <span class="listing-category">Vehicles</span>
+                        <h3>Luxury Executive Car</h3>
+                        <p class="listing-description">Premium vehicle gallery preview.</p>
+                        <p class="listing-location">📍 Kenya · Demo location</p>
+                        <div class="listing-bottom">
+                            <span class="listing-price">Price on request</span>
+                            <a href="contact.html" class="listing-link">Enquire</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="listing-card" data-category="vehicles">
+                    <div class="listing-image-wrap">
+                        <img class="listing-image"
+                             src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=85"
+                             alt="Modern SUV"
+                             loading="lazy">
+                        <span class="listing-tag">SUV</span>
+                    </div>
+                    <div class="listing-content">
+                        <span class="listing-category">Vehicles</span>
+                        <h3>Modern Family SUV</h3>
+                        <p class="listing-description">Spacious SUV photography for demonstration.</p>
+                        <p class="listing-location">📍 Kenya · Demo location</p>
+                        <div class="listing-bottom">
+                            <span class="listing-price">Price on request</span>
+                            <a href="contact.html" class="listing-link">Enquire</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="listing-card" data-category="vehicles">
+                    <div class="listing-image-wrap">
+                        <img class="listing-image"
+                             src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=85"
+                             alt="Sports car"
+                             loading="lazy">
+                        <span class="listing-tag">Sports Car</span>
+                    </div>
+                    <div class="listing-content">
+                        <span class="listing-category">Vehicles</span>
+                        <h3>Sports Car Gallery</h3>
+                        <p class="listing-description">Performance car visual demonstration.</p>
+                        <p class="listing-location">📍 Kenya · Demo location</p>
+                        <div class="listing-bottom">
+                            <span class="listing-price">Price on request</span>
+                            <a href="contact.html" class="listing-link">Enquire</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="listing-card" data-category="vehicles">
+                    <div class="listing-image-wrap">
+                        <img class="listing-image"
+                             src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=85"
+                             alt="Pickup truck"
+                             loading="lazy">
+                        <span class="listing-tag">Pickup</span>
+                    </div>
+                    <div class="listing-content">
+                        <span class="listing-category">Vehicles</span>
+                        <h3>Pickup & Utility Vehicles</h3>
+                        <p class="listing-description">Vehicle gallery preview for utility models.</p>
+                        <p class="listing-location">📍 Kenya · Demo location</p>
+                        <div class="listing-bottom">
+                            <span class="listing-price">Price on request</span>
+                            <a href="contact.html" class="listing-link">Enquire</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="listing-card" data-category="vehicles">
+                    <div class="listing-image-wrap">
+                        <img class="listing-image"
+                             src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=85"
+                             alt="Motorcycle"
+                             loading="lazy">
+                        <span class="listing-tag">Motorbike</span>
+                    </div>
+                    <div class="listing-content">
+                        <span class="listing-category">Vehicles</span>
+                        <h3>Motorcycles & Bikes</h3>
+                        <p class="listing-description">Two-wheel vehicle gallery preview.</p>
+                        <p class="listing-location">📍 Kenya · Demo location</p>
+                        <div class="listing-bottom">
+                            <span class="listing-price">Price on request</span>
+                            <a href="contact.html" class="listing-link">Enquire</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="listing-card" data-category="vehicles">
+                    <div class="listing-image-wrap">
+                        <img class="listing-image"
+                             src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85"
+                             alt="Premium sports vehicle"
+                             loading="lazy">
+                        <span class="listing-tag">Premium</span>
+                    </div>
+                    <div class="listing-content">
+                        <span class="listing-category">Vehicles</span>
+                        <h3>Premium Car Collection</h3>
+                        <p class="listing-description">High-end automotive gallery preview.</p>
+                        <p class="listing-location">📍 Kenya · Demo location</p>
+                        <div class="listing-bottom">
+                            <span class="listing-price">Price on request</span>
+                            <a href="contact.html" class="listing-link">Enquire</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- PROPERTY -->
+        <section class="listing-section" id="property">
+
+            <div class="listing-heading">
+                <div>
+                    <h2>Houses, Estates & Property</h2>
+                    <p>Explore modern homes, apartments and residential developments.</p>
+                </div>
+                <span class="demo-label">DEMO GALLERY</span>
+            </div>
+
+            <div class="listing-grid">
+
+                <article class="listing-card" data-category="property">
+                    <div class="listing-image-wrap">
+                        <img class="listing-image"
+                             src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=85"
+                             alt="Modern luxury house"
+                             loading="lazy">
+                        <span class="listing-tag">Modern Home</span>
+                    </div>
+                    <div class="listing-content">
+                        <span class="listing-category">Property</span>
+                        <h3>Modern Luxury House</h3>
+                        <p class="listing-description">Contemporary residential property gallery.</p>
+                        <p class="listing-location">📍 Kenya · Demo location</p>
+                        <div class="listing-bottom">
+                            <span class="listing-price">Price on request</span>
+                            <a href="contact.html" class="listing-link">Enquire</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="listing-card" data-category="property">
+                    <div class="listing-image-wrap">
+                        <img class="listing-image"
+                             src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=85"
+                             alt="Contemporary family house"
+                             loading="lazy">
+                        <span class="listing-tag">Family House</span>
+                    </div>
+                    <div class="listing-content">
+                        <span class="listing-category">Property</span>
+                        <h3>Contemporary Family Home</h3>
+                        <p class="listing-description">Beautiful home photography for demonstration.</p>
+                        <p class="listing-location">📍 Kenya · Demo location</p>
+                        <div class="listing-bottom">
+                            <span class="listing-price">Price on request</span>
+                            <a href="contact.html" class="listing-link">Enquire</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="listing-card" data-category="property">
+                    <div class="listing-image-wrap">
+                        <img class="listing-image"
+                             src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=85"
+                             alt="Modern house interior"
+                             loading="lazy">
+                        <span class="listing-tag">Interior</span>
+                    </div>
+                    <div class="listing-content">
+                        <span class="listing-category">Property</span>
+                        <h3>Modern House Interior</h3>
+                        <p class="listing-description">Interior design and home inspiration gallery.</p>
+                        <p class="listing-location">📍 Kenya · Demo location</p>
+                        <div class="listing-bottom">
+                            <span class="listing-price">Price on request</span>
+                            <a href="contact.html" class="listing-link">Enquire</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="listing-card" data-category="property">
+                    <div class="listing-image-wrap">
+                        <img class="listing-image"
+                             src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=85"
+                             alt="Elegant residential property"
+                             loading="lazy">
+                        <span class="listing-tag">Residential</span>
+                    </div>
+                    <div class="listing-content">
+                        <span class="listing-category">Property</span>
+                        <h3>Elegant Residential Home</h3>
+                        <p class="listing-description">Residential property photo preview.</p>
+                        <p class="listing-location">📍 Kenya · Demo location</p>
+                        <div class="listing-bottom">
+                            <span class="listing-price">Price on request</span>
+                            <a href="contact.html" class="listing-link">Enquire</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="listing-card" data-category="property">
+                    <div class="listing-image-wrap">
+                        <img class="listing-image"
+                             src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=900&q=85"
+                             alt="Beautiful modern villa"
+                             loading="lazy">
+                        <span class="listing-tag">Villa</span>
+                    </div>
+                    <div class="listing-content">
+                        <span class="listing-category">Property</span>
+                        <h3>Modern Villa</h3>
+                        <p class="listing-description">Villa and luxury home gallery preview.</p>
+                        <p class="listing-location">📍 Kenya · Demo location</p>
+                        <div class="listing-bottom">
+                            <span class="listing-price">Price on request</span>
+                            <a href="contact.html" class="listing-link">Enquire</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="listing-card" data-category="property">
+                    <div class="listing-image-wrap">
+                        <img class="listing-image"
+                             src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=85"
+                             alt="Luxury house living room"
+                             loading="lazy">
+                        <span class="listing-tag">Luxury Interior</span>
+                    </div>
+                    <div class="listing-content">
+                        <span class="listing-category">Property</span>
+                        <h3>Luxury Living Space</h3>
+                        <p class="listing-description">Stylish interior photography preview.</p>
+                        <p class="listing-location">📍 Kenya · Demo location</p>
+                        <div class="listing-bottom">
+                            <span class="listing-price">Price on request</span>
+                            <a href="contact.html" class="listing-link">Enquire</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="listing-card" data-category="property">
+                    <div class="listing-image-wrap">
+                        <img class="listing-image"
+                             src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=85"
+                             alt="Modern apartment building"
+                             loading="lazy">
+                        <span class="listing-tag">Apartments</span>
+                    </div>
+                    <div class="listing-content">
+                        <span class="listing-category">Property</span>
+                        <h3>Modern Apartments</h3>
+                        <p class="listing-description">Apartment-style property gallery preview.</p>
+                        <p class="listing-location">📍 Kenya · Demo location</p>
+                        <div class="listing-bottom">
+                            <span class="listing-price">Price on request</span>
+                            <a href="contact.html" class="listing-link">Enquire</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="listing-card" data-category="property">
+                    <div class="listing-image-wrap">
+                        <img class="listing-image"
+                             src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=900&q=85"
+                             alt="Beautiful residential estate"
+                             loading="lazy">
+                        <span class="listing-tag">Estate</span>
+                    </div>
+                    <div class="listing-content">
+                        <span class="listing-category">Property</span>
+                        <h3>Residential Estate</h3>
+                        <p class="listing-description">Estate and housing development gallery preview.</p>
+                        <p class="listing-location">📍 Kenya · Demo location</p>
+                        <div class="listing-bottom">
+                            <span class="listing-price">Price on request</span>
+                            <a href="contact.html" class="listing-link">Enquire</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="listing-card" data-category="property">
+                    <div class="listing-image-wrap">
+                        <img class="listing-image"
+                             src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=85"
+                             alt="Elegant furnished home"
+                             loading="lazy">
+                        <span class="listing-tag">Furnished Home</span>
+                    </div>
+                    <div class="listing-content">
+                        <span class="listing-category">Property</span>
+                        <h3>Furnished Home Gallery</h3>
+                        <p class="listing-description">Furnished home inspiration for property listings.</p>
+                        <p class="listing-location">📍 Kenya · Demo location</p>
+                        <div class="listing-bottom">
+                            <span class="listing-price">Price on request</span>
+                            <a href="contact.html" class="listing-link">Enquire</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <div class="demo-notice">
+            <strong>Demo content:</strong>
+            The vehicle and property images on this page are visual examples.
+            They do not represent verified sellers, available stock, actual
+            property addresses or confirmed prices. Real advertiser listings
+            will be connected through the marketplace database.
+        </div>
+
+        <div class="empty-results" id="emptyResults">
+            No matching listings found. Try another search or category.
+        </div>
+
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="layout.js" defer></script>
+
+    <script>
+        const filterForm = document.getElementById("listingFilters");
+        const searchInput = document.getElementById("listingSearch");
+        const categorySelect = document.getElementById("listingCategory");
+        const listingCards = document.querySelectorAll(".listing-card");
+        const emptyResults = document.getElementById("emptyResults");
+
+        function filterListings() {
+            const search = searchInput.value.trim().toLowerCase();
+            const category = categorySelect.value;
+
+            let visibleCount = 0;
+
+            listingCards.forEach(function(card) {
+                const text = card.textContent.toLowerCase();
+                const cardCategory = card.dataset.category;
+
+                const matchesSearch = text.includes(search);
+                const matchesCategory =
+                    !category || cardCategory === category;
+
+                const visible = matchesSearch && matchesCategory;
+
+                card.style.display = visible ? "block" : "none";
+
+                if (visible) visibleCount++;
+            });
+
+            emptyResults.style.display =
+                visibleCount === 0 ? "block" : "none";
+
+            document.querySelectorAll(".listing-section").forEach(function(section) {
+                const visibleCards = section.querySelectorAll(
+                    '.listing-card:not([style*="display: none"])'
+                );
+
+                section.style.display =
+                    visibleCards.length ? "block" : "none";
+            });
+        }
+
+        filterForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            filterListings();
+        });
+
+        searchInput.addEventListener("input", filterListings);
+        categorySelect.addEventListener("change", filterListings);
+
+        // Read category from homepage or categories page.
+        const params = new URLSearchParams(window.location.search);
+        const selectedCategory = params.get("category");
+        const selectedSearch = params.get("search");
+
+        if (selectedCategory) {
+            categorySelect.value = selectedCategory;
+        }
+
+        if (selectedSearch) {
+            searchInput.value = selectedSearch;
+        }
+
+        if (selectedCategory || selectedSearch) {
+            filterListings();
+        }
+    </script>
+
+</body>
+</html>
