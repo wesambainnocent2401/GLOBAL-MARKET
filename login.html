@@ -1,1 +1,569 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f6fa">
+
+    <meta name="description" content="Sign in to your GLOBAL MARKET account and explore a world of opportunities.">
+
+    <title>Login | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f6fa;
+            color: #17243b;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .login-page {
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 45px 18px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 1050px;
+            min-height: 570px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(25, 42, 70, 0.10);
+        }
+
+        /* Welcome image section */
+
+        .welcome-section {
+            position: relative;
+            min-height: 570px;
+            padding: 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            color: #ffffff;
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(10, 25, 48, 0.94),
+                    rgba(10, 25, 48, 0.10)
+                ),
+                url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=85")
+                center / cover no-repeat;
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-label {
+            display: inline-block;
+            padding: 8px 13px;
+            margin-bottom: 18px;
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 30px;
+            background: rgba(255,255,255,0.12);
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .welcome-section h1 {
+            margin: 0 0 15px;
+            font-size: 38px;
+            line-height: 1.2;
+        }
+
+        .welcome-section h1 span {
+            color: #e8bd62;
+        }
+
+        .welcome-section p {
+            max-width: 390px;
+            margin: 0;
+            color: #e7eaf0;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .welcome-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .welcome-features span {
+            padding: 9px 12px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.13);
+            font-size: 12px;
+        }
+
+        /* Login form */
+
+        .login-form-section {
+            padding: 50px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-brand {
+            margin-bottom: 35px;
+        }
+
+        .login-brand h2 {
+            margin: 0;
+            color: #14243e;
+            font-size: 25px;
+        }
+
+        .login-brand h2 span {
+            color: #c69b42;
+        }
+
+        .login-brand p {
+            margin: 8px 0 0;
+            color: #7a8495;
+            font-size: 13px;
+        }
+
+        .form-heading {
+            margin-bottom: 25px;
+        }
+
+        .form-heading h3 {
+            margin: 0 0 8px;
+            color: #17243b;
+            font-size: 26px;
+        }
+
+        .form-heading p {
+            margin: 0;
+            color: #7b8493;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 19px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #26344a;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .form-group input {
+            width: 100%;
+            height: 49px;
+            padding: 0 14px;
+            border: 1px solid #dce2eb;
+            border-radius: 9px;
+            outline: none;
+            background: #fbfcfe;
+            color: #17243b;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: #c69b42;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(198,155,66,0.12);
+        }
+
+        .password-input {
+            padding-right: 65px !important;
+        }
+
+        .show-password {
+            position: absolute;
+            top: 50%;
+            right: 13px;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            color: #9a7a37;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 3px 0 23px;
+            font-size: 12px;
+        }
+
+        .remember-option {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #657084;
+        }
+
+        .remember-option input {
+            accent-color: #c69b42;
+        }
+
+        .form-options a,
+        .register-link a {
+            color: #a47b2d;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .form-options a:hover,
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .login-button {
+            width: 100%;
+            min-height: 50px;
+            border: none;
+            border-radius: 9px;
+            background: #172b49;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .login-button:hover {
+            background: #243e63;
+            transform: translateY(-1px);
+        }
+
+        .login-button:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-message {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .login-message.error {
+            display: block;
+            background: #fff0f0;
+            color: #a52c2c;
+        }
+
+        .login-message.success {
+            display: block;
+            background: #eaf8ef;
+            color: #247341;
+        }
+
+        .register-link {
+            margin-top: 27px;
+            text-align: center;
+            color: #788294;
+            font-size: 13px;
+        }
+
+        .security-note {
+            margin-top: 30px;
+            padding-top: 18px;
+            border-top: 1px solid #edf0f4;
+            color: #8b94a2;
+            text-align: center;
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+        /* Mobile layout */
+
+        @media (max-width: 760px) {
+            .login-page {
+                padding: 25px 12px;
+            }
+
+            .login-container {
+                max-width: 480px;
+                grid-template-columns: 1fr;
+                border-radius: 15px;
+            }
+
+            .welcome-section {
+                min-height: 260px;
+                padding: 27px;
+            }
+
+            .welcome-section h1 {
+                font-size: 28px;
+            }
+
+            .welcome-section p {
+                font-size: 13px;
+            }
+
+            .welcome-features {
+                margin-top: 15px;
+            }
+
+            .login-form-section {
+                padding: 35px 25px;
+            }
+
+            .login-brand {
+                margin-bottom: 25px;
+            }
+
+            .form-heading h3 {
+                font-size: 23px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .login-form-section {
+                padding: 30px 18px;
+            }
+
+            .form-options {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Shared public header -->
+    <div id="site-header"></div>
+
+    <main class="login-page">
+
+        <div class="login-container">
+
+            <!-- Welcome image -->
+            <section class="welcome-section">
+
+                <div class="welcome-content">
+
+                    <span class="welcome-label">
+                        YOUR WORLD. ONE MARKETPLACE.
+                    </span>
+
+                    <h1>
+                        Welcome Back to
+                        <span>GLOBAL MARKET.</span>
+                    </h1>
+
+                    <p>
+                        Discover opportunities, connect with businesses,
+                        explore products and services, and grow with a
+                        marketplace that brings everything together.
+                    </p>
+
+                    <div class="welcome-features">
+                        <span>Explore Products</span>
+                        <span>Find Businesses</span>
+                        <span>Discover Opportunities</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Login form -->
+            <section class="login-form-section">
+
+                <div class="login-brand">
+                    <h2>GLOBAL <span>MARKET</span></h2>
+                    <p>Your world. One marketplace.</p>
+                </div>
+
+                <div class="form-heading">
+                    <h3>Sign in to your account</h3>
+                    <p>
+                        Enter your account details to continue.
+                    </p>
+                </div>
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="password-input"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="show-password"
+                                id="togglePassword"
+                            >
+                                Show
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+
+                        <label class="remember-option">
+                            <input
+                                type="checkbox"
+                                id="rememberMe"
+                                name="rememberMe"
+                            >
+                            Remember me
+                        </label>
+
+                        <a href="forgot-password.html">
+                            Forgot password?
+                        </a>
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="login-button"
+                        id="loginButton"
+                    >
+                        Sign In
+                    </button>
+
+                    <div
+                        class="login-message"
+                        id="loginMessage"
+                        role="status"
+                        aria-live="polite"
+                    ></div>
+
+                </form>
+
+                <div class="register-link">
+                    Don't have an account?
+                    <a href="register.html">Create an account</a>
+                </div>
+
+                <div class="security-note">
+                    Your account security matters to us.<br>
+                    GLOBAL MARKET — Connecting people and opportunities.
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- Shared public footer -->
+    <div id="site-footer"></div>
+
+    <script src="layout.js" defer></script>
+
+    <script>
+        // Show and hide password
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+
+        togglePassword.addEventListener("click", function () {
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                togglePassword.textContent = "Hide";
+            } else {
+                passwordInput.type = "password";
+                togglePassword.textContent = "Show";
+            }
+
+        });
+
+        // Login form
+        const loginForm = document.getElementById("loginForm");
+        const loginButton = document.getElementById("loginButton");
+        const loginMessage = document.getElementById("loginMessage");
+
+        loginForm.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            loginMessage.className = "login-message";
+            loginMessage.textContent = "";
+
+            const email = document.getElementById("email").value.trim();
+            const password = passwordInput.value;
+
+            if (!email || !password) {
+                showMessage("Please enter your email and password.", "error");
+                return;
+            }
+
+            if (password.length < 6) {
+                showMessage("Please check your password and try again.", "error");
+                return;
+            }
+
+            showMessage(
+                "The login form is ready. Account authentication will be connected when we integrate Supabase.",
+                "success"
+            );
+
+        });
+
+        function showMessage(message, type) {
+            loginMessage.textContent = message;
+            loginMessage.className = "login-message " + type;
+        }
+    </script>
+
+</body>
+</html>
+
