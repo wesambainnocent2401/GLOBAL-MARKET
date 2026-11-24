@@ -1,1 +1,1152 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f7fb">
+
+    <meta name="description" content="GLOBAL MARKET Help Centre. Find assistance with accounts, advertisements, businesses, payments, buying, selling and marketplace services.">
+
+    <title>Help Centre | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f7fb;
+            color: #26364b;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .help-hero {
+            padding: 75px 20px;
+            text-align: center;
+            color: white;
+            background:
+                linear-gradient(120deg, rgba(15, 37, 66, .96), rgba(40, 76, 115, .93)),
+                url("https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=85")
+                center/cover;
+        }
+
+        .help-hero .eyebrow {
+            display: inline-block;
+            padding: 8px 15px;
+            border: 1px solid rgba(255,255,255,.3);
+            border-radius: 30px;
+            color: #f2d18b;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        .help-hero h1 {
+            margin: 20px 0 12px;
+            font-size: clamp(32px, 6vw, 48px);
+        }
+
+        .help-hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #dce6f1;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .help-search {
+            display: flex;
+            max-width: 650px;
+            margin: 30px auto 0;
+            padding: 7px;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 12px 35px rgba(0,0,0,.15);
+        }
+
+        .help-search input {
+            flex: 1;
+            min-width: 0;
+            padding: 13px;
+            border: none;
+            outline: none;
+            color: #24364e;
+            font-size: 14px;
+            background: transparent;
+        }
+
+        .help-search button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #142b49;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .help-container {
+            width: min(1120px, 92%);
+            margin: 50px auto;
+        }
+
+        .section-heading {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 10px;
+            color: #142b49;
+            font-size: 27px;
+        }
+
+        .section-heading p {
+            color: #738196;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* Help Categories */
+
+        .help-categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 17px;
+        }
+
+        .help-category {
+            padding: 25px 18px;
+            border: 1px solid #e4eaf1;
+            border-radius: 14px;
+            background: white;
+            text-align: center;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .help-category:hover,
+        .help-category.active {
+            border-color: #c6a05a;
+            box-shadow: 0 8px 22px rgba(24,45,75,.07);
+            transform: translateY(-3px);
+        }
+
+        .help-category.active {
+            background: #fffaf0;
+        }
+
+        .category-icon {
+            display: grid;
+            width: 52px;
+            height: 52px;
+            margin: 0 auto 15px;
+            place-items: center;
+            border-radius: 14px;
+            background: #edf3f9;
+            color: #1b416b;
+            font-size: 24px;
+        }
+
+        .help-category h3 {
+            margin: 0 0 8px;
+            color: #1c3555;
+            font-size: 15px;
+        }
+
+        .help-category p {
+            margin: 0;
+            color: #8190a2;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* FAQ */
+
+        .faq-section {
+            margin-top: 65px;
+        }
+
+        .faq-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .faq-toolbar h2 {
+            margin: 0;
+            color: #142b49;
+            font-size: 23px;
+        }
+
+        .faq-toolbar span {
+            color: #8995a4;
+            font-size: 12px;
+        }
+
+        .faq-list {
+            display: grid;
+            gap: 13px;
+        }
+
+        .faq-item {
+            overflow: hidden;
+            border: 1px solid #e4eaf1;
+            border-radius: 12px;
+            background: white;
+        }
+
+        .faq-question {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            border: none;
+            background: white;
+            color: #1c3555;
+            text-align: left;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .faq-question:hover {
+            background: #fbfcfe;
+        }
+
+        .faq-symbol {
+            flex-shrink: 0;
+            color: #b28a3c;
+            font-size: 21px;
+            transition: transform .2s;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 0 20px 20px;
+            color: #708096;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .faq-item.open .faq-symbol {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer a {
+            color: #315d91;
+            font-weight: bold;
+        }
+
+        .faq-item[hidden] {
+            display: none;
+        }
+
+        .no-results {
+            display: none;
+            padding: 30px;
+            border: 1px dashed #cbd5e1;
+            border-radius: 12px;
+            background: white;
+            color: #708096;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Quick Links */
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 17px;
+            margin-top: 65px;
+        }
+
+        .quick-link-card {
+            padding: 24px;
+            border: 1px solid #e4eaf1;
+            border-radius: 13px;
+            background: white;
+        }
+
+        .quick-link-card h3 {
+            margin: 0 0 10px;
+            color: #1c3555;
+            font-size: 16px;
+        }
+
+        .quick-link-card p {
+            color: #758398;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .quick-link-card a {
+            display: inline-block;
+            margin-top: 8px;
+            color: #315d91;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .quick-link-card a:hover {
+            color: #b28a3c;
+        }
+
+        /* Support CTA */
+
+        .help-bottom {
+            margin-top: 50px;
+            padding: 40px 25px;
+            border-radius: 16px;
+            background: #142b49;
+            color: white;
+            text-align: center;
+        }
+
+        .help-bottom h2 {
+            margin: 0 0 12px;
+            font-size: 25px;
+        }
+
+        .help-bottom p {
+            max-width: 600px;
+            margin: 0 auto 22px;
+            color: #d1dceb;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .help-bottom a {
+            display: inline-block;
+            padding: 13px 23px;
+            border-radius: 8px;
+            background: #d7b46d;
+            color: #172b45;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 850px) {
+            .help-categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .quick-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            .help-hero {
+                padding: 60px 17px;
+            }
+
+            .help-search button {
+                padding: 11px 13px;
+                font-size: 12px;
+            }
+
+            .help-categories {
+                gap: 10px;
+            }
+
+            .help-category {
+                padding: 20px 12px;
+            }
+
+            .quick-links {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-question {
+                padding: 17px;
+                font-size: 13px;
+            }
+
+            .help-container {
+                margin: 35px auto;
+            }
+
+            .faq-toolbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Shared Header -->
+    <div id="site-header"></div>
+
+    <main>
+
+        <!-- Hero -->
+        <section class="help-hero">
+
+            <span class="eyebrow">GLOBAL MARKET SUPPORT</span>
+
+            <h1>How Can We Help You?</h1>
+
+            <p>
+                Find answers, learn how to use GLOBAL MARKET
+                and get guidance on accounts, advertisements,
+                businesses and marketplace services.
+            </p>
+
+            <form class="help-search" id="helpSearchForm">
+
+                <input
+                    type="search"
+                    id="helpSearch"
+                    placeholder="Search for help..."
+                    aria-label="Search help articles"
+                >
+
+                <button type="submit">Search</button>
+
+            </form>
+
+        </section>
+
+        <div class="help-container">
+
+            <!-- Help Categories -->
+            <section>
+
+                <div class="section-heading">
+
+                    <h2>Browse Help Topics</h2>
+
+                    <p>
+                        Choose a topic to find answers to common questions.
+                    </p>
+
+                </div>
+
+                <div class="help-categories">
+
+                    <button class="help-category active"
+                        type="button" data-filter="all">
+
+                        <div class="category-icon">✦</div>
+
+                        <h3>All Topics</h3>
+
+                        <p>Explore all available help topics.</p>
+
+                    </button>
+
+                    <button class="help-category"
+                        type="button" data-filter="account">
+
+                        <div class="category-icon">👤</div>
+
+                        <h3>Accounts</h3>
+
+                        <p>Registration, login and profiles.</p>
+
+                    </button>
+
+                    <button class="help-category"
+                        type="button" data-filter="advertising">
+
+                        <div class="category-icon">📢</div>
+
+                        <h3>Advertising</h3>
+
+                        <p>Creating and managing advertisements.</p>
+
+                    </button>
+
+                    <button class="help-category"
+                        type="button" data-filter="business">
+
+                        <div class="category-icon">🏢</div>
+
+                        <h3>Businesses</h3>
+
+                        <p>Business registration and profiles.</p>
+
+                    </button>
+
+                    <button class="help-category"
+                        type="button" data-filter="buying">
+
+                        <div class="category-icon">🛍️</div>
+
+                        <h3>Buying & Selling</h3>
+
+                        <p>Listings and user transactions.</p>
+
+                    </button>
+
+                    <button class="help-category"
+                        type="button" data-filter="payments">
+
+                        <div class="category-icon">💳</div>
+
+                        <h3>Payments</h3>
+
+                        <p>Payment and advertising enquiries.</p>
+
+                    </button>
+
+                    <button class="help-category"
+                        type="button" data-filter="security">
+
+                        <div class="category-icon">🔒</div>
+
+                        <h3>Safety & Security</h3>
+
+                        <p>Privacy, suspicious activity and safety.</p>
+
+                    </button>
+
+                    <button class="help-category"
+                        type="button" data-filter="technical">
+
+                        <div class="category-icon">⚙️</div>
+
+                        <h3>Technical Support</h3>
+
+                        <p>Website problems and troubleshooting.</p>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- Frequently Asked Questions -->
+            <section class="faq-section">
+
+                <div class="section-heading">
+                    <h2>Frequently Asked Questions</h2>
+
+                    <p>
+                        Find answers to questions users may have
+                        when using the marketplace.
+                    </p>
+                </div>
+
+                <div class="faq-toolbar">
+
+                    <h2>Help Articles</h2>
+
+                    <span id="resultsCount">18 help articles</span>
+
+                </div>
+
+                <div class="faq-list" id="faqList">
+
+                    <!-- Accounts -->
+
+                    <article class="faq-item" data-category="account">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            How do I create a GLOBAL MARKET account?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            Visit the <a href="register.html">Registration
+                            page</a>, enter the requested information,
+                            and follow the registration instructions.
+                            Account creation will depend on the authentication
+                            system being configured.
+                        </div>
+
+                    </article>
+
+                    <article class="faq-item" data-category="account">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            I forgot my password. What should I do?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            Visit the <a href="forgot-password.html">
+                            Forgot Password page</a> and follow the
+                            available password recovery instructions.
+                            Password recovery will work after authentication
+                            services are connected.
+                        </div>
+
+                    </article>
+
+                    <article class="faq-item" data-category="account">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            Can I update my account information?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            Your account profile is intended to allow
+                            you to manage relevant personal information.
+                            Visit <a href="profile.html">My Profile</a>
+                            when account management is available.
+                        </div>
+
+                    </article>
+
+                    <!-- Advertising -->
+
+                    <article class="faq-item" data-category="advertising">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            How can I advertise a product or service?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            Visit the <a href="advertise.html">Advertise
+                            page</a> to learn about advertising.
+                            You can also visit <a href="create-ad.html">
+                            Create Advertisement</a> to explore the
+                            listing submission process.
+                        </div>
+
+                    </article>
+
+                    <article class="faq-item" data-category="advertising">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            Can I upload photographs and videos?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            GLOBAL MARKET is designed to support
+                            advertiser-uploaded product and service
+                            photographs, together with at least five
+                            videos per advertisement. Actual media
+                            uploading and permanent storage will require
+                            the backend storage integration.
+                        </div>
+
+                    </article>
+
+                    <article class="faq-item" data-category="advertising">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            Can I edit or remove my advertisement?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            Advertisement management is intended to be
+                            available through <a href="my-ads.html">
+                            My Advertisements</a>. Editing and removal
+                            will depend on the completed account and
+                            advertisement management functionality.
+                        </div>
+
+                    </article>
+
+                    <!-- Businesses -->
+
+                    <article class="faq-item" data-category="business">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            How do I register my business?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            Visit <a href="business-registration.html">
+                            Business Registration</a> and provide
+                            the requested information about your business.
+                        </div>
+
+                    </article>
+
+                    <article class="faq-item" data-category="business">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            Can my business have a public profile?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            Yes. The platform is designed to provide
+                            public business profiles where visitors
+                            can discover business information, products,
+                            services and contact details.
+                        </div>
+
+                    </article>
+
+                    <article class="faq-item" data-category="business">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            How do I update my business information?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            The intended business management page is
+                            <a href="edit-business-profile.html">
+                            Edit Business Profile</a>. You will need
+                            an authorized business account to manage
+                            its information.
+                        </div>
+
+                    </article>
+
+                    <!-- Buying and Selling -->
+
+                    <article class="faq-item" data-category="buying">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            How do I find products and services?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            Explore <a href="categories.html">Marketplace
+                            Categories</a> or use the search and category
+                            filters to discover available listings.
+                        </div>
+
+                    </article>
+
+                    <article class="faq-item" data-category="buying">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            How do I contact a seller?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            Open the relevant advertisement or business
+                            profile and look for the available contact
+                            options. Always verify the seller and
+                            transaction details independently.
+                        </div>
+
+                    </article>
+
+                    <article class="faq-item" data-category="buying">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            Does GLOBAL MARKET guarantee every seller?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            No automatic guarantee is made that every
+                            seller, advertisement or business has been
+                            independently verified. Check important
+                            details before making a purchase.
+                        </div>
+
+                    </article>
+
+                    <!-- Payments -->
+
+                    <article class="faq-item" data-category="payments">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            Does GLOBAL MARKET support M-Pesa?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            M-Pesa integration is part of the planned
+                            payment functionality. Do not assume that
+                            payments are active until the official
+                            payment system and instructions are published.
+                        </div>
+
+                    </article>
+
+                    <article class="faq-item" data-category="payments">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            Are all advertisements free?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            Advertising prices and any free or premium
+                            options will be explained through the
+                            official advertising terms when finalized.
+                        </div>
+
+                    </article>
+
+                    <!-- Safety -->
+
+                    <article class="faq-item" data-category="security">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            How can I stay safe when buying online?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            Verify the seller, inspect products where
+                            possible, confirm the agreed price and
+                            delivery arrangements, and avoid sending
+                            money to suspicious accounts.
+                        </div>
+
+                    </article>
+
+                    <article class="faq-item" data-category="security">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            How can I report suspicious activity?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            Use the <a href="contact.html">Contact Page</a>
+                            and select "Report an Issue" to describe
+                            the concern. Do not include passwords,
+                            PINs or other confidential information.
+                        </div>
+
+                    </article>
+
+                    <!-- Technical -->
+
+                    <article class="faq-item" data-category="technical">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            What should I do if a page does not load?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            Check your internet connection, refresh
+                            the page and try again. If the problem
+                            continues, report it through the
+                            <a href="contact.html">Contact Page</a>.
+                        </div>
+
+                    </article>
+
+                    <article class="faq-item" data-category="technical">
+
+                        <button class="faq-question" type="button"
+                            aria-expanded="false">
+
+                            Why are some features unavailable?
+
+                            <span class="faq-symbol">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+                            Some marketplace features are still being
+                            developed. Account authentication, permanent
+                            data storage, messaging and payment services
+                            require their respective backend integrations.
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <div class="no-results" id="noResults">
+                    <h3>No matching help articles found.</h3>
+                    <p>Try another search word or choose a different category.</p>
+                </div>
+
+            </section>
+
+            <!-- Quick Links -->
+            <section>
+
+                <div class="section-heading" style="margin-top:65px;">
+                    <h2>Useful Marketplace Pages</h2>
+
+                    <p>
+                        Access important sections of GLOBAL MARKET.
+                    </p>
+                </div>
+
+                <div class="quick-links">
+
+                    <article class="quick-link-card">
+                        <h3>Account Support</h3>
+
+                        <p>
+                            Manage your account, sign in or create
+                            a new marketplace account.
+                        </p>
+
+                        <a href="login.html">Go to Login →</a>
+                    </article>
+
+                    <article class="quick-link-card">
+                        <h3>Advertiser Support</h3>
+
+                        <p>
+                            Explore advertising services and
+                            advertisement management.
+                        </p>
+
+                        <a href="advertise.html">Explore Advertising →</a>
+                    </article>
+
+                    <article class="quick-link-card">
+                        <h3>Business Support</h3>
+
+                        <p>
+                            Register your business and create
+                            your marketplace business profile.
+                        </p>
+
+                        <a href="business-registration.html">
+                            Register Business →
+                        </a>
+                    </article>
+
+                </div>
+
+            </section>
+
+            <!-- Contact CTA -->
+            <section class="help-bottom">
+
+                <h2>Still Need Assistance?</h2>
+
+                <p>
+                    If you cannot find the answer you need,
+                    send us an enquiry through the GLOBAL MARKET
+                    contact page.
+                </p>
+
+                <a href="contact.html">Contact Support →</a>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- Shared Footer -->
+    <div id="site-footer"></div>
+
+    <script src="layout.js" defer></script>
+
+    <script>
+        // GLOBAL MARKET Help Centre
+
+        const searchInput = document.getElementById("helpSearch");
+        const searchForm = document.getElementById("helpSearchForm");
+        const faqItems = document.querySelectorAll(".faq-item");
+        const categoryButtons = document.querySelectorAll(".help-category");
+
+        const noResults = document.getElementById("noResults");
+        const resultsCount = document.getElementById("resultsCount");
+
+        let activeCategory = "all";
+
+        // Search and category filtering
+        function filterHelpArticles() {
+
+            const searchTerm = searchInput.value
+                .trim()
+                .toLowerCase();
+
+            let visibleCount = 0;
+
+            faqItems.forEach(function(item) {
+
+                const category = item.dataset.category;
+
+                const searchableText = item.textContent.toLowerCase();
+
+                const matchesCategory =
+                    activeCategory === "all" ||
+                    category === activeCategory;
+
+                const matchesSearch =
+                    searchableText.includes(searchTerm);
+
+                const shouldShow =
+                    matchesCategory && matchesSearch;
+
+                item.hidden = !shouldShow;
+
+                if (shouldShow) {
+                    visibleCount++;
+                } else {
+                    item.classList.remove("open");
+
+                    const button = item.querySelector(".faq-question");
+
+                    button.setAttribute("aria-expanded", "false");
+                }
+
+            });
+
+            resultsCount.textContent =
+                visibleCount + " help article" +
+                (visibleCount === 1 ? "" : "s");
+
+            noResults.style.display =
+                visibleCount === 0 ? "block" : "none";
+        }
+
+        // Category buttons
+        categoryButtons.forEach(function(button) {
+
+            button.addEventListener("click", function() {
+
+                categoryButtons.forEach(function(item) {
+                    item.classList.remove("active");
+                });
+
+                button.classList.add("active");
+
+                activeCategory = button.dataset.filter;
+
+                filterHelpArticles();
+
+            });
+
+        });
+
+        // Search input
+        searchInput.addEventListener("input", filterHelpArticles);
+
+        searchForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            filterHelpArticles();
+
+            document.querySelector(".faq-section").scrollIntoView({
+                behavior: "smooth"
+            });
+
+        });
+
+        // FAQ accordion
+        document.querySelectorAll(".faq-question").forEach(function(button) {
+
+            button.addEventListener("click", function() {
+
+                const currentItem = button.closest(".faq-item");
+
+                const wasOpen = currentItem.classList.contains("open");
+
+                // Close other questions
+                faqItems.forEach(function(item) {
+
+                    item.classList.remove("open");
+
+                    item.querySelector(".faq-question")
+                        .setAttribute("aria-expanded", "false");
+
+                });
+
+                // Toggle selected question
+                if (!wasOpen) {
+
+                    currentItem.classList.add("open");
+
+                    button.setAttribute("aria-expanded", "true");
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
+
