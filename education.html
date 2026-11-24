@@ -1,1 +1,726 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3f5f8">
+
+    <meta name="description" content="Discover schools, universities, tutors, online courses and educational services on GLOBAL MARKET.">
+
+    <title>Education | GLOBAL MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --navy: #142b49;
+            --blue: #315b83;
+            --gold: #c69b43;
+            --background: #f3f5f8;
+            --muted: #697586;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: #263548;
+            font-family: Arial, sans-serif;
+        }
+
+        .education-hero {
+            min-height: 360px;
+            display: flex;
+            align-items: center;
+            padding: 65px 6%;
+            color: white;
+            background:
+                linear-gradient(90deg, rgba(15,35,59,.95), rgba(25,56,88,.65)),
+                url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1600");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero-label {
+            color: #e8c982;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .education-hero h1 {
+            margin: 15px 0;
+            font-size: clamp(30px, 5vw, 48px);
+            line-height: 1.15;
+        }
+
+        .education-hero p {
+            max-width: 600px;
+            color: #e1e8ef;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .hero-button {
+            display: inline-block;
+            padding: 13px 20px;
+            border-radius: 7px;
+            background: var(--gold);
+            color: #172b42;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .hero-button.secondary {
+            color: white;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,.7);
+        }
+
+        .education-container {
+            width: min(1150px, 92%);
+            margin: 40px auto 65px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 22px;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 7px;
+            color: var(--navy);
+            font-size: 23px;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .search-panel {
+            display: grid;
+            grid-template-columns: 1fr 220px auto;
+            gap: 12px;
+            padding: 20px;
+            margin-bottom: 38px;
+            background: white;
+            border: 1px solid #e3e8ee;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(20,43,73,.04);
+        }
+
+        .search-panel input,
+        .search-panel select {
+            min-width: 0;
+            padding: 13px;
+            border: 1px solid #dce3eb;
+            border-radius: 7px;
+            outline: none;
+            background: white;
+            color: #263548;
+            font-size: 13px;
+        }
+
+        .search-panel input:focus,
+        .search-panel select:focus {
+            border-color: var(--blue);
+        }
+
+        .search-panel button {
+            padding: 13px 22px;
+            border: none;
+            border-radius: 7px;
+            background: var(--navy);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 17px;
+            margin-bottom: 45px;
+        }
+
+        .category-card {
+            padding: 20px;
+            background: white;
+            border: 1px solid #e6eaf0;
+            border-radius: 11px;
+            text-decoration: none;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(20,43,73,.08);
+        }
+
+        .category-icon {
+            display: grid;
+            width: 48px;
+            height: 48px;
+            place-items: center;
+            margin-bottom: 13px;
+            border-radius: 10px;
+            background: #f5f0e4;
+            color: var(--navy);
+            font-size: 23px;
+        }
+
+        .category-card h3 {
+            margin: 0 0 7px;
+            color: var(--navy);
+            font-size: 15px;
+        }
+
+        .category-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .education-card {
+            overflow: hidden;
+            background: white;
+            border: 1px solid #e4e9ef;
+            border-radius: 12px;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .education-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(20,43,73,.08);
+        }
+
+        .education-card img {
+            display: block;
+            width: 100%;
+            height: 185px;
+            object-fit: cover;
+        }
+
+        .education-card-content {
+            padding: 18px;
+        }
+
+        .education-tag {
+            display: inline-block;
+            padding: 6px 9px;
+            border-radius: 5px;
+            background: #f5f0e4;
+            color: #775a20;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .education-card h3 {
+            margin: 12px 0 8px;
+            color: var(--navy);
+            font-size: 17px;
+        }
+
+        .education-card p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .card-link {
+            display: inline-block;
+            margin-top: 9px;
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .card-link:hover {
+            color: var(--gold);
+        }
+
+        .opportunity-banner {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 25px;
+            align-items: center;
+            margin-top: 48px;
+            padding: 35px;
+            border-radius: 13px;
+            color: white;
+            background: linear-gradient(110deg, #142b49, #315b83);
+        }
+
+        .opportunity-banner h2 {
+            margin: 0 0 12px;
+            font-size: 24px;
+        }
+
+        .opportunity-banner p {
+            margin: 0;
+            color: #dce5ef;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .opportunity-banner a {
+            justify-self: end;
+            padding: 14px 20px;
+            border-radius: 7px;
+            background: var(--gold);
+            color: #172b42;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .empty-state {
+            display: none;
+            padding: 30px;
+            text-align: center;
+            color: var(--muted);
+            background: white;
+            border-radius: 10px;
+        }
+
+        .empty-state h3 {
+            color: var(--navy);
+        }
+
+        @media (max-width: 850px) {
+            .category-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .featured-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 650px) {
+            .education-hero {
+                min-height: 330px;
+                padding: 45px 6%;
+            }
+
+            .search-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .opportunity-banner {
+                grid-template-columns: 1fr;
+                padding: 25px;
+            }
+
+            .opportunity-banner a {
+                justify-self: start;
+            }
+
+            .section-heading {
+                align-items: start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="site-header"></div>
+
+    <main>
+
+        <section class="education-hero">
+            <div class="hero-content">
+
+                <span class="hero-label">Learn. Grow. Succeed.</span>
+
+                <h1>Discover Education & Learning Opportunities</h1>
+
+                <p>
+                    Explore educational institutions, professional training,
+                    online courses, tutors and learning services from different
+                    providers on one marketplace.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#educationCategories" class="hero-button">
+                        Explore Education
+                    </a>
+
+                    <a href="advertise.html" class="hero-button secondary">
+                        Promote Your Institution
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="education-container">
+
+            <section class="search-panel">
+
+                <input
+                    type="search"
+                    id="educationSearch"
+                    placeholder="Search schools, courses, tutors..."
+                    aria-label="Search educational listings"
+                >
+
+                <select id="educationFilter" aria-label="Filter education category">
+                    <option value="all">All Education Categories</option>
+                    <option value="schools">Schools</option>
+                    <option value="universities">Universities</option>
+                    <option value="training">Training Centres</option>
+                    <option value="online">Online Courses</option>
+                    <option value="tutors">Tutors</option>
+                </select>
+
+                <button type="button" id="searchButton">
+                    Search
+                </button>
+
+            </section>
+
+            <section id="educationCategories">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Explore Education Categories</h2>
+                        <p>Find the learning services you are looking for.</p>
+                    </div>
+                </div>
+
+                <div class="category-grid">
+
+                    <a href="category-listings.html?category=schools" class="category-card">
+                        <div class="category-icon">🏫</div>
+                        <h3>Schools</h3>
+                        <p>Discover primary and secondary schools.</p>
+                    </a>
+
+                    <a href="category-listings.html?category=universities" class="category-card">
+                        <div class="category-icon">🎓</div>
+                        <h3>Universities & Colleges</h3>
+                        <p>Explore higher education institutions.</p>
+                    </a>
+
+                    <a href="category-listings.html?category=training" class="category-card">
+                        <div class="category-icon">📚</div>
+                        <h3>Training Centres</h3>
+                        <p>Find professional and technical training.</p>
+                    </a>
+
+                    <a href="category-listings.html?category=online" class="category-card">
+                        <div class="category-icon">💻</div>
+                        <h3>Online Courses</h3>
+                        <p>Explore digital learning opportunities.</p>
+                    </a>
+
+                    <a href="category-listings.html?category=tutors" class="category-card">
+                        <div class="category-icon">✏️</div>
+                        <h3>Private Tutors</h3>
+                        <p>Connect with tutors and instructors.</p>
+                    </a>
+
+                    <a href="category-listings.html?category=books" class="category-card">
+                        <div class="category-icon">📖</div>
+                        <h3>Books & Learning Materials</h3>
+                        <p>Discover books and study resources.</p>
+                    </a>
+
+                    <a href="category-listings.html?category=professional" class="category-card">
+                        <div class="category-icon">🏆</div>
+                        <h3>Professional Courses</h3>
+                        <p>Find skills and career development courses.</p>
+                    </a>
+
+                    <a href="category-listings.html?category=educational-services" class="category-card">
+                        <div class="category-icon">🌍</div>
+                        <h3>Educational Services</h3>
+                        <p>Explore other education-related services.</p>
+                    </a>
+
+                </div>
+
+            </section>
+
+            <section>
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Explore Learning Opportunities</h2>
+                        <p>Examples of the educational services featured on GLOBAL MARKET.</p>
+                    </div>
+                </div>
+
+                <div class="featured-grid" id="educationListings">
+
+                    <article class="education-card" data-category="schools"
+                        data-search="primary secondary schools education">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800"
+                            alt="Students learning in a classroom"
+                            loading="lazy"
+                        >
+
+                        <div class="education-card-content">
+                            <span class="education-tag">SCHOOLS</span>
+                            <h3>Primary & Secondary Schools</h3>
+                            <p>
+                                Discover schools offering different levels
+                                of education and learning programmes.
+                            </p>
+                            <a href="category-listings.html?category=schools" class="card-link">
+                                Explore Schools →
+                            </a>
+                        </div>
+
+                    </article>
+
+                    <article class="education-card" data-category="universities"
+                        data-search="universities colleges higher education">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1562774053-701939374585?w=800"
+                            alt="University campus building"
+                            loading="lazy"
+                        >
+
+                        <div class="education-card-content">
+                            <span class="education-tag">HIGHER EDUCATION</span>
+                            <h3>Universities & Colleges</h3>
+                            <p>
+                                Explore institutions offering certificates,
+                                diplomas and degree programmes.
+                            </p>
+                            <a href="category-listings.html?category=universities" class="card-link">
+                                Explore Institutions →
+                            </a>
+                        </div>
+
+                    </article>
+
+                    <article class="education-card" data-category="training"
+                        data-search="professional technical vocational training">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"
+                            alt="Professional training session"
+                            loading="lazy"
+                        >
+
+                        <div class="education-card-content">
+                            <span class="education-tag">TRAINING</span>
+                            <h3>Professional Training</h3>
+                            <p>
+                                Discover technical, vocational and professional
+                                development programmes.
+                            </p>
+                            <a href="category-listings.html?category=training" class="card-link">
+                                Explore Training →
+                            </a>
+                        </div>
+
+                    </article>
+
+                    <article class="education-card" data-category="online"
+                        data-search="online courses e learning digital education">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"
+                            alt="Online learning on a computer"
+                            loading="lazy"
+                        >
+
+                        <div class="education-card-content">
+                            <span class="education-tag">ONLINE LEARNING</span>
+                            <h3>Online Courses</h3>
+                            <p>
+                                Discover online learning programmes and
+                                digital education resources.
+                            </p>
+                            <a href="category-listings.html?category=online" class="card-link">
+                                Explore Courses →
+                            </a>
+                        </div>
+
+                    </article>
+
+                    <article class="education-card" data-category="tutors"
+                        data-search="private tutors instructors lessons">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800"
+                            alt="Teacher helping students"
+                            loading="lazy"
+                        >
+
+                        <div class="education-card-content">
+                            <span class="education-tag">TUTORING</span>
+                            <h3>Private Tutors</h3>
+                            <p>
+                                Find tutors and instructors offering
+                                academic support and lessons.
+                            </p>
+                            <a href="category-listings.html?category=tutors" class="card-link">
+                                Find Tutors →
+                            </a>
+                        </div>
+
+                    </article>
+
+                    <article class="education-card" data-category="online"
+                        data-search="books study materials learning resources">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800"
+                            alt="Books in a library"
+                            loading="lazy"
+                        >
+
+                        <div class="education-card-content">
+                            <span class="education-tag">STUDY RESOURCES</span>
+                            <h3>Books & Study Materials</h3>
+                            <p>
+                                Discover books, revision materials and
+                                other educational resources.
+                            </p>
+                            <a href="category-listings.html?category=books" class="card-link">
+                                Explore Resources →
+                            </a>
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <div class="empty-state" id="emptyState">
+                    <h3>No matching categories found</h3>
+                    <p>Try another search term or choose a different category.</p>
+                </div>
+
+            </section>
+
+            <section class="opportunity-banner">
+
+                <div>
+                    <h2>Are You an Education Provider?</h2>
+                    <p>
+                        Promote your school, college, training centre,
+                        tutoring service or online learning programme.
+                        Reach more people through GLOBAL MARKET.
+                    </p>
+                </div>
+
+                <a href="advertise.html">Promote Your Services →</a>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="layout.js" defer></script>
+
+    <script>
+        // GLOBAL MARKET - Education Directory
+
+        const searchInput = document.getElementById("educationSearch");
+        const filterSelect = document.getElementById("educationFilter");
+        const searchButton = document.getElementById("searchButton");
+
+        const educationCards = document.querySelectorAll(".education-card");
+        const emptyState = document.getElementById("emptyState");
+
+        function filterEducation() {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+            const selectedCategory = filterSelect.value;
+
+            let visibleCount = 0;
+
+            educationCards.forEach(function (card) {
+                const category = card.dataset.category;
+                const searchText = (
+                    card.dataset.search + " " + card.textContent
+                ).toLowerCase();
+
+                const matchesSearch = searchText.includes(searchTerm);
+
+                const matchesCategory =
+                    selectedCategory === "all" ||
+                    category === selectedCategory;
+
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = "";
+                    visibleCount++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            emptyState.style.display =
+                visibleCount === 0 ? "block" : "none";
+        }
+
+        searchButton.addEventListener("click", filterEducation);
+
+        searchInput.addEventListener("input", filterEducation);
+
+        filterSelect.addEventListener("change", filterEducation);
+
+        searchInput.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                filterEducation();
+            }
+        });
+    </script>
+
+</body>
+</html>
+
