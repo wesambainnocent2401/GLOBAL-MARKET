@@ -1,1 +1,242 @@
 
+
+<footer class="gm-footer">
+    <div class="gm-footer-main">
+
+        <div class="gm-footer-brand">
+            <a href="index.html" class="gm-footer-logo">
+                <span class="gm-footer-logo-icon">GM</span>
+                <span>GLOBAL MARKET</span>
+            </a>
+
+            <p class="gm-footer-tagline">
+                YOUR WORLD. ONE MARKETPLACE.
+            </p>
+
+            <p class="gm-footer-description">
+                Discover products, services, businesses and opportunities
+                from across Kenya and beyond. One marketplace connecting
+                people, ideas and businesses.
+            </p>
+
+            <div class="gm-footer-socials">
+                <a href="#" aria-label="Facebook">f</a>
+                <a href="#" aria-label="Instagram">ig</a>
+                <a href="#" aria-label="TikTok">tk</a>
+                <a href="#" aria-label="YouTube">yt</a>
+            </div>
+        </div>
+
+        <div class="gm-footer-column">
+            <h3>Explore</h3>
+            <a href="index.html">Home</a>
+            <a href="categories.html">All Categories</a>
+            <a href="businesses.html">Businesses</a>
+            <a href="education.html">Education</a>
+            <a href="category-listings.html">Latest Listings</a>
+        </div>
+
+        <div class="gm-footer-column">
+            <h3>For Businesses</h3>
+            <a href="business-registration.html">Register Business</a>
+            <a href="advertise.html">Advertise With Us</a>
+            <a href="create-ad.html">Post an Advertisement</a>
+            <a href="advertiser-dashboard.html">Advertiser Dashboard</a>
+            <a href="business-profile.html">Business Profiles</a>
+        </div>
+
+        <div class="gm-footer-column">
+            <h3>Help & Support</h3>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="help.html">Help Centre</a>
+            <a href="terms.html">Terms & Conditions</a>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+
+    </div>
+
+    <div class="gm-footer-bottom">
+        <p>
+            &copy; <span id="gmCopyrightYear"></span>
+            GLOBAL MARKET. All rights reserved.
+        </p>
+
+        <p class="gm-footer-bottom-note">
+            Connecting people. Empowering businesses.
+        </p>
+    </div>
+</footer>
+
+<style>
+.gm-footer {
+    width: 100%;
+    background: #102b4c;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin-top: 60px;
+}
+
+.gm-footer * {
+    box-sizing: border-box;
+}
+
+.gm-footer-main {
+    width: min(1200px, 92%);
+    margin: auto;
+    padding: 55px 0 45px;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1.2fr 1fr;
+    gap: 35px;
+}
+
+.gm-footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.gm-footer-logo-icon {
+    width: 43px;
+    height: 43px;
+    border: 2px solid #d5ad55;
+    border-radius: 11px;
+    display: grid;
+    place-items: center;
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.gm-footer-tagline {
+    color: #e2bd70;
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin: 13px 0;
+}
+
+.gm-footer-description {
+    color: #c4d0df;
+    font-size: 13px;
+    line-height: 1.9;
+    max-width: 340px;
+}
+
+.gm-footer-socials {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.gm-footer-socials a {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    display: grid;
+    place-items: center;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.gm-footer-socials a:hover {
+    background: #d0a64d;
+    color: #102b4c;
+}
+
+.gm-footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.gm-footer-column h3 {
+    color: #e4bd6c;
+    font-size: 15px;
+    margin: 5px 0 8px;
+}
+
+.gm-footer-column a {
+    color: #c4d0df;
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.gm-footer-column a:hover {
+    color: #ffffff;
+    transform: translateX(3px);
+}
+
+.gm-footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.13);
+    width: 100%;
+    padding: 20px 4%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.gm-footer-bottom p {
+    color: #c4d0df;
+    font-size: 12px;
+    margin: 0;
+}
+
+.gm-footer-bottom-note {
+    color: #e4bd6c !important;
+}
+
+@media (max-width: 850px) {
+    .gm-footer-main {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 35px;
+    }
+}
+
+@media (max-width: 520px) {
+    .gm-footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 18px;
+        padding: 40px 0;
+    }
+
+    .gm-footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .gm-footer-column h3 {
+        font-size: 14px;
+    }
+
+    .gm-footer-column a {
+        font-size: 12px;
+    }
+
+    .gm-footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+</style>
+
+<script>
+(function () {
+    const yearElement = document.getElementById("gmCopyrightYear");
+
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+})();
+</script>
