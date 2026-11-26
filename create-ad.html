@@ -2,1479 +2,608 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#f4f7fb">
-
-    <meta name="description" content="Create and submit your product, service or business advertisement on GLOBAL MARKET.">
-
-    <title>Create Advertisement | GLOBAL MARKET</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            background: #f3f6fa;
-            color: #263950;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        .create-ad-hero {
-            padding: 36px 20px;
-            background:
-                linear-gradient(110deg, #142b49, #294b70);
-            color: white;
-        }
-
-        .create-ad-hero-inner {
-            max-width: 1100px;
-            margin: auto;
-        }
-
-        .create-ad-hero h1 {
-            margin: 0 0 10px;
-            font-size: 29px;
-        }
-
-        .create-ad-hero p {
-            max-width: 650px;
-            margin: 0;
-            color: #dce5ef;
-            font-size: 13px;
-            line-height: 1.8;
-        }
-
-        .create-ad-container {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) 290px;
-            align-items: start;
-            gap: 24px;
-            max-width: 1160px;
-            margin: 35px auto;
-            padding: 0 18px;
-        }
-
-        .form-card,
-        .sidebar-card {
-            border: 1px solid #e2e8ef;
-            border-radius: 13px;
-            background: white;
-            box-shadow: 0 6px 22px rgba(25, 45, 70, .04);
-        }
-
-        .form-card {
-            padding: 28px;
-        }
-
-        .form-section {
-            margin-bottom: 33px;
-        }
-
-        .section-heading {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            padding-bottom: 13px;
-            border-bottom: 1px solid #e9edf2;
-        }
-
-        .section-number {
-            display: grid;
-            width: 32px;
-            height: 32px;
-            flex-shrink: 0;
-            place-items: center;
-            border-radius: 9px;
-            background: #edf2f8;
-            color: #25476d;
-            font-size: 13px;
-            font-weight: bold;
-        }
-
-        .section-heading h2 {
-            margin: 0;
-            color: #1c3655;
-            font-size: 17px;
-        }
-
-        .section-heading p {
-            margin: 4px 0 0;
-            color: #8995a5;
-            font-size: 11px;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 17px;
-        }
-
-        .form-group {
-            min-width: 0;
-            margin-bottom: 17px;
-        }
-
-        .form-group.full {
-            grid-column: 1 / -1;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #34465d;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .required {
-            color: #bf5555;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            min-height: 45px;
-            padding: 12px;
-            border: 1px solid #dce3ec;
-            border-radius: 8px;
-            background: #fbfcfe;
-            color: #293c54;
-            font-family: inherit;
-            font-size: 13px;
-            outline: none;
-        }
-
-        .form-group textarea {
-            min-height: 125px;
-            resize: vertical;
-            line-height: 1.7;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: #c49b49;
-            box-shadow: 0 0 0 3px rgba(196, 155, 73, .1);
-        }
-
-        .form-group small {
-            display: block;
-            margin-top: 6px;
-            color: #8995a5;
-            font-size: 10px;
-            line-height: 1.6;
-        }
-
-        .media-upload-box {
-            padding: 20px;
-            border: 1px dashed #bdcbdc;
-            border-radius: 10px;
-            background: #f8fafc;
-        }
-
-        .upload-label {
-            display: flex;
-            min-height: 125px;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            border-radius: 8px;
-            background: #eef3f9;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .upload-icon {
-            margin-bottom: 10px;
-            font-size: 29px;
-        }
-
-        .upload-label strong {
-            color: #294b70;
-            font-size: 13px;
-        }
-
-        .upload-label span {
-            margin-top: 7px;
-            color: #8793a3;
-            font-size: 11px;
-        }
-
-        .file-input {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-        }
-
-        .file-input:focus-visible + .upload-label {
-            outline: 3px solid #9db8da;
-        }
-
-        .media-count {
-            margin-top: 12px;
-            color: #718198;
-            font-size: 11px;
-        }
-
-        .media-preview {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 12px;
-            margin-top: 16px;
-        }
-
-        .preview-item {
-            position: relative;
-            min-width: 0;
-            overflow: hidden;
-            border: 1px solid #e1e7ee;
-            border-radius: 8px;
-            background: white;
-        }
-
-        .preview-item img,
-        .preview-item video {
-            display: block;
-            width: 100%;
-            height: 90px;
-            object-fit: cover;
-            background: #e8edf4;
-        }
-
-        .preview-name {
-            overflow: hidden;
-            padding: 7px;
-            color: #617188;
-            font-size: 10px;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .media-guidance {
-            margin-top: 14px;
-            padding: 13px;
-            border-radius: 8px;
-            background: #fff8e9;
-            color: #80602b;
-            font-size: 11px;
-            line-height: 1.7;
-        }
-
-        .media-guidance strong {
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .checkbox-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 9px;
-            margin: 17px 0;
-            color: #718198;
-            font-size: 11px;
-            line-height: 1.7;
-        }
-
-        .checkbox-row input {
-            margin-top: 3px;
-            accent-color: #142b49;
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 9px;
-            background: #142b49;
-            color: white;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: .2s;
-        }
-
-        .submit-button:hover {
-            background: #25476d;
-        }
-
-        .form-status {
-            display: none;
-            margin-top: 16px;
-            padding: 14px;
-            border-radius: 8px;
-            font-size: 12px;
-            line-height: 1.7;
-        }
-
-        .form-status.error {
-            display: block;
-            background: #fff0f0;
-            border: 1px solid #efcccc;
-            color: #a33232;
-        }
-
-        .form-status.info {
-            display: block;
-            background: #eef5ff;
-            border: 1px solid #d7e4f3;
-            color: #315d91;
-        }
-
-        .sidebar {
-            display: grid;
-            gap: 18px;
-        }
-
-        .sidebar-card {
-            padding: 21px;
-        }
-
-        .sidebar-card h3 {
-            margin: 0 0 14px;
-            color: #1c3655;
-            font-size: 15px;
-        }
-
-        .sidebar-card p,
-        .sidebar-card li {
-            color: #7c8999;
-            font-size: 11px;
-            line-height: 1.8;
-        }
-
-        .sidebar-card ul {
-            padding-left: 17px;
-        }
-
-        .sidebar-image {
-            width: 100%;
-            height: 145px;
-            margin-bottom: 14px;
-            border-radius: 9px;
-            object-fit: cover;
-        }
-
-        .sidebar-link {
-            display: inline-block;
-            margin-top: 7px;
-            color: #315d91;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .price-note {
-            color: #7b899b;
-            font-size: 10px;
-            line-height: 1.7;
-        }
-
-        @media (max-width: 850px) {
-            .create-ad-container {
-                grid-template-columns: 1fr;
-            }
-
-            .sidebar {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 550px) {
-            .create-ad-hero {
-                padding: 30px 18px;
-            }
-
-            .create-ad-hero h1 {
-                font-size: 24px;
-            }
-
-            .create-ad-container {
-                margin: 22px auto;
-                padding: 0 11px;
-            }
-
-            .form-card {
-                padding: 19px 15px;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-                gap: 0;
-            }
-
-            .form-group.full {
-                grid-column: auto;
-            }
-
-            .sidebar {
-                grid-template-columns: 1fr;
-            }
-
-            .media-upload-box {
-                padding: 12px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f4f7fb">
+<meta name="description" content="Create an advertisement on GLOBAL MARKET.">
+<title>Create Advertisement | GLOBAL MARKET</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f3f6fa;color:#263950;font-family:Arial,sans-serif}
+.hero{background:linear-gradient(110deg,#142b49,#294b70);color:white;padding:38px 20px}
+.hero-inner{max-width:1100px;margin:auto}
+.hero h1{margin:0 0 10px;font-size:29px}
+.hero p{max-width:650px;color:#dce5ef;font-size:13px;line-height:1.8}
+.container{max-width:1100px;margin:30px auto;padding:0 16px}
+.card{background:white;border:1px solid #e2e8ef;border-radius:14px;padding:26px;box-shadow:0 6px 22px #192d4608}
+.section{margin-bottom:30px}
+.section h2{font-size:17px;color:#1c3655;border-bottom:1px solid #e9edf2;padding-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.field{margin-bottom:15px}
+.field.full{grid-column:1/-1}
+label{display:block;margin-bottom:7px;font-size:12px;font-weight:bold;color:#34465d}
+input,select,textarea{width:100%;padding:12px;border:1px solid #dce3ec;border-radius:8px;background:#fbfcfe;color:#293c54;font:13px Arial;min-height:44px}
+textarea{min-height:120px;resize:vertical;line-height:1.6}
+input:focus,select:focus,textarea:focus{outline:2px solid #d9bd82;border-color:#c49b49}
+small{display:block;color:#8995a5;font-size:11px;line-height:1.6;margin-top:6px}
+.upload-box{padding:18px;border:1px dashed #bdcbdc;border-radius:10px;background:#f8fafc}
+.upload-box input{background:white}
+.preview{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-top:14px}
+.preview-item{border:1px solid #e1e7ee;border-radius:8px;overflow:hidden;background:white}
+.preview-item img,.preview-item video{width:100%;height:95px;object-fit:cover;display:block;background:#e8edf4}
+.preview-name{padding:7px;font-size:10px;color:#617188;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.note{padding:13px;background:#fff8e9;border-radius:8px;color:#80602b;font-size:11px;line-height:1.7;margin-top:12px}
+.agreement{display:flex;gap:9px;align-items:flex-start;font-size:11px;line-height:1.7;color:#718198;margin:20px 0}
+.agreement input{width:auto;min-height:0;margin-top:3px}
+.submit{width:100%;padding:16px;border:0;border-radius:9px;background:#142b49;color:white;font-weight:bold;cursor:pointer}
+.submit:disabled{opacity:.6;cursor:not-allowed}
+.status{display:none;margin-top:15px;padding:14px;border-radius:8px;font-size:12px;line-height:1.7}
+.status.error{display:block;background:#fff0f0;color:#a33232;border:1px solid #efcccc}
+.status.info{display:block;background:#eef5ff;color:#315d91;border:1px solid #d7e4f3}
+.status.success{display:block;background:#edf9f0;color:#27633b;border:1px solid #cdebd5}
+@media(max-width:600px){.hero{padding:30px 17px}.hero h1{font-size:24px}.container{padding:0 10px;margin:20px auto}.card{padding:17px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+</style>
 </head>
 
 <body>
 
-    <!-- Shared Header -->
-    <div id="site-header"></div>
-
-    <main>
-
-        <section class="create-ad-hero">
-
-            <div class="create-ad-hero-inner">
-
-                <h1>Create Your Advertisement</h1>
-
-                <p>
-                    Showcase what you sell or the services you provide.
-                    Add clear descriptions, photographs and videos
-                    to help potential customers understand your offer.
-                </p>
-
-            </div>
-
-        </section>
-
-        <div class="create-ad-container">
-
-            <section class="form-card">
-
-                <form id="createAdForm">
-
-                    <!-- SECTION 1 -->
-                    <div class="form-section">
-
-                        <div class="section-heading">
-
-                            <span class="section-number">01</span>
-
-                            <div>
-                                <h2>Advertisement Information</h2>
-                                <p>Tell customers what you are advertising.</p>
-                            </div>
-
-                        </div>
-
-                        <div class="form-grid">
-
-                            <div class="form-group full">
-
-                                <label for="title">
-                                    Advertisement Title <span class="required">*</span>
-                                </label>
-
-                                <input
-                                    type="text"
-                                    id="title"
-                                    name="title"
-                                    maxlength="120"
-                                    placeholder="Example: Toyota Fielder 2018 for Sale"
-                                    required
-                                >
-
-                            </div>
-
-                            <div class="form-group">
-
-                                <label for="category">
-                                    Main Category <span class="required">*</span>
-                                </label>
-
-                                <select id="category" name="category" required>
-
-                                    <option value="">Select category</option>
-                                    <option value="electronics">Electronics</option>
-                                    <option value="fashion">Fashion & Clothing</option>
-                                    <option value="vehicles">Vehicles</option>
-                                    <option value="property">Property & Real Estate</option>
-                                    <option value="home">Home & Furniture</option>
-                                    <option value="agriculture">Agriculture</option>
-                                    <option value="food">Food & Groceries</option>
-                                    <option value="services">Services</option>
-                                    <option value="education">Education</option>
-                                    <option value="jobs">Jobs & Opportunities</option>
-                                    <option value="beauty">Beauty & Personal Care</option>
-                                    <option value="construction">Construction</option>
-                                    <option value="other">Other</option>
-
-                                </select>
-
-                            </div>
-
-                            <div class="form-group">
-
-                                <label for="subcategory">Subcategory</label>
-
-                                <input
-                                    type="text"
-                                    id="subcategory"
-                                    name="subcategory"
-                                    maxlength="80"
-                                    placeholder="Example: Used Cars"
-                                >
-
-                            </div>
-
-                            <div class="form-group">
-
-                                <label for="adType">
-                                    Advertisement Type <span class="required">*</span>
-                                </label>
-
-                                <select id="adType" name="adType" required>
-
-                                    <option value="">Choose type</option>
-                                    <option value="sale">For Sale</option>
-                                    <option value="service">Service Offered</option>
-                                    <option value="rent">For Rent</option>
-                                    <option value="wanted">Wanted</option>
-                                    <option value="job">Job Opportunity</option>
-                                    <option value="other">Other</option>
-
-                                </select>
-
-                            </div>
-
-                            <div class="form-group">
-
-                                <label for="condition">Condition</label>
-
-                                <select id="condition" name="condition">
-
-                                    <option value="">Not applicable</option>
-                                    <option value="new">Brand New</option>
-                                    <option value="used">Used</option>
-                                    <option value="refurbished">Refurbished</option>
-                                    <option value="service">Service</option>
-
-                                </select>
-
-                            </div>
-
-                            <div class="form-group full">
-
-                                <label for="description">
-                                    Detailed Description <span class="required">*</span>
-                                </label>
-
-                                <textarea
-                                    id="description"
-                                    name="description"
-                                    minlength="20"
-                                    maxlength="5000"
-                                    placeholder="Describe your product or service, its features, condition and important details..."
-                                    required
-                                ></textarea>
-
-                                <small>
-                                    Provide accurate information. Avoid misleading claims.
-                                </small>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <!-- SECTION 2 -->
-                    <div class="form-section">
-
-                        <div class="section-heading">
-
-                            <span class="section-number">02</span>
-
-                            <div>
-                                <h2>Pricing Information</h2>
-                                <p>Set your asking price where applicable.</p>
-                            </div>
-
-                        </div>
-
-                        <div class="form-grid">
-
-                            <div class="form-group">
-
-                                <label for="price">Price (KSh)</label>
-
-                                <input
-                                    type="number"
-                                    id="price"
-                                    name="price"
-                                    min="0"
-                                    step="0.01"
-                                    placeholder="Example: 25000"
-                                >
-
-                            </div>
-
-                            <div class="form-group">
-
-                                <label for="priceType">Price Type</label>
-
-                                <select id="priceType" name="priceType">
-
-                                    <option value="fixed">Fixed Price</option>
-                                    <option value="negotiable">Negotiable</option>
-                                    <option value="starting">Starting From</option>
-                                    <option value="hourly">Per Hour</option>
-                                    <option value="daily">Per Day</option>
-                                    <option value="monthly">Per Month</option>
-                                    <option value="contact">Contact For Price</option>
-
-                                </select>
-
-                            </div>
-
-                        </div>
-
-                        <p class="price-note">
-                            Do not enter a price if it is not applicable.
-                            Clearly state whether the price is fixed,
-                            negotiable or based on another arrangement.
-                        </p>
-
-                    </div>
-
-                    <!-- SECTION 3: PHOTOS -->
-                    <div class="form-section">
-
-                        <div class="section-heading">
-
-                            <span class="section-number">03</span>
-
-                            <div>
-                                <h2>Upload Advertisement Photos</h2>
-                                <p>Show customers what you are offering.</p>
-                            </div>
-
-                        </div>
-
-                        <div class="media-upload-box">
-
-                            <input
-                                type="file"
-                                id="photos"
-                                name="photos"
-                                class="file-input"
-                                accept="image/jpeg,image/png,image/webp"
-                                multiple
-                                required
-                            >
-
-                            <label for="photos" class="upload-label">
-
-                                <span class="upload-icon">📷</span>
-
-                                <strong>Choose Advertisement Photos</strong>
-
-                                <span>
-                                    Select multiple JPG, PNG or WebP images.
-                                </span>
-
-                            </label>
-
-                            <div class="media-count" id="photoCount">
-                                No photos selected.
-                            </div>
-
-                            <div
-                                class="media-preview"
-                                id="photoPreview"
-                            ></div>
-
-                            <div class="media-guidance">
-                                <strong>Photo guidelines</strong>
-                                Upload clear photographs of the actual
-                                product, property or service. Do not use
-                                photographs that misrepresent what you offer.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <!-- SECTION 4: VIDEOS -->
-                    <div class="form-section">
-
-                        <div class="section-heading">
-
-                            <span class="section-number">04</span>
-
-                            <div>
-                                <h2>Upload Advertisement Videos</h2>
-                                <p>Five videos are required for each advertisement.</p>
-                            </div>
-
-                        </div>
-
-                        <div class="media-upload-box">
-
-                            <input
-                                type="file"
-                                id="videos"
-                                name="videos"
-                                class="file-input"
-                                accept="video/mp4,video/webm,video/quicktime"
-                                multiple
-                                required
-                            >
-
-                            <label for="videos" class="upload-label">
-
-                                <span class="upload-icon">🎬</span>
-
-                                <strong>Choose At Least Five Videos</strong>
-
-                                <span>
-                                    Select five or more MP4, WebM or MOV videos.
-                                </span>
-
-                            </label>
-
-                            <div class="media-count" id="videoCount">
-                                0 of 5 required videos selected.
-                            </div>
-
-                            <div
-                                class="media-preview"
-                                id="videoPreview"
-                            ></div>
-
-                            <div class="media-guidance">
-                                <strong>Video requirements</strong>
-                                At least five videos are required.
-                                Select multiple files together or add more
-                                in a later selection. The final platform
-                                will store these videos securely in its
-                                media storage service.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <!-- SECTION 5 -->
-                    <div class="form-section">
-
-                        <div class="section-heading">
-
-                            <span class="section-number">05</span>
-
-                            <div>
-                                <h2>Location Information</h2>
-                                <p>Help interested customers find your offer.</p>
-                            </div>
-
-                        </div>
-
-                        <div class="form-grid">
-
-                            <div class="form-group">
-
-                                <label for="county">
-                                    County <span class="required">*</span>
-                                </label>
-
-                                <select id="county" name="county" required>
-
-                                    <option value="">Select county</option>
-                                    <option>Mombasa</option>
-                                    <option>Kwale</option>
-                                    <option>Kilifi</option>
-                                    <option>Tana River</option>
-                                    <option>Lamu</option>
-                                    <option>Taita Taveta</option>
-                                    <option>Garissa</option>
-                                    <option>Wajir</option>
-                                    <option>Mandera</option>
-                                    <option>Marsabit</option>
-                                    <option>Isiolo</option>
-                                    <option>Meru</option>
-                                    <option>Tharaka Nithi</option>
-                                    <option>Embu</option>
-                                    <option>Kitui</option>
-                                    <option>Machakos</option>
-                                    <option>Makueni</option>
-                                    <option>Nyandarua</option>
-                                    <option>Nyeri</option>
-                                    <option>Kirinyaga</option>
-                                    <option>Murang'a</option>
-                                    <option>Kiambu</option>
-                                    <option>Turkana</option>
-                                    <option>West Pokot</option>
-                                    <option>Samburu</option>
-                                    <option>Trans Nzoia</option>
-                                    <option>Uasin Gishu</option>
-                                    <option>Elgeyo Marakwet</option>
-                                    <option>Nandi</option>
-                                    <option>Baringo</option>
-                                    <option>Laikipia</option>
-                                    <option>Nakuru</option>
-                                    <option>Narok</option>
-                                    <option>Kajiado</option>
-                                    <option>Kericho</option>
-                                    <option>Bomet</option>
-                                    <option>Kakamega</option>
-                                    <option>Vihiga</option>
-                                    <option>Bungoma</option>
-                                    <option>Busia</option>
-                                    <option>Siaya</option>
-                                    <option>Kisumu</option>
-                                    <option>Homa Bay</option>
-                                    <option>Migori</option>
-                                    <option>Kisii</option>
-                                    <option>Nyamira</option>
-                                    <option>Nairobi</option>
-
-                                </select>
-
-                            </div>
-
-                            <div class="form-group">
-
-                                <label for="town">
-                                    Town / Area <span class="required">*</span>
-                                </label>
-
-                                <input
-                                    type="text"
-                                    id="town"
-                                    name="town"
-                                    maxlength="100"
-                                    placeholder="Example: Bungoma Town"
-                                    required
-                                >
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <!-- SECTION 6 -->
-                    <div class="form-section">
-
-                        <div class="section-heading">
-
-                            <span class="section-number">06</span>
-
-                            <div>
-                                <h2>Contact Information</h2>
-                                <p>Provide a way for interested customers to reach you.</p>
-                            </div>
-
-                        </div>
-
-                        <div class="form-grid">
-
-                            <div class="form-group">
-
-                                <label for="contactName">
-                                    Contact Person <span class="required">*</span>
-                                </label>
-
-                                <input
-                                    type="text"
-                                    id="contactName"
-                                    name="contactName"
-                                    maxlength="100"
-                                    autocomplete="name"
-                                    required
-                                >
-
-                            </div>
-
-                            <div class="form-group">
-
-                                <label for="contactPhone">
-                                    Phone Number <span class="required">*</span>
-                                </label>
-
-                                <input
-                                    type="tel"
-                                    id="contactPhone"
-                                    name="contactPhone"
-                                    placeholder="0712345678"
-                                    pattern="(\+254|0)(7|1)[0-9]{8}"
-                                    title="Enter a valid Kenyan mobile number."
-                                    maxlength="16"
-                                    required
-                                >
-
-                            </div>
-
-                            <div class="form-group full">
-
-                                <label for="contactEmail">Email Address</label>
-
-                                <input
-                                    type="email"
-                                    id="contactEmail"
-                                    name="contactEmail"
-                                    placeholder="example@email.com"
-                                    maxlength="150"
-                                >
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <!-- AGREEMENT -->
-                    <label class="checkbox-row">
-
-                        <input
-                            type="checkbox"
-                            id="confirmAccuracy"
-                            required
-                        >
-
-                        <span>
-                            I confirm that the information, photographs
-                            and videos submitted are accurate and that
-                            I have permission to use the uploaded media.
-                            I agree to the
-                            <a href="terms.html">Terms and Conditions</a>
-                            and
-                            <a href="privacy.html">Privacy Policy</a>.
-                        </span>
-
-                    </label>
-
-                    <button type="submit" class="submit-button">
-                        Submit Advertisement →
-                    </button>
-
-                    <div
-                        class="form-status"
-                        id="formStatus"
-                        role="status"
-                        aria-live="polite"
-                    ></div>
-
-                </form>
-
-            </section>
-
-            <!-- SIDEBAR -->
-            <aside class="sidebar">
-
-                <div class="sidebar-card">
-
-                    <img
-                        class="sidebar-image"
-                        src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800"
-                        alt="Seller preparing products for customers"
-                    >
-
-                    <h3>Make Your Ad Stand Out</h3>
-
-                    <p>
-                        Clear descriptions, good photographs and
-                        useful videos help visitors understand
-                        your advertisement.
-                    </p>
-
-                </div>
-
-                <div class="sidebar-card">
-
-                    <h3>Before You Submit</h3>
-
-                    <ul>
-                        <li>Use an accurate advertisement title.</li>
-                        <li>Describe your offer clearly.</li>
-                        <li>Upload genuine product photographs.</li>
-                        <li>Select at least five videos.</li>
-                        <li>Provide correct contact information.</li>
-                        <li>Choose the correct location.</li>
-                    </ul>
-
-                </div>
-
-                <div class="sidebar-card">
-
-                    <h3>Need Assistance?</h3>
-
-                    <p>
-                        Visit our Help Centre if you need
-                        assistance creating an advertisement.
-                    </p>
-
-                    <a href="help.html" class="sidebar-link">
-                        Visit Help Centre →
-                    </a>
-
-                    <br>
-
-                    <a href="contact.html" class="sidebar-link">
-                        Contact Support →
-                    </a>
-
-                </div>
-
-            </aside>
-
-        </div>
-
-    </main>
-
-    <!-- Shared Footer -->
-    <div id="site-footer"></div>
-
-    <script src="layout.js" defer></script>
-
-    <script>
-        // GLOBAL MARKET Advertisement Creation
-        // Supabase Storage and database submission will be connected later.
-
-        const createAdForm = document.getElementById("createAdForm");
-
-        const photosInput = document.getElementById("photos");
-
-        const videosInput = document.getElementById("videos");
-
-        const photoPreview = document.getElementById("photoPreview");
-
-        const videoPreview = document.getElementById("videoPreview");
-
-        const photoCount = document.getElementById("photoCount");
-
-        const videoCount = document.getElementById("videoCount");
-
-        const formStatus = document.getElementById("formStatus");
-
-        const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
-
-        const MAX_VIDEO_SIZE = 100 * 1024 * 1024;
-
-        const MAX_PHOTOS = 20;
-
-        const MAX_VIDEOS = 10;
-
-        const allowedImageTypes = [
-            "image/jpeg",
-            "image/png",
-            "image/webp"
-        ];
-
-        const allowedVideoTypes = [
-            "video/mp4",
-            "video/webm",
-            "video/quicktime"
-        ];
-
-        let selectedPhotos = [];
-
-        let selectedVideos = [];
-
-        function updateFileInput(input, files) {
-
-            const transfer = new DataTransfer();
-
-            files.forEach(file => transfer.items.add(file));
-
-            input.files = transfer.files;
-
+<div id="site-header"></div>
+
+<main>
+<section class="hero">
+<div class="hero-inner">
+<h1>Create Your Advertisement</h1>
+<p>Showcase your products or services to customers across Kenya. Add accurate details, clear photographs and videos.</p>
+</div>
+</section>
+
+<div class="container">
+<section class="card">
+
+<form id="createAdForm">
+
+<div class="section">
+<h2>01. Advertisement Information</h2>
+
+<div class="grid">
+
+<div class="field full">
+<label for="title">Advertisement title *</label>
+<input id="title" maxlength="120" required placeholder="Example: Samsung Galaxy phone for sale">
+</div>
+
+<div class="field">
+<label for="category">Category *</label>
+<select id="category" required>
+<option value="">Loading categories...</option>
+</select>
+</div>
+
+<div class="field">
+<label for="listingType">Listing type *</label>
+<select id="listingType" required>
+<option value="">Select listing type</option>
+<option value="sale">For Sale</option>
+<option value="service">Service Offered</option>
+<option value="rent">For Rent</option>
+<option value="wanted">Wanted</option>
+<option value="job">Job Opportunity</option>
+<option value="other">Other</option>
+</select>
+</div>
+
+<div class="field">
+<label for="condition">Condition</label>
+<select id="condition">
+<option value="not_applicable">Not applicable</option>
+<option value="new">Brand New</option>
+<option value="used">Used</option>
+<option value="refurbished">Refurbished</option>
+<option value="service">Service</option>
+</select>
+</div>
+
+<div class="field full">
+<label for="description">Detailed description *</label>
+<textarea id="description" minlength="20" maxlength="5000" required placeholder="Describe what you are offering, its features and important details..."></textarea>
+<small>Use clear and accurate information. Minimum 20 characters.</small>
+</div>
+
+</div>
+</div>
+
+<div class="section">
+<h2>02. Advertisement Photos</h2>
+
+<div class="upload-box">
+<label for="photos">Choose photos *</label>
+<input id="photos" type="file" accept="image/jpeg,image/png,image/gif" multiple required>
+<small>Upload 1–20 JPG, PNG or GIF photos. Maximum 5 MB per photo.</small>
+<div id="photoCount">No photos selected.</div>
+<div class="preview" id="photoPreview"></div>
+</div>
+</div>
+
+<div class="section">
+<h2>03. Advertisement Videos</h2>
+
+<div class="upload-box">
+<label for="videos">Choose videos *</label>
+<input id="videos" type="file" accept="video/mp4" multiple required>
+<small>At least 5 videos are required. Maximum 10 videos, 50 MB each. MP4 only.</small>
+<div id="videoCount">0 of 5 required videos selected.</div>
+<div class="preview" id="videoPreview"></div>
+</div>
+
+<div class="note">
+<strong>Media requirements</strong>
+Your photos and videos should genuinely show the product or service being advertised. Do not upload content you do not have permission to use.
+</div>
+</div>
+
+<div class="section">
+<h2>04. Location</h2>
+
+<div class="grid">
+<div class="field">
+<label for="county">County *</label>
+<select id="county" required>
+<option value="">Select county</option>
+<option>Mombasa</option><option>Kwale</option><option>Kilifi</option>
+<option>Tana River</option><option>Lamu</option><option>Taita Taveta</option>
+<option>Garissa</option><option>Wajir</option><option>Mandera</option>
+<option>Marsabit</option><option>Isiolo</option><option>Meru</option>
+<option>Tharaka Nithi</option><option>Embu</option><option>Kitui</option>
+<option>Machakos</option><option>Makueni</option><option>Nyandarua</option>
+<option>Nyeri</option><option>Kirinyaga</option><option>Murang'a</option>
+<option>Kiambu</option><option>Turkana</option><option>West Pokot</option>
+<option>Samburu</option><option>Trans Nzoia</option><option>Uasin Gishu</option>
+<option>Elgeyo Marakwet</option><option>Nandi</option><option>Baringo</option>
+<option>Laikipia</option><option>Nakuru</option><option>Narok</option>
+<option>Kajiado</option><option>Kericho</option><option>Bomet</option>
+<option>Kakamega</option><option>Vihiga</option><option>Bungoma</option>
+<option>Busia</option><option>Siaya</option><option>Kisumu</option>
+<option>Homa Bay</option><option>Migori</option><option>Kisii</option>
+<option>Nyamira</option><option>Nairobi</option>
+</select>
+</div>
+
+<div class="field">
+<label for="townLocation">Town / Area *</label>
+<input id="townLocation" maxlength="100" required placeholder="Example: Bungoma Town">
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>05. Contact Information</h2>
+<div class="field">
+<label for="contactPhone">Contact phone number *</label>
+<input id="contactPhone" type="tel" maxlength="16" required placeholder="0712345678" pattern="(\+254|0)(7|1)[0-9]{8}" title="Enter a valid Kenyan mobile number.">
+<small>Use a Kenyan mobile number customers can contact.</small>
+</div>
+</div>
+
+<label class="agreement">
+<input id="confirmAccuracy" type="checkbox" required>
+<span>I confirm that the advertisement information and uploaded media are accurate and that I have permission to use the media. I agree to the <a href="terms.html">Terms and Conditions</a> and <a href="privacy.html">Privacy Policy</a>.</span>
+</label>
+
+<button class="submit" id="submitButton" type="submit">Submit Advertisement</button>
+<div class="status" id="formStatus" role="status" aria-live="polite"></div>
+
+</form>
+</section>
+</div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/appwrite@29.0.0"></script>
+<script src="appwrite-config.js"></script>
+<script src="layout.js" defer></script>
+
+<script>
+"use strict";
+
+const DATABASE_ID = "global_market_db";
+const AD_TABLE_ID = "advertisements";
+const MEDIA_TABLE_ID = "advertisement_media";
+const CATEGORY_TABLE_ID = "categories";
+const BUCKET_ID = "advertisement_media";
+
+const MAX_PHOTOS = 20;
+const MIN_VIDEOS = 5;
+const MAX_VIDEOS = 10;
+const MAX_PHOTO_SIZE = 5 * 1024 * 1024;
+const MAX_VIDEO_SIZE = 50 * 1024 * 1024;
+
+const form = document.getElementById("createAdForm");
+const photosInput = document.getElementById("photos");
+const videosInput = document.getElementById("videos");
+const photoPreview = document.getElementById("photoPreview");
+const videoPreview = document.getElementById("videoPreview");
+const photoCount = document.getElementById("photoCount");
+const videoCount = document.getElementById("videoCount");
+const categorySelect = document.getElementById("category");
+const statusBox = document.getElementById("formStatus");
+const submitButton = document.getElementById("submitButton");
+
+let selectedPhotos = [];
+let selectedVideos = [];
+let categoriesBySlug = {};
+
+function showStatus(message, type = "info") {
+    statusBox.className = "status " + type;
+    statusBox.textContent = message;
+}
+
+function clearStatus() {
+    statusBox.className = "status";
+    statusBox.textContent = "";
+}
+
+function uniqueFiles(files) {
+    const seen = new Set();
+
+    return files.filter(file => {
+        const key = `${file.name}-${file.size}-${file.lastModified}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+    });
+}
+
+function updateInputFiles(input, files) {
+    const transfer = new DataTransfer();
+    files.forEach(file => transfer.items.add(file));
+    input.files = transfer.files;
+}
+
+function renderPreview(files, container, isVideo) {
+    container.innerHTML = "";
+
+    files.forEach(file => {
+        const item = document.createElement("div");
+        item.className = "preview-item";
+
+        const media = document.createElement(isVideo ? "video" : "img");
+        const name = document.createElement("div");
+
+        const objectUrl = URL.createObjectURL(file);
+
+        media.src = objectUrl;
+        if (isVideo) {
+            media.controls = true;
+            media.preload = "metadata";
+        } else {
+            media.alt = file.name;
         }
 
-        function showStatus(message, type) {
+        media.addEventListener("loadedmetadata", () => URL.revokeObjectURL(objectUrl), {once:true});
+        media.addEventListener("load", () => URL.revokeObjectURL(objectUrl), {once:true});
 
-            formStatus.className = "form-status " + type;
+        name.className = "preview-name";
+        name.textContent = file.name;
 
-            formStatus.textContent = message;
+        item.append(media, name);
+        container.appendChild(item);
+    });
+}
 
-        }
+photosInput.addEventListener("change", () => {
+    const files = uniqueFiles(Array.from(photosInput.files || []));
 
-        function clearStatus() {
+    if (files.length > MAX_PHOTOS) {
+        showStatus("You can upload a maximum of 20 photos.", "error");
+        photosInput.value = "";
+        return;
+    }
 
-            formStatus.className = "form-status";
+    const invalid = files.find(file =>
+        !["image/jpeg", "image/png", "image/gif"].includes(file.type)
+    );
 
-            formStatus.textContent = "";
+    if (invalid) {
+        showStatus("Only JPG, PNG and GIF photos are allowed by your Storage bucket.", "error");
+        photosInput.value = "";
+        return;
+    }
 
-        }
+    if (files.some(file => file.size > MAX_PHOTO_SIZE)) {
+        showStatus("Each photo must be 5 MB or smaller.", "error");
+        photosInput.value = "";
+        return;
+    }
 
-        // PHOTO UPLOAD
-        photosInput.addEventListener("change", function() {
+    selectedPhotos = files;
+    updateInputFiles(photosInput, selectedPhotos);
+    photoCount.textContent = `${files.length} photo(s) selected.`;
+    renderPreview(files, photoPreview, false);
+    clearStatus();
+});
 
-            const incomingFiles = Array.from(this.files);
+videosInput.addEventListener("change", () => {
+    const files = uniqueFiles(Array.from(videosInput.files || []));
 
-            const combinedFiles = [
-                ...selectedPhotos,
-                ...incomingFiles
-            ];
+    if (files.length > MAX_VIDEOS) {
+        showStatus("You can upload a maximum of 10 videos.", "error");
+        videosInput.value = "";
+        return;
+    }
 
-            const uniqueFiles = [];
+    if (files.some(file => file.type !== "video/mp4")) {
+        showStatus("Your Storage bucket currently allows MP4 videos. Please choose MP4 files.", "error");
+        videosInput.value = "";
+        return;
+    }
 
-            const seenFiles = new Set();
+    if (files.some(file => file.size > MAX_VIDEO_SIZE)) {
+        showStatus("Each video must be 50 MB or smaller.", "error");
+        videosInput.value = "";
+        return;
+    }
 
-            for (const file of combinedFiles) {
+    selectedVideos = files;
+    updateInputFiles(videosInput, selectedVideos);
+    videoCount.textContent = `${files.length} of ${MIN_VIDEOS} required videos selected.`;
+    renderPreview(files, videoPreview, true);
+    clearStatus();
+});
 
-                const key = [
-                    file.name,
-                    file.size,
-                    file.lastModified
-                ].join("-");
-
-                if (!seenFiles.has(key)) {
-
-                    seenFiles.add(key);
-
-                    uniqueFiles.push(file);
-
-                }
-
-            }
-
-            const invalidType = uniqueFiles.find(
-                file => !allowedImageTypes.includes(file.type)
-            );
-
-            if (invalidType) {
-
-                showStatus(
-                    "One or more photos have an unsupported format. Use JPG, PNG or WebP.",
-                    "error"
-                );
-
-                return;
-            }
-
-            const oversized = uniqueFiles.find(
-                file => file.size > MAX_IMAGE_SIZE
-            );
-
-            if (oversized) {
-
-                showStatus(
-                    "Each photo must be 5MB or smaller.",
-                    "error"
-                );
-
-                return;
-            }
-
-            if (uniqueFiles.length > MAX_PHOTOS) {
-
-                showStatus(
-                    "You can upload a maximum of 20 photographs per advertisement.",
-                    "error"
-                );
-
-                return;
-            }
-
-            selectedPhotos = uniqueFiles;
-
-            updateFileInput(photosInput, selectedPhotos);
-
-            renderPhotos();
-
-            clearStatus();
-
+async function loadCategories() {
+    try {
+        const result = await GMAppwrite.tablesDB.listRows({
+            databaseId: DATABASE_ID,
+            tableId: CATEGORY_TABLE_ID,
+            queries: [
+                GMAppwrite.Query.equal("isActive", [true]),
+                GMAppwrite.Query.orderAsc("sortOrder"),
+                GMAppwrite.Query.limit(100)
+            ]
         });
 
-        function renderPhotos() {
+        categorySelect.innerHTML = '<option value="">Select category</option>';
 
-            photoPreview.innerHTML = "";
+        (result.rows || []).forEach(category => {
+            categoriesBySlug[category.slug] = category;
 
-            photoCount.textContent =
-                selectedPhotos.length + " photograph(s) selected.";
-
-            selectedPhotos.forEach(file => {
-
-                const item = document.createElement("div");
-
-                item.className = "preview-item";
-
-                const image = document.createElement("img");
-
-                const name = document.createElement("div");
-
-                name.className = "preview-name";
-
-                name.textContent = file.name;
-
-                const url = URL.createObjectURL(file);
-
-                image.src = url;
-
-                image.alt = file.name;
-
-                image.onload = () => URL.revokeObjectURL(url);
-
-                item.appendChild(image);
-
-                item.appendChild(name);
-
-                photoPreview.appendChild(item);
-
-            });
-
-        }
-
-        // VIDEO UPLOAD
-        videosInput.addEventListener("change", function() {
-
-            const incomingFiles = Array.from(this.files);
-
-            const combinedFiles = [
-                ...selectedVideos,
-                ...incomingFiles
-            ];
-
-            const uniqueFiles = [];
-
-            const seenFiles = new Set();
-
-            for (const file of combinedFiles) {
-
-                const key = [
-                    file.name,
-                    file.size,
-                    file.lastModified
-                ].join("-");
-
-                if (!seenFiles.has(key)) {
-
-                    seenFiles.add(key);
-
-                    uniqueFiles.push(file);
-
-                }
-
-            }
-
-            const invalidType = uniqueFiles.find(
-                file => !allowedVideoTypes.includes(file.type)
-            );
-
-            if (invalidType) {
-
-                showStatus(
-                    "One or more videos have an unsupported format. Use MP4, WebM or MOV.",
-                    "error"
-                );
-
-                return;
-            }
-
-            const oversized = uniqueFiles.find(
-                file => file.size > MAX_VIDEO_SIZE
-            );
-
-            if (oversized) {
-
-                showStatus(
-                    "Each video must be 100MB or smaller.",
-                    "error"
-                );
-
-                return;
-            }
-
-            if (uniqueFiles.length > MAX_VIDEOS) {
-
-                showStatus(
-                    "You can upload a maximum of 10 videos per advertisement.",
-                    "error"
-                );
-
-                return;
-            }
-
-            selectedVideos = uniqueFiles;
-
-            updateFileInput(videosInput, selectedVideos);
-
-            renderVideos();
-
-            clearStatus();
-
+            const option = document.createElement("option");
+            option.value = category.slug;
+            option.textContent = category.name;
+            categorySelect.appendChild(option);
         });
 
-        function renderVideos() {
+        if (!result.rows || result.rows.length === 0) {
+            showStatus("No active categories were found. Please check your categories table.", "error");
+        }
+    } catch (error) {
+        console.error("Category loading error:", error);
+        categorySelect.innerHTML = '<option value="">Could not load categories</option>';
+        showStatus("We could not load categories. Check your Appwrite categories table read permissions.", "error");
+    }
+}
 
-            videoPreview.innerHTML = "";
+function ownerPermissions(userId) {
+    return [
+        Appwrite.Permission.read(Appwrite.Role.user(userId)),
+        Appwrite.Permission.update(Appwrite.Role.user(userId)),
+        Appwrite.Permission.delete(Appwrite.Role.user(userId))
+    ];
+}
 
-            videoCount.textContent =
-                selectedVideos.length +
-                " of 5 required videos selected.";
+function getFileViewUrl(fileId) {
+    return GMAppwrite.storage.getFileView({
+        bucketId: BUCKET_ID,
+        fileId: fileId
+    }).toString();
+}
 
-            selectedVideos.forEach(file => {
+function getImagePreviewUrl(fileId) {
+    return GMAppwrite.storage.getFilePreview({
+        bucketId: BUCKET_ID,
+        fileId: fileId,
+        width: 500,
+        height: 500
+    }).toString();
+}
 
-                const item = document.createElement("div");
+async function uploadOneMedia(file, mediaType, userId, advertisementId, sortOrder) {
+    const fileId = Appwrite.ID.unique();
 
-                item.className = "preview-item";
+    const uploadedFile = await GMAppwrite.storage.createFile({
+        bucketId: BUCKET_ID,
+        fileId: fileId,
+        file: file,
+        permissions: ownerPermissions(userId)
+    });
 
-                const video = document.createElement("video");
+    const fileUrl = getFileViewUrl(uploadedFile.$id);
+    const thumbnailUrl = mediaType === "image"
+        ? getImagePreviewUrl(uploadedFile.$id)
+        : "";
 
-                const name = document.createElement("div");
-
-                name.className = "preview-name";
-
-                name.textContent = file.name;
-
-                video.controls = true;
-
-                video.preload = "metadata";
-
-                const url = URL.createObjectURL(file);
-
-                video.src = url;
-
-                video.onloadedmetadata = () => {
-                    URL.revokeObjectURL(url);
-                };
-
-                item.appendChild(video);
-
-                item.appendChild(name);
-
-                videoPreview.appendChild(item);
-
+    try {
+        await GMAppwrite.tablesDB.createRow({
+            databaseId: DATABASE_ID,
+            tableId: MEDIA_TABLE_ID,
+            rowId: Appwrite.ID.unique(),
+            data: {
+                advertisementId: advertisementId,
+                ownerId: userId,
+                mediaType: mediaType,
+                fileUrl: fileUrl,
+                thumbnailUrl: thumbnailUrl,
+                fileName: file.name,
+                sortOrder: sortOrder
+            },
+            permissions: ownerPermissions(userId)
+        });
+    } catch (error) {
+        try {
+            await GMAppwrite.storage.deleteFile({
+                bucketId: BUCKET_ID,
+                fileId: uploadedFile.$id
             });
+        } catch (cleanupError) {
+            console.error("Could not remove an unlinked media file:", cleanupError);
+        }
+        throw error;
+    }
 
+    return uploadedFile.$id;
+}
+
+async function rollbackAdvertisement(advertisementId, uploadedFileIds) {
+    for (const fileId of uploadedFileIds) {
+        try {
+            await GMAppwrite.storage.deleteFile({
+                bucketId: BUCKET_ID,
+                fileId: fileId
+            });
+        } catch (error) {
+            console.error("Media cleanup issue:", error);
+        }
+    }
+
+    if (advertisementId) {
+        try {
+            await GMAppwrite.tablesDB.deleteRow({
+                databaseId: DATABASE_ID,
+                tableId: AD_TABLE_ID,
+                rowId: advertisementId
+            });
+        } catch (error) {
+            console.error("Advertisement cleanup issue:", error);
+        }
+    }
+}
+
+form.addEventListener("submit", async event => {
+    event.preventDefault();
+    clearStatus();
+
+    if (!form.reportValidity()) return;
+
+    if (selectedPhotos.length < 1) {
+        showStatus("Please select at least one photo.", "error");
+        return;
+    }
+
+    if (selectedVideos.length < MIN_VIDEOS) {
+        showStatus("Please select at least five MP4 videos.", "error");
+        return;
+    }
+
+    if (!window.GMAppwrite) {
+        showStatus("Appwrite did not initialize. Please refresh the page and try again.", "error");
+        return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Submitting advertisement...";
+
+    let advertisementId = null;
+    const uploadedFileIds = [];
+
+    try {
+        const user = await GMAppwrite.account.get();
+
+        const selectedCategory = categoriesBySlug[categorySelect.value];
+
+        if (!selectedCategory) {
+            throw new Error("Please select a valid active category.");
         }
 
-        // READ URL PARAMETERS
-        const params = new URLSearchParams(window.location.search);
+        const adRow = await GMAppwrite.tablesDB.createRow({
+            databaseId: DATABASE_ID,
+            tableId: AD_TABLE_ID,
+            rowId: Appwrite.ID.unique(),
+            data: {
+                ownerId: user.$id,
+                businessId: "",
+                categoryId: selectedCategory.$id,
+                title: document.getElementById("title").value.trim(),
+                description: document.getElementById("description").value.trim(),
+                currency: "KES",
+                listingType: document.getElementById("listingType").value,
+                condition: document.getElementById("condition").value,
+                county: document.getElementById("county").value,
+                townLocation: document.getElementById("townLocation").value.trim(),
+                contactPhone: document.getElementById("contactPhone").value.trim(),
+                status: "pending",
+                isFeatured: false
+            },
+            permissions: ownerPermissions(user.$id)
+        });
 
-        const requestedType = params.get("type");
+        advertisementId = adRow.$id;
 
-        const requestedPlan = params.get("plan");
+        const allMedia = [
+            ...selectedPhotos.map(file => ({file, type:"image"})),
+            ...selectedVideos.map(file => ({file, type:"video"}))
+        ];
 
-        if (requestedType) {
-
-            const categoryMap = {
-                product: "electronics",
-                service: "services",
-                property: "property",
-                vehicle: "vehicles",
-                education: "education"
-            };
-
-            const mappedCategory = categoryMap[requestedType];
-
-            if (mappedCategory) {
-
-                document.getElementById("category").value =
-                    mappedCategory;
-
-            }
-
-        }
-
-        if (requestedPlan === "featured") {
-
-            document.getElementById("adType").value = "sale";
-
-        }
-
-        // FORM SUBMISSION
-        createAdForm.addEventListener("submit", function(event) {
-
-            event.preventDefault();
-
-            clearStatus();
-
-            if (!createAdForm.checkValidity()) {
-
-                createAdForm.reportValidity();
-
-                return;
-            }
-
-            if (selectedPhotos.length === 0) {
-
-                showStatus(
-                    "Please upload at least one advertisement photograph.",
-                    "error"
-                );
-
-                photosInput.focus();
-
-                return;
-            }
-
-            if (selectedVideos.length < 5) {
-
-                showStatus(
-                    "Please upload at least five videos before submitting your advertisement. You currently have " +
-                    selectedVideos.length + ".",
-                    "error"
-                );
-
-                videosInput.focus();
-
-                return;
-            }
-
-            const description = document.getElementById("description").value;
-
-            if (description.trim().length < 20) {
-
-                showStatus(
-                    "Your description must contain at least 20 characters.",
-                    "error"
-                );
-
-                return;
-            }
-
-            const price = document.getElementById("price").value;
-
-            if (price && Number(price) < 0) {
-
-                showStatus(
-                    "Please enter a valid price.",
-                    "error"
-                );
-
-                return;
-            }
+        for (let index = 0; index < allMedia.length; index++) {
+            const item = allMedia[index];
 
             showStatus(
-                "Your advertisement has passed the frontend checks. It has not been saved or published because Supabase database and media storage have not yet been connected.",
+                `Uploading media ${index + 1} of ${allMedia.length}. Please keep this page open.`,
                 "info"
             );
 
-        });
+            const fileId = await uploadOneMedia(
+                item.file,
+                item.type,
+                user.$id,
+                advertisementId,
+                index
+            );
 
-        // Clean up preview object URLs when leaving the page.
-        window.addEventListener("beforeunload", function() {
+            uploadedFileIds.push(fileId);
+        }
 
-            document.querySelectorAll(".media-preview img, .media-preview video")
-                .forEach(media => {
+        showStatus(
+            "Your advertisement and all its media have been submitted successfully. Your advertisement is pending review and is not yet publicly published.",
+            "success"
+        );
 
-                    if (media.src.startsWith("blob:")) {
+        form.reset();
+        selectedPhotos = [];
+        selectedVideos = [];
+        photoPreview.innerHTML = "";
+        videoPreview.innerHTML = "";
+        photoCount.textContent = "No photos selected.";
+        videoCount.textContent = "0 of 5 required videos selected.";
 
-                        URL.revokeObjectURL(media.src);
+    } catch (error) {
+        console.error("Advertisement submission error:", error);
 
-                    }
+        if (advertisementId) {
+            await rollbackAdvertisement(advertisementId, uploadedFileIds);
+        }
 
-                });
+        if (error.code === 401 || error.type === "user_unauthorized") {
+            showStatus("Please sign in to your GLOBAL MARKET account before creating an advertisement.", "error");
+        } else {
+            showStatus(
+                "We could not complete your submission. Appwrite reported: " +
+                (error.message || "Unknown error") +
+                ". Please check your table and bucket permissions before trying again.",
+                "error"
+            );
+        }
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit Advertisement";
+    }
+});
 
-        });
-
-    </script>
+loadCategories();
+</script>
 
 </body>
 </html>
-
