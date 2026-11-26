@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#f4f7fb">
 
-    <meta name="description" content="Explore all product, service, business and opportunity categories on GLOBAL MARKET.">
+    <meta name="description" content="Explore products, services, businesses and opportunities across GLOBAL MARKET.">
 
     <title>Explore Categories | GLOBAL MARKET</title>
 
@@ -17,197 +17,441 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --page-bg: #f4f7fb;
+            --card-bg: #ffffff;
+            --navy: #17395f;
+            --text: #20334b;
+            --muted: #78879a;
+            --gold: #d5ad55;
+            --border: #e5ebf2;
+        }
+
         body {
             margin: 0;
-            background: #f4f7fb;
-            color: #192d46;
+            background: var(--page-bg);
+            color: var(--text);
             font-family: Arial, sans-serif;
         }
 
         .categories-page {
-            width: min(1200px, 92%);
+            width: min(1250px, 93%);
             margin: auto;
-            padding: 35px 0 60px;
+            padding: 30px 0 65px;
         }
+
+        /* HERO */
 
         .category-hero {
-            background: linear-gradient(120deg, #15395f, #315b80);
-            border-radius: 16px;
-            padding: 45px 35px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            padding: 55px 42px;
             color: white;
-            margin-bottom: 35px;
+            background:
+                linear-gradient(90deg, rgba(12,35,61,.96), rgba(20,54,87,.78)),
+                url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1800&q=85");
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 38px;
+            box-shadow: 0 15px 35px rgba(20,45,75,.13);
         }
 
-        .category-hero span {
-            color: #e4bd6c;
-            font-size: 12px;
+        .hero-content {
+            max-width: 690px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-label {
+            display: inline-block;
+            padding: 8px 13px;
+            border: 1px solid rgba(255,255,255,.25);
+            border-radius: 30px;
+            color: #f1cf83;
+            font-size: 11px;
             font-weight: bold;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .category-hero h1 {
-            font-size: clamp(28px, 5vw, 40px);
-            margin: 15px 0 10px;
+            font-size: clamp(30px, 5vw, 48px);
+            line-height: 1.15;
+            margin: 20px 0 13px;
         }
 
         .category-hero p {
             color: #e1eaf4;
             line-height: 1.8;
-            max-width: 650px;
             font-size: 14px;
+            max-width: 620px;
         }
+
+        .hero-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 22px;
+            color: #f4e5c2;
+            font-size: 12px;
+        }
+
+        .hero-highlights span {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        /* SEARCH */
 
         .category-search {
             display: flex;
             gap: 10px;
-            margin-top: 23px;
-            max-width: 650px;
+            max-width: 620px;
+            margin-top: 25px;
         }
 
         .category-search input {
             flex: 1;
             min-width: 0;
-            padding: 14px;
-            border: none;
-            border-radius: 7px;
+            padding: 16px;
+            border: 1px solid rgba(255,255,255,.3);
+            border-radius: 9px;
             outline: none;
+            font-size: 14px;
+            background: white;
+            color: #20334b;
+        }
+
+        .category-search input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(213,173,85,.2);
         }
 
         .category-search button {
-            padding: 14px 20px;
-            background: #d5ad55;
-            color: #142c4b;
+            padding: 14px 23px;
+            background: var(--gold);
+            color: #17334f;
             border: none;
-            border-radius: 7px;
+            border-radius: 9px;
             font-weight: bold;
             cursor: pointer;
         }
 
+        .category-search button:hover {
+            background: #e8c675;
+        }
+
+        /* SECTION HEADING */
+
         .category-section-heading {
-            margin: 35px 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 15px;
+            margin: 38px 0 20px;
         }
 
         .category-section-heading h2 {
-            color: #17395f;
-            font-size: 24px;
+            color: var(--navy);
+            font-size: 25px;
             margin: 0 0 8px;
         }
 
         .category-section-heading p {
-            color: #7a8798;
+            color: var(--muted);
             font-size: 13px;
             margin: 0;
         }
 
+        .category-count {
+            color: #98752e;
+            background: #fff6e2;
+            border: 1px solid #f0dfb9;
+            border-radius: 30px;
+            padding: 8px 13px;
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* CATEGORY GRID */
+
         .category-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 19px;
         }
 
         .category-card {
             display: block;
-            background: white;
-            border: 1px solid #e5ebf2;
-            border-radius: 12px;
-            padding: 22px 18px;
+            overflow: hidden;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 15px;
             text-decoration: none;
-            transition: .2s ease;
+            transition: .25s ease;
+            box-shadow: 0 4px 14px rgba(20,40,70,.035);
         }
 
         .category-card:hover {
-            transform: translateY(-4px);
-            border-color: #d4ad59;
-            box-shadow: 0 10px 24px rgba(20,40,70,.08);
+            transform: translateY(-6px);
+            border-color: var(--gold);
+            box-shadow: 0 14px 30px rgba(20,40,70,.11);
+        }
+
+        .category-photo {
+            height: 165px;
+            position: relative;
+            overflow: hidden;
+            background: #e9eef5;
+        }
+
+        .category-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .45s ease;
+        }
+
+        .category-card:hover .category-photo img {
+            transform: scale(1.07);
+        }
+
+        .category-photo::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(10,25,43,.34),
+                transparent 60%
+            );
+            pointer-events: none;
         }
 
         .category-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 13px;
+            position: absolute;
+            z-index: 2;
+            left: 14px;
+            bottom: 13px;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
             display: grid;
             place-items: center;
-            background: #edf3fa;
-            font-size: 25px;
-            margin-bottom: 16px;
+            background: rgba(255,255,255,.95);
+            font-size: 22px;
+            box-shadow: 0 4px 12px rgba(0,0,0,.13);
         }
 
-        .category-card h3 {
-            color: #17395f;
+        .category-content {
+            padding: 17px 17px 18px;
+        }
+
+        .category-content h3 {
+            color: var(--navy);
             font-size: 15px;
-            margin: 0 0 9px;
+            line-height: 1.4;
+            margin: 0 0 8px;
         }
 
-        .category-card p {
-            color: #77869a;
+        .category-content p {
+            color: var(--muted);
             font-size: 12px;
             line-height: 1.7;
             margin: 0;
+            min-height: 40px;
         }
 
         .category-arrow {
-            display: inline-block;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px solid #edf0f4;
             color: #a17b2c;
             font-size: 12px;
             font-weight: bold;
         }
 
+        .category-arrow span:last-child {
+            font-size: 18px;
+            transition: transform .2s ease;
+        }
+
+        .category-card:hover .category-arrow span:last-child {
+            transform: translateX(5px);
+        }
+
+        /* LOADING AND EMPTY STATES */
+
+        .category-status {
+            text-align: center;
+            padding: 35px 20px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            color: var(--muted);
+            font-size: 13px;
+            margin: 20px 0;
+        }
+
+        .category-status.error {
+            color: #a43c3c;
+            background: #fff5f5;
+            border-color: #f0d4d4;
+        }
+
+        .no-results {
+            display: none;
+            padding: 35px 20px;
+            text-align: center;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            color: var(--muted);
+            margin-top: 20px;
+        }
+
+        /* HELP SECTION */
+
         .category-help {
-            margin-top: 45px;
-            padding: 28px;
-            background: #eaf0f7;
-            border: 1px solid #dce5ef;
-            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 50px;
+            padding: 35px;
+            border-radius: 16px;
+            background:
+                linear-gradient(110deg, rgba(19,53,87,.97), rgba(29,76,111,.91)),
+                url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=80");
+            background-size: cover;
+            background-position: center;
+            color: white;
         }
 
         .category-help h2 {
-            color: #17395f;
             margin: 0 0 10px;
-            font-size: 21px;
+            font-size: 23px;
         }
 
         .category-help p {
-            color: #68788c;
-            line-height: 1.7;
+            color: #e0eaf3;
+            line-height: 1.8;
             font-size: 13px;
+            max-width: 600px;
         }
 
         .category-help a {
             display: inline-block;
-            margin-top: 8px;
-            background: #17395f;
-            color: white;
-            padding: 12px 18px;
-            border-radius: 7px;
+            margin-top: 10px;
+            background: var(--gold);
+            color: #17334f;
+            padding: 13px 20px;
+            border-radius: 8px;
             font-size: 12px;
             font-weight: bold;
             text-decoration: none;
         }
 
-        .no-results {
-            display: none;
-            padding: 30px;
-            text-align: center;
-            background: white;
-            border-radius: 10px;
-            color: #77869a;
-            margin-top: 20px;
+        .category-help a:hover {
+            background: #e9c875;
         }
 
-        @media (max-width: 850px) {
+        /* DARK THEME SUPPORT */
+
+        html[data-theme="dark"] .category-card,
+        body[data-theme="dark"] .category-card,
+        html.dark .category-card,
+        body.dark .category-card {
+            background: #17283b;
+            border-color: #30445c;
+        }
+
+        html[data-theme="dark"] .category-content h3,
+        body[data-theme="dark"] .category-content h3,
+        html.dark .category-content h3,
+        body.dark .category-content h3 {
+            color: #e8eef6;
+        }
+
+        html[data-theme="dark"] .category-content p,
+        body[data-theme="dark"] .category-content p,
+        html.dark .category-content p,
+        body.dark .category-content p {
+            color: #b4c1d0;
+        }
+
+        html[data-theme="dark"] .category-section-heading h2,
+        body[data-theme="dark"] .category-section-heading h2,
+        html.dark .category-section-heading h2,
+        body.dark .category-section-heading h2 {
+            color: #e8eef6;
+        }
+
+        html[data-theme="dark"] .category-status,
+        body[data-theme="dark"] .category-status,
+        html.dark .category-status,
+        body.dark .category-status,
+        html[data-theme="dark"] .no-results,
+        body[data-theme="dark"] .no-results,
+        html.dark .no-results,
+        body.dark .no-results {
+            background: #17283b;
+            border-color: #30445c;
+            color: #c3cedb;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 950px) {
             .category-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
         }
 
-        @media (max-width: 520px) {
+        @media (max-width: 680px) {
+            .category-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 13px;
+            }
+
+            .category-photo {
+                height: 135px;
+            }
+
+            .category-content {
+                padding: 14px 12px;
+            }
+
+            .category-content h3 {
+                font-size: 13px;
+            }
+
+            .category-content p {
+                font-size: 11px;
+            }
+
+            .category-section-heading {
+                align-items: start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
             .categories-page {
-                padding-top: 20px;
+                padding-top: 18px;
             }
 
             .category-hero {
-                padding: 30px 20px;
+                padding: 32px 20px;
+                border-radius: 15px;
+            }
+
+            .category-hero p {
+                font-size: 13px;
             }
 
             .category-search {
@@ -218,20 +462,29 @@
                 width: 100%;
             }
 
-            .category-grid {
-                gap: 12px;
+            .hero-highlights {
+                gap: 10px;
+                flex-direction: column;
             }
 
-            .category-card {
-                padding: 17px 13px;
+            .category-photo {
+                height: 115px;
             }
 
-            .category-card h3 {
-                font-size: 13px;
+            .category-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 19px;
+                left: 9px;
+                bottom: 9px;
             }
 
-            .category-card p {
-                font-size: 11px;
+            .category-arrow {
+                font-size: 10px;
+            }
+
+            .category-help {
+                padding: 25px 20px;
             }
         }
     </style>
@@ -239,275 +492,390 @@
 
 <body>
 
-    <!-- SHARED HEADER -->
     <div id="site-header"></div>
 
     <main class="categories-page">
 
+        <!-- HERO SECTION -->
         <section class="category-hero">
 
-            <span>EXPLORE GLOBAL MARKET</span>
+            <div class="hero-content">
 
-            <h1>Discover Our Marketplace Categories</h1>
+                <span class="hero-label">WELCOME TO GLOBAL MARKET</span>
 
-            <p>
-                From electronics and fashion to education,
-                property, professional services and businesses,
-                explore different opportunities in one place.
-            </p>
+                <h1>Discover More.<br>Connect. Trade. Grow.</h1>
 
-            <form class="category-search" id="categorySearch">
-                <input
-                    type="search"
-                    id="categoryKeyword"
-                    placeholder="Search for a category..."
-                    aria-label="Search categories"
-                >
+                <p>
+                    Explore a world of products, services, businesses
+                    and opportunities. Find what you need and connect
+                    with people who have what you're looking for.
+                </p>
 
-                <button type="submit">Search</button>
-            </form>
+                <div class="hero-highlights">
+                    <span>✦ Products & Services</span>
+                    <span>✦ Businesses & Opportunities</span>
+                    <span>✦ One Marketplace</span>
+                </div>
+
+                <form class="category-search" id="categorySearch">
+
+                    <input
+                        type="search"
+                        id="categoryKeyword"
+                        placeholder="What are you looking for?"
+                        aria-label="Search marketplace categories"
+                    >
+
+                    <button type="submit">Search Categories</button>
+
+                </form>
+
+            </div>
 
         </section>
 
+        <!-- CATEGORY SECTION -->
         <section>
 
             <div class="category-section-heading">
-                <h2>All Marketplace Categories</h2>
-                <p>Choose a category to explore available listings.</p>
-            </div>
 
-            <div class="category-grid" id="categoryGrid">
+                <div>
+                    <h2>Explore Categories</h2>
+                    <p>Discover products and services across our marketplace.</p>
+                </div>
 
-                <a href="category-listings.html?category=electronics"
-                   class="category-card">
-                    <div class="category-icon">📱</div>
-                    <h3>Electronics & Technology</h3>
-                    <p>Phones, computers, accessories and technology.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=fashion"
-                   class="category-card">
-                    <div class="category-icon">👕</div>
-                    <h3>Fashion & Clothing</h3>
-                    <p>Clothing, footwear, bags and accessories.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=food"
-                   class="category-card">
-                    <div class="category-icon">🍎</div>
-                    <h3>Food & Beverages</h3>
-                    <p>Food products, groceries, drinks and supplies.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=hotels"
-                   class="category-card">
-                    <div class="category-icon">🏨</div>
-                    <h3>Hotels, Tourism & Hospitality</h3>
-                    <p>Hotels, accommodation and travel services.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=beauty"
-                   class="category-card">
-                    <div class="category-icon">💄</div>
-                    <h3>Beauty & Personal Care</h3>
-                    <p>Beauty products, salons and personal care.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=home"
-                   class="category-card">
-                    <div class="category-icon">🛋️</div>
-                    <h3>Home, Furniture & Appliances</h3>
-                    <p>Furniture, home equipment and appliances.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=sports"
-                   class="category-card">
-                    <div class="category-icon">⚽</div>
-                    <h3>Sports & Fitness</h3>
-                    <p>Sports equipment, fitness and recreation.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=pets"
-                   class="category-card">
-                    <div class="category-icon">🐾</div>
-                    <h3>Pets & Animal Supplies</h3>
-                    <p>Animal products, pet supplies and accessories.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=vehicles"
-                   class="category-card">
-                    <div class="category-icon">🚗</div>
-                    <h3>Vehicles & Transport</h3>
-                    <p>Vehicles, transport and automotive services.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=property"
-                   class="category-card">
-                    <div class="category-icon">🏠</div>
-                    <h3>Real Estate & Property</h3>
-                    <p>Land, houses, rentals and commercial property.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=logistics"
-                   class="category-card">
-                    <div class="category-icon">🚚</div>
-                    <h3>Logistics & Delivery</h3>
-                    <p>Courier, delivery and transportation services.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=professional-services"
-                   class="category-card">
-                    <div class="category-icon">💼</div>
-                    <h3>Professional & Business Services</h3>
-                    <p>Consulting, accounting and business support.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=construction"
-                   class="category-card">
-                    <div class="category-icon">🏗️</div>
-                    <h3>Construction & Industrial Equipment</h3>
-                    <p>Building materials, tools and machinery.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=household-services"
-                   class="category-card">
-                    <div class="category-icon">🧹</div>
-                    <h3>Household & Personal Services</h3>
-                    <p>Cleaning, repairs and personal assistance.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=agriculture"
-                   class="category-card">
-                    <div class="category-icon">🌱</div>
-                    <h3>Agriculture & Farming</h3>
-                    <p>Farm produce, equipment and agricultural supplies.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=education"
-                   class="category-card">
-                    <div class="category-icon">🎓</div>
-                    <h3>Education & Training</h3>
-                    <p>Schools, courses, tutoring and online learning.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=jobs"
-                   class="category-card">
-                    <div class="category-icon">📋</div>
-                    <h3>Jobs & Careers</h3>
-                    <p>Employment, internships and career opportunities.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=entertainment"
-                   class="category-card">
-                    <div class="category-icon">🎬</div>
-                    <h3>Entertainment & Events</h3>
-                    <p>Events, entertainment and creative services.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=organizations"
-                   class="category-card">
-                    <div class="category-icon">🤝</div>
-                    <h3>Organizations & Community</h3>
-                    <p>Community groups and organizations.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
-
-                <a href="category-listings.html?category=other"
-                   class="category-card">
-                    <div class="category-icon">🌍</div>
-                    <h3>Other & Miscellaneous</h3>
-                    <p>Explore additional products and services.</p>
-                    <span class="category-arrow">Explore Category →</span>
-                </a>
+                <span class="category-count" id="categoryCount">
+                    Loading categories...
+                </span>
 
             </div>
+
+            <div class="category-status" id="categoryStatus">
+                Loading marketplace categories...
+            </div>
+
+            <div class="category-grid" id="categoryGrid"></div>
 
             <div class="no-results" id="noResults">
-                No matching categories found. Try another search.
+                <h3>No categories found</h3>
+                <p>Try searching with a different keyword.</p>
             </div>
 
         </section>
 
+        <!-- HELP SECTION -->
         <section class="category-help">
 
-            <h2>Can't Find What You're Looking For?</h2>
+            <h2>Have Something to Offer?</h2>
 
             <p>
-                Contact our support team if you need assistance
-                finding a category or exploring the marketplace.
+                GLOBAL MARKET helps people and businesses connect.
+                Explore the marketplace, discover opportunities
+                and get your products or services noticed.
             </p>
 
-            <a href="contact.html">Contact Support</a>
+            <a href="register.html">Join GLOBAL MARKET</a>
 
         </section>
 
     </main>
 
-    <!-- SHARED FOOTER -->
     <div id="site-footer"></div>
 
+    <!-- APPWRITE -->
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@29.0.0"></script>
+    <script src="appwrite-config.js"></script>
     <script src="layout.js" defer></script>
 
     <script>
+        const categoryGrid = document.getElementById("categoryGrid");
+        const categoryStatus = document.getElementById("categoryStatus");
+        const categoryCount = document.getElementById("categoryCount");
         const categorySearch = document.getElementById("categorySearch");
         const categoryKeyword = document.getElementById("categoryKeyword");
-        const categoryCards = document.querySelectorAll(".category-card");
         const noResults = document.getElementById("noResults");
 
-        categorySearch.addEventListener("submit", function(event) {
-            event.preventDefault();
+        let allCategories = [];
 
-            const searchValue = categoryKeyword.value
+        /* CATEGORY ICONS */
+
+        const categoryIcons = {
+            "electronics": "💻",
+            "fashion": "👕",
+            "food-groceries": "🛒",
+            "vehicles": "🚗",
+            "real-estate": "🏡",
+            "services": "💼",
+            "education": "🎓",
+            "jobs-careers": "📋",
+            "home-furniture": "🛋️",
+            "sports-outdoors": "⚽",
+            "beauty-personal-care": "✨",
+            "books-stationery": "📚",
+            "agriculture-farming": "🌱",
+            "baby-kids": "🧸",
+            "other-products-services": "🌍"
+        };
+
+        /* CATEGORY PHOTOS */
+
+        const categoryPhotos = {
+            "electronics":
+                "https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=800&q=80",
+
+            "fashion":
+                "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80",
+
+            "food-groceries":
+                "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80",
+
+            "vehicles":
+                "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80",
+
+            "real-estate":
+                "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+
+            "services":
+                "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&q=80",
+
+            "education":
+                "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80",
+
+            "jobs-careers":
+                "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80",
+
+            "home-furniture":
+                "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+
+            "sports-outdoors":
+                "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80",
+
+            "beauty-personal-care":
+                "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=80",
+
+            "books-stationery":
+                "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=80",
+
+            "agriculture-farming":
+                "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80",
+
+            "baby-kids":
+                "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80",
+
+            "other-products-services":
+                "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80"
+        };
+
+        /* FALLBACK PHOTO */
+
+        const fallbackPhoto =
+            "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80";
+
+        /* LOAD CATEGORIES FROM APPWRITE */
+
+        async function loadMarketplaceCategories() {
+
+            categoryStatus.style.display = "block";
+            categoryStatus.textContent = "Loading marketplace categories...";
+
+            try {
+
+                if (!window.GMAppwrite) {
+                    throw new Error("Appwrite configuration was not loaded.");
+                }
+
+                const response = await GMAppwrite.tablesDB.listRows({
+                    databaseId: "global_market_db",
+                    tableId: "categories",
+                    queries: [
+                        GMAppwrite.Query.equal("isActive", true),
+                        GMAppwrite.Query.orderAsc("sortOrder"),
+                        GMAppwrite.Query.limit(100)
+                    ]
+                });
+
+                allCategories = response.rows || [];
+
+                categoryStatus.style.display = "none";
+
+                categoryCount.textContent =
+                    allCategories.length + " Categories";
+
+                if (allCategories.length === 0) {
+
+                    categoryStatus.style.display = "block";
+                    categoryStatus.textContent =
+                        "No active categories are available yet.";
+
+                    return;
+                }
+
+                renderCategories(allCategories);
+
+            } catch (error) {
+
+                console.error("Category loading error:", error);
+
+                categoryStatus.style.display = "block";
+                categoryStatus.className = "category-status error";
+
+                categoryStatus.textContent =
+                    "We couldn't load categories. Please refresh the page and try again.";
+
+                categoryCount.textContent = "Categories unavailable";
+
+            }
+        }
+
+        /* CREATE CATEGORY CARD */
+
+        function createCategoryCard(category) {
+
+            const slug = String(category.slug || "");
+            const name = String(category.name || "Unnamed Category");
+
+            const description = String(
+                category.description || "Explore products and services in this category."
+            );
+
+            const icon = categoryIcons[slug] || "🌍";
+
+            const imageUrl =
+                category.imageUrl ||
+                categoryPhotos[slug] ||
+                fallbackPhoto;
+
+            const card = document.createElement("a");
+
+            card.className = "category-card";
+
+            card.href =
+                "category-listings.html?category=" +
+                encodeURIComponent(slug);
+
+            const photo = document.createElement("div");
+            photo.className = "category-photo";
+
+            const image = document.createElement("img");
+
+            image.src = imageUrl;
+            image.alt = name + " category";
+            image.loading = "lazy";
+
+            image.onerror = function() {
+                image.onerror = null;
+                image.src = fallbackPhoto;
+            };
+
+            const iconBox = document.createElement("div");
+            iconBox.className = "category-icon";
+            iconBox.textContent = icon;
+
+            photo.appendChild(image);
+            photo.appendChild(iconBox);
+
+            const content = document.createElement("div");
+            content.className = "category-content";
+
+            const heading = document.createElement("h3");
+            heading.textContent = name;
+
+            const paragraph = document.createElement("p");
+            paragraph.textContent = description;
+
+            const arrow = document.createElement("div");
+            arrow.className = "category-arrow";
+
+            const arrowText = document.createElement("span");
+            arrowText.textContent = "Explore Category";
+
+            const arrowIcon = document.createElement("span");
+            arrowIcon.textContent = "→";
+
+            arrow.appendChild(arrowText);
+            arrow.appendChild(arrowIcon);
+
+            content.appendChild(heading);
+            content.appendChild(paragraph);
+            content.appendChild(arrow);
+
+            card.appendChild(photo);
+            card.appendChild(content);
+
+            return card;
+        }
+
+        /* DISPLAY CATEGORIES */
+
+        function renderCategories(categories) {
+
+            categoryGrid.replaceChildren();
+
+            noResults.style.display = "none";
+
+            categories.forEach(function(category) {
+
+                const card = createCategoryCard(category);
+
+                categoryGrid.appendChild(card);
+
+            });
+
+            if (categories.length === 0) {
+                noResults.style.display = "block";
+            }
+
+            categoryCount.textContent =
+                categories.length + " Categories";
+        }
+
+        /* LIVE SEARCH */
+
+        function searchCategories() {
+
+            const keyword = categoryKeyword.value
                 .trim()
                 .toLowerCase();
 
-            let visibleCount = 0;
+            const filtered = allCategories.filter(function(category) {
 
-            categoryCards.forEach(function(card) {
-                const matches = card.textContent
-                    .toLowerCase()
-                    .includes(searchValue);
+                const name = String(category.name || "").toLowerCase();
 
-                card.style.display = matches ? "block" : "none";
+                const description = String(
+                    category.description || ""
+                ).toLowerCase();
 
-                if (matches) {
-                    visibleCount++;
-                }
+                return name.includes(keyword) ||
+                    description.includes(keyword);
+
             });
 
-            noResults.style.display =
-                visibleCount === 0 ? "block" : "none";
+            renderCategories(filtered);
+        }
+
+        categorySearch.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            searchCategories();
+
         });
 
         categoryKeyword.addEventListener("input", function() {
-            if (categoryKeyword.value.trim() === "") {
-                categoryCards.forEach(function(card) {
-                    card.style.display = "block";
-                });
 
-                noResults.style.display = "none";
-            }
+            searchCategories();
+
         });
+
+        /* INITIALIZE */
+
+        document.addEventListener("DOMContentLoaded", function() {
+
+            loadMarketplaceCategories();
+
+        });
+
     </script>
 
 </body>
 </html>
-
