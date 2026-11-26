@@ -2,748 +2,950 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#edf2f8">
-    <meta name="description" content="Discover products, services, businesses and opportunities on GLOBAL MARKET.">
-    <title>GLOBAL MARKET | Your World. One Marketplace.</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#edf2f8">
+<meta name="description" content="Discover products, services, businesses and opportunities on GLOBAL MARKET.">
+<title>GLOBAL MARKET | Your World. One Marketplace.</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
-    <style>
-        * { box-sizing: border-box; }
+<style>
+:root {
+    --bg: #f1f4f8;
+    --surface: #ffffff;
+    --surface-2: #eaf0f6;
+    --text: #1b304b;
+    --muted: #78879a;
+    --navy: #17395f;
+    --gold: #c49a45;
+    --border: #e1e7ef;
+    --shadow: 0 10px 35px rgba(20,43,70,.07);
+}
 
-        body {
-            margin: 0;
-            background: #f3f6fa;
-            color: #1b304b;
-            font-family: Arial, sans-serif;
-        }
+* { box-sizing: border-box; }
 
-        a { text-decoration: none; }
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    transition: background .25s, color .25s;
+}
 
-        .container {
-            width: min(1180px, 92%);
-            margin: auto;
-        }
+body.dark-theme {
+    --bg: #101a29;
+    --surface: #19283b;
+    --surface-2: #22354c;
+    --text: #edf3fa;
+    --muted: #aab8c9;
+    --navy: #e2bd70;
+    --gold: #e2bd70;
+    --border: #30435a;
+    --shadow: 0 10px 35px rgba(0,0,0,.2);
+}
 
-        .hero {
-            min-height: 440px;
-            margin: 25px auto 35px;
-            border-radius: 20px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            padding: 55px;
-            color: white;
-            background:
-                linear-gradient(90deg, rgba(12,31,55,.92), rgba(12,31,55,.48)),
-                url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1800&q=85")
-                center/cover;
-        }
+a { text-decoration: none; }
 
-        .hero-content { max-width: 620px; }
+button, input, select { font: inherit; }
 
-        .hero-label {
-            display: inline-block;
-            padding: 8px 14px;
-            border: 1px solid rgba(220,184,111,.8);
-            border-radius: 30px;
-            color: #f0d49a;
-            background: rgba(255,255,255,.08);
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 1.5px;
-        }
+.container {
+    width: min(1180px, 92%);
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .hero h1 {
-            margin: 20px 0 14px;
-            font-size: clamp(36px, 5vw, 59px);
-            line-height: 1.12;
-        }
+/* HEADER THEME SUPPORT */
 
-        .hero h1 span { color: #e5bf76; }
+body.dark-theme .gm-header {
+    background: #19283b;
+    border-color: #30435a;
+}
 
-        .hero p {
-            max-width: 510px;
-            color: #e2e9f2;
-            font-size: 15px;
-            line-height: 1.8;
-        }
+body.dark-theme .gm-brand-text strong,
+body.dark-theme .gm-nav-links a,
+body.dark-theme .gm-login {
+    color: #edf3fa;
+}
 
-        .hero-actions {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 27px;
-        }
+body.dark-theme .gm-navigation {
+    background: #19283b;
+}
 
-        .hero-actions a {
-            padding: 14px 20px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: bold;
-        }
+body.dark-theme .gm-menu-toggle {
+    background: #22354c;
+    border-color: #40546c;
+}
 
-        .gold-btn {
-            background: #dfb765;
-            color: #172d48;
-        }
+body.dark-theme .gm-menu-toggle span {
+    background: #edf3fa;
+}
 
-        .outline-btn {
-            border: 1px solid white;
-            color: white;
-        }
+/* TOP TOOLBAR */
 
-        .search-wrap {
-            position: relative;
-            margin-top: -2px;
-        }
+.top-toolbar {
+    width: min(1180px, 92%);
+    margin: 17px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
 
-        .search-box {
-            display: flex;
-            gap: 10px;
-            padding: 15px;
-            background: white;
-            border-radius: 13px;
-            box-shadow: 0 10px 35px rgba(20,43,70,.09);
-        }
+.toolbar-caption {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+}
 
-        .search-box input,
-        .search-box select {
-            flex: 1;
-            min-width: 0;
-            padding: 14px;
-            border: 1px solid #dfe6ef;
-            border-radius: 8px;
-            outline: none;
-            color: #253b55;
-            background: white;
-        }
+.theme-button {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    padding: 10px 15px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: .2s;
+}
 
-        .search-box button {
-            padding: 14px 25px;
-            border: 0;
-            border-radius: 8px;
-            background: #17395f;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
+.theme-button:hover {
+    border-color: var(--gold);
+    transform: translateY(-1px);
+}
 
-        .search-box button:hover { background: #b58b3d; }
+/* HERO */
 
-        .section { margin: 65px auto; }
+.hero {
+    min-height: 465px;
+    margin-top: 20px;
+    border-radius: 19px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 55px;
+    color: white;
+    background:
+        linear-gradient(90deg, rgba(9,27,49,.94), rgba(9,27,49,.55)),
+        url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+    box-shadow: var(--shadow);
+}
 
-        .section-heading {
-            display: flex;
-            justify-content: space-between;
-            align-items: end;
-            gap: 15px;
-            margin-bottom: 22px;
-        }
+.hero-content { max-width: 640px; }
 
-        .section-heading h2 {
-            margin: 0;
-            color: #17395f;
-            font-size: 25px;
-        }
+.hero-label {
+    display: inline-block;
+    padding: 9px 14px;
+    border: 1px solid rgba(226,189,112,.75);
+    border-radius: 30px;
+    color: #f0d49a;
+    background: rgba(255,255,255,.08);
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
 
-        .section-heading p {
-            margin: 7px 0 0;
-            color: #7b899b;
-            font-size: 13px;
-        }
+.hero h1 {
+    margin: 22px 0 14px;
+    font-size: clamp(38px, 5.4vw, 64px);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+}
 
-        .view-all {
-            color: #a47b31;
-            font-size: 13px;
-            font-weight: bold;
-            white-space: nowrap;
-        }
+.hero h1 span { color: #e5bf76; }
 
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 17px;
-        }
+.hero p {
+    max-width: 510px;
+    color: #e2e9f2;
+    font-size: 15px;
+    line-height: 1.8;
+}
 
-        .category-card {
-            position: relative;
-            height: 190px;
-            overflow: hidden;
-            border-radius: 12px;
-            background: #dce4ed;
-            display: block;
-        }
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
 
-        .category-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform .35s;
-        }
+.hero-actions a {
+    display: inline-block;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    transition: .2s;
+}
 
-        .category-card:hover img { transform: scale(1.07); }
+.hero-actions a:hover { transform: translateY(-2px); }
 
-        .category-card::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(transparent 20%, rgba(8,25,46,.85));
-        }
+.gold-button {
+    background: #dfb765;
+    color: #172d48;
+}
 
-        .category-name {
-            position: absolute;
-            z-index: 1;
-            left: 17px;
-            bottom: 15px;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-        }
+.outline-button {
+    color: white;
+    border: 1px solid rgba(255,255,255,.8);
+}
 
-        .category-name small {
-            display: block;
-            margin-top: 5px;
-            color: #e2e9f1;
-            font-size: 11px;
-            font-weight: normal;
-        }
+/* SEARCH */
 
-        .listing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
+.search-wrap {
+    position: relative;
+    margin-top: -28px;
+    z-index: 2;
+}
 
-        .listing-card {
-            overflow: hidden;
-            background: white;
-            border: 1px solid #e5ebf2;
-            border-radius: 13px;
-            transition: .2s;
-        }
+.search-box {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    box-shadow: var(--shadow);
+}
 
-        .listing-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(20,40,70,.09);
-        }
+.search-box input,
+.search-box select {
+    flex: 1;
+    min-width: 0;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    color: var(--text);
+    background: var(--surface);
+}
 
-        .listing-card img {
-            display: block;
-            width: 100%;
-            height: 205px;
-            object-fit: cover;
-        }
+.search-box input:focus,
+.search-box select:focus {
+    border-color: var(--gold);
+}
 
-        .listing-info { padding: 18px; }
+.search-box button {
+    padding: 14px 25px;
+    border: 0;
+    border-radius: 8px;
+    background: #17395f;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        .listing-info small {
-            color: #a47b31;
-            font-size: 11px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
+.search-box button:hover { background: #a47b31; }
 
-        .listing-info h3 {
-            margin: 9px 0;
-            color: #17395f;
-            font-size: 17px;
-        }
+/* GENERAL SECTIONS */
 
-        .listing-info p {
-            color: #78869a;
-            font-size: 13px;
-            line-height: 1.6;
-        }
+.section { margin-top: 65px; }
 
-        .listing-info a {
-            display: inline-block;
-            margin-top: 8px;
-            color: #17395f;
-            font-size: 12px;
-            font-weight: bold;
-        }
+.section-heading {
+    margin-bottom: 22px;
+}
 
-        .business-banner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 25px;
-            padding: 38px;
-            border-radius: 16px;
-            color: white;
-            background:
-                linear-gradient(90deg, rgba(15,42,72,.95), rgba(15,42,72,.72)),
-                url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=85")
-                center/cover;
-        }
+.section-heading h2 {
+    margin: 0;
+    color: var(--text);
+    font-size: 25px;
+}
 
-        .business-banner h2 {
-            margin: 0 0 9px;
-            font-size: 25px;
-        }
+.section-heading p {
+    margin: 7px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+}
 
-        .business-banner p {
-            max-width: 570px;
-            color: #e1e8f0;
-            font-size: 13px;
-            line-height: 1.7;
-        }
+/* MARKETPLACE MENU */
 
-        .business-banner a {
-            flex-shrink: 0;
-            padding: 14px 19px;
-            border-radius: 8px;
-            background: #dfb765;
-            color: #172d48;
-            font-size: 13px;
-            font-weight: bold;
-        }
+.market-menu {
+    padding: 27px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
 
-        .quick-links {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 13px;
-        }
+.menu-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
 
-        .quick-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px;
-            background: white;
-            border: 1px solid #e5ebf2;
-            border-radius: 10px;
-            color: #203a59;
-            font-size: 13px;
-            font-weight: bold;
-            transition: .2s;
-        }
+.menu-top h2 {
+    margin: 0;
+    font-size: 22px;
+    color: var(--text);
+}
 
-        .quick-link:hover {
-            border-color: #d5ad55;
-            transform: translateY(-2px);
-        }
+.menu-top p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+}
 
-        .quick-icon {
-            width: 38px;
-            height: 38px;
-            flex-shrink: 0;
-            display: grid;
-            place-items: center;
-            border-radius: 9px;
-            background: #edf2f8;
-            font-size: 19px;
-        }
+.menu-toggle {
+    border: 0;
+    background: #17395f;
+    color: white;
+    border-radius: 8px;
+    padding: 12px 17px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        .note {
-            margin-top: 13px;
-            color: #8290a1;
-            font-size: 11px;
-        }
+.menu-toggle:hover { background: #a47b31; }
 
-        @media(max-width: 800px) {
-            .category-grid { grid-template-columns: repeat(2, 1fr); }
-            .quick-links { grid-template-columns: repeat(2, 1fr); }
-            .hero { padding: 40px 30px; }
-        }
+.menu-content {
+    display: none;
+    margin-top: 23px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+}
 
-        @media(max-width: 550px) {
-            .hero {
-                min-height: 380px;
-                padding: 27px 21px;
-                background-position: center;
-            }
+.menu-content.open { display: block; }
 
-            .hero h1 { font-size: 37px; }
+.menu-group-title {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 20px 0 12px;
+    text-transform: uppercase;
+}
 
-            .hero p { font-size: 13px; }
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 11px;
+}
 
-            .search-box { flex-direction: column; }
+.menu-link {
+    min-height: 65px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 12px;
+    color: var(--text);
+    background: var(--surface-2);
+    border: 1px solid transparent;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: bold;
+    transition: .2s;
+}
 
-            .search-box input,
-            .search-box select,
-            .search-box button { width: 100%; }
+.menu-link:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+}
 
-            .category-card { height: 155px; }
+.menu-icon {
+    width: 35px;
+    height: 35px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: var(--surface);
+    font-size: 18px;
+}
 
-            .listing-grid { grid-template-columns: 1fr; }
+/* FEATURED PREVIEWS */
 
-            .business-banner {
-                align-items: flex-start;
-                flex-direction: column;
-                padding: 27px 22px;
-            }
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 19px;
+}
 
-            .section-heading h2 { font-size: 21px; }
+.featured-card {
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    transition: .2s;
+}
 
-            .quick-links { gap: 9px; }
+.featured-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
 
-            .quick-link {
-                padding: 12px 9px;
-                font-size: 11px;
-            }
-        }
-    </style>
+.featured-card img {
+    width: 100%;
+    height: 205px;
+    display: block;
+    object-fit: cover;
+}
+
+.featured-info { padding: 18px; }
+
+.featured-info small {
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.featured-info h3 {
+    margin: 9px 0;
+    color: var(--text);
+    font-size: 17px;
+}
+
+.featured-info p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.featured-info a {
+    display: inline-block;
+    margin-top: 7px;
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* BUSINESS BANNER */
+
+.business-banner {
+    min-height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 38px;
+    border-radius: 16px;
+    color: white;
+    background:
+        linear-gradient(90deg, rgba(12,35,61,.96), rgba(12,35,61,.72)),
+        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=85")
+        center/cover;
+}
+
+.business-banner h2 {
+    margin: 0 0 10px;
+    font-size: 27px;
+}
+
+.business-banner p {
+    max-width: 560px;
+    color: #e1e8f0;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.business-banner a {
+    flex-shrink: 0;
+    padding: 14px 19px;
+    border-radius: 8px;
+    background: #dfb765;
+    color: #172d48;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* SHORTCUTS */
+
+.shortcut-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.shortcut {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 15px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 12px;
+    font-weight: bold;
+    transition: .2s;
+}
+
+.shortcut:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+}
+
+.shortcut span {
+    font-size: 19px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 850px) {
+    .menu-grid,
+    .shortcut-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .hero { padding: 40px 30px; }
+}
+
+@media(max-width: 600px) {
+    .hero {
+        min-height: 390px;
+        padding: 27px 21px;
+        background-position: center;
+    }
+
+    .hero h1 { font-size: 39px; }
+
+    .hero p { font-size: 13px; }
+
+    .search-box { flex-direction: column; }
+
+    .search-box input,
+    .search-box select,
+    .search-box button { width: 100%; }
+
+    .featured-grid { grid-template-columns: 1fr; }
+
+    .business-banner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 27px 22px;
+    }
+
+    .market-menu { padding: 19px; }
+
+    .menu-grid { gap: 8px; }
+
+    .menu-link {
+        padding: 9px;
+        font-size: 11px;
+    }
+
+    .menu-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+
+    .section-heading h2 { font-size: 21px; }
+}
+
+@media(max-width: 370px) {
+    .menu-grid,
+    .shortcut-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 
 <body>
 
-    <div id="site-header"></div>
+<div id="site-header"></div>
 
-    <main>
+<div class="top-toolbar">
+    <span class="toolbar-caption">Discover. Connect. Grow.</span>
 
-        <!-- HERO -->
-        <section class="hero container">
-            <div class="hero-content">
+    <button class="theme-button" id="themeToggle" type="button">
+        <span id="themeIcon">🌙</span>
+        <span id="themeLabel">Dark Mode</span>
+    </button>
+</div>
 
-                <span class="hero-label">YOUR WORLD. ONE MARKETPLACE.</span>
+<main>
 
-                <h1>
-                    Everything You Need.
-                    <span>One Place.</span>
-                </h1>
+    <!-- HERO -->
+    <section class="hero container">
+        <div class="hero-content">
 
-                <p>
-                    Discover products, businesses, services and
-                    opportunities from one convenient marketplace.
-                </p>
+            <span class="hero-label">YOUR WORLD. ONE MARKETPLACE.</span>
 
-                <div class="hero-actions">
-                    <a href="categories.html" class="gold-btn">
-                        Explore Marketplace →
-                    </a>
+            <h1>
+                Everything You Need.
+                <span>One Place.</span>
+            </h1>
 
-                    <a href="register.html" class="outline-btn">
-                        Join GLOBAL MARKET
-                    </a>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SEARCH -->
-        <section class="search-wrap container">
-            <form class="search-box" id="marketSearch">
-
-                <input
-                    type="search"
-                    id="searchKeyword"
-                    placeholder="What are you looking for?"
-                    aria-label="Search marketplace"
-                >
-
-                <select id="searchCategory" aria-label="Choose category">
-                    <option value="">All categories</option>
-                    <option value="electronics">Electronics</option>
-                    <option value="fashion">Fashion</option>
-                    <option value="food">Food</option>
-                    <option value="property">Real Estate</option>
-                    <option value="vehicles">Vehicles</option>
-                    <option value="education">Education</option>
-                    <option value="services">Services</option>
-                </select>
-
-                <button type="submit">Search</button>
-
-            </form>
-        </section>
-
-        <!-- CATEGORIES -->
-        <section class="section container">
-
-            <div class="section-heading">
-                <div>
-                    <h2>Explore Categories</h2>
-                    <p>Find what you are looking for.</p>
-                </div>
-
-                <a href="categories.html" class="view-all">View all →</a>
-            </div>
-
-            <div class="category-grid">
-
-                <a class="category-card"
-                   href="category-listings.html?category=electronics">
-                    <img loading="lazy"
-                         src="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=700&q=85"
-                         alt="Electronics and gadgets">
-                    <span class="category-name">
-                        Electronics
-                        <small>Phones, computers and gadgets</small>
-                    </span>
-                </a>
-
-                <a class="category-card"
-                   href="category-listings.html?category=fashion">
-                    <img loading="lazy"
-                         src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=85"
-                         alt="Fashion and clothing">
-                    <span class="category-name">
-                        Fashion
-                        <small>Clothing, shoes and accessories</small>
-                    </span>
-                </a>
-
-                <a class="category-card"
-                   href="category-listings.html?category=food">
-                    <img loading="lazy"
-                         src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=700&q=85"
-                         alt="Fresh food and groceries">
-                    <span class="category-name">
-                        Food & Groceries
-                        <small>Fresh food and everyday essentials</small>
-                    </span>
-                </a>
-
-                <a class="category-card"
-                   href="category-listings.html?category=property">
-                    <img loading="lazy"
-                         src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=85"
-                         alt="Modern house">
-                    <span class="category-name">
-                        Real Estate
-                        <small>Houses, land and rentals</small>
-                    </span>
-                </a>
-
-                <a class="category-card"
-                   href="category-listings.html?category=vehicles">
-                    <img loading="lazy"
-                         src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=700&q=85"
-                         alt="Modern vehicle">
-                    <span class="category-name">
-                        Vehicles
-                        <small>Cars and motorcycles</small>
-                    </span>
-                </a>
-
-                <a class="category-card" href="education.html">
-                    <img loading="lazy"
-                         src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=700&q=85"
-                         alt="Students at a learning institution">
-                    <span class="category-name">
-                        Education
-                        <small>Learning and training</small>
-                    </span>
-                </a>
-
-                <a class="category-card"
-                   href="category-listings.html?category=services">
-                    <img loading="lazy"
-                         src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=700&q=85"
-                         alt="Professional team working">
-                    <span class="category-name">
-                        Services
-                        <small>Professional and local services</small>
-                    </span>
-                </a>
-
-                <a class="category-card" href="businesses.html">
-                    <img loading="lazy"
-                         src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=700&q=85"
-                         alt="Modern business workspace">
-                    <span class="category-name">
-                        Businesses
-                        <small>Discover businesses</small>
-                    </span>
-                </a>
-
-            </div>
-        </section>
-
-        <!-- FEATURED PREVIEWS -->
-        <section class="section container">
-
-            <div class="section-heading">
-                <div>
-                    <h2>Discover What's Around</h2>
-                    <p>Explore some of our marketplace categories.</p>
-                </div>
-
-                <a href="category-listings.html" class="view-all">
-                    Explore more →
-                </a>
-            </div>
-
-            <div class="listing-grid">
-
-                <article class="listing-card">
-                    <img loading="lazy"
-                         src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=85"
-                         alt="Smartphone">
-                    <div class="listing-info">
-                        <small>Technology</small>
-                        <h3>Phones & Accessories</h3>
-                        <p>Explore technology products and gadgets.</p>
-                        <a href="category-listings.html?category=electronics">
-                            Explore category →
-                        </a>
-                    </div>
-                </article>
-
-                <article class="listing-card">
-                    <img loading="lazy"
-                         src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=85"
-                         alt="Fashion collection">
-                    <div class="listing-info">
-                        <small>Fashion</small>
-                        <h3>Style & Clothing</h3>
-                        <p>Discover fashion and everyday wear.</p>
-                        <a href="category-listings.html?category=fashion">
-                            Explore category →
-                        </a>
-                    </div>
-                </article>
-
-                <article class="listing-card">
-                    <img loading="lazy"
-                         src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=85"
-                         alt="Modern home">
-                    <div class="listing-info">
-                        <small>Property</small>
-                        <h3>Homes & Property</h3>
-                        <p>Explore property and housing opportunities.</p>
-                        <a href="category-listings.html?category=property">
-                            Explore category →
-                        </a>
-                    </div>
-                </article>
-
-            </div>
-
-            <p class="note">
-                These are visual category previews, not live advertisements.
+            <p>
+                Discover products, businesses, services and opportunities
+                from one convenient marketplace.
             </p>
 
-        </section>
+            <div class="hero-actions">
+                <a href="#marketplace" class="gold-button">
+                    Explore Marketplace →
+                </a>
 
-        <!-- BUSINESS PROMOTION -->
-        <section class="section container">
+                <a href="register.html" class="outline-button">
+                    Join GLOBAL MARKET
+                </a>
+            </div>
 
-            <div class="business-banner">
+        </div>
+    </section>
+
+    <!-- SEARCH -->
+    <section class="search-wrap container">
+        <form class="search-box" id="marketSearch">
+
+            <input
+                type="search"
+                id="searchKeyword"
+                placeholder="What are you looking for?"
+                aria-label="Search marketplace"
+            >
+
+            <select id="searchCategory" aria-label="Choose category">
+                <option value="">All categories</option>
+                <option value="electronics">Electronics</option>
+                <option value="fashion">Fashion</option>
+                <option value="food">Food & Groceries</option>
+                <option value="property">Real Estate</option>
+                <option value="vehicles">Vehicles</option>
+                <option value="education">Education</option>
+                <option value="services">Services</option>
+            </select>
+
+            <button type="submit">Search</button>
+
+        </form>
+    </section>
+
+    <!-- CENTRAL MARKETPLACE MENU -->
+    <section class="section container" id="marketplace">
+
+        <div class="market-menu">
+
+            <div class="menu-top">
                 <div>
-                    <h2>Have a Business?</h2>
-                    <p>
-                        Showcase your business, reach more customers
-                        and grow with GLOBAL MARKET.
-                    </p>
+                    <h2>Explore Marketplace</h2>
+                    <p>Everything in one convenient place.</p>
                 </div>
 
-                <a href="bussiness-registration.html">
-                    Register Your Business →
-                </a>
+                <button class="menu-toggle" id="menuToggle" type="button"
+                    aria-expanded="false" aria-controls="menuContent">
+                    Explore All ↓
+                </button>
             </div>
 
-        </section>
+            <div class="menu-content" id="menuContent">
 
-        <!-- QUICK LINKS -->
-        <section class="section container">
+                <div class="menu-group-title">Shop & Discover</div>
 
-            <div class="section-heading">
-                <div>
-                    <h2>Your GLOBAL MARKET</h2>
-                    <p>Quick access to your marketplace tools.</p>
+                <div class="menu-grid">
+
+                    <a class="menu-link" href="categories.html">
+                        <span class="menu-icon">🛍️</span> All Categories
+                    </a>
+
+                    <a class="menu-link" href="businesses.html">
+                        <span class="menu-icon">🏢</span> Businesses
+                    </a>
+
+                    <a class="menu-link" href="category-listings.html?category=electronics">
+                        <span class="menu-icon">📱</span> Electronics
+                    </a>
+
+                    <a class="menu-link" href="category-listings.html?category=fashion">
+                        <span class="menu-icon">👕</span> Fashion
+                    </a>
+
+                    <a class="menu-link" href="category-listings.html?category=food">
+                        <span class="menu-icon">🥑</span> Food & Groceries
+                    </a>
+
+                    <a class="menu-link" href="category-listings.html?category=property">
+                        <span class="menu-icon">🏠</span> Real Estate
+                    </a>
+
+                    <a class="menu-link" href="category-listings.html?category=vehicles">
+                        <span class="menu-icon">🚘</span> Vehicles
+                    </a>
+
+                    <a class="menu-link" href="category-listings.html?category=services">
+                        <span class="menu-icon">🛠️</span> Services
+                    </a>
+
+                    <a class="menu-link" href="education.html">
+                        <span class="menu-icon">🎓</span> Education
+                    </a>
+
                 </div>
+
+                <div class="menu-group-title">Business & Opportunities</div>
+
+                <div class="menu-grid">
+
+                    <a class="menu-link" href="bussiness-registration.html">
+                        <span class="menu-icon">🏬</span> Register Business
+                    </a>
+
+                    <a class="menu-link" href="advertise.html">
+                        <span class="menu-icon">📢</span> Advertise With Us
+                    </a>
+
+                    <a class="menu-link" href="create-ad.html">
+                        <span class="menu-icon">➕</span> Post an Advertisement
+                    </a>
+
+                    <a class="menu-link" href="advertiser-dashboard.html">
+                        <span class="menu-icon">📊</span> Advertiser Dashboard
+                    </a>
+
+                </div>
+
+                <div class="menu-group-title">My Account</div>
+
+                <div class="menu-grid">
+
+                    <a class="menu-link" href="profile.html">
+                        <span class="menu-icon">👤</span> My Profile
+                    </a>
+
+                    <a class="menu-link" href="my-ads.html">
+                        <span class="menu-icon">📰</span> My Advertisements
+                    </a>
+
+                    <a class="menu-link" href="favourites.html">
+                        <span class="menu-icon">❤️</span> Favourites
+                    </a>
+
+                    <a class="menu-link" href="messages.html">
+                        <span class="menu-icon">💬</span> Messages
+                    </a>
+
+                    <a class="menu-link" href="notifications.html">
+                        <span class="menu-icon">🔔</span> Notifications
+                    </a>
+
+                    <a class="menu-link" href="payment.html">
+                        <span class="menu-icon">💳</span> Payments
+                    </a>
+
+                </div>
+
+                <div class="menu-group-title">Information & Support</div>
+
+                <div class="menu-grid">
+
+                    <a class="menu-link" href="about.html">
+                        <span class="menu-icon">🌍</span> About Us
+                    </a>
+
+                    <a class="menu-link" href="contact.html">
+                        <span class="menu-icon">📞</span> Contact Us
+                    </a>
+
+                    <a class="menu-link" href="help.html">
+                        <span class="menu-icon">❓</span> Help Centre
+                    </a>
+
+                    <a class="menu-link" href="terms.html">
+                        <span class="menu-icon">📄</span> Terms & Conditions
+                    </a>
+
+                    <a class="menu-link" href="privacy.html">
+                        <span class="menu-icon">🔒</span> Privacy Policy
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED PREVIEWS -->
+    <section class="section container">
+
+        <div class="section-heading">
+            <h2>Discover More</h2>
+            <p>Explore products, style and property.</p>
+        </div>
+
+        <div class="featured-grid">
+
+            <article class="featured-card">
+                <img loading="lazy"
+                     src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=85"
+                     alt="Smartphone and technology">
+                <div class="featured-info">
+                    <small>Technology</small>
+                    <h3>Phones & Accessories</h3>
+                    <p>Explore technology products and gadgets.</p>
+                    <a href="category-listings.html?category=electronics">
+                        Explore →
+                    </a>
+                </div>
+            </article>
+
+            <article class="featured-card">
+                <img loading="lazy"
+                     src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=85"
+                     alt="Fashion collection">
+                <div class="featured-info">
+                    <small>Fashion</small>
+                    <h3>Style & Clothing</h3>
+                    <p>Discover fashion and everyday wear.</p>
+                    <a href="category-listings.html?category=fashion">
+                        Explore →
+                    </a>
+                </div>
+            </article>
+
+            <article class="featured-card">
+                <img loading="lazy"
+                     src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=85"
+                     alt="Modern property">
+                <div class="featured-info">
+                    <small>Real Estate</small>
+                    <h3>Homes & Property</h3>
+                    <p>Explore housing and property opportunities.</p>
+                    <a href="category-listings.html?category=property">
+                        Explore →
+                    </a>
+                </div>
+            </article>
+
+        </div>
+
+        <p style="font-size:11px;color:var(--muted);margin-top:12px;">
+            These are visual previews, not live advertisements.
+        </p>
+
+    </section>
+
+    <!-- BUSINESS PROMOTION -->
+    <section class="section container">
+
+        <div class="business-banner">
+            <div>
+                <h2>Have a Business?</h2>
+                <p>
+                    Showcase your business, reach more customers
+                    and grow with GLOBAL MARKET.
+                </p>
             </div>
 
-            <div class="quick-links">
+            <a href="bussiness-registration.html">
+                Register Your Business →
+            </a>
+        </div>
 
-                <a class="quick-link" href="businesses.html">
-                    <span class="quick-icon">🏢</span> Businesses
-                </a>
+    </section>
 
-                <a class="quick-link" href="advertise.html">
-                    <span class="quick-icon">📢</span> Advertise
-                </a>
+    <!-- QUICK LINKS -->
+    <section class="section container">
 
-                <a class="quick-link" href="create-ad.html">
-                    <span class="quick-icon">➕</span> Create an Ad
-                </a>
+        <div class="section-heading">
+            <h2>Quick Access</h2>
+            <p>Get to the pages you use most.</p>
+        </div>
 
-                <a class="quick-link" href="advertiser-dashboard.html">
-                    <span class="quick-icon">📊</span> Advertiser Dashboard
-                </a>
+        <div class="shortcut-grid">
 
-                <a class="quick-link" href="my-ads.html">
-                    <span class="quick-icon">📰</span> My Advertisements
-                </a>
+            <a class="shortcut" href="categories.html">
+                <span>🛍️</span> Marketplace
+            </a>
 
-                <a class="quick-link" href="profile.html">
-                    <span class="quick-icon">👤</span> My Profile
-                </a>
+            <a class="shortcut" href="businesses.html">
+                <span>🏢</span> Businesses
+            </a>
 
-                <a class="quick-link" href="favourites.html">
-                    <span class="quick-icon">❤️</span> Favourites
-                </a>
+            <a class="shortcut" href="create-ad.html">
+                <span>➕</span> Create an Ad
+            </a>
 
-                <a class="quick-link" href="messages.html">
-                    <span class="quick-icon">💬</span> Messages
-                </a>
+            <a class="shortcut" href="profile.html">
+                <span>👤</span> My Profile
+            </a>
 
-                <a class="quick-link" href="notifications.html">
-                    <span class="quick-icon">🔔</span> Notifications
-                </a>
+        </div>
 
-                <a class="quick-link" href="payment.html">
-                    <span class="quick-icon">💳</span> Payments
-                </a>
+    </section>
 
-                <a class="quick-link" href="education.html">
-                    <span class="quick-icon">🎓</span> Education
-                </a>
+</main>
 
-                <a class="quick-link" href="help.html">
-                    <span class="quick-icon">❓</span> Help Centre
-                </a>
+<div id="site-footer"></div>
 
-                <a class="quick-link" href="about.html">
-                    <span class="quick-icon">🌍</span> About Us
-                </a>
+<script src="layout.js" defer></script>
 
-                <a class="quick-link" href="contact.html">
-                    <span class="quick-icon">📞</span> Contact Us
-                </a>
+<script>
+"use strict";
 
-                <a class="quick-link" href="register.html">
-                    <span class="quick-icon">📝</span> Create Account
-                </a>
+// MARKETPLACE MENU
+const menuToggle = document.getElementById("menuToggle");
+const menuContent = document.getElementById("menuContent");
 
-                <a class="quick-link" href="login.html">
-                    <span class="quick-icon">🔐</span> Sign In
-                </a>
+menuToggle.addEventListener("click", function() {
+    const opened = menuContent.classList.toggle("open");
 
-            </div>
-        </section>
+    menuToggle.setAttribute("aria-expanded", String(opened));
+    menuToggle.textContent = opened ? "Close Menu ↑" : "Explore All ↓";
+});
 
-    </main>
+// LIGHT AND DARK THEME
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
+const themeLabel = document.getElementById("themeLabel");
 
-    <div id="site-footer"></div>
+function applyTheme(theme) {
+    const dark = theme === "dark";
 
-    <script src="layout.js" defer></script>
+    document.body.classList.toggle("dark-theme", dark);
 
-    <script>
-        document.getElementById("marketSearch")
-            .addEventListener("submit", function(event) {
-                event.preventDefault();
+    themeIcon.textContent = dark ? "☀️" : "🌙";
+    themeLabel.textContent = dark ? "Light Mode" : "Dark Mode";
 
-                const keyword = document
-                    .getElementById("searchKeyword").value.trim();
+    document.querySelector('meta[name="theme-color"]')
+        .setAttribute("content", dark ? "#101a29" : "#edf2f8");
+}
 
-                const category = document
-                    .getElementById("searchCategory").value;
+let savedTheme = "light";
 
-                const params = new URLSearchParams();
+try {
+    savedTheme = localStorage.getItem("gm-theme") || "light";
+} catch (error) {
+    console.warn("Theme preference storage is unavailable.");
+}
 
-                if (keyword) params.set("search", keyword);
-                if (category) params.set("category", category);
+applyTheme(savedTheme);
 
-                window.location.href =
-                    "category-listings.html?" + params.toString();
-            });
-    </script>
+themeToggle.addEventListener("click", function() {
+    const nextTheme = document.body.classList.contains("dark-theme")
+        ? "light"
+        : "dark";
+
+    applyTheme(nextTheme);
+
+    try {
+        localStorage.setItem("gm-theme", nextTheme);
+    } catch (error) {
+        console.warn("Could not save theme preference.");
+    }
+});
+
+// MARKETPLACE SEARCH
+document.getElementById("marketSearch")
+    .addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const keyword = document.getElementById("searchKeyword").value.trim();
+        const category = document.getElementById("searchCategory").value;
+
+        const params = new URLSearchParams();
+
+        if (keyword) params.set("search", keyword);
+        if (category) params.set("category", category);
+
+        window.location.href =
+            "category-listings.html?" + params.toString();
+    });
+</script>
 
 </body>
 </html>
