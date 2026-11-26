@@ -4,174 +4,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#f4f7fb">
-
-    <meta name="description" content="Discover products, services, businesses and opportunities on GLOBAL MARKET. Your world, one marketplace.">
-
+    <meta name="theme-color" content="#edf2f8">
+    <meta name="description" content="Discover products, services, businesses and opportunities on GLOBAL MARKET.">
     <title>GLOBAL MARKET | Your World. One Marketplace.</title>
 
     <link rel="stylesheet" href="style.css">
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
-            background: #f4f7fb;
-            color: #192d46;
+            background: #f3f6fa;
+            color: #1b304b;
             font-family: Arial, sans-serif;
         }
 
-        a {
-            text-decoration: none;
-        }
+        a { text-decoration: none; }
 
-        .home-container {
-            width: min(1200px, 92%);
+        .container {
+            width: min(1180px, 92%);
             margin: auto;
         }
 
         .hero {
-            margin: 30px auto;
-            min-height: 390px;
-            border-radius: 18px;
+            min-height: 440px;
+            margin: 25px auto 35px;
+            border-radius: 20px;
             overflow: hidden;
-            background:
-                linear-gradient(90deg, rgba(12,35,64,.94), rgba(12,35,64,.65)),
-                url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1500&q=85") center/cover;
             display: flex;
             align-items: center;
             padding: 55px;
             color: white;
+            background:
+                linear-gradient(90deg, rgba(12,31,55,.92), rgba(12,31,55,.48)),
+                url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1800&q=85")
+                center/cover;
         }
 
-        .hero-content {
-            max-width: 650px;
-        }
+        .hero-content { max-width: 620px; }
 
         .hero-label {
             display: inline-block;
-            background: rgba(222,181,96,.17);
-            border: 1px solid #d8b45e;
-            color: #f2d38b;
             padding: 8px 14px;
+            border: 1px solid rgba(220,184,111,.8);
             border-radius: 30px;
-            font-size: 12px;
+            color: #f0d49a;
+            background: rgba(255,255,255,.08);
+            font-size: 11px;
             font-weight: bold;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .hero h1 {
-            font-size: clamp(32px, 5vw, 54px);
-            line-height: 1.15;
             margin: 20px 0 14px;
+            font-size: clamp(36px, 5vw, 59px);
+            line-height: 1.12;
         }
 
-        .hero h1 span {
-            color: #e3bd6e;
-        }
+        .hero h1 span { color: #e5bf76; }
 
         .hero p {
-            color: #e3eaf3;
-            line-height: 1.8;
+            max-width: 510px;
+            color: #e2e9f2;
             font-size: 15px;
+            line-height: 1.8;
         }
 
-        .hero-buttons {
+        .hero-actions {
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
-            margin-top: 25px;
+            margin-top: 27px;
         }
 
-        .hero-buttons a {
-            padding: 13px 20px;
-            border-radius: 7px;
+        .hero-actions a {
+            padding: 14px 20px;
+            border-radius: 8px;
             font-size: 13px;
             font-weight: bold;
         }
 
-        .primary-button {
-            background: #d5ad55;
-            color: #142c4b;
+        .gold-btn {
+            background: #dfb765;
+            color: #172d48;
         }
 
-        .secondary-button {
+        .outline-btn {
             border: 1px solid white;
             color: white;
         }
 
-        .search-section {
-            margin: -5px auto 45px;
+        .search-wrap {
             position: relative;
+            margin-top: -2px;
         }
 
         .search-box {
-            background: white;
-            padding: 18px;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(25,45,70,.08);
             display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px;
+            background: white;
+            border-radius: 13px;
+            box-shadow: 0 10px 35px rgba(20,43,70,.09);
         }
 
         .search-box input,
         .search-box select {
             flex: 1;
-            min-width: 150px;
+            min-width: 0;
             padding: 14px;
-            border: 1px solid #dce4ed;
-            border-radius: 7px;
+            border: 1px solid #dfe6ef;
+            border-radius: 8px;
             outline: none;
-            background: #fff;
-            color: #24364c;
+            color: #253b55;
+            background: white;
         }
 
         .search-box button {
+            padding: 14px 25px;
+            border: 0;
+            border-radius: 8px;
             background: #17395f;
             color: white;
-            border: none;
-            border-radius: 7px;
-            padding: 14px 25px;
             font-weight: bold;
             cursor: pointer;
         }
 
-        .search-box button:hover {
-            background: #b08736;
-        }
+        .search-box button:hover { background: #b58b3d; }
 
-        .section {
-            margin: 55px auto;
-        }
+        .section { margin: 65px auto; }
 
         .section-heading {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: end;
             gap: 15px;
             margin-bottom: 22px;
         }
 
         .section-heading h2 {
             margin: 0;
-            font-size: 25px;
             color: #17395f;
+            font-size: 25px;
         }
 
         .section-heading p {
-            color: #718096;
-            font-size: 13px;
             margin: 7px 0 0;
+            color: #7b899b;
+            font-size: 13px;
         }
 
         .view-all {
-            color: #a47a2b;
+            color: #a47b31;
             font-size: 13px;
             font-weight: bold;
+            white-space: nowrap;
         }
 
         .category-grid {
@@ -181,42 +169,46 @@
         }
 
         .category-card {
-            background: white;
-            padding: 22px 15px;
-            border-radius: 11px;
-            border: 1px solid #e8edf3;
-            text-align: center;
-            transition: .2s;
+            position: relative;
+            height: 190px;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #dce4ed;
             display: block;
         }
 
-        .category-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 9px 22px rgba(20,40,70,.08);
-            border-color: #d5ad55;
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .35s;
         }
 
-        .category-icon {
-            width: 52px;
-            height: 52px;
-            margin: auto auto 13px;
-            display: grid;
-            place-items: center;
-            border-radius: 13px;
-            background: #edf3fa;
-            font-size: 25px;
+        .category-card:hover img { transform: scale(1.07); }
+
+        .category-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(transparent 20%, rgba(8,25,46,.85));
         }
 
-        .category-card h3 {
-            color: #203b5b;
-            font-size: 14px;
-            margin: 0 0 7px;
+        .category-name {
+            position: absolute;
+            z-index: 1;
+            left: 17px;
+            bottom: 15px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
         }
 
-        .category-card p {
-            color: #8491a2;
+        .category-name small {
+            display: block;
+            margin-top: 5px;
+            color: #e2e9f1;
             font-size: 11px;
-            margin: 0;
+            font-weight: normal;
         }
 
         .listing-grid {
@@ -226,10 +218,10 @@
         }
 
         .listing-card {
-            background: white;
-            border-radius: 12px;
             overflow: hidden;
-            border: 1px solid #e7edf4;
+            background: white;
+            border: 1px solid #e5ebf2;
+            border-radius: 13px;
             transition: .2s;
         }
 
@@ -238,175 +230,160 @@
             box-shadow: 0 10px 25px rgba(20,40,70,.09);
         }
 
-        .listing-image {
-            height: 190px;
-            width: 100%;
-            object-fit: cover;
+        .listing-card img {
             display: block;
-            background: #e8edf3;
+            width: 100%;
+            height: 205px;
+            object-fit: cover;
         }
 
-        .listing-content {
-            padding: 18px;
-        }
+        .listing-info { padding: 18px; }
 
-        .listing-category {
-            color: #a17b2c;
+        .listing-info small {
+            color: #a47b31;
             font-size: 11px;
             font-weight: bold;
             text-transform: uppercase;
         }
 
-        .listing-content h3 {
+        .listing-info h3 {
+            margin: 9px 0;
             color: #17395f;
             font-size: 17px;
-            margin: 10px 0;
         }
 
-        .listing-description {
-            color: #748195;
+        .listing-info p {
+            color: #78869a;
             font-size: 13px;
             line-height: 1.6;
         }
 
-        .listing-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 17px;
-            gap: 10px;
-        }
-
-        .listing-price {
+        .listing-info a {
+            display: inline-block;
+            margin-top: 8px;
             color: #17395f;
-            font-size: 17px;
-            font-weight: bold;
-        }
-
-        .listing-link {
-            background: #edf3fa;
-            color: #17395f;
-            padding: 9px 12px;
-            border-radius: 6px;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: bold;
         }
 
         .business-banner {
-            background: #eaf0f7;
-            border: 1px solid #dce5ef;
-            border-radius: 15px;
-            padding: 35px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 25px;
-            flex-wrap: wrap;
+            padding: 38px;
+            border-radius: 16px;
+            color: white;
+            background:
+                linear-gradient(90deg, rgba(15,42,72,.95), rgba(15,42,72,.72)),
+                url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=85")
+                center/cover;
         }
 
         .business-banner h2 {
-            color: #17395f;
-            margin-top: 0;
+            margin: 0 0 9px;
+            font-size: 25px;
         }
 
         .business-banner p {
-            color: #68788c;
+            max-width: 570px;
+            color: #e1e8f0;
+            font-size: 13px;
             line-height: 1.7;
-            max-width: 600px;
-            font-size: 14px;
         }
 
         .business-banner a {
-            background: #17395f;
-            color: white;
-            padding: 14px 20px;
-            border-radius: 7px;
+            flex-shrink: 0;
+            padding: 14px 19px;
+            border-radius: 8px;
+            background: #dfb765;
+            color: #172d48;
             font-size: 13px;
             font-weight: bold;
         }
 
-        .trust-grid {
+        .quick-links {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 13px;
         }
 
-        .trust-card {
+        .quick-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
             background: white;
-            border: 1px solid #e8edf3;
+            border: 1px solid #e5ebf2;
             border-radius: 10px;
-            padding: 23px;
-        }
-
-        .trust-card h3 {
-            color: #17395f;
-            font-size: 16px;
-        }
-
-        .trust-card p {
-            color: #718096;
+            color: #203a59;
             font-size: 13px;
-            line-height: 1.7;
+            font-weight: bold;
+            transition: .2s;
         }
 
-        .empty-note {
-            color: #77869a;
-            font-size: 13px;
-            margin-top: 12px;
+        .quick-link:hover {
+            border-color: #d5ad55;
+            transform: translateY(-2px);
         }
 
-        @media (max-width: 800px) {
-            .category-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .quick-icon {
+            width: 38px;
+            height: 38px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 9px;
+            background: #edf2f8;
+            font-size: 19px;
+        }
 
-            .listing-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .note {
+            margin-top: 13px;
+            color: #8290a1;
+            font-size: 11px;
+        }
 
+        @media(max-width: 800px) {
+            .category-grid { grid-template-columns: repeat(2, 1fr); }
+            .quick-links { grid-template-columns: repeat(2, 1fr); }
+            .hero { padding: 40px 30px; }
+        }
+
+        @media(max-width: 550px) {
             .hero {
-                padding: 35px 25px;
-            }
-        }
-
-        @media (max-width: 520px) {
-            .hero {
-                min-height: 350px;
-                padding: 27px 20px;
+                min-height: 380px;
+                padding: 27px 21px;
+                background-position: center;
             }
 
-            .hero h1 {
-                font-size: 34px;
-            }
+            .hero h1 { font-size: 37px; }
 
-            .hero p {
-                font-size: 13px;
-            }
+            .hero p { font-size: 13px; }
 
-            .search-box {
-                flex-direction: column;
-            }
+            .search-box { flex-direction: column; }
 
             .search-box input,
             .search-box select,
-            .search-box button {
-                width: 100%;
-            }
+            .search-box button { width: 100%; }
 
-            .listing-grid {
-                grid-template-columns: 1fr;
-            }
+            .category-card { height: 155px; }
 
-            .trust-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-heading h2 {
-                font-size: 20px;
-            }
+            .listing-grid { grid-template-columns: 1fr; }
 
             .business-banner {
-                padding: 25px 20px;
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 27px 22px;
+            }
+
+            .section-heading h2 { font-size: 21px; }
+
+            .quick-links { gap: 9px; }
+
+            .quick-link {
+                padding: 12px 9px;
+                font-size: 11px;
             }
         }
     </style>
@@ -414,39 +391,33 @@
 
 <body>
 
-    <!-- SHARED HEADER -->
     <div id="site-header"></div>
 
     <main>
 
-        <!-- HERO SECTION -->
-        <section class="hero home-container">
+        <!-- HERO -->
+        <section class="hero container">
             <div class="hero-content">
 
-                <span class="hero-label">
-                    WELCOME TO GLOBAL MARKET
-                </span>
+                <span class="hero-label">YOUR WORLD. ONE MARKETPLACE.</span>
 
                 <h1>
-                    Discover More.
-                    <span>Connect Better.</span>
-                    Grow Faster.
+                    Everything You Need.
+                    <span>One Place.</span>
                 </h1>
 
                 <p>
-                    Explore products, discover trusted businesses,
-                    find services and connect with opportunities
-                    through one marketplace.
+                    Discover products, businesses, services and
+                    opportunities from one convenient marketplace.
                 </p>
 
-                <div class="hero-buttons">
-                    <a href="categories.html" class="primary-button">
-                        Explore Marketplace
+                <div class="hero-actions">
+                    <a href="categories.html" class="gold-btn">
+                        Explore Marketplace →
                     </a>
 
-                    <a href="business-registration.html"
-                       class="secondary-button">
-                        Register Your Business
+                    <a href="register.html" class="outline-btn">
+                        Join GLOBAL MARKET
                     </a>
                 </div>
 
@@ -454,8 +425,7 @@
         </section>
 
         <!-- SEARCH -->
-        <section class="search-section home-container">
-
+        <section class="search-wrap container">
             <form class="search-box" id="marketSearch">
 
                 <input
@@ -465,463 +435,314 @@
                     aria-label="Search marketplace"
                 >
 
-                <select id="searchCategory"
-                        aria-label="Select category">
-
-                    <option value="">All Categories</option>
+                <select id="searchCategory" aria-label="Choose category">
+                    <option value="">All categories</option>
                     <option value="electronics">Electronics</option>
                     <option value="fashion">Fashion</option>
-                    <option value="food">Food & Beverages</option>
-                    <option value="property">Property</option>
+                    <option value="food">Food</option>
+                    <option value="property">Real Estate</option>
                     <option value="vehicles">Vehicles</option>
                     <option value="education">Education</option>
-                    <option value="jobs">Jobs & Careers</option>
                     <option value="services">Services</option>
-
                 </select>
 
                 <button type="submit">Search</button>
 
             </form>
-
         </section>
 
         <!-- CATEGORIES -->
-        <section class="section home-container">
+        <section class="section container">
 
             <div class="section-heading">
                 <div>
                     <h2>Explore Categories</h2>
-                    <p>Find exactly what you need.</p>
+                    <p>Find what you are looking for.</p>
                 </div>
 
-                <a href="categories.html" class="view-all">
-                    View All →
-                </a>
+                <a href="categories.html" class="view-all">View all →</a>
             </div>
 
             <div class="category-grid">
 
-                <a href="category-listings.html?category=electronics"
-                   class="category-card">
-                    <div class="category-icon">📱</div>
-                    <h3>Electronics</h3>
-                    <p>Phones, computers and gadgets</p>
+                <a class="category-card"
+                   href="category-listings.html?category=electronics">
+                    <img loading="lazy"
+                         src="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=700&q=85"
+                         alt="Electronics and gadgets">
+                    <span class="category-name">
+                        Electronics
+                        <small>Phones, computers and gadgets</small>
+                    </span>
                 </a>
 
-                <a href="category-listings.html?category=fashion"
-                   class="category-card">
-                    <div class="category-icon">👕</div>
-                    <h3>Fashion</h3>
-                    <p>Clothing, shoes and accessories</p>
+                <a class="category-card"
+                   href="category-listings.html?category=fashion">
+                    <img loading="lazy"
+                         src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=85"
+                         alt="Fashion and clothing">
+                    <span class="category-name">
+                        Fashion
+                        <small>Clothing, shoes and accessories</small>
+                    </span>
                 </a>
 
-                <a href="category-listings.html?category=food"
-                   class="category-card">
-                    <div class="category-icon">🍎</div>
-                    <h3>Food & Beverages</h3>
-                    <p>Food, drinks and groceries</p>
+                <a class="category-card"
+                   href="category-listings.html?category=food">
+                    <img loading="lazy"
+                         src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=700&q=85"
+                         alt="Fresh food and groceries">
+                    <span class="category-name">
+                        Food & Groceries
+                        <small>Fresh food and everyday essentials</small>
+                    </span>
                 </a>
 
-                <a href="category-listings.html?category=property"
-                   class="category-card">
-                    <div class="category-icon">🏠</div>
-                    <h3>Real Estate</h3>
-                    <p>Houses, land and rentals</p>
+                <a class="category-card"
+                   href="category-listings.html?category=property">
+                    <img loading="lazy"
+                         src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=85"
+                         alt="Modern house">
+                    <span class="category-name">
+                        Real Estate
+                        <small>Houses, land and rentals</small>
+                    </span>
                 </a>
 
-                <a href="category-listings.html?category=vehicles"
-                   class="category-card">
-                    <div class="category-icon">🚗</div>
-                    <h3>Vehicles</h3>
-                    <p>Cars, motorcycles and other vehicles</p>
+                <a class="category-card"
+                   href="category-listings.html?category=vehicles">
+                    <img loading="lazy"
+                         src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=700&q=85"
+                         alt="Modern vehicle">
+                    <span class="category-name">
+                        Vehicles
+                        <small>Cars and motorcycles</small>
+                    </span>
                 </a>
 
-                <a href="category-listings.html?category=education"
-                   class="category-card">
-                    <div class="category-icon">🎓</div>
-                    <h3>Education</h3>
-                    <p>Schools, courses and training</p>
+                <a class="category-card" href="education.html">
+                    <img loading="lazy"
+                         src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=700&q=85"
+                         alt="Students at a learning institution">
+                    <span class="category-name">
+                        Education
+                        <small>Learning and training</small>
+                    </span>
                 </a>
 
-                <a href="category-listings.html?category=jobs"
-                   class="category-card">
-                    <div class="category-icon">💼</div>
-                    <h3>Jobs & Careers</h3>
-                    <p>Employment and opportunities</p>
+                <a class="category-card"
+                   href="category-listings.html?category=services">
+                    <img loading="lazy"
+                         src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=700&q=85"
+                         alt="Professional team working">
+                    <span class="category-name">
+                        Services
+                        <small>Professional and local services</small>
+                    </span>
                 </a>
 
-                <a href="category-listings.html?category=services"
-                   class="category-card">
-                    <div class="category-icon">🛠️</div>
-                    <h3>Services</h3>
-                    <p>Professional and local services</p>
-                </a>
-
-                <a href="businesses.html"
-                   class="category-card">
-                    <div class="category-icon">🏢</div>
-                    <h3>Businesses</h3>
-                    <p>Discover businesses near you</p>
+                <a class="category-card" href="businesses.html">
+                    <img loading="lazy"
+                         src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=700&q=85"
+                         alt="Modern business workspace">
+                    <span class="category-name">
+                        Businesses
+                        <small>Discover businesses</small>
+                    </span>
                 </a>
 
             </div>
-
         </section>
 
-        <!-- FEATURED LISTINGS -->
-        <section class="section home-container">
+        <!-- FEATURED PREVIEWS -->
+        <section class="section container">
 
             <div class="section-heading">
                 <div>
-                    <h2>Featured Advertisements</h2>
-                    <p>
-                        Discover products and services promoted
-                        on our marketplace.
-                    </p>
+                    <h2>Discover What's Around</h2>
+                    <p>Explore some of our marketplace categories.</p>
                 </div>
 
                 <a href="category-listings.html" class="view-all">
-                    View All →
+                    Explore more →
                 </a>
             </div>
 
             <div class="listing-grid">
 
                 <article class="listing-card">
-                    <img
-                        class="listing-image"
-                        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=85"
-                        alt="Smartphone"
-                        loading="lazy"
-                    >
-
-                    <div class="listing-content">
-                        <span class="listing-category">Electronics</span>
-                        <h3>Smartphones & Accessories</h3>
-
-                        <p class="listing-description">
-                            Discover smartphones and useful
-                            technology accessories.
-                        </p>
-
-                        <div class="listing-bottom">
-                            <span class="listing-price">Explore prices</span>
-
-                            <a href="category-listings.html?category=electronics"
-                               class="listing-link">
-                                Explore
-                            </a>
-                        </div>
+                    <img loading="lazy"
+                         src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=85"
+                         alt="Smartphone">
+                    <div class="listing-info">
+                        <small>Technology</small>
+                        <h3>Phones & Accessories</h3>
+                        <p>Explore technology products and gadgets.</p>
+                        <a href="category-listings.html?category=electronics">
+                            Explore category →
+                        </a>
                     </div>
                 </article>
 
                 <article class="listing-card">
-                    <img
-                        class="listing-image"
-                        src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=85"
-                        alt="Fashion clothing"
-                        loading="lazy"
-                    >
-
-                    <div class="listing-content">
-                        <span class="listing-category">Fashion</span>
-                        <h3>Fashion & Clothing</h3>
-
-                        <p class="listing-description">
-                            Explore clothing, footwear and
-                            fashion accessories.
-                        </p>
-
-                        <div class="listing-bottom">
-                            <span class="listing-price">Explore prices</span>
-
-                            <a href="category-listings.html?category=fashion"
-                               class="listing-link">
-                                Explore
-                            </a>
-                        </div>
+                    <img loading="lazy"
+                         src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=85"
+                         alt="Fashion collection">
+                    <div class="listing-info">
+                        <small>Fashion</small>
+                        <h3>Style & Clothing</h3>
+                        <p>Discover fashion and everyday wear.</p>
+                        <a href="category-listings.html?category=fashion">
+                            Explore category →
+                        </a>
                     </div>
                 </article>
 
                 <article class="listing-card">
-                    <img
-                        class="listing-image"
-                        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=85"
-                        alt="Modern property"
-                        loading="lazy"
-                    >
-
-                    <div class="listing-content">
-                        <span class="listing-category">Real Estate</span>
-                        <h3>Property & Housing</h3>
-
-                        <p class="listing-description">
-                            Discover property listings, houses
-                            and available spaces.
-                        </p>
-
-                        <div class="listing-bottom">
-                            <span class="listing-price">Explore listings</span>
-
-                            <a href="category-listings.html?category=property"
-                               class="listing-link">
-                                Explore
-                            </a>
-                        </div>
+                    <img loading="lazy"
+                         src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=85"
+                         alt="Modern home">
+                    <div class="listing-info">
+                        <small>Property</small>
+                        <h3>Homes & Property</h3>
+                        <p>Explore property and housing opportunities.</p>
+                        <a href="category-listings.html?category=property">
+                            Explore category →
+                        </a>
                     </div>
                 </article>
 
             </div>
 
-            <p class="empty-note">
-                These are category previews, not verified live advertisements.
-                Real listings will be displayed after marketplace data integration.
+            <p class="note">
+                These are visual category previews, not live advertisements.
             </p>
 
         </section>
 
         <!-- BUSINESS PROMOTION -->
-        <section class="section home-container">
+        <section class="section container">
 
             <div class="business-banner">
-
                 <div>
-                    <h2>Grow Your Business With GLOBAL MARKET</h2>
-
+                    <h2>Have a Business?</h2>
                     <p>
-                        Give your business more visibility. Showcase your
-                        products and services, upload photos and videos,
-                        and connect with potential customers.
+                        Showcase your business, reach more customers
+                        and grow with GLOBAL MARKET.
                     </p>
                 </div>
 
-                <a href="advertise.html">
-                    Start Advertising →
+                <a href="bussiness-registration.html">
+                    Register Your Business →
                 </a>
-
             </div>
 
         </section>
 
-        <!-- MORE GLOBAL MARKET SERVICES -->
-        <section class="section home-container">
+        <!-- QUICK LINKS -->
+        <section class="section container">
 
             <div class="section-heading">
                 <div>
-                    <h2>Explore More Services</h2>
-                    <p>
-                        Everything you need to get started
-                        on GLOBAL MARKET.
-                    </p>
+                    <h2>Your GLOBAL MARKET</h2>
+                    <p>Quick access to your marketplace tools.</p>
                 </div>
             </div>
 
-            <div class="category-grid">
+            <div class="quick-links">
 
-                <a href="education.html" class="category-card">
-                    <div class="category-icon">🎓</div>
-                    <h3>Education</h3>
-                    <p>Explore learning resources</p>
+                <a class="quick-link" href="businesses.html">
+                    <span class="quick-icon">🏢</span> Businesses
                 </a>
 
-                <a href="advertise.html" class="category-card">
-                    <div class="category-icon">📢</div>
-                    <h3>Advertise</h3>
-                    <p>Promote your products and services</p>
+                <a class="quick-link" href="advertise.html">
+                    <span class="quick-icon">📢</span> Advertise
                 </a>
 
-                <a href="create-ad.html" class="category-card">
-                    <div class="category-icon">➕</div>
-                    <h3>Create Advertisement</h3>
-                    <p>Publish your advertisement</p>
+                <a class="quick-link" href="create-ad.html">
+                    <span class="quick-icon">➕</span> Create an Ad
                 </a>
 
-                <a href="business-registration.html" class="category-card">
-                    <div class="category-icon">🏢</div>
-                    <h3>Register Business</h3>
-                    <p>Put your business on the marketplace</p>
+                <a class="quick-link" href="advertiser-dashboard.html">
+                    <span class="quick-icon">📊</span> Advertiser Dashboard
                 </a>
 
-                <a href="advertiser-dashboard.html" class="category-card">
-                    <div class="category-icon">📊</div>
-                    <h3>Advertiser Dashboard</h3>
-                    <p>Manage your advertisements</p>
+                <a class="quick-link" href="my-ads.html">
+                    <span class="quick-icon">📰</span> My Advertisements
                 </a>
 
-                <a href="my-ads.html" class="category-card">
-                    <div class="category-icon">📰</div>
-                    <h3>My Advertisements</h3>
-                    <p>View and manage your ads</p>
+                <a class="quick-link" href="profile.html">
+                    <span class="quick-icon">👤</span> My Profile
                 </a>
 
-                <a href="profile.html" class="category-card">
-                    <div class="category-icon">👤</div>
-                    <h3>My Profile</h3>
-                    <p>Manage your personal profile</p>
+                <a class="quick-link" href="favourites.html">
+                    <span class="quick-icon">❤️</span> Favourites
                 </a>
 
-                <a href="favorites.html" class="category-card">
-                    <div class="category-icon">❤️</div>
-                    <h3>Favourites</h3>
-                    <p>View your saved listings</p>
+                <a class="quick-link" href="messages.html">
+                    <span class="quick-icon">💬</span> Messages
                 </a>
 
-                <a href="messages.html" class="category-card">
-                    <div class="category-icon">💬</div>
-                    <h3>Messages</h3>
-                    <p>Access your conversations</p>
+                <a class="quick-link" href="notifications.html">
+                    <span class="quick-icon">🔔</span> Notifications
                 </a>
 
-                <a href="notifications.html" class="category-card">
-                    <div class="category-icon">🔔</div>
-                    <h3>Notifications</h3>
-                    <p>View your notifications</p>
+                <a class="quick-link" href="payment.html">
+                    <span class="quick-icon">💳</span> Payments
                 </a>
 
-                <a href="payment.html" class="category-card">
-                    <div class="category-icon">💳</div>
-                    <h3>Payment Portal</h3>
-                    <p>View available payment options</p>
+                <a class="quick-link" href="education.html">
+                    <span class="quick-icon">🎓</span> Education
                 </a>
 
-                <a href="login.html" class="category-card">
-                    <div class="category-icon">🔐</div>
-                    <h3>Login</h3>
-                    <p>Access your account</p>
+                <a class="quick-link" href="help.html">
+                    <span class="quick-icon">❓</span> Help Centre
                 </a>
 
-                <a href="register.html" class="category-card">
-                    <div class="category-icon">📝</div>
-                    <h3>Create Account</h3>
-                    <p>Join GLOBAL MARKET</p>
+                <a class="quick-link" href="about.html">
+                    <span class="quick-icon">🌍</span> About Us
                 </a>
 
-                <a href="forgot-password.html" class="category-card">
-                    <div class="category-icon">🔑</div>
-                    <h3>Recover Account</h3>
-                    <p>Reset your account password</p>
+                <a class="quick-link" href="contact.html">
+                    <span class="quick-icon">📞</span> Contact Us
                 </a>
 
-                <a href="help.html" class="category-card">
-                    <div class="category-icon">❓</div>
-                    <h3>Help Centre</h3>
-                    <p>Find assistance and answers</p>
+                <a class="quick-link" href="register.html">
+                    <span class="quick-icon">📝</span> Create Account
                 </a>
 
-                <a href="contact.html" class="category-card">
-                    <div class="category-icon">📞</div>
-                    <h3>Contact Us</h3>
-                    <p>Get in touch with us</p>
-                </a>
-
-                <a href="about.html" class="category-card">
-                    <div class="category-icon">🌍</div>
-                    <h3>About Us</h3>
-                    <p>Learn about GLOBAL MARKET</p>
-                </a>
-
-                <a href="terms.html" class="category-card">
-                    <div class="category-icon">📄</div>
-                    <h3>Terms & Conditions</h3>
-                    <p>Read our platform terms</p>
-                </a>
-
-                <a href="privacy.html" class="category-card">
-                    <div class="category-icon">🔒</div>
-                    <h3>Privacy Policy</h3>
-                    <p>Learn how information is handled</p>
+                <a class="quick-link" href="login.html">
+                    <span class="quick-icon">🔐</span> Sign In
                 </a>
 
             </div>
-
-        </section>
-
-        <!-- WHY CHOOSE US -->
-        <section class="section home-container">
-
-            <div class="section-heading">
-                <div>
-                    <h2>Why GLOBAL MARKET?</h2>
-                    <p>
-                        A marketplace built to connect
-                        people and businesses.
-                    </p>
-                </div>
-            </div>
-
-            <div class="trust-grid">
-
-                <div class="trust-card">
-                    <div class="category-icon">🌍</div>
-                    <h3>One Marketplace</h3>
-
-                    <p>
-                        Explore different products, services and
-                        opportunities in one convenient place.
-                    </p>
-                </div>
-
-                <div class="trust-card">
-                    <div class="category-icon">🏪</div>
-                    <h3>Business Visibility</h3>
-
-                    <p>
-                        Give businesses and service providers
-                        a platform to showcase what they offer.
-                    </p>
-                </div>
-
-                <div class="trust-card">
-                    <div class="category-icon">🤝</div>
-                    <h3>Easy Connections</h3>
-
-                    <p>
-                        Help customers discover businesses
-                        and connect with advertisers.
-                    </p>
-                </div>
-
-            </div>
-
         </section>
 
     </main>
 
-    <!-- SHARED FOOTER -->
     <div id="site-footer"></div>
 
     <script src="layout.js" defer></script>
 
     <script>
-        // HOMEPAGE MARKETPLACE SEARCH
+        document.getElementById("marketSearch")
+            .addEventListener("submit", function(event) {
+                event.preventDefault();
 
-        const marketSearch = document.getElementById("marketSearch");
+                const keyword = document
+                    .getElementById("searchKeyword").value.trim();
 
-        marketSearch.addEventListener("submit", function (event) {
-            event.preventDefault();
+                const category = document
+                    .getElementById("searchCategory").value;
 
-            const keyword = document
-                .getElementById("searchKeyword")
-                .value.trim();
+                const params = new URLSearchParams();
 
-            const category = document
-                .getElementById("searchCategory")
-                .value;
+                if (keyword) params.set("search", keyword);
+                if (category) params.set("category", category);
 
-            const params = new URLSearchParams();
-
-            if (keyword) {
-                params.set("search", keyword);
-            }
-
-            if (category) {
-                params.set("category", category);
-            }
-
-            window.location.href =
-                "category-listings.html?" + params.toString();
-        });
+                window.location.href =
+                    "category-listings.html?" + params.toString();
+            });
     </script>
 
 </body>
