@@ -4,1044 +4,1163 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#123b70">
-<title>GLOBAL MARKET | Discover. Connect. Trade.</title>
-<meta name="description" content="Discover products, services, businesses and opportunities across Kenya with GLOBAL MARKET.">
+<meta name="theme-color" content="#f4f6f8">
+<meta name="description" content="Global Market connects customers, sellers and businesses across Kenya. Discover, connect and grow.">
+<title>Global Market | Discover. Connect. Grow.</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#f4f7fb;
+:root {
+  --bg:#f4f6f8;
   --surface:#ffffff;
-  --surface2:#edf2f8;
-  --text:#17263b;
-  --muted:#748197;
-  --blue:#123b70;
-  --blue2:#20558f;
-  --gold:#c5a04d;
-  --border:#e1e7ef;
-  --shadow:0 12px 35px rgba(18,49,83,.08);
+  --soft:#edf1f5;
+  --text:#172b43;
+  --muted:#718096;
+  --navy:#17395f;
+  --gold:#c49a45;
+  --border:#e2e7ed;
+  --shadow:0 15px 45px rgba(20,42,67,.09);
 }
 
-body.dark-theme{
-  --bg:#101a29;
-  --surface:#19283b;
-  --surface2:#22354c;
+body.dark-theme {
+  --bg:#101923;
+  --surface:#192635;
+  --soft:#223244;
   --text:#edf3fa;
-  --muted:#aab8c9;
-  --blue:#dce9f8;
-  --blue2:#c5d9ef;
-  --gold:#e2bd70;
-  --border:#30435a;
-  --shadow:0 12px 35px rgba(0,0,0,.22);
+  --muted:#a8b6c6;
+  --navy:#dceafa;
+  --gold:#d6ad5b;
+  --border:#304153;
+  --shadow:0 15px 45px rgba(0,0,0,.22);
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html { scroll-behavior:smooth; }
+
+body {
   font-family:"DM Sans",sans-serif;
   background:var(--bg);
   color:var(--text);
   line-height:1.6;
   transition:background .25s,color .25s;
 }
-a{text-decoration:none;color:inherit}
-button,input,select{font:inherit}
-button{cursor:pointer}
-img{display:block;max-width:100%}
-.container{width:min(1200px,92%);margin:auto}
 
-/* TOP STRIP */
-.top-strip{
-  background:#102c4e;
-  color:#eaf1f8;
-  padding:8px 0;
-  text-align:center;
-  font-size:11px;
-  letter-spacing:.3px;
+a { text-decoration:none; color:inherit; }
+button { font:inherit; cursor:pointer; }
+img { display:block; width:100%; object-fit:cover; }
+
+.container {
+  width:min(1160px,91%);
+  margin:auto;
 }
-.top-strip span{color:#e5c477;font-weight:800}
+
+/* TOP BAR */
+
+.topbar {
+  background:#102b49;
+  color:#fff;
+  padding:8px 0;
+  font-size:11px;
+}
+
+.topbar-inner {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+
+.topbar strong { color:#e7c77d; }
 
 /* HEADER */
-header{
+
+.header {
   position:sticky;
   top:0;
-  z-index:100;
+  z-index:1000;
   background:var(--surface);
   border-bottom:1px solid var(--border);
-  box-shadow:0 4px 20px rgba(15,40,70,.04);
 }
-.navbar{
+
+.header-inner {
   min-height:76px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:18px;
+  gap:15px;
 }
-.brand{
+
+.brand {
   display:flex;
   align-items:center;
   gap:10px;
-  flex-shrink:0;
 }
-.brand-mark{
+
+.brand-logo {
   width:43px;
   height:43px;
   display:grid;
   place-items:center;
   border-radius:13px;
-  background:#123b70;
-  color:#fff;
+  color:white;
+  background:linear-gradient(140deg,#17395f,#315b80);
   font-family:Manrope,sans-serif;
-  font-size:21px;
   font-weight:800;
-  box-shadow:0 5px 13px rgba(18,59,112,.2);
+  font-size:18px;
 }
-.brand-name{
-  font-family:Manrope,sans-serif;
-  font-size:19px;
-  font-weight:800;
-  letter-spacing:-.7px;
-  color:var(--text);
-}
-.brand-name span{color:var(--gold)}
 
-.nav-links{
+.brand-title {
+  font-family:Manrope,sans-serif;
+  font-size:16px;
+  font-weight:800;
+  line-height:1.2;
+  letter-spacing:-.5px;
+}
+
+.brand-title span { color:var(--gold); }
+
+.brand-subtitle {
+  display:block;
+  margin-top:3px;
+  font-size:9px;
+  letter-spacing:1.7px;
+  font-weight:700;
+  color:var(--muted);
+}
+
+.header-actions {
   display:flex;
   align-items:center;
-  gap:23px;
+  gap:10px;
+}
+
+.icon-btn,.menu-btn {
+  height:42px;
+  border:1px solid var(--border);
+  border-radius:11px;
+  background:var(--surface);
+  color:var(--text);
+}
+
+.icon-btn {
+  width:42px;
+  font-size:19px;
+}
+
+.menu-btn {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:10px 15px;
+  font-weight:700;
+  font-size:13px;
+}
+
+.menu-btn:hover,.icon-btn:hover { border-color:var(--gold); }
+
+/* MENU DRAWER */
+
+.menu-overlay {
+  position:fixed;
+  inset:0;
+  z-index:1100;
+  background:rgba(8,19,32,.48);
+  opacity:0;
+  visibility:hidden;
+  transition:.25s;
+}
+
+.menu-overlay.show {
+  opacity:1;
+  visibility:visible;
+}
+
+.menu-drawer {
+  position:fixed;
+  top:0;
+  right:0;
+  z-index:1101;
+  width:min(390px,88%);
+  height:100%;
+  overflow-y:auto;
+  padding:25px;
+  background:var(--surface);
+  transform:translateX(105%);
+  transition:transform .3s ease;
+  box-shadow:var(--shadow);
+}
+
+.menu-drawer.show { transform:translateX(0); }
+
+.drawer-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding-bottom:22px;
+  border-bottom:1px solid var(--border);
+}
+
+.drawer-close {
+  width:38px;
+  height:38px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--surface);
+  color:var(--text);
+  font-size:20px;
+}
+
+.drawer-label {
+  color:var(--muted);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  margin:25px 0 10px;
+}
+
+.drawer-links { display:grid; gap:5px; }
+
+.drawer-links a {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px;
+  border-radius:10px;
   font-size:13px;
   font-weight:700;
-}
-.nav-links a{
   color:var(--text);
-  transition:.2s;
 }
-.nav-links a:hover{color:var(--gold)}
 
-.nav-actions{
-  display:flex;
-  align-items:center;
-  gap:9px;
+.drawer-links a:hover {
+  background:var(--soft);
+  color:var(--gold);
 }
-.theme-button,.mobile-menu-button{
-  width:41px;
-  height:41px;
-  border-radius:11px;
-  border:1px solid var(--border);
-  background:var(--surface2);
-  color:var(--text);
+
+.drawer-links a span {
+  color:var(--gold);
   font-size:17px;
 }
-.mobile-menu-button{display:none}
 
-.btn{
+.drawer-note {
+  margin-top:25px;
+  padding:16px;
+  background:var(--soft);
+  border-radius:12px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+
+/* BUTTONS */
+
+.btn {
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:7px;
-  border:0;
+  gap:9px;
+  padding:13px 20px;
   border-radius:10px;
-  padding:12px 18px;
+  background:#17395f;
+  color:#fff;
   font-size:13px;
   font-weight:800;
-  transition:.2s;
+  border:1px solid transparent;
+  transition:transform .2s,opacity .2s;
 }
-.btn:hover{transform:translateY(-2px)}
-.btn-primary{background:#123b70;color:#fff}
-.btn-primary:hover{background:#20558f}
-.btn-gold{background:#d3ae60;color:#17263b}
-.btn-outline{
-  border:1px solid rgba(255,255,255,.7);
-  color:#fff;
-  background:rgba(255,255,255,.08);
+
+.btn:hover {
+  transform:translateY(-2px);
+  opacity:.92;
+}
+
+.btn-gold {
+  background:var(--gold);
+  color:#172b43;
 }
 
 /* HERO */
-.hero{
-  position:relative;
-  overflow:hidden;
-  min-height:490px;
-  display:flex;
+
+.hero { padding:45px 0 65px; }
+
+.hero-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
   align-items:center;
-  color:white;
-  background:
-    linear-gradient(90deg,rgba(8,30,56,.96),rgba(13,48,85,.82) 55%,rgba(12,39,69,.26)),
-    url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1900&q=90") center/cover;
 }
-.hero-content{
-  max-width:710px;
-  padding:65px 0 90px;
-}
-.eyebrow{
+
+.eyebrow {
   display:inline-flex;
   align-items:center;
-  gap:9px;
-  color:#e7c77e;
-  text-transform:uppercase;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:2px;
-  margin-bottom:17px;
-}
-.eyebrow:before{
-  content:"";
-  width:27px;
-  height:2px;
-  background:var(--gold);
-}
-.hero h1{
-  font-family:Manrope,sans-serif;
-  font-size:clamp(36px,5.5vw,62px);
-  line-height:1.1;
-  letter-spacing:-2px;
-  margin-bottom:19px;
-}
-.hero h1 span{color:#e7c77e}
-.hero p{
-  color:#e2eaf3;
-  font-size:15px;
-  max-width:570px;
-  line-height:1.8;
-}
-.hero-buttons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:28px;
-}
-.hero-highlights{
-  display:flex;
-  gap:30px;
-  flex-wrap:wrap;
-  margin-top:38px;
-}
-.hero-highlight strong{
-  display:block;
-  font-family:Manrope,sans-serif;
-  font-size:16px;
-  color:white;
-}
-.hero-highlight span{
-  font-size:11px;
-  color:#c8d5e4;
-}
-
-/* SEARCH */
-.search-section{
-  position:relative;
-  z-index:4;
-  margin-top:-35px;
-}
-.search-box{
-  background:var(--surface);
-  border:1px solid var(--border);
-  box-shadow:var(--shadow);
-  border-radius:17px;
-  padding:19px;
-  display:grid;
-  grid-template-columns:1.5fr 1fr auto;
-  gap:13px;
-}
-.search-field label{
-  display:block;
-  color:var(--muted);
-  font-size:10px;
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:.8px;
-  margin:0 0 6px 3px;
-}
-.search-field input,.search-field select{
-  width:100%;
-  min-height:48px;
-  border:1px solid var(--border);
-  background:var(--bg);
-  color:var(--text);
-  padding:12px;
-  border-radius:10px;
-  outline:none;
-}
-.search-field input:focus,.search-field select:focus{
-  border-color:var(--gold);
-}
-.search-submit{
-  align-self:end;
-  min-height:48px;
-  padding-left:26px;
-  padding-right:26px;
-}
-
-/* GENERAL SECTIONS */
-section{padding:65px 0}
-.section-heading{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  gap:15px;
-  margin-bottom:25px;
-}
-.section-heading h2{
-  font-family:Manrope,sans-serif;
-  font-size:clamp(23px,3vw,31px);
-  letter-spacing:-.8px;
-}
-.section-heading p{
-  color:var(--muted);
-  font-size:13px;
-  margin-top:5px;
-}
-.text-link{
-  color:var(--blue);
-  font-size:13px;
-  font-weight:800;
-  white-space:nowrap;
-}
-
-/* CATEGORY CARDS */
-.category-grid{
-  display:grid;
-  grid-template-columns:repeat(5,minmax(0,1fr));
-  gap:14px;
-}
-.category-card{
-  display:block;
-  text-align:center;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:15px;
-  padding:21px 12px;
-  box-shadow:0 5px 20px rgba(20,43,70,.025);
-  transition:.25s;
-}
-.category-card:hover{
-  transform:translateY(-5px);
-  border-color:var(--gold);
-  box-shadow:var(--shadow);
-}
-.category-icon{
-  width:49px;
-  height:49px;
-  display:grid;
-  place-items:center;
-  border-radius:15px;
-  margin:0 auto 12px;
-  background:#eaf1fa;
-  color:#123b70;
-  font-size:23px;
-}
-body.dark-theme .category-icon{
-  background:#2b3c50;
-}
-.category-card h3{font-size:12px;line-height:1.5}
-.category-card p{
-  color:var(--muted);
-  font-size:10px;
-  margin-top:5px;
-}
-.category-status{
-  grid-column:1/-1;
-  text-align:center;
-  padding:25px;
-  color:var(--muted);
-}
-
-/* PHOTO SHOWCASE */
-.photo-showcase{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:17px;
-}
-.photo-card{
-  height:220px;
-  border-radius:16px;
-  overflow:hidden;
-  position:relative;
-  background:var(--surface2);
-  isolation:isolate;
-}
-.photo-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:transform .45s;
-}
-.photo-card:hover img{transform:scale(1.08)}
-.photo-card:after{
-  content:"";
-  position:absolute;
-  inset:35% 0 0;
-  background:linear-gradient(transparent,rgba(7,24,44,.88));
-  z-index:0;
-}
-.photo-card div{
-  position:absolute;
-  bottom:15px;
-  left:16px;
-  right:12px;
-  color:white;
-  z-index:1;
-}
-.photo-card strong{
-  display:block;
-  font-family:Manrope,sans-serif;
-  font-size:15px;
-}
-.photo-card span{
-  color:#e2eaf3;
-  font-size:10px;
-}
-
-/* FEATURE CARDS */
-.feature-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-.feature-card{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  transition:.25s;
-}
-.feature-card:hover{transform:translateY(-5px)}
-.feature-image{
-  width:100%;
-  height:205px;
-  object-fit:cover;
-}
-.feature-body{padding:20px}
-.feature-body small{
+  gap:8px;
+  padding:7px 12px;
+  border-radius:30px;
+  border:1px solid rgba(196,154,69,.35);
+  background:rgba(196,154,69,.09);
   color:var(--gold);
   font-size:10px;
   font-weight:800;
-  letter-spacing:1px;
+  letter-spacing:1.2px;
   text-transform:uppercase;
+  margin-bottom:20px;
 }
-.feature-body h3{
+
+.hero h1 {
   font-family:Manrope,sans-serif;
-  font-size:17px;
-  margin:7px 0;
+  font-size:clamp(39px,5.2vw,62px);
+  line-height:1.12;
+  letter-spacing:-2.6px;
+  margin-bottom:20px;
 }
-.feature-body p{
+
+.hero h1 span { color:var(--gold); }
+
+.hero-description {
+  max-width:490px;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.9;
+  margin-bottom:27px;
+}
+
+.hero-buttons {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:28px;
+}
+
+.hero-footnote {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.green-dot {
+  width:9px;
+  height:9px;
+  flex-shrink:0;
+  background:#37a579;
+  border-radius:50%;
+}
+
+/* HERO PHOTOS */
+
+.hero-visual {
+  position:relative;
+  min-height:475px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  grid-template-rows:1fr 1fr;
+  gap:13px;
+}
+
+.photo {
+  position:relative;
+  overflow:hidden;
+  border-radius:19px;
+  background:var(--soft);
+}
+
+.photo img {
+  height:100%;
+  transition:transform .6s;
+}
+
+.photo:hover img { transform:scale(1.06); }
+
+.photo-large { grid-row:span 2; }
+
+.photo-tag {
+  position:absolute;
+  bottom:13px;
+  left:13px;
+  padding:7px 11px;
+  background:rgba(15,34,54,.82);
+  border-radius:7px;
+  color:white;
+  font-size:10px;
+  font-weight:700;
+}
+
+.photo-note {
+  position:absolute;
+  bottom:25px;
+  left:-28px;
+  max-width:210px;
+  padding:15px 17px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:13px;
+  box-shadow:var(--shadow);
+  font-size:12px;
+  font-weight:800;
+}
+
+.photo-note small {
+  display:block;
+  color:var(--muted);
+  font-weight:500;
+  font-size:10px;
+  margin-top:4px;
+}
+
+/* PHOTO STRIP */
+
+.photo-strip { padding:20px 0 65px; }
+
+.strip-heading {
+  text-align:center;
+  margin-bottom:22px;
+}
+
+.strip-heading p {
   color:var(--muted);
   font-size:12px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  font-weight:700;
+}
+
+.strip-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:13px;
+}
+
+.strip-photo {
+  height:190px;
+  overflow:hidden;
+  border-radius:14px;
+}
+
+.strip-photo img {
+  height:100%;
+  transition:transform .5s;
+}
+
+.strip-photo:hover img { transform:scale(1.07); }
+
+/* INTRODUCTION */
+
+.intro-section {
+  padding:65px 0;
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+
+.intro-layout {
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:55px;
+  align-items:center;
+}
+
+.intro-image {
+  height:390px;
+  border-radius:19px;
+  overflow:hidden;
+}
+
+.intro-image img { height:100%; }
+
+.section-label {
+  color:var(--gold);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+
+.section-title {
+  font-family:Manrope,sans-serif;
+  font-size:clamp(27px,3.3vw,39px);
+  line-height:1.2;
+  letter-spacing:-1.3px;
+  margin-bottom:17px;
+}
+
+.section-description {
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.9;
+  margin-bottom:20px;
+}
+
+.intro-points {
+  display:grid;
+  gap:14px;
+  margin-top:22px;
+}
+
+.intro-point {
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  font-size:13px;
+  font-weight:600;
+}
+
+.check {
+  width:24px;
+  height:24px;
+  flex-shrink:0;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:rgba(196,154,69,.15);
+  color:var(--gold);
+  font-size:13px;
+  font-weight:800;
 }
 
 /* HOW IT WORKS */
-.how-section{
-  background:var(--surface2);
+
+.how-section { padding:75px 0; }
+
+.center-heading {
+  text-align:center;
+  max-width:600px;
+  margin:0 auto 35px;
 }
-.steps-grid{
+
+.steps-grid {
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
-.step-card{
+
+.step-card {
+  padding:25px;
   background:var(--surface);
   border:1px solid var(--border);
   border-radius:15px;
-  padding:25px;
 }
-.step-number{
-  width:39px;
-  height:39px;
+
+.step-number {
+  width:42px;
+  height:42px;
   display:grid;
   place-items:center;
-  border-radius:11px;
-  background:#123b70;
-  color:white;
-  font-weight:800;
-  margin-bottom:15px;
-}
-.step-card h3{font-size:15px;margin-bottom:7px}
-.step-card p{font-size:12px;color:var(--muted)}
-
-/* SELLER BANNER */
-.seller-banner{
-  position:relative;
-  overflow:hidden;
-  background:
-    linear-gradient(100deg,rgba(10,37,69,.97),rgba(18,59,105,.86)),
-    url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1500&q=85") center/cover;
-  color:white;
-  padding:43px;
-  border-radius:19px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:25px;
-}
-.seller-banner h2{
+  border-radius:12px;
+  background:rgba(196,154,69,.14);
+  color:var(--gold);
   font-family:Manrope,sans-serif;
-  font-size:clamp(23px,3vw,32px);
+  font-weight:800;
+  font-size:17px;
+  margin-bottom:17px;
+}
+
+.step-card h3 {
+  font-family:Manrope,sans-serif;
+  font-size:17px;
   margin-bottom:8px;
 }
-.seller-banner p{
-  color:#dce7f1;
+
+.step-card p {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+
+/* BUSINESS SECTION */
+
+.business-section { padding:15px 0 75px; }
+
+.business-banner {
+  display:grid;
+  grid-template-columns:1fr .85fr;
+  gap:35px;
+  align-items:center;
+  padding:35px;
+  border-radius:21px;
+  background:linear-gradient(120deg,#17395f,#294e72);
+  color:#fff;
+  overflow:hidden;
+}
+
+.business-banner .section-label { color:#e6c477; }
+
+.business-banner h2 {
+  font-family:Manrope,sans-serif;
+  font-size:clamp(27px,3.4vw,39px);
+  line-height:1.2;
+  margin-bottom:15px;
+}
+
+.business-banner p {
+  max-width:460px;
+  color:rgba(255,255,255,.78);
   font-size:13px;
-  max-width:570px;
+  line-height:1.9;
+  margin-bottom:22px;
+}
+
+.business-image {
+  height:250px;
+  overflow:hidden;
+  border-radius:15px;
+}
+
+.business-image img { height:100%; }
+
+/* FINAL CTA */
+
+.final-cta { padding:0 0 75px; }
+
+.cta-inner {
+  text-align:center;
+  padding:43px 25px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+}
+
+.cta-inner h2 {
+  font-family:Manrope,sans-serif;
+  font-size:clamp(25px,3vw,35px);
+  margin-bottom:10px;
+}
+
+.cta-inner p {
+  max-width:550px;
+  margin:0 auto 23px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.8;
 }
 
 /* FOOTER */
-footer{
-  background:#102c4e;
-  color:white;
-  padding:48px 0 20px;
-  margin-top:35px;
+
+.footer {
+  background:#122b46;
+  color:#fff;
+  padding:42px 0 18px;
 }
-.footer-grid{
-  display:grid;
-  grid-template-columns:1.5fr 1fr 1fr 1fr;
-  gap:30px;
-  margin-bottom:35px;
+
+.footer-layout {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:35px;
+  padding-bottom:30px;
 }
-.footer-brand-name{
-  font-family:Manrope,sans-serif;
-  font-size:21px;
-  font-weight:800;
-}
-.footer-brand-name span{color:#e4bf6c}
-.footer-brand p{
-  color:#c1cfdd;
+
+.footer-about { max-width:350px; }
+
+.footer-about p {
+  color:#b7c4d2;
   font-size:12px;
-  max-width:290px;
-  margin-top:13px;
+  line-height:1.9;
+  margin-top:14px;
 }
-footer h3{
-  font-size:13px;
-  margin-bottom:13px;
-  color:#e6c477;
+
+.footer-links {
+  display:flex;
+  flex-wrap:wrap;
+  gap:15px 22px;
 }
-footer a{
-  display:block;
-  color:#c1cfdd;
+
+.footer-links a {
+  color:#c1ccda;
   font-size:12px;
-  margin:9px 0;
 }
-footer a:hover{color:white}
-.footer-bottom{
-  border-top:1px solid rgba(255,255,255,.15);
-  padding-top:18px;
-  color:#b6c5d4;
-  font-size:11px;
+
+.footer-links a:hover { color:#e7c77d; }
+
+.footer-bottom {
+  padding-top:17px;
+  border-top:1px solid rgba(255,255,255,.14);
   display:flex;
   justify-content:space-between;
   gap:15px;
-  flex-wrap:wrap;
+  color:#aebdce;
+  font-size:11px;
 }
 
 /* RESPONSIVE */
-@media(max-width:950px){
-  .nav-links{gap:13px}
-  .category-grid{grid-template-columns:repeat(3,1fr)}
-  .photo-showcase{grid-template-columns:repeat(2,1fr)}
+
+@media(max-width:850px) {
+  .hero-grid { gap:25px; }
+  .hero-visual { min-height:390px; }
+  .intro-layout { gap:30px; }
+  .footer-layout { flex-direction:column; }
 }
-@media(max-width:700px){
-  .navbar{min-height:67px}
-  .mobile-menu-button{display:block}
-  .nav-links{
-    display:none;
-    position:absolute;
-    top:67px;
-    left:0;
-    right:0;
-    background:var(--surface);
-    border-bottom:1px solid var(--border);
-    padding:15px 4%;
-    flex-direction:column;
-    align-items:stretch;
-    gap:5px;
+
+@media(max-width:650px) {
+  .topbar-inner {
+    justify-content:center;
+    text-align:center;
   }
-  .nav-links.open{display:flex}
-  .nav-links a{padding:10px}
-  .nav-actions .sign-in{display:none}
-  .brand-name{font-size:16px}
-  .brand-mark{width:38px;height:38px}
-  .hero{min-height:480px}
-  .hero-content{padding:55px 0 80px}
-  .hero h1{letter-spacing:-1px}
-  .hero-highlights{gap:18px}
-  .search-box{grid-template-columns:1fr}
-  .search-submit{width:100%}
-  section{padding:48px 0}
-  .category-grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .photo-showcase{gap:10px}
-  .photo-card{height:175px}
-  .feature-grid,.steps-grid{grid-template-columns:1fr}
-  .section-heading{align-items:start}
-  .seller-banner{
-    padding:27px;
-    flex-direction:column;
-    align-items:flex-start;
+
+  .topbar-inner span:first-child { display:none; }
+
+  .header-inner { min-height:68px; }
+
+  .hero { padding-top:35px; }
+
+  .hero-grid,.intro-layout,.business-banner {
+    grid-template-columns:1fr;
   }
-  .footer-grid{grid-template-columns:repeat(2,1fr)}
+
+  .hero h1 { font-size:43px; }
+
+  .hero-visual {
+    min-height:370px;
+    margin-top:8px;
+  }
+
+  .photo-note {
+    left:8px;
+    bottom:10px;
+  }
+
+  .strip-grid { grid-template-columns:repeat(2,1fr); }
+  .strip-photo { height:145px; }
+  .intro-image { height:280px; }
+  .steps-grid { grid-template-columns:1fr; }
+  .business-banner { padding:24px; }
+  .business-image { height:210px; }
+  .footer-links { gap:12px 16px; }
+
+  .footer-bottom { flex-direction:column; }
 }
-@media(max-width:390px){
-  .top-strip{font-size:10px}
-  .brand-name{font-size:14px}
-  .photo-card{height:145px}
-  .footer-grid{gap:18px}
+
+@media(max-width:390px) {
+  .brand-title { font-size:14px; }
+  .brand-logo { width:38px; height:38px; }
+  .menu-btn { padding:9px 11px; }
+  .hero h1 { font-size:37px; }
+  .hero-visual { min-height:310px; gap:8px; }
+  .hero-buttons .btn { width:100%; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="top-strip">
-  Your marketplace for products, services and opportunities in <span>Kenya</span>.
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <span>Welcome to Global Market</span>
+    <strong>Discover. Connect. Grow. — Across Kenya.</strong>
+  </div>
 </div>
 
-<header>
-  <div class="container navbar">
+<!-- HEADER -->
+<header class="header">
+  <div class="container header-inner">
 
-    <a class="brand" href="index.html" aria-label="GLOBAL MARKET homepage">
-      <div class="brand-mark">G</div>
-      <div class="brand-name">GLOBAL <span>MARKET</span></div>
+    <a href="index.html" class="brand">
+      <div class="brand-logo">GM</div>
+      <div>
+        <div class="brand-title">GLOBAL <span>MARKET</span></div>
+        <span class="brand-subtitle">KENYA MARKETPLACE</span>
+      </div>
     </a>
 
-    <nav class="nav-links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="marketplace.html">Marketplace</a>
-      <a href="bussiness-registration.html">Register Business</a>
-      <a href="profile.html">My Account</a>
-      <a href="about.html">About Us</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-
-    <div class="nav-actions">
-      <button class="theme-button" id="themeToggle" type="button" aria-label="Toggle theme">☾</button>
-      <a class="btn btn-primary sign-in" href="login.html">Sign In</a>
-      <a class="btn btn-gold sign-in" href="create-ad.html">+ Post an Ad</a>
-      <button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-label="Open navigation">☰</button>
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+      <button class="menu-btn" id="menuOpen" type="button" aria-label="Open navigation menu" aria-expanded="false">
+        <span>☰</span> Menu
+      </button>
     </div>
 
   </div>
 </header>
 
-<main>
+<!-- MENU BACKDROP -->
+<div class="menu-overlay" id="menuOverlay"></div>
 
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <div class="eyebrow">Discover. Connect. Trade.</div>
-        <h1>Everything you need, <span>in one marketplace.</span></h1>
-        <p>
-          Discover products, connect with businesses, explore services
-          and find new opportunities — all from one convenient marketplace.
-        </p>
-        <div class="hero-buttons">
-          <a href="marketplace.html" class="btn btn-gold">Explore Marketplace →</a>
-          <a href="register.html" class="btn btn-outline">Join GLOBAL MARKET</a>
-        </div>
+<!-- MENU DRAWER -->
+<aside class="menu-drawer" id="menuDrawer" aria-label="Main navigation">
 
-        <div class="hero-highlights">
-          <div class="hero-highlight">
-            <strong>Discover</strong>
-            <span>Products and services</span>
-          </div>
-          <div class="hero-highlight">
-            <strong>Connect</strong>
-            <span>Find sellers and businesses</span>
-          </div>
-          <div class="hero-highlight">
-            <strong>Grow</strong>
-            <span>Promote your business</span>
-          </div>
-        </div>
+  <div class="drawer-head">
+    <a href="index.html" class="brand">
+      <div class="brand-logo">GM</div>
+      <div>
+        <div class="brand-title">GLOBAL <span>MARKET</span></div>
+        <span class="brand-subtitle">KENYA MARKETPLACE</span>
       </div>
-    </div>
-  </section>
+    </a>
 
-  <div class="container search-section">
-    <form class="search-box" id="marketSearch">
-
-      <div class="search-field">
-        <label for="searchKeyword">What are you looking for?</label>
-        <input id="searchKeyword" type="search" placeholder="Search products, services or businesses...">
-      </div>
-
-      <div class="search-field">
-        <label for="searchCategory">Choose a category</label>
-        <select id="searchCategory">
-          <option value="">All categories</option>
-        </select>
-      </div>
-
-      <button class="btn btn-primary search-submit" type="submit">Search →</button>
-
-    </form>
+    <button class="drawer-close" id="menuClose" type="button" aria-label="Close menu">×</button>
   </div>
 
-  <section>
-    <div class="container">
-      <div class="section-heading">
-        <div>
-          <h2>Browse Marketplace Categories</h2>
-          <p>Find the right products and services in one place.</p>
-        </div>
-        <a href="marketplace.html" class="text-link">Visit marketplace →</a>
+  <div class="drawer-label">Main navigation</div>
+
+  <nav class="drawer-links">
+    <a href="index.html">Home <span>›</span></a>
+    <a href="marketplace.html">Marketplace <span>›</span></a>
+    <a href="bussiness-registration.html">Register Business <span>›</span></a>
+    <a href="create-ad.html">Post an Advertisement <span>›</span></a>
+    <a href="advertise.html">Advertise With Us <span>›</span></a>
+  </nav>
+
+  <div class="drawer-label">Your account</div>
+
+  <nav class="drawer-links">
+    <a href="login.html">Login <span>›</span></a>
+    <a href="register.html">Create Account <span>›</span></a>
+    <a href="profile.html">My Account <span>›</span></a>
+    <a href="my-ads.html">My Advertisements <span>›</span></a>
+    <a href="favourites.html">Favourites <span>›</span></a>
+    <a href="messages.html">Messages <span>›</span></a>
+  </nav>
+
+  <div class="drawer-label">Information</div>
+
+  <nav class="drawer-links">
+    <a href="about.html">About Us <span>›</span></a>
+    <a href="contact.html">Contact Us <span>›</span></a>
+    <a href="help.html">Help Centre <span>›</span></a>
+    <a href="terms.html">Terms & Conditions <span>›</span></a>
+    <a href="privacy.html">Privacy Policy <span>›</span></a>
+  </nav>
+
+  <div class="drawer-note">
+    <strong>Welcome to Global Market.</strong><br>
+    A place to discover opportunities, connect with people and grow businesses.
+  </div>
+
+</aside>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div>
+      <div class="eyebrow">✦ A new way to connect</div>
+
+      <h1>
+        Your world of opportunities.
+        <span>All in one place.</span>
+      </h1>
+
+      <p class="hero-description">
+        Global Market brings people, products, services and businesses
+        together. Discover opportunities, promote what you offer and
+        connect with people across Kenya.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="marketplace.html" class="btn">Explore the platform →</a>
+        <a href="create-ad.html" class="btn btn-gold">Start advertising</a>
       </div>
 
-      <div class="category-grid" id="categoryGrid">
-        <div class="category-status">Loading marketplace categories...</div>
-      </div>
-    </div>
-  </section>
-
-  <section style="padding-top:0">
-    <div class="container">
-      <div class="section-heading">
-        <div>
-          <h2>Explore What's Available</h2>
-          <p>Discover products, services and businesses across different industries.</p>
-        </div>
-      </div>
-
-      <div class="photo-showcase">
-
-        <a class="photo-card" href="marketplace.html">
-          <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=800&q=85" alt="Electronics and technology">
-          <div><strong>Electronics</strong><span>Technology and gadgets</span></div>
-        </a>
-
-        <a class="photo-card" href="marketplace.html">
-          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=85" alt="Fashion clothing">
-          <div><strong>Fashion</strong><span>Style and clothing</span></div>
-        </a>
-
-        <a class="photo-card" href="marketplace.html">
-          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=85" alt="Modern furniture">
-          <div><strong>Home & Furniture</strong><span>Make your space beautiful</span></div>
-        </a>
-
-        <a class="photo-card" href="marketplace.html">
-          <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=85" alt="Vehicle">
-          <div><strong>Vehicles</strong><span>Explore transport options</span></div>
-        </a>
-
-        <a class="photo-card" href="marketplace.html">
-          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=85" alt="Fresh groceries">
-          <div><strong>Food & Groceries</strong><span>Fresh products and food</span></div>
-        </a>
-
-        <a class="photo-card" href="marketplace.html">
-          <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=800&q=85" alt="Beauty products">
-          <div><strong>Beauty</strong><span>Personal care products</span></div>
-        </a>
-
-        <a class="photo-card" href="marketplace.html">
-          <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=85" alt="Books and stationery">
-          <div><strong>Books & Stationery</strong><span>Learning and creativity</span></div>
-        </a>
-
-        <a class="photo-card" href="marketplace.html">
-          <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&q=85" alt="Professional services">
-          <div><strong>Professional Services</strong><span>Skills and solutions</span></div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <section style="padding-top:0">
-    <div class="container">
-      <div class="section-heading">
-        <div>
-          <h2>Explore the Marketplace</h2>
-          <p>Discover different ways to shop, connect and grow.</p>
-        </div>
-      </div>
-
-      <div class="feature-grid">
-
-        <a href="marketplace.html" class="feature-card">
-          <img class="feature-image"
-            src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85"
-            alt="Headphones and electronics">
-          <div class="feature-body">
-            <small>Shop and discover</small>
-            <h3>Products & Goods</h3>
-            <p>Explore products offered by sellers and businesses.</p>
-          </div>
-        </a>
-
-        <a href="marketplace.html" class="feature-card">
-          <img class="feature-image"
-            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=85"
-            alt="Professionals working together">
-          <div class="feature-body">
-            <small>Find the right help</small>
-            <h3>Services</h3>
-            <p>Discover service providers and professional solutions.</p>
-          </div>
-        </a>
-
-        <a href="bussiness-registration.html" class="feature-card">
-          <img class="feature-image"
-            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=85"
-            alt="Modern business workspace">
-          <div class="feature-body">
-            <small>Grow your business</small>
-            <h3>Business Directory</h3>
-            <p>Connect with businesses and introduce your own.</p>
-          </div>
-        </a>
-
+      <div class="hero-footnote">
+        <span class="green-dot"></span>
+        Built to make discovering and connecting easier.
       </div>
     </div>
-  </section>
 
-  <section class="how-section">
-    <div class="container">
-      <div class="section-heading">
-        <div>
-          <h2>How GLOBAL MARKET Works</h2>
-          <p>A simple way to discover opportunities and reach customers.</p>
-        </div>
+    <div class="hero-visual">
+
+      <div class="photo photo-large">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=85" alt="Fashion and lifestyle photography" fetchpriority="high">
+        <span class="photo-tag">Discover new possibilities</span>
       </div>
 
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-number">01</div>
-          <h3>Create Your Account</h3>
-          <p>Register and set up your account to access marketplace features.</p>
+      <div class="photo">
+        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=750&q=85" alt="Modern electronics" loading="lazy">
+      </div>
+
+      <div class="photo">
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=750&q=85" alt="Modern interior design" loading="lazy">
+      </div>
+
+      <div class="photo-note">
+        Discover. Connect. Grow.
+        <small>One platform. Many possibilities.</small>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO STRIP -->
+<section class="photo-strip">
+  <div class="container">
+
+    <div class="strip-heading">
+      <p>People • Ideas • Businesses • Opportunities</p>
+    </div>
+
+    <div class="strip-grid">
+
+      <div class="strip-photo">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=700&q=85" alt="Customer making a purchase" loading="lazy">
+      </div>
+
+      <div class="strip-photo">
+        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=700&q=85" alt="Business people working together" loading="lazy">
+      </div>
+
+      <div class="strip-photo">
+        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=700&q=85" alt="Fresh market produce" loading="lazy">
+      </div>
+
+      <div class="strip-photo">
+        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=85" alt="Professional workspace" loading="lazy">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT THE PLATFORM -->
+<section class="intro-section">
+  <div class="container intro-layout">
+
+    <div class="intro-image">
+      <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=85" alt="People collaborating in a professional environment" loading="lazy">
+    </div>
+
+    <div>
+      <div class="section-label">About the platform</div>
+
+      <h2 class="section-title">
+        Bringing people and businesses closer.
+      </h2>
+
+      <p class="section-description">
+        Finding the right product, service or business opportunity
+        should be simple. Global Market provides a digital space where
+        individuals and businesses can present what they offer and
+        reach people who are looking for it.
+      </p>
+
+      <div class="intro-points">
+
+        <div class="intro-point">
+          <span class="check">✓</span>
+          <span>Discover products and services in one convenient place.</span>
         </div>
 
-        <div class="step-card">
-          <div class="step-number">02</div>
-          <h3>Discover or Advertise</h3>
-          <p>Explore available listings or create advertisements for your products and services.</p>
+        <div class="intro-point">
+          <span class="check">✓</span>
+          <span>Give businesses and entrepreneurs an opportunity to be seen.</span>
         </div>
 
-        <div class="step-card">
-          <div class="step-number">03</div>
-          <h3>Connect</h3>
-          <p>Use the available contact and messaging features to connect with other users.</p>
+        <div class="intro-point">
+          <span class="check">✓</span>
+          <span>Connect customers with sellers and service providers.</span>
         </div>
+
+      </div>
+
+      <div style="margin-top:25px;">
+        <a href="about.html" class="btn">Learn more about us →</a>
       </div>
     </div>
-  </section>
 
-  <section>
-    <div class="container">
-      <div class="seller-banner">
-        <div>
-          <h2>Have something to sell or promote?</h2>
-          <p>
-            Introduce your products, services or business to people
-            exploring GLOBAL MARKET.
-          </p>
-        </div>
-        <a href="create-ad.html" class="btn btn-gold">Create an Advertisement →</a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="container">
+
+    <div class="center-heading">
+      <div class="section-label">Simple and convenient</div>
+      <h2 class="section-title">A platform built around opportunity.</h2>
+      <p class="section-description">
+        Whether you are looking for something or offering something,
+        getting started is straightforward.
+      </p>
+    </div>
+
+    <div class="steps-grid">
+
+      <article class="step-card">
+        <div class="step-number">01</div>
+        <h3>Discover</h3>
+        <p>Explore the platform and discover products, services, businesses and opportunities.</p>
+      </article>
+
+      <article class="step-card">
+        <div class="step-number">02</div>
+        <h3>Connect</h3>
+        <p>Find sellers and service providers, view their advertisements and make contact.</p>
+      </article>
+
+      <article class="step-card">
+        <div class="step-number">03</div>
+        <h3>Grow</h3>
+        <p>Promote your products or services and introduce your business to potential customers.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS PROMOTION -->
+<section class="business-section">
+  <div class="container">
+
+    <div class="business-banner">
+
+      <div>
+        <div class="section-label">For entrepreneurs and businesses</div>
+
+        <h2>Give your business the visibility it deserves.</h2>
+
+        <p>
+          Showcase your products and services, create advertisements
+          and help potential customers discover what your business
+          has to offer.
+        </p>
+
+        <a href="bussiness-registration.html" class="btn btn-gold">
+          Register your business →
+        </a>
+      </div>
+
+      <div class="business-image">
+        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=950&q=85" alt="Entrepreneurs collaborating" loading="lazy">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CALL TO ACTION -->
+<section class="final-cta">
+  <div class="container">
+
+    <div class="cta-inner">
+      <div class="section-label">Your next opportunity starts here</div>
+
+      <h2>Be part of Global Market.</h2>
+
+      <p>
+        Join a platform created to bring customers, sellers and
+        businesses closer. Discover opportunities or introduce
+        the world to what you offer.
+      </p>
+
+      <div class="hero-buttons" style="justify-content:center;margin-bottom:0;">
+        <a href="register.html" class="btn">Create an account</a>
+        <a href="marketplace.html" class="btn btn-gold">Explore Global Market</a>
       </div>
     </div>
-  </section>
+
+  </div>
+</section>
 
 </main>
 
-<footer>
+<!-- FOOTER -->
+<footer class="footer">
   <div class="container">
 
-    <div class="footer-grid">
+    <div class="footer-layout">
 
-      <div class="footer-brand">
-        <div class="footer-brand-name">GLOBAL <span>MARKET</span></div>
+      <div class="footer-about">
+        <a href="index.html" class="brand">
+          <div class="brand-logo">GM</div>
+          <div>
+            <div class="brand-title" style="color:#fff;">GLOBAL <span>MARKET</span></div>
+            <span class="brand-subtitle" style="color:#b7c4d2;">KENYA MARKETPLACE</span>
+          </div>
+        </a>
+
         <p>
-          A marketplace designed to help people discover products,
-          services, businesses and opportunities across Kenya.
+          Connecting people, businesses, products and services
+          through a digital marketplace built around opportunity.
         </p>
       </div>
 
-      <div>
-        <h3>Marketplace</h3>
-        <a href="marketplace.html">Browse Marketplace</a>
-        <a href="marketplace.html">All Categories</a>
-        <a href="advertise.html">Advertise</a>
-        <a href="bussiness-registration.html">Register Business</a>
-      </div>
-
-      <div>
-        <h3>My Account</h3>
-        <a href="register.html">Create Account</a>
-        <a href="login.html">Sign In</a>
-        <a href="profile.html">My Dashboard</a>
-        <a href="my-ads.html">My Advertisements</a>
-        <a href="messages.html">Messages</a>
-        <a href="favourites.html">Favourites</a>
-      </div>
-
-      <div>
-        <h3>Information</h3>
+      <div class="footer-links">
         <a href="about.html">About Us</a>
-        <a href="contact.html">Contact Us</a>
+        <a href="contact.html">Contact</a>
         <a href="help.html">Help Centre</a>
-        <a href="terms.html">Terms & Conditions</a>
-        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="login.html">Login</a>
       </div>
 
     </div>
 
     <div class="footer-bottom">
-      <span>© <span id="currentYear"></span> GLOBAL MARKET. All rights reserved.</span>
-      <span>Discover. Connect. Trade.</span>
+      <span>© <span id="year"></span> Global Market. All rights reserved.</span>
+      <span>Discover. Connect. Grow.</span>
     </div>
 
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/appwrite@29.0.0"></script>
-<script src="appwrite-config.js"></script>
-
 <script>
 "use strict";
 
-/* MOBILE NAVIGATION */
-const mobileMenuButton = document.getElementById("mobileMenuButton");
-const navLinks = document.getElementById("navLinks");
-
-mobileMenuButton.addEventListener("click",()=>{
-  const opened = navLinks.classList.toggle("open");
-  mobileMenuButton.setAttribute("aria-expanded",String(opened));
-});
-
-navLinks.querySelectorAll("a").forEach(link=>{
-  link.addEventListener("click",()=>{
-    navLinks.classList.remove("open");
-    mobileMenuButton.setAttribute("aria-expanded","false");
-  });
-});
-
-/* THEME */
+// THEME CONTROL
 const themeToggle = document.getElementById("themeToggle");
 
-function applyTheme(theme){
-  document.body.classList.toggle("dark-theme",theme==="dark");
-  themeToggle.textContent = theme==="dark" ? "☀" : "☾";
-  localStorage.setItem("gm-theme",theme);
+function setTheme(theme) {
+  document.body.classList.toggle("dark-theme", theme === "dark");
+  themeToggle.textContent = theme === "dark" ? "☀" : "☾";
+  localStorage.setItem("gm-theme", theme);
 }
 
-applyTheme(localStorage.getItem("gm-theme")||"light");
+setTheme(localStorage.getItem("gm-theme") || "light");
 
-themeToggle.addEventListener("click",()=>{
+themeToggle.addEventListener("click", () => {
   const dark = document.body.classList.contains("dark-theme");
-  applyTheme(dark ? "light" : "dark");
+  setTheme(dark ? "light" : "dark");
 });
 
-/* SEARCH */
-document.getElementById("marketSearch").addEventListener("submit",event=>{
-  event.preventDefault();
+// MENU CONTROL
+const menuOpen = document.getElementById("menuOpen");
+const menuClose = document.getElementById("menuClose");
+const menuDrawer = document.getElementById("menuDrawer");
+const menuOverlay = document.getElementById("menuOverlay");
 
-  const keyword = document.getElementById("searchKeyword").value.trim();
-  const category = document.getElementById("searchCategory").value;
+function openMenu() {
+  menuDrawer.classList.add("show");
+  menuOverlay.classList.add("show");
+  menuOpen.setAttribute("aria-expanded", "true");
+  document.body.style.overflow = "hidden";
+}
 
-  const params = new URLSearchParams();
+function closeMenu() {
+  menuDrawer.classList.remove("show");
+  menuOverlay.classList.remove("show");
+  menuOpen.setAttribute("aria-expanded", "false");
+  document.body.style.overflow = "";
+}
 
-  if(keyword) params.set("search",keyword);
-  if(category) params.set("category",category);
+menuOpen.addEventListener("click", openMenu);
+menuClose.addEventListener("click", closeMenu);
+menuOverlay.addEventListener("click", closeMenu);
 
-  window.location.href = "marketplace.html"+
-    (params.toString() ? "?"+params.toString() : "");
+menuDrawer.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", closeMenu);
 });
 
-/* APPWRITE CATEGORIES */
-const categoryGrid = document.getElementById("categoryGrid");
-const searchCategory = document.getElementById("searchCategory");
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeMenu();
+});
 
-const categoryIcons = {
-  "electronics":"💻",
-  "fashion":"👕",
-  "food & groceries":"🧺",
-  "vehicles":"🚗",
-  "real estate":"🏠",
-  "services":"🛠️",
-  "education":"🎓",
-  "jobs & careers":"💼",
-  "home & furniture":"🛋️",
-  "sports & outdoors":"⚽",
-  "beauty & personal care":"✨",
-  "books & stationery":"📚",
-  "agriculture & farming":"🌱",
-  "baby & kids":"🧸",
-  "other products & services":"🛍️"
-};
-
-function getCategoryIcon(category){
-  const key = (category.name||"").toLowerCase();
-  return category.icon || categoryIcons[key] || "🛍️";
-}
-
-function createCategoryCard(category){
-  const link = document.createElement("a");
-  link.className = "category-card";
-  link.href = "marketplace.html?category="+encodeURIComponent(category.$id);
-
-  const icon = document.createElement("div");
-  icon.className = "category-icon";
-  icon.textContent = getCategoryIcon(category);
-
-  const name = document.createElement("h3");
-  name.textContent = category.name || "Category";
-
-  const description = document.createElement("p");
-  description.textContent = category.description || "Explore listings";
-
-  link.append(icon,name,description);
-  return link;
-}
-
-async function loadCategories(){
-  try{
-    if(!window.GMAppwrite){
-      throw new Error("Appwrite connection is not available.");
-    }
-
-    const response = await GMAppwrite.tablesDB.listRows({
-      databaseId:"global_market_db",
-      tableId:"categories",
-      queries:[
-        GMAppwrite.Query.equal("isActive",true),
-        GMAppwrite.Query.orderAsc("sortOrder"),
-        GMAppwrite.Query.limit(100)
-      ]
-    });
-
-    const categories = response.rows || [];
-    categoryGrid.innerHTML = "";
-
-    if(!categories.length){
-      categoryGrid.innerHTML =
-        '<div class="category-status">No active categories are available yet.</div>';
-      return;
-    }
-
-    categories.forEach(category=>{
-      categoryGrid.appendChild(createCategoryCard(category));
-
-      const option = document.createElement("option");
-      option.value = category.$id;
-      option.textContent = category.name;
-      searchCategory.appendChild(option);
-    });
-
-  }catch(error){
-    console.error("Category loading error:",error);
-    categoryGrid.innerHTML =
-      '<div class="category-status">Categories could not load right now. Please refresh and try again.</div>';
-  }
-}
-
-/* FOOTER YEAR */
-document.getElementById("currentYear").textContent =
+// FOOTER YEAR
+document.getElementById("year").textContent =
   new Date().getFullYear();
-
-/* START */
-loadCategories();
 </script>
 
 </body>
