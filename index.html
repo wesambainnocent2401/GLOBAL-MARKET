@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#17395f">
-  <title>GLOBAL MARKET | Discover. Connect. Trade.</title>
-  <meta name="description" content="Discover products, services, businesses and opportunities across Kenya with GLOBAL MARKET.">
+  <title>GLOBAL MARKET | Discover More. Connect Better.</title>
+  <meta name="description" content="Discover products, services and businesses. Advertise your products and grow your business with GLOBAL MARKET.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,13 +14,14 @@
 
   <style>
     :root {
-      --bg: #f2f5f8;
+      --bg: #f3f5f8;
+      --white: #ffffff;
       --surface: #ffffff;
-      --surface2: #eaf0f6;
+      --soft: #eaf0f6;
       --text: #1b304b;
-      --muted: #75849a;
+      --muted: #78879a;
       --navy: #17395f;
-      --navy2: #234e78;
+      --navy2: #254f78;
       --gold: #c49a45;
       --border: #e1e7ef;
       --shadow: 0 12px 35px rgba(20,43,70,.08);
@@ -28,12 +29,13 @@
 
     body.dark-theme {
       --bg: #101a29;
+      --white: #19283b;
       --surface: #19283b;
-      --surface2: #22354c;
+      --soft: #22354c;
       --text: #edf3fa;
       --muted: #aab8c9;
       --navy: #e2bd70;
-      --navy2: #c49a45;
+      --navy2: #d4ae62;
       --gold: #e2bd70;
       --border: #30435a;
       --shadow: 0 12px 35px rgba(0,0,0,.2);
@@ -51,24 +53,24 @@
       transition: background .25s, color .25s;
     }
 
-    a { color: inherit; text-decoration: none; }
-    button, input, select { font: inherit; }
+    a { text-decoration: none; color: inherit; }
+    button, input { font: inherit; }
 
     .container {
       width: min(1160px, 92%);
       margin: auto;
     }
 
-    .top-strip {
+    .announcement {
       background: #112d4d;
-      color: #fff;
-      padding: 8px 0;
-      font-size: 12px;
+      color: white;
       text-align: center;
+      padding: 8px 12px;
+      font-size: 11px;
       letter-spacing: .3px;
     }
 
-    .top-strip span { color: #e6c477; }
+    .announcement span { color: #e6c477; font-weight: 800; }
 
     header {
       position: sticky;
@@ -76,7 +78,6 @@
       z-index: 100;
       background: var(--surface);
       border-bottom: 1px solid var(--border);
-      box-shadow: 0 3px 15px rgba(0,0,0,.03);
     }
 
     .navbar {
@@ -94,25 +95,24 @@
       flex-shrink: 0;
     }
 
-    .brand-mark {
-      width: 42px;
-      height: 42px;
+    .brand-logo {
+      width: 43px;
+      height: 43px;
       border-radius: 12px;
+      background: var(--navy);
       display: grid;
       place-items: center;
-      background: var(--navy);
       color: white;
       font-family: Manrope, sans-serif;
+      font-size: 21px;
       font-weight: 800;
-      font-size: 19px;
     }
 
     .brand-name {
       font-family: Manrope, sans-serif;
       font-size: 19px;
       font-weight: 800;
-      letter-spacing: -.7px;
-      color: var(--text);
+      letter-spacing: -.6px;
     }
 
     .brand-name span { color: var(--gold); }
@@ -120,61 +120,77 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 23px;
-      font-size: 13px;
+      gap: 24px;
+      font-size: 12px;
       font-weight: 700;
     }
 
-    .nav-links a, .explore-button {
+    .nav-links > a, .nav-menu-button {
       color: var(--text);
       transition: color .2s;
     }
 
-    .nav-links a:hover, .explore-button:hover { color: var(--gold); }
-
-    .explore-wrap { position: relative; }
-
-    .explore-button {
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 13px;
-      padding: 10px 0;
+    .nav-links > a:hover, .nav-menu-button:hover {
+      color: var(--gold);
     }
 
-    .explore-menu {
+    .nav-dropdown { position: relative; }
+
+    .nav-menu-button {
+      background: transparent;
+      border: 0;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      padding: 12px 0;
+    }
+
+    .dropdown-panel {
       display: none;
       position: absolute;
-      top: 42px;
-      left: -15px;
-      width: 245px;
+      top: 43px;
+      left: -20px;
+      width: 270px;
+      max-height: 420px;
+      overflow-y: auto;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 13px;
       box-shadow: var(--shadow);
       padding: 10px;
-      z-index: 120;
+      z-index: 150;
     }
 
-    .explore-menu.show { display: block; }
+    .dropdown-panel.show { display: block; }
 
-    .explore-menu a {
-      display: block;
-      padding: 10px 12px;
-      border-radius: 8px;
-      font-size: 13px;
-    }
-
-    .explore-menu a:hover { background: var(--surface2); }
-
-    .menu-heading {
-      padding: 9px 12px 5px;
-      color: var(--gold);
+    .dropdown-title {
       font-size: 10px;
       font-weight: 800;
-      text-transform: uppercase;
+      color: var(--gold);
       letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 9px 10px 5px;
+    }
+
+    .dropdown-panel a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 8px;
+    }
+
+    .dropdown-panel a:hover {
+      background: var(--soft);
+      color: var(--navy);
+    }
+
+    .category-menu-item span {
+      width: 25px;
+      text-align: center;
+      font-size: 16px;
     }
 
     .nav-actions {
@@ -183,294 +199,352 @@
       gap: 9px;
     }
 
-    .theme-button, .mobile-menu-button {
+    .theme-button, .mobile-button {
+      width: 39px;
+      height: 39px;
       border: 1px solid var(--border);
+      border-radius: 10px;
       background: var(--surface);
       color: var(--text);
-      border-radius: 10px;
-      width: 40px;
-      height: 40px;
       cursor: pointer;
       font-size: 17px;
     }
 
+    .mobile-button { display: none; }
+
     .btn {
       display: inline-flex;
-      justify-content: center;
       align-items: center;
-      gap: 7px;
-      border: 0;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 19px;
       border-radius: 9px;
-      padding: 11px 17px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
+      border: 0;
       cursor: pointer;
-      transition: transform .2s, background .2s;
+      transition: .2s;
     }
 
     .btn:hover { transform: translateY(-2px); }
 
-    .btn-primary { background: var(--navy); color: #fff; }
+    .btn-primary { background: var(--navy); color: white; }
     .btn-gold { background: var(--gold); color: #172b42; }
-    .btn-outline {
-      border: 1px solid var(--border);
-      color: var(--text);
-      background: var(--surface);
-    }
+    .btn-white { background: white; color: #17395f; }
+    .btn-outline { border: 1px solid var(--border); background: var(--surface); color: var(--text); }
 
-    .mobile-menu-button { display: none; }
+    /* HERO */
 
     .hero {
-      padding: 65px 0 55px;
-      background:
-        linear-gradient(90deg, rgba(12,35,59,.94), rgba(12,35,59,.72)),
-        url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1800&q=85") center/cover;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
       color: white;
+      background:
+        linear-gradient(90deg, rgba(12,34,57,.94) 0%, rgba(12,34,57,.75) 48%, rgba(12,34,57,.22) 100%),
+        url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1900&q=85") center/cover;
     }
 
-    .hero-content { max-width: 760px; }
+    .hero-content {
+      max-width: 700px;
+      padding: 75px 0;
+    }
 
     .eyebrow {
-      color: #e7c77e;
-      text-transform: uppercase;
-      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #e8c77e;
+      font-size: 10px;
       font-weight: 800;
       letter-spacing: 2px;
-      margin-bottom: 15px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow:before {
+      content: "";
+      height: 2px;
+      width: 25px;
+      background: #e8c77e;
     }
 
     .hero h1 {
       font-family: Manrope, sans-serif;
-      font-size: clamp(34px, 5.5vw, 58px);
+      font-size: clamp(38px, 6vw, 65px);
       line-height: 1.12;
       letter-spacing: -2px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     .hero h1 span { color: #e6c477; }
 
     .hero p {
-      max-width: 600px;
-      color: #e2e9f0;
+      color: #e1e8f0;
+      max-width: 560px;
       font-size: 15px;
-      margin-bottom: 27px;
+      margin-bottom: 28px;
     }
 
-    .hero-buttons { display: flex; gap: 11px; flex-wrap: wrap; }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
 
-    .search-section {
-      margin-top: -28px;
+    /* SEARCH */
+
+    .search-area {
       position: relative;
-      z-index: 3;
+      margin-top: -30px;
+      z-index: 5;
     }
 
     .search-box {
       background: var(--surface);
       border: 1px solid var(--border);
+      border-radius: 14px;
       box-shadow: var(--shadow);
-      border-radius: 15px;
-      padding: 18px;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr auto;
+      padding: 17px;
+      display: flex;
       gap: 12px;
     }
 
-    .search-field label {
-      display: block;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .8px;
-      margin: 0 0 5px 3px;
-    }
-
-    .search-field input, .search-field select {
-      width: 100%;
+    .search-box input {
+      flex: 1;
+      min-width: 0;
       border: 1px solid var(--border);
       background: var(--bg);
       color: var(--text);
-      padding: 13px;
+      padding: 14px;
       border-radius: 8px;
       outline: none;
+      font-size: 13px;
     }
 
-    .search-field input:focus, .search-field select:focus {
-      border-color: var(--gold);
-    }
+    .search-box input:focus { border-color: var(--gold); }
 
-    .search-submit {
-      align-self: end;
-      min-height: 46px;
-      padding-left: 25px;
-      padding-right: 25px;
-    }
+    /* GENERAL SECTIONS */
 
-    section { padding: 65px 0; }
+    section { padding: 75px 0; }
 
     .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
+      max-width: 650px;
     }
+
+    .section-heading .eyebrow { margin-bottom: 10px; }
 
     .section-heading h2 {
       font-family: Manrope, sans-serif;
-      font-size: clamp(23px, 3vw, 31px);
+      font-size: clamp(25px, 3.5vw, 35px);
       letter-spacing: -.8px;
+      line-height: 1.25;
     }
 
     .section-heading p {
       color: var(--muted);
       font-size: 13px;
-      margin-top: 5px;
+      margin-top: 10px;
     }
 
-    .text-link {
-      color: var(--navy);
-      font-size: 13px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
+    /* HOW IT WORKS */
 
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 14px;
-    }
-
-    .category-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      padding: 20px 12px;
-      text-align: center;
-      transition: .2s;
-      box-shadow: 0 5px 20px rgba(20,43,70,.025);
-    }
-
-    .category-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--gold);
-      box-shadow: var(--shadow);
-    }
-
-    .category-icon {
-      width: 48px;
-      height: 48px;
-      margin: 0 auto 11px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: var(--surface2);
-      font-size: 23px;
-    }
-
-    .category-card h3 { font-size: 12px; line-height: 1.4; }
-    .category-card p { color: var(--muted); font-size: 10px; margin-top: 5px; }
-
-    .category-status {
-      color: var(--muted);
-      font-size: 12px;
-      padding: 20px;
-      text-align: center;
-      grid-column: 1/-1;
-    }
-
-    .feature-grid {
+    .how-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
 
-    .feature-card {
+    .how-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
+      border-radius: 14px;
+      padding: 25px;
+      box-shadow: 0 5px 20px rgba(20,43,70,.025);
     }
 
-    .feature-image {
+    .how-number {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--soft);
+      color: var(--navy);
+      font-family: Manrope, sans-serif;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .how-card h3 { font-size: 15px; margin-bottom: 8px; }
+    .how-card p { font-size: 12px; color: var(--muted); }
+
+    /* PHOTO FEATURE */
+
+    .photo-section { padding-top: 15px; }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 20px;
+    }
+
+    .photo-large, .photo-small {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      min-height: 300px;
+      background: #203c59;
+    }
+
+    .photo-large img, .photo-small img {
       width: 100%;
-      height: 185px;
+      height: 100%;
+      min-height: 300px;
       object-fit: cover;
       display: block;
+      transition: transform .5s;
     }
 
-    .feature-body { padding: 19px; }
-    .feature-body small {
-      color: var(--gold);
-      font-size: 10px;
-      font-weight: 800;
+    .photo-large:hover img, .photo-small:hover img { transform: scale(1.04); }
+
+    .photo-stack {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .photo-stack .photo-small { min-height: 140px; }
+    .photo-stack .photo-small img { min-height: 140px; }
+
+    .photo-caption {
+      position: absolute;
+      inset: auto 0 0;
+      padding: 45px 22px 20px;
+      color: white;
+      background: linear-gradient(transparent, rgba(8,25,43,.9));
+    }
+
+    .photo-caption small {
+      color: #e6c477;
       text-transform: uppercase;
+      font-weight: 800;
+      font-size: 10px;
       letter-spacing: 1px;
     }
 
-    .feature-body h3 {
+    .photo-caption h3 {
       font-family: Manrope, sans-serif;
-      font-size: 17px;
-      margin: 7px 0;
+      font-size: 19px;
+      margin-top: 4px;
     }
 
-    .feature-body p { color: var(--muted); font-size: 12px; }
+    /* BENEFITS */
 
-    .how-section { background: var(--surface2); }
+    .benefits-section { background: var(--soft); }
 
-    .steps-grid {
+    .benefits-layout {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .benefits-image {
+      width: 100%;
+      height: 390px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .benefit-list {
+      display: grid;
       gap: 18px;
+      margin-top: 25px;
     }
 
-    .step-card {
-      background: var(--surface);
-      padding: 25px;
-      border: 1px solid var(--border);
-      border-radius: 13px;
+    .benefit {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
     }
 
-    .step-number {
+    .benefit-icon {
       width: 37px;
       height: 37px;
+      flex-shrink: 0;
       display: grid;
       place-items: center;
+      background: var(--surface);
       border-radius: 10px;
-      background: var(--navy);
-      color: white;
-      font-weight: 800;
-      margin-bottom: 14px;
+      color: var(--gold);
+      font-size: 17px;
     }
 
-    .step-card h3 { font-size: 15px; margin-bottom: 7px; }
-    .step-card p { color: var(--muted); font-size: 12px; }
+    .benefit h3 { font-size: 13px; margin-bottom: 3px; }
+    .benefit p { color: var(--muted); font-size: 11px; }
+
+    /* SELLER CTA */
+
+    .seller-section { padding: 70px 0; }
 
     .seller-banner {
-      background: linear-gradient(115deg, #17395f, #28577f);
-      color: white;
-      padding: 38px;
+      padding: 45px;
       border-radius: 18px;
+      color: white;
+      background:
+        linear-gradient(100deg, rgba(17,45,77,.96), rgba(27,68,105,.88)),
+        url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1400&q=80") center/cover;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 25px;
     }
 
     .seller-banner h2 {
       font-family: Manrope, sans-serif;
-      font-size: clamp(23px, 3vw, 32px);
-      margin-bottom: 8px;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.25;
+      margin-bottom: 10px;
     }
 
-    .seller-banner p { color: #dce7f1; font-size: 13px; max-width: 560px; }
+    .seller-banner p {
+      color: #dce7f1;
+      font-size: 13px;
+      max-width: 580px;
+    }
+
+    /* FINAL CTA */
+
+    .final-cta {
+      text-align: center;
+      padding: 45px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+
+    .final-cta h2 {
+      font-family: Manrope, sans-serif;
+      font-size: clamp(23px, 3vw, 31px);
+      margin-bottom: 10px;
+    }
+
+    .final-cta p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    /* FOOTER */
 
     footer {
       background: #112d4d;
       color: white;
-      padding: 48px 0 20px;
-      margin-top: 60px;
+      padding: 50px 0 20px;
+      margin-top: 55px;
     }
 
     .footer-grid {
@@ -480,18 +554,23 @@
       margin-bottom: 35px;
     }
 
-    .footer-brand p {
+    .footer-about p {
       color: #c1cfdd;
       font-size: 12px;
       max-width: 270px;
       margin-top: 13px;
     }
 
-    footer h3 { font-size: 13px; margin-bottom: 13px; color: #e6c477; }
+    footer h3 {
+      color: #e6c477;
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+
     footer a {
       display: block;
       color: #c1cfdd;
-      font-size: 12px;
+      font-size: 11px;
       margin: 9px 0;
     }
 
@@ -499,77 +578,94 @@
 
     .footer-bottom {
       border-top: 1px solid rgba(255,255,255,.15);
-      padding-top: 18px;
-      color: #b6c5d4;
-      font-size: 11px;
+      padding-top: 17px;
       display: flex;
       justify-content: space-between;
-      gap: 15px;
       flex-wrap: wrap;
+      gap: 12px;
+      color: #b6c5d4;
+      font-size: 10px;
     }
 
-    @media (max-width: 900px) {
+    .menu-status {
+      color: var(--muted);
+      padding: 10px;
+      font-size: 11px;
+    }
+
+    @media(max-width: 850px) {
       .nav-links { gap: 13px; }
-      .category-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-grid { grid-template-columns: repeat(2,1fr); }
     }
 
-    @media (max-width: 700px) {
-      .navbar { min-height: 67px; }
-      .mobile-menu-button { display: block; }
+    @media(max-width: 700px) {
+      .navbar { min-height: 68px; }
+      .mobile-button { display: block; }
+
       .nav-links {
         display: none;
         position: absolute;
-        top: 67px;
+        top: 68px;
         left: 0;
         right: 0;
+        padding: 13px 4%;
         background: var(--surface);
         border-bottom: 1px solid var(--border);
-        padding: 15px 4%;
         flex-direction: column;
         align-items: stretch;
-        gap: 5px;
+        gap: 4px;
       }
 
       .nav-links.open { display: flex; }
-      .nav-links > a, .explore-button { display: block; padding: 10px; }
-      .explore-menu {
+      .nav-links > a, .nav-menu-button { display: block; padding: 11px 8px; text-align: left; }
+
+      .dropdown-panel {
         position: static;
         width: 100%;
+        max-height: 300px;
         box-shadow: none;
         margin-bottom: 8px;
       }
 
-      .nav-actions .btn { display: none; }
+      .nav-actions .login-button { display: none; }
       .brand-name { font-size: 16px; }
-      .brand-mark { width: 38px; height: 38px; }
-      .hero { padding: 52px 0 60px; }
+      .brand-logo { width: 38px; height: 38px; }
+
+      .hero { min-height: 490px; }
+      .hero-content { padding: 60px 0; }
       .hero h1 { letter-spacing: -1px; }
-      .search-box { grid-template-columns: 1fr; }
-      .search-submit { width: 100%; }
-      section { padding: 48px 0; }
-      .category-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .feature-grid, .steps-grid { grid-template-columns: 1fr; }
-      .section-heading { align-items: start; }
-      .seller-banner { padding: 25px; flex-direction: column; align-items: start; }
-      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .search-box { flex-direction: column; }
+      .search-box .btn { width: 100%; }
+
+      section { padding: 55px 0; }
+      .how-grid { grid-template-columns: 1fr; }
+      .photo-grid { grid-template-columns: 1fr; }
+      .photo-large { min-height: 260px; }
+      .photo-stack { grid-template-rows: 180px 180px; }
+      .benefits-layout { grid-template-columns: 1fr; gap: 25px; }
+      .benefits-image { height: 270px; }
+      .seller-banner { padding: 28px; flex-direction: column; align-items: flex-start; }
     }
 
-    @media (max-width: 390px) {
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
-      .top-strip { font-size: 10px; }
+    @media(max-width: 420px) {
+      .footer-grid { gap: 20px; }
+      .announcement { font-size: 10px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="top-strip">
-    Your marketplace for products, services and opportunities in <span>Kenya</span>.
+
+  <div class="announcement">
+    Welcome to <span>GLOBAL MARKET</span> — Discover. Connect. Trade.
   </div>
 
   <header>
     <div class="container navbar">
-      <a class="brand" href="index.html" aria-label="GLOBAL MARKET homepage">
-        <div class="brand-mark">G</div>
+
+      <a href="index.html" class="brand">
+        <div class="brand-logo">G</div>
         <div class="brand-name">GLOBAL <span>MARKET</span></div>
       </a>
 
@@ -577,198 +673,313 @@
         <a href="index.html">Home</a>
         <a href="category-listings.html">Marketplace</a>
 
-        <div class="explore-wrap">
-          <button class="explore-button" id="exploreButton" type="button">
-            Explore ▾
+        <div class="nav-dropdown">
+          <button class="nav-menu-button" id="categoryButton" type="button">
+            Explore Categories ▾
           </button>
-          <div class="explore-menu" id="exploreMenu">
-            <div class="menu-heading">Marketplace</div>
-            <a href="category-listings.html">All Categories</a>
-            <a href="category-listings.html?type=products">Products</a>
-            <a href="category-listings.html?type=services">Services</a>
 
-            <div class="menu-heading">Your Account</div>
-            <a href="profile.html">My Dashboard</a>
-            <a href="my-ads.html">My Advertisements</a>
-            <a href="create-ad.html">Create Advertisement</a>
-            <a href="favourites.html">My Favourites</a>
-            <a href="messages.html">Messages</a>
-            <a href="notifications.html">Notifications</a>
-            <a href="payment.html">Payments</a>
-
-            <div class="menu-heading">Information</div>
-            <a href="about.html">About Us</a>
-            <a href="contact.html">Contact Us</a>
-            <a href="help.html">Help Centre</a>
-            <a href="terms.html">Terms & Conditions</a>
-            <a href="privacy.html">Privacy Policy</a>
+          <div class="dropdown-panel" id="categoryMenu">
+            <div class="dropdown-title">Browse Categories</div>
+            <div id="categoryMenuItems">
+              <div class="menu-status">Loading categories...</div>
+            </div>
           </div>
         </div>
 
-        <a href="bussiness-registration.html">Register Business</a>
-        <a href="advertise.html">Advertise</a>
+        <div class="nav-dropdown">
+          <button class="nav-menu-button" id="accountButton" type="button">
+            Account ▾
+          </button>
+
+          <div class="dropdown-panel" id="accountMenu">
+            <div class="dropdown-title">Your Account</div>
+            <a href="profile.html">My Dashboard</a>
+            <a href="my-ads.html">My Advertisements</a>
+            <a href="create-ad.html">Create Advertisement</a>
+            <a href="bussiness-registration.html">Register Business</a>
+            <a href="messages.html">Messages</a>
+            <a href="favourites.html">Favourites</a>
+            <a href="notifications.html">Notifications</a>
+            <a href="payment.html">Payments</a>
+          </div>
+        </div>
+
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
       </nav>
 
       <div class="nav-actions">
         <button class="theme-button" id="themeToggle" type="button" aria-label="Toggle theme">☾</button>
-        <a class="btn btn-primary" href="login.html">Sign In</a>
-        <button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-label="Open navigation">☰</button>
+        <a href="login.html" class="btn btn-primary login-button">Sign In</a>
+        <button class="mobile-button" id="mobileButton" type="button" aria-label="Open navigation">☰</button>
       </div>
+
     </div>
   </header>
 
   <main>
+
+    <!-- HERO -->
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <div class="eyebrow">Discover. Connect. Trade.</div>
-          <h1>Everything you need, <span>in one marketplace.</span></h1>
+          <div class="eyebrow">A smarter way to discover</div>
+
+          <h1>Discover More.<br><span>Connect Better.</span></h1>
+
           <p>
-            Discover products, connect with businesses, explore services
-            and find new opportunities — all from one convenient marketplace.
+            Welcome to GLOBAL MARKET, a place to discover products,
+            explore services, connect with businesses and introduce
+            your own products and services to new customers.
           </p>
+
           <div class="hero-buttons">
-            <a href="category-listings.html" class="btn btn-gold">Explore Marketplace →</a>
-            <a href="register.html" class="btn btn-outline">Join GLOBAL MARKET</a>
+            <a href="category-listings.html" class="btn btn-gold">
+              Explore Marketplace →
+            </a>
+
+            <a href="register.html" class="btn btn-white">
+              Join GLOBAL MARKET
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="container search-section">
+    <!-- SEARCH -->
+    <div class="container search-area">
       <form class="search-box" id="marketSearch">
-        <div class="search-field">
-          <label for="searchKeyword">What are you looking for?</label>
-          <input id="searchKeyword" type="search" placeholder="Search products, services or businesses...">
-        </div>
-
-        <div class="search-field">
-          <label for="searchCategory">Choose a category</label>
-          <select id="searchCategory">
-            <option value="">All categories</option>
-          </select>
-        </div>
-
-        <button class="btn btn-primary search-submit" type="submit">Search →</button>
+        <input
+          type="search"
+          id="searchKeyword"
+          placeholder="What are you looking for today?"
+          aria-label="Search marketplace"
+        >
+        <button class="btn btn-primary" type="submit">
+          Search Marketplace →
+        </button>
       </form>
     </div>
 
+    <!-- HOW IT WORKS -->
     <section>
       <div class="container">
+
         <div class="section-heading">
-          <div>
-            <h2>Explore Categories</h2>
-            <p>Find what you need from our marketplace categories.</p>
-          </div>
-          <a href="category-listings.html" class="text-link">View all →</a>
+          <div class="eyebrow">Simple and convenient</div>
+          <h2>Everything you need to get started.</h2>
+          <p>
+            GLOBAL MARKET brings buyers, sellers, service providers
+            and businesses together through one convenient platform.
+          </p>
         </div>
 
-        <div class="category-grid" id="categoryGrid">
-          <div class="category-status">Loading marketplace categories...</div>
+        <div class="how-grid">
+
+          <article class="how-card">
+            <div class="how-number">01</div>
+            <h3>Discover Products and Services</h3>
+            <p>
+              Browse marketplace listings, explore different categories
+              and find products or services that match your needs.
+            </p>
+          </article>
+
+          <article class="how-card">
+            <div class="how-number">02</div>
+            <h3>Connect with Sellers</h3>
+            <p>
+              Explore available advertisements and use the contact
+              information provided by advertisers to make enquiries.
+            </p>
+          </article>
+
+          <article class="how-card">
+            <div class="how-number">03</div>
+            <h3>Promote Your Business</h3>
+            <p>
+              Create an account, register your business and publish
+              advertisements to introduce your products and services.
+            </p>
+          </article>
+
         </div>
       </div>
     </section>
 
-    <section style="padding-top:0">
+    <!-- PHOTOGRAPHY SECTION -->
+    <section class="photo-section">
       <div class="container">
+
         <div class="section-heading">
-          <div>
-            <h2>Explore the Marketplace</h2>
-            <p>Discover different ways to shop, connect and grow.</p>
-          </div>
+          <div class="eyebrow">Explore possibilities</div>
+          <h2>One marketplace. Many opportunities.</h2>
+          <p>
+            From everyday products to professional services,
+            explore what businesses and individuals have to offer.
+          </p>
         </div>
 
-        <div class="feature-grid">
-          <a href="category-listings.html?type=products" class="feature-card">
-            <img class="feature-image"
-              src="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=900&q=80"
-              alt="Electronics and technology products">
-            <div class="feature-body">
-              <small>Shop and discover</small>
-              <h3>Products & Goods</h3>
-              <p>Explore products offered by sellers and businesses.</p>
+        <div class="photo-grid">
+
+          <a href="category-listings.html" class="photo-large">
+            <img
+              src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=85"
+              alt="Modern retail shopping environment"
+              loading="lazy"
+            >
+            <div class="photo-caption">
+              <small>Discover and shop</small>
+              <h3>Find what you are looking for.</h3>
             </div>
           </a>
 
-          <a href="category-listings.html?type=services" class="feature-card">
-            <img class="feature-image"
-              src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=80"
-              alt="Professionals working together">
-            <div class="feature-body">
-              <small>Find the right help</small>
-              <h3>Services</h3>
-              <p>Discover service providers and professional solutions.</p>
-            </div>
-          </a>
+          <div class="photo-stack">
 
-          <a href="bussiness-registration.html" class="feature-card">
-            <img class="feature-image"
-              src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80"
-              alt="Modern business workspace">
-            <div class="feature-body">
-              <small>Grow your business</small>
-              <h3>Business Directory</h3>
-              <p>Connect with businesses and introduce your own.</p>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
+            <a href="bussiness-registration.html" class="photo-small">
+              <img
+                src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=85"
+                alt="Modern business office"
+                loading="lazy"
+              >
+              <div class="photo-caption">
+                <small>For businesses</small>
+                <h3>Build your presence.</h3>
+              </div>
+            </a>
 
-    <section class="how-section">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <h2>How GLOBAL MARKET Works</h2>
-            <p>A simple way to discover opportunities and reach customers.</p>
-          </div>
-        </div>
+            <a href="create-ad.html" class="photo-small">
+              <img
+                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=85"
+                alt="Business team working together"
+                loading="lazy"
+              >
+              <div class="photo-caption">
+                <small>For sellers</small>
+                <h3>Showcase what you offer.</h3>
+              </div>
+            </a>
 
-        <div class="steps-grid">
-          <div class="step-card">
-            <div class="step-number">01</div>
-            <h3>Create Your Account</h3>
-            <p>Register and set up your account to access marketplace features.</p>
-          </div>
-
-          <div class="step-card">
-            <div class="step-number">02</div>
-            <h3>Discover or Advertise</h3>
-            <p>Explore available listings or create advertisements for your products and services.</p>
-          </div>
-
-          <div class="step-card">
-            <div class="step-number">03</div>
-            <h3>Connect</h3>
-            <p>Use the available contact and messaging features to connect with other users.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section>
+    <!-- BENEFITS -->
+    <section class="benefits-section">
+      <div class="container benefits-layout">
+
+        <div>
+          <img
+            class="benefits-image"
+            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1100&q=85"
+            alt="Customer making a purchase"
+            loading="lazy"
+          >
+        </div>
+
+        <div>
+          <div class="section-heading">
+            <div class="eyebrow">Why use GLOBAL MARKET?</div>
+            <h2>A convenient place to discover and promote.</h2>
+            <p>
+              Whether you are looking for something or offering
+              something, GLOBAL MARKET gives you a place to begin.
+            </p>
+          </div>
+
+          <div class="benefit-list">
+
+            <div class="benefit">
+              <div class="benefit-icon">⌕</div>
+              <div>
+                <h3>Easy Discovery</h3>
+                <p>Search and explore different products, services and businesses.</p>
+              </div>
+            </div>
+
+            <div class="benefit">
+              <div class="benefit-icon">▤</div>
+              <div>
+                <h3>Organised Advertisements</h3>
+                <p>Explore listings arranged into relevant marketplace categories.</p>
+              </div>
+            </div>
+
+            <div class="benefit">
+              <div class="benefit-icon">♙</div>
+              <div>
+                <h3>Personal Account Dashboard</h3>
+                <p>Manage your account and access your marketplace activities.</p>
+              </div>
+            </div>
+
+            <div class="benefit">
+              <div class="benefit-icon">↗</div>
+              <div>
+                <h3>Business Promotion</h3>
+                <p>Create advertisements and introduce your business to potential customers.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SELLER CALL TO ACTION -->
+    <section class="seller-section">
       <div class="container">
         <div class="seller-banner">
           <div>
-            <h2>Have something to sell or promote?</h2>
+            <div class="eyebrow">Your business deserves visibility</div>
+            <h2>Have a product or service to offer?</h2>
             <p>
-              Introduce your products, services or business to people
-              exploring GLOBAL MARKET.
+              Create an account and start introducing your products,
+              services or business through GLOBAL MARKET.
             </p>
           </div>
-          <a href="create-ad.html" class="btn btn-gold">Create an Advertisement →</a>
+
+          <a href="create-ad.html" class="btn btn-gold">
+            Start Advertising →
+          </a>
         </div>
       </div>
     </section>
+
+    <!-- JOIN -->
+    <section>
+      <div class="container">
+        <div class="final-cta">
+          <h2>Be part of GLOBAL MARKET.</h2>
+          <p>
+            Join the platform, discover opportunities and connect
+            with the marketplace community.
+          </p>
+
+          <a href="register.html" class="btn btn-primary">
+            Create Your Account →
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <div class="container">
+
       <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="brand-name" style="color:white">GLOBAL <span>MARKET</span></div>
+
+        <div class="footer-about">
+          <div class="brand-name" style="color:white">
+            GLOBAL <span>MARKET</span>
+          </div>
+
           <p>
-            A marketplace designed to help people discover products,
+            A marketplace connecting people with products,
             services, businesses and opportunities.
           </p>
         </div>
@@ -776,18 +987,18 @@
         <div>
           <h3>Marketplace</h3>
           <a href="category-listings.html">Browse Marketplace</a>
-          <a href="category-listings.html">All Categories</a>
+          <a href="category-listings.html">Explore Listings</a>
           <a href="advertise.html">Advertise</a>
-          <a href="bussiness-registration.html">Register Business</a>
+          <a href="create-ad.html">Create Advertisement</a>
         </div>
 
         <div>
-          <h3>My Account</h3>
+          <h3>Your Account</h3>
           <a href="register.html">Create Account</a>
           <a href="login.html">Sign In</a>
           <a href="profile.html">My Dashboard</a>
           <a href="my-ads.html">My Advertisements</a>
-          <a href="messages.html">Messages</a>
+          <a href="bussiness-registration.html">Register Business</a>
         </div>
 
         <div>
@@ -798,12 +1009,14 @@
           <a href="terms.html">Terms & Conditions</a>
           <a href="privacy.html">Privacy Policy</a>
         </div>
+
       </div>
 
       <div class="footer-bottom">
         <span>© <span id="currentYear"></span> GLOBAL MARKET. All rights reserved.</span>
-        <span>Discover. Connect. Trade.</span>
+        <span>Discover More. Connect Better.</span>
       </div>
+
     </div>
   </footer>
 
@@ -813,65 +1026,72 @@
   <script>
     "use strict";
 
-    // Mobile navigation
-    const mobileMenuButton = document.getElementById("mobileMenuButton");
-    const navLinks = document.getElementById("navLinks");
+    const $ = (id) => document.getElementById(id);
 
-    mobileMenuButton.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
+    // MOBILE NAVIGATION
+    $("mobileButton").addEventListener("click", () => {
+      $("navLinks").classList.toggle("open");
     });
 
-    // Explore menu
-    const exploreButton = document.getElementById("exploreButton");
-    const exploreMenu = document.getElementById("exploreMenu");
+    // DROPDOWN MENUS
+    function toggleMenu(menuId) {
+      const menu = $(menuId);
+      const willOpen = !menu.classList.contains("show");
 
-    exploreButton.addEventListener("click", (event) => {
+      document.querySelectorAll(".dropdown-panel").forEach(panel => {
+        panel.classList.remove("show");
+      });
+
+      if (willOpen) menu.classList.add("show");
+    }
+
+    $("categoryButton").addEventListener("click", (event) => {
       event.stopPropagation();
-      exploreMenu.classList.toggle("show");
+      toggleMenu("categoryMenu");
+    });
+
+    $("accountButton").addEventListener("click", (event) => {
+      event.stopPropagation();
+      toggleMenu("accountMenu");
     });
 
     document.addEventListener("click", (event) => {
-      if (!exploreMenu.contains(event.target) && event.target !== exploreButton) {
-        exploreMenu.classList.remove("show");
+      if (!event.target.closest(".nav-dropdown")) {
+        document.querySelectorAll(".dropdown-panel").forEach(panel => {
+          panel.classList.remove("show");
+        });
       }
     });
 
-    // Light and dark themes
-    const themeToggle = document.getElementById("themeToggle");
-
+    // THEME SWITCH
     function applyTheme(theme) {
       document.body.classList.toggle("dark-theme", theme === "dark");
-      themeToggle.textContent = theme === "dark" ? "☀" : "☾";
+      $("themeToggle").textContent = theme === "dark" ? "☀" : "☾";
       localStorage.setItem("gm-theme", theme);
     }
 
     applyTheme(localStorage.getItem("gm-theme") || "light");
 
-    themeToggle.addEventListener("click", () => {
+    $("themeToggle").addEventListener("click", () => {
       const isDark = document.body.classList.contains("dark-theme");
       applyTheme(isDark ? "light" : "dark");
     });
 
-    // Search
-    document.getElementById("marketSearch").addEventListener("submit", (event) => {
+    // SEARCH
+    $("marketSearch").addEventListener("submit", (event) => {
       event.preventDefault();
 
-      const keyword = document.getElementById("searchKeyword").value.trim();
-      const category = document.getElementById("searchCategory").value;
+      const keyword = $("searchKeyword").value.trim();
 
       const params = new URLSearchParams();
 
       if (keyword) params.set("search", keyword);
-      if (category) params.set("category", category);
 
       window.location.href = "category-listings.html" +
         (params.toString() ? "?" + params.toString() : "");
     });
 
-    // Load categories from Appwrite
-    const categoryGrid = document.getElementById("categoryGrid");
-    const searchCategory = document.getElementById("searchCategory");
-
+    // CATEGORY MENU FROM APPWRITE
     const categoryIcons = {
       "electronics": "💻",
       "fashion": "👕",
@@ -892,33 +1112,15 @@
 
     function getCategoryIcon(category) {
       const key = (category.name || "").toLowerCase();
-      return category.icon || categoryIcons[key] || "🛍️";
+      return categoryIcons[key] || category.icon || "🛍️";
     }
 
-    function createCategoryCard(category) {
-      const link = document.createElement("a");
-      link.className = "category-card";
-      link.href = "category-listings.html?category=" +
-        encodeURIComponent(category.$id);
+    async function loadCategoryMenu() {
+      const holder = $("categoryMenuItems");
 
-      const icon = document.createElement("div");
-      icon.className = "category-icon";
-      icon.textContent = getCategoryIcon(category);
-
-      const name = document.createElement("h3");
-      name.textContent = category.name || "Category";
-
-      const description = document.createElement("p");
-      description.textContent = category.description || "Explore listings";
-
-      link.append(icon, name, description);
-      return link;
-    }
-
-    async function loadCategories() {
       try {
         if (!window.GMAppwrite) {
-          throw new Error("Appwrite connection is not available.");
+          throw new Error("Appwrite is not initialized.");
         }
 
         const response = await GMAppwrite.tablesDB.listRows({
@@ -932,35 +1134,50 @@
         });
 
         const categories = response.rows || [];
-
-        categoryGrid.innerHTML = "";
+        holder.innerHTML = "";
 
         if (!categories.length) {
-          categoryGrid.innerHTML =
-            '<div class="category-status">No active categories are available yet.</div>';
+          holder.innerHTML =
+            '<div class="menu-status">No categories available yet.</div>';
           return;
         }
 
-        categories.forEach((category) => {
-          categoryGrid.appendChild(createCategoryCard(category));
+        categories.forEach(category => {
+          const link = document.createElement("a");
+          link.className = "category-menu-item";
+          link.href = "category-listings.html?category=" +
+            encodeURIComponent(category.$id);
 
-          const option = document.createElement("option");
-          option.value = category.$id;
-          option.textContent = category.name;
-          searchCategory.appendChild(option);
+          const icon = document.createElement("span");
+          icon.textContent = getCategoryIcon(category);
+
+          const name = document.createElement("span");
+          name.textContent = category.name || "Category";
+
+          link.append(icon, name);
+          holder.appendChild(link);
         });
 
+        const allLink = document.createElement("a");
+        allLink.href = "category-listings.html";
+        allLink.style.fontWeight = "800";
+        allLink.style.borderTop = "1px solid var(--border)";
+        allLink.style.marginTop = "6px";
+        allLink.textContent = "View All Marketplace Listings →";
+
+        holder.appendChild(allLink);
+
       } catch (error) {
-        console.error("Category loading error:", error);
-        categoryGrid.innerHTML =
-          '<div class="category-status">Categories could not load right now. Please try again later.</div>';
+        console.error("Category menu error:", error);
+        holder.innerHTML =
+          '<div class="menu-status">Categories could not load. Please try again later.</div>';
       }
     }
 
-    loadCategories();
+    loadCategoryMenu();
 
-    document.getElementById("currentYear").textContent =
-      new Date().getFullYear();
+    $("currentYear").textContent = new Date().getFullYear();
   </script>
+
 </body>
 </html>
