@@ -1,15 +1,12 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#f4f7fb">
-
-    <meta name="description" content="Explore vehicle, property, product and service listings on GLOBAL MARKET.">
-
-    <title>Marketplace Listings | GLOBAL MARKET</title>
+    <meta name="description" content="Discover products, services and opportunities on GLOBAL MARKET.">
+    <title>Marketplace | GLOBAL MARKET</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -18,276 +15,536 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --page: #f4f7fb;
+            --card: #fff;
+            --navy: #17395f;
+            --text: #263950;
+            --muted: #7b899b;
+            --gold: #d5ad55;
+            --border: #e4eaf1;
+        }
+
         body {
             margin: 0;
-            background: #f4f7fb;
-            color: #192d46;
+            background: var(--page);
+            color: var(--text);
             font-family: Arial, sans-serif;
         }
 
-        .listings-page {
-            width: min(1200px, 92%);
+        a {
+            text-decoration: none;
+        }
+
+        .page {
+            width: min(1250px, 93%);
             margin: auto;
-            padding: 35px 0 60px;
+            padding: 28px 0 65px;
         }
 
-        .listing-hero {
-            padding: 40px;
-            background: linear-gradient(120deg, #15395f, #315b80);
-            border-radius: 16px;
+        /* HERO */
+
+        .market-hero {
+            position: relative;
+            min-height: 330px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            padding: 45px;
+            border-radius: 19px;
             color: white;
-            margin-bottom: 30px;
+            background:
+                linear-gradient(90deg, rgba(12,31,53,.96), rgba(17,49,79,.65)),
+                url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1800&q=85")
+                center/cover;
         }
 
-        .listing-hero span {
-            color: #e4bd6c;
-            font-size: 12px;
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 680px;
+        }
+
+        .eyebrow {
+            color: #e7c779;
+            font-size: 11px;
             font-weight: bold;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
-        .listing-hero h1 {
-            font-size: clamp(27px, 5vw, 40px);
-            margin: 15px 0 10px;
+        .market-hero h1 {
+            margin: 16px 0 12px;
+            font-size: clamp(30px, 5vw, 45px);
+            line-height: 1.15;
         }
 
-        .listing-hero p {
-            color: #e1eaf4;
-            max-width: 650px;
+        .market-hero p {
+            max-width: 600px;
+            color: #e0e9f2;
             font-size: 14px;
             line-height: 1.8;
         }
 
-        .listing-controls {
+        .hero-actions {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin: 25px 0 35px;
-            background: white;
-            padding: 17px;
-            border-radius: 11px;
-            border: 1px solid #e5ebf2;
+            margin-top: 22px;
         }
 
-        .listing-controls input,
-        .listing-controls select {
-            flex: 1;
-            min-width: 150px;
-            padding: 13px;
-            border: 1px solid #dce4ed;
-            border-radius: 7px;
-            outline: none;
-            background: white;
-            color: #253c58;
-        }
-
-        .listing-controls button {
-            background: #17395f;
-            color: white;
-            padding: 13px 20px;
-            border: none;
-            border-radius: 7px;
-            cursor: pointer;
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 13px 19px;
+            border-radius: 8px;
+            font-size: 12px;
             font-weight: bold;
+            transition: .2s;
         }
 
-        .listing-section {
-            margin: 45px 0;
+        .btn-gold {
+            background: var(--gold);
+            color: #17334f;
         }
 
-        .listing-heading {
+        .btn-gold:hover {
+            background: #e8c77d;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,.6);
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,.12);
+        }
+
+        /* CATEGORY INFORMATION */
+
+        .category-intro {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin: 30px 0;
+            padding: 23px;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            background: var(--card);
+        }
+
+        .category-intro-icon {
+            display: grid;
+            flex-shrink: 0;
+            width: 62px;
+            height: 62px;
+            place-items: center;
+            border-radius: 15px;
+            background: #edf3fa;
+            font-size: 29px;
+        }
+
+        .category-intro h2 {
+            margin: 0 0 7px;
+            color: var(--navy);
+            font-size: 21px;
+        }
+
+        .category-intro p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* SEARCH */
+
+        .search-panel {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr auto;
+            gap: 12px;
+            padding: 18px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--card);
+            margin-bottom: 40px;
+        }
+
+        .search-panel input {
+            width: 100%;
+            min-width: 0;
+            padding: 14px;
+            border: 1px solid #dce4ed;
+            border-radius: 8px;
+            outline: none;
+            background: var(--card);
+            color: var(--text);
+            font-size: 13px;
+        }
+
+        .search-panel input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(213,173,85,.13);
+        }
+
+        .search-panel button {
+            padding: 13px 22px;
+            border: none;
+            border-radius: 8px;
+            background: var(--navy);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search-panel button:hover {
+            background: #28517d;
+        }
+
+        /* SECTION HEADINGS */
+
+        .section-heading {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
+            align-items: end;
+            gap: 15px;
+            margin: 38px 0 20px;
         }
 
-        .listing-heading h2 {
-            color: #17395f;
+        .section-heading h2 {
+            margin: 0 0 7px;
+            color: var(--navy);
             font-size: 23px;
+        }
+
+        .section-heading p {
             margin: 0;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.7;
         }
 
-        .listing-heading p {
-            color: #7a8798;
-            font-size: 13px;
-            margin: 7px 0 0;
-        }
-
-        .demo-label {
-            background: #fff3d9;
-            color: #8c681d;
-            border-radius: 20px;
-            padding: 7px 11px;
-            font-size: 10px;
+        .section-link {
+            color: #98752e;
+            font-size: 12px;
             font-weight: bold;
             white-space: nowrap;
         }
 
-        .listing-grid {
+        /* LISTINGS AREA */
+
+        .listings-panel {
+            padding: 35px 20px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--card);
+            text-align: center;
+        }
+
+        .empty-icon {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            width: 75px;
+            height: 75px;
+            place-items: center;
+            margin: 0 auto 17px;
+            border-radius: 50%;
+            background: #edf3fa;
+            font-size: 32px;
         }
 
-        .listing-card {
-            background: white;
-            border-radius: 12px;
+        .listings-panel h3 {
+            margin: 0 0 10px;
+            color: var(--navy);
+            font-size: 19px;
+        }
+
+        .listings-panel p {
+            max-width: 520px;
+            margin: 0 auto 20px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .notice {
+            margin-top: 17px;
+            padding: 13px;
+            border-radius: 8px;
+            background: #fff7e7;
+            color: #81652e;
+            font-size: 11px;
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        /* CATEGORY PHOTO CARDS */
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 17px;
+        }
+
+        .category-card {
+            display: block;
             overflow: hidden;
-            border: 1px solid #e5ebf2;
-            transition: .2s ease;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            background: var(--card);
+            transition: .25s;
         }
 
-        .listing-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(20,40,70,.09);
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 12px 27px rgba(20,40,70,.09);
         }
 
-        .listing-image-wrap {
-            height: 210px;
+        .category-image {
             position: relative;
-            background: #e8edf3;
+            height: 145px;
             overflow: hidden;
+            background: #e8edf3;
         }
 
-        .listing-image {
+        .category-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform .3s;
+            display: block;
+            transition: transform .4s;
         }
 
-        .listing-card:hover .listing-image {
-            transform: scale(1.04);
+        .category-card:hover img {
+            transform: scale(1.06);
         }
 
-        .listing-tag {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: white;
-            color: #17395f;
-            padding: 7px 10px;
-            border-radius: 5px;
-            font-size: 10px;
-            font-weight: bold;
+        .category-card-content {
+            padding: 15px;
         }
 
-        .listing-content {
-            padding: 17px;
+        .category-card h3 {
+            margin: 0 0 8px;
+            color: var(--navy);
+            font-size: 14px;
         }
 
-        .listing-category {
-            color: #a17b2c;
-            font-size: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .listing-content h3 {
-            color: #17395f;
-            font-size: 16px;
-            margin: 9px 0;
-        }
-
-        .listing-description {
-            color: #77869a;
-            font-size: 12px;
-            line-height: 1.7;
-            min-height: 40px;
-        }
-
-        .listing-location {
-            color: #77869a;
+        .category-card p {
+            min-height: 35px;
+            margin: 0;
+            color: var(--muted);
             font-size: 11px;
-            margin-top: 12px;
+            line-height: 1.6;
         }
 
-        .listing-bottom {
+        .category-card .explore {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            gap: 10px;
-            border-top: 1px solid #edf0f4;
-            margin-top: 15px;
-            padding-top: 14px;
-        }
-
-        .listing-price {
-            color: #17395f;
-            font-size: 15px;
-            font-weight: bold;
-        }
-
-        .listing-link {
-            color: white;
-            background: #17395f;
-            padding: 9px 12px;
-            border-radius: 6px;
+            margin-top: 13px;
+            padding-top: 11px;
+            border-top: 1px solid var(--border);
+            color: #a17b2c;
             font-size: 11px;
             font-weight: bold;
-            text-decoration: none;
         }
 
-        .listing-link:hover {
-            background: #b08736;
+        /* SELLER PROMOTION */
+
+        .seller-banner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            align-items: center;
+            margin-top: 45px;
+            padding: 25px;
+            border-radius: 15px;
+            background: #eaf0f7;
         }
 
-        .empty-results {
-            display: none;
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            color: #77869a;
+        .seller-banner img {
+            width: 100%;
+            height: 240px;
+            border-radius: 11px;
+            object-fit: cover;
         }
 
-        .demo-notice {
-            margin-top: 35px;
-            background: #fff8e9;
-            border: 1px solid #f0dfb7;
-            padding: 16px;
-            border-radius: 9px;
-            color: #806326;
-            font-size: 12px;
+        .seller-banner h2 {
+            margin: 0 0 12px;
+            color: var(--navy);
+            font-size: 24px;
+            line-height: 1.3;
+        }
+
+        .seller-banner p {
+            color: #6f7f92;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .seller-banner .btn {
+            margin-top: 8px;
+        }
+
+        /* TRUST INFORMATION */
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .trust-card {
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            background: var(--card);
+        }
+
+        .trust-card span {
+            font-size: 23px;
+        }
+
+        .trust-card h3 {
+            margin: 10px 0 7px;
+            color: var(--navy);
+            font-size: 14px;
+        }
+
+        .trust-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 11px;
             line-height: 1.7;
         }
 
-        @media (max-width: 850px) {
-            .listing-grid {
-                grid-template-columns: repeat(2, 1fr);
+        /* DARK MODE */
+
+        html[data-theme="dark"] .category-intro,
+        body[data-theme="dark"] .category-intro,
+        html.dark .category-intro,
+        body.dark .category-intro,
+        html[data-theme="dark"] .search-panel,
+        body[data-theme="dark"] .search-panel,
+        html.dark .search-panel,
+        body.dark .search-panel,
+        html[data-theme="dark"] .listings-panel,
+        body[data-theme="dark"] .listings-panel,
+        html.dark .listings-panel,
+        body.dark .listings-panel,
+        html[data-theme="dark"] .category-card,
+        body[data-theme="dark"] .category-card,
+        html.dark .category-card,
+        body.dark .category-card,
+        html[data-theme="dark"] .trust-card,
+        body[data-theme="dark"] .trust-card,
+        html.dark .trust-card,
+        body.dark .trust-card {
+            background: #17283b;
+            border-color: #30445c;
+        }
+
+        html[data-theme="dark"] .category-intro h2,
+        body[data-theme="dark"] .category-intro h2,
+        html.dark .category-intro h2,
+        body.dark .category-intro h2,
+        html[data-theme="dark"] .section-heading h2,
+        body[data-theme="dark"] .section-heading h2,
+        html.dark .section-heading h2,
+        body.dark .section-heading h2,
+        html[data-theme="dark"] .category-card h3,
+        body[data-theme="dark"] .category-card h3,
+        html.dark .category-card h3,
+        body.dark .category-card h3,
+        html[data-theme="dark"] .listings-panel h3,
+        body[data-theme="dark"] .listings-panel h3,
+        html.dark .listings-panel h3,
+        body.dark .listings-panel h3,
+        html[data-theme="dark"] .trust-card h3,
+        body[data-theme="dark"] .trust-card h3,
+        html.dark .trust-card h3,
+        body.dark .trust-card h3 {
+            color: #e8eef6;
+        }
+
+        html[data-theme="dark"] .search-panel input,
+        body[data-theme="dark"] .search-panel input,
+        html.dark .search-panel input,
+        body.dark .search-panel input {
+            border-color: #40536a;
+        }
+
+        html[data-theme="dark"] .seller-banner,
+        body[data-theme="dark"] .seller-banner,
+        html.dark .seller-banner,
+        body.dark .seller-banner {
+            background: #1b3048;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 950px) {
+            .category-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
         }
 
-        @media (max-width: 550px) {
-            .listings-page {
-                padding-top: 20px;
+        @media (max-width: 680px) {
+            .category-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
             }
 
-            .listing-hero {
-                padding: 27px 20px;
+            .category-image {
+                height: 120px;
             }
 
-            .listing-controls {
-                flex-direction: column;
-            }
-
-            .listing-controls input,
-            .listing-controls select,
-            .listing-controls button {
-                width: 100%;
-            }
-
-            .listing-grid {
+            .search-panel {
                 grid-template-columns: 1fr;
             }
 
-            .listing-image-wrap {
-                height: 220px;
+            .search-panel button {
+                width: 100%;
             }
 
-            .listing-heading h2 {
+            .seller-banner {
+                grid-template-columns: 1fr;
+            }
+
+            .seller-banner img {
+                height: 200px;
+            }
+
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .market-hero {
+                padding: 32px 21px;
+            }
+
+            .category-intro {
+                align-items: flex-start;
+                padding: 17px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .category-card-content {
+                padding: 11px;
+            }
+
+            .category-card h3 {
+                font-size: 12px;
+            }
+
+            .category-card p {
+                font-size: 10px;
+            }
+
+            .section-heading h2 {
                 font-size: 19px;
             }
         }
@@ -298,456 +555,524 @@
 
     <div id="site-header"></div>
 
-    <main class="listings-page">
+    <main class="page">
 
-        <section class="listing-hero">
-            <span>GLOBAL MARKETPLACE</span>
-            <h1>Explore Products, Vehicles & Properties</h1>
-            <p>
-                Discover exciting products, beautiful homes,
-                residential estates, vehicles and services.
-                Browse the marketplace and explore what's available.
-            </p>
+        <!-- HERO -->
+        <section class="market-hero" id="marketHero">
+
+            <div class="hero-content">
+
+                <span class="eyebrow">GLOBAL MARKETPLACE</span>
+
+                <h1 id="heroTitle">
+                    Discover. Connect. Trade. Grow.
+                </h1>
+
+                <p id="heroDescription">
+                    Explore products, services, businesses and
+                    opportunities from across the marketplace.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a href="create-ad.html" class="btn btn-gold">
+                        Post an Advertisement →
+                    </a>
+
+                    <a href="#marketplaceListings" class="btn btn-outline">
+                        Explore Listings
+                    </a>
+
+                </div>
+
+            </div>
+
         </section>
 
-        <form class="listing-controls" id="listingFilters">
+        <!-- SELECTED CATEGORY -->
+        <section class="category-intro">
+
+            <div class="category-intro-icon" id="categoryIcon">
+                🌍
+            </div>
+
+            <div>
+                <h2 id="categoryTitle">Explore the Marketplace</h2>
+                <p id="categoryDescription">
+                    Browse available categories and discover new opportunities.
+                </p>
+            </div>
+
+        </section>
+
+        <!-- SEARCH -->
+        <form class="search-panel" id="marketSearch">
 
             <input
                 type="search"
-                id="listingSearch"
-                placeholder="Search listings..."
-                aria-label="Search listings"
+                id="searchKeyword"
+                placeholder="Search for products or services..."
+                aria-label="Search products and services"
             >
 
-            <select id="listingCategory" aria-label="Filter by category">
-                <option value="">All Categories</option>
-                <option value="electronics">Electronics</option>
-                <option value="fashion">Fashion</option>
-                <option value="vehicles">Vehicles</option>
-                <option value="property">Property</option>
-                <option value="food">Food & Beverages</option>
-                <option value="services">Services</option>
-            </select>
+            <input
+                type="text"
+                id="searchLocation"
+                placeholder="Enter town or county..."
+                aria-label="Search location"
+            >
 
-            <button type="submit">Find Listings</button>
+            <button type="submit">Search</button>
 
         </form>
 
-        <!-- VEHICLES -->
-        <section class="listing-section" id="vehicles">
+        <!-- LISTINGS -->
+        <section id="marketplaceListings">
 
-            <div class="listing-heading">
+            <div class="section-heading">
                 <div>
-                    <h2>Vehicles & Motors</h2>
-                    <p>Explore our vehicle gallery.</p>
+                    <h2>Marketplace Listings</h2>
+                    <p>Find offers and services in this category.</p>
                 </div>
-                <span class="demo-label">DEMO GALLERY</span>
             </div>
 
-            <div class="listing-grid">
+            <div class="listings-panel">
 
-                <article class="listing-card" data-category="vehicles">
-                    <div class="listing-image-wrap">
-                        <img class="listing-image"
-                             src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=85"
-                             alt="Luxury Mercedes-Benz vehicle"
-                             loading="lazy">
-                        <span class="listing-tag">Luxury Vehicle</span>
-                    </div>
-                    <div class="listing-content">
-                        <span class="listing-category">Vehicles</span>
-                        <h3>Luxury Executive Car</h3>
-                        <p class="listing-description">Premium vehicle gallery preview.</p>
-                        <p class="listing-location">📍 Kenya · Demo location</p>
-                        <div class="listing-bottom">
-                            <span class="listing-price">Price on request</span>
-                            <a href="contact.html" class="listing-link">Enquire</a>
-                        </div>
-                    </div>
-                </article>
+                <div class="empty-icon">🛍️</div>
 
-                <article class="listing-card" data-category="vehicles">
-                    <div class="listing-image-wrap">
-                        <img class="listing-image"
-                             src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=85"
-                             alt="Modern SUV"
-                             loading="lazy">
-                        <span class="listing-tag">SUV</span>
-                    </div>
-                    <div class="listing-content">
-                        <span class="listing-category">Vehicles</span>
-                        <h3>Modern Family SUV</h3>
-                        <p class="listing-description">Spacious SUV photography for demonstration.</p>
-                        <p class="listing-location">📍 Kenya · Demo location</p>
-                        <div class="listing-bottom">
-                            <span class="listing-price">Price on request</span>
-                            <a href="contact.html" class="listing-link">Enquire</a>
-                        </div>
-                    </div>
-                </article>
+                <h3>Real Marketplace Listings Coming Here</h3>
 
-                <article class="listing-card" data-category="vehicles">
-                    <div class="listing-image-wrap">
-                        <img class="listing-image"
-                             src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=85"
-                             alt="Sports car"
-                             loading="lazy">
-                        <span class="listing-tag">Sports Car</span>
-                    </div>
-                    <div class="listing-content">
-                        <span class="listing-category">Vehicles</span>
-                        <h3>Sports Car Gallery</h3>
-                        <p class="listing-description">Performance car visual demonstration.</p>
-                        <p class="listing-location">📍 Kenya · Demo location</p>
-                        <div class="listing-bottom">
-                            <span class="listing-price">Price on request</span>
-                            <a href="contact.html" class="listing-link">Enquire</a>
-                        </div>
-                    </div>
-                </article>
+                <p>
+                    This is where verified advertiser submissions,
+                    product photos, prices, locations and seller
+                    information will appear.
+                </p>
 
-                <article class="listing-card" data-category="vehicles">
-                    <div class="listing-image-wrap">
-                        <img class="listing-image"
-                             src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=85"
-                             alt="Pickup truck"
-                             loading="lazy">
-                        <span class="listing-tag">Pickup</span>
-                    </div>
-                    <div class="listing-content">
-                        <span class="listing-category">Vehicles</span>
-                        <h3>Pickup & Utility Vehicles</h3>
-                        <p class="listing-description">Vehicle gallery preview for utility models.</p>
-                        <p class="listing-location">📍 Kenya · Demo location</p>
-                        <div class="listing-bottom">
-                            <span class="listing-price">Price on request</span>
-                            <a href="contact.html" class="listing-link">Enquire</a>
-                        </div>
-                    </div>
-                </article>
+                <a href="create-ad.html" class="btn btn-gold">
+                    Be the First to Advertise →
+                </a>
 
-                <article class="listing-card" data-category="vehicles">
-                    <div class="listing-image-wrap">
-                        <img class="listing-image"
-                             src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=85"
-                             alt="Motorcycle"
-                             loading="lazy">
-                        <span class="listing-tag">Motorbike</span>
-                    </div>
-                    <div class="listing-content">
-                        <span class="listing-category">Vehicles</span>
-                        <h3>Motorcycles & Bikes</h3>
-                        <p class="listing-description">Two-wheel vehicle gallery preview.</p>
-                        <p class="listing-location">📍 Kenya · Demo location</p>
-                        <div class="listing-bottom">
-                            <span class="listing-price">Price on request</span>
-                            <a href="contact.html" class="listing-link">Enquire</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="listing-card" data-category="vehicles">
-                    <div class="listing-image-wrap">
-                        <img class="listing-image"
-                             src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85"
-                             alt="Premium sports vehicle"
-                             loading="lazy">
-                        <span class="listing-tag">Premium</span>
-                    </div>
-                    <div class="listing-content">
-                        <span class="listing-category">Vehicles</span>
-                        <h3>Premium Car Collection</h3>
-                        <p class="listing-description">High-end automotive gallery preview.</p>
-                        <p class="listing-location">📍 Kenya · Demo location</p>
-                        <div class="listing-bottom">
-                            <span class="listing-price">Price on request</span>
-                            <a href="contact.html" class="listing-link">Enquire</a>
-                        </div>
-                    </div>
-                </article>
+                <div class="notice">
+                    <strong>Important:</strong> The live advertisement
+                    database has not yet been connected to this page.
+                    No sample product or property is being presented
+                    as a real offer.
+                </div>
 
             </div>
+
         </section>
 
-        <!-- PROPERTY -->
-        <section class="listing-section" id="property">
+        <!-- OTHER CATEGORIES -->
+        <section>
 
-            <div class="listing-heading">
+            <div class="section-heading">
                 <div>
-                    <h2>Houses, Estates & Property</h2>
-                    <p>Explore modern homes, apartments and residential developments.</p>
+                    <h2>Explore More Categories</h2>
+                    <p>Discover other areas of GLOBAL MARKET.</p>
                 </div>
-                <span class="demo-label">DEMO GALLERY</span>
+
+                <a href="categories.html" class="section-link">
+                    View All Categories →
+                </a>
             </div>
 
-            <div class="listing-grid">
+            <div class="category-grid" id="relatedCategories"></div>
 
-                <article class="listing-card" data-category="property">
-                    <div class="listing-image-wrap">
-                        <img class="listing-image"
-                             src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=85"
-                             alt="Modern luxury house"
-                             loading="lazy">
-                        <span class="listing-tag">Modern Home</span>
-                    </div>
-                    <div class="listing-content">
-                        <span class="listing-category">Property</span>
-                        <h3>Modern Luxury House</h3>
-                        <p class="listing-description">Contemporary residential property gallery.</p>
-                        <p class="listing-location">📍 Kenya · Demo location</p>
-                        <div class="listing-bottom">
-                            <span class="listing-price">Price on request</span>
-                            <a href="contact.html" class="listing-link">Enquire</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="listing-card" data-category="property">
-                    <div class="listing-image-wrap">
-                        <img class="listing-image"
-                             src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=85"
-                             alt="Contemporary family house"
-                             loading="lazy">
-                        <span class="listing-tag">Family House</span>
-                    </div>
-                    <div class="listing-content">
-                        <span class="listing-category">Property</span>
-                        <h3>Contemporary Family Home</h3>
-                        <p class="listing-description">Beautiful home photography for demonstration.</p>
-                        <p class="listing-location">📍 Kenya · Demo location</p>
-                        <div class="listing-bottom">
-                            <span class="listing-price">Price on request</span>
-                            <a href="contact.html" class="listing-link">Enquire</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="listing-card" data-category="property">
-                    <div class="listing-image-wrap">
-                        <img class="listing-image"
-                             src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=85"
-                             alt="Modern house interior"
-                             loading="lazy">
-                        <span class="listing-tag">Interior</span>
-                    </div>
-                    <div class="listing-content">
-                        <span class="listing-category">Property</span>
-                        <h3>Modern House Interior</h3>
-                        <p class="listing-description">Interior design and home inspiration gallery.</p>
-                        <p class="listing-location">📍 Kenya · Demo location</p>
-                        <div class="listing-bottom">
-                            <span class="listing-price">Price on request</span>
-                            <a href="contact.html" class="listing-link">Enquire</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="listing-card" data-category="property">
-                    <div class="listing-image-wrap">
-                        <img class="listing-image"
-                             src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=85"
-                             alt="Elegant residential property"
-                             loading="lazy">
-                        <span class="listing-tag">Residential</span>
-                    </div>
-                    <div class="listing-content">
-                        <span class="listing-category">Property</span>
-                        <h3>Elegant Residential Home</h3>
-                        <p class="listing-description">Residential property photo preview.</p>
-                        <p class="listing-location">📍 Kenya · Demo location</p>
-                        <div class="listing-bottom">
-                            <span class="listing-price">Price on request</span>
-                            <a href="contact.html" class="listing-link">Enquire</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="listing-card" data-category="property">
-                    <div class="listing-image-wrap">
-                        <img class="listing-image"
-                             src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=900&q=85"
-                             alt="Beautiful modern villa"
-                             loading="lazy">
-                        <span class="listing-tag">Villa</span>
-                    </div>
-                    <div class="listing-content">
-                        <span class="listing-category">Property</span>
-                        <h3>Modern Villa</h3>
-                        <p class="listing-description">Villa and luxury home gallery preview.</p>
-                        <p class="listing-location">📍 Kenya · Demo location</p>
-                        <div class="listing-bottom">
-                            <span class="listing-price">Price on request</span>
-                            <a href="contact.html" class="listing-link">Enquire</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="listing-card" data-category="property">
-                    <div class="listing-image-wrap">
-                        <img class="listing-image"
-                             src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=85"
-                             alt="Luxury house living room"
-                             loading="lazy">
-                        <span class="listing-tag">Luxury Interior</span>
-                    </div>
-                    <div class="listing-content">
-                        <span class="listing-category">Property</span>
-                        <h3>Luxury Living Space</h3>
-                        <p class="listing-description">Stylish interior photography preview.</p>
-                        <p class="listing-location">📍 Kenya · Demo location</p>
-                        <div class="listing-bottom">
-                            <span class="listing-price">Price on request</span>
-                            <a href="contact.html" class="listing-link">Enquire</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="listing-card" data-category="property">
-                    <div class="listing-image-wrap">
-                        <img class="listing-image"
-                             src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=85"
-                             alt="Modern apartment building"
-                             loading="lazy">
-                        <span class="listing-tag">Apartments</span>
-                    </div>
-                    <div class="listing-content">
-                        <span class="listing-category">Property</span>
-                        <h3>Modern Apartments</h3>
-                        <p class="listing-description">Apartment-style property gallery preview.</p>
-                        <p class="listing-location">📍 Kenya · Demo location</p>
-                        <div class="listing-bottom">
-                            <span class="listing-price">Price on request</span>
-                            <a href="contact.html" class="listing-link">Enquire</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="listing-card" data-category="property">
-                    <div class="listing-image-wrap">
-                        <img class="listing-image"
-                             src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=900&q=85"
-                             alt="Beautiful residential estate"
-                             loading="lazy">
-                        <span class="listing-tag">Estate</span>
-                    </div>
-                    <div class="listing-content">
-                        <span class="listing-category">Property</span>
-                        <h3>Residential Estate</h3>
-                        <p class="listing-description">Estate and housing development gallery preview.</p>
-                        <p class="listing-location">📍 Kenya · Demo location</p>
-                        <div class="listing-bottom">
-                            <span class="listing-price">Price on request</span>
-                            <a href="contact.html" class="listing-link">Enquire</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="listing-card" data-category="property">
-                    <div class="listing-image-wrap">
-                        <img class="listing-image"
-                             src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=85"
-                             alt="Elegant furnished home"
-                             loading="lazy">
-                        <span class="listing-tag">Furnished Home</span>
-                    </div>
-                    <div class="listing-content">
-                        <span class="listing-category">Property</span>
-                        <h3>Furnished Home Gallery</h3>
-                        <p class="listing-description">Furnished home inspiration for property listings.</p>
-                        <p class="listing-location">📍 Kenya · Demo location</p>
-                        <div class="listing-bottom">
-                            <span class="listing-price">Price on request</span>
-                            <a href="contact.html" class="listing-link">Enquire</a>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
         </section>
 
-        <div class="demo-notice">
-            <strong>Demo content:</strong>
-            The vehicle and property images on this page are visual examples.
-            They do not represent verified sellers, available stock, actual
-            property addresses or confirmed prices. Real advertiser listings
-            will be connected through the marketplace database.
-        </div>
+        <!-- SELLER BANNER -->
+        <section class="seller-banner">
 
-        <div class="empty-results" id="emptyResults">
-            No matching listings found. Try another search or category.
-        </div>
+            <div>
+                <span class="eyebrow">FOR SELLERS & BUSINESSES</span>
+
+                <h2>Have a Product or Service to Offer?</h2>
+
+                <p>
+                    Bring your business closer to potential customers.
+                    Create an advertisement, upload your product
+                    photographs and videos, and showcase what you offer.
+                </p>
+
+                <a href="create-ad.html" class="btn btn-gold">
+                    Create Advertisement →
+                </a>
+            </div>
+
+            <img
+                src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=85"
+                alt="Business owner preparing products for customers"
+                loading="lazy"
+            >
+
+        </section>
+
+        <!-- CUSTOMER INFORMATION -->
+        <section>
+
+            <div class="section-heading">
+                <div>
+                    <h2>Shop and Connect with Confidence</h2>
+                    <p>A few helpful reminders when using an online marketplace.</p>
+                </div>
+            </div>
+
+            <div class="trust-grid">
+
+                <article class="trust-card">
+                    <span>🔎</span>
+                    <h3>Review Advertisements</h3>
+                    <p>
+                        Read descriptions carefully and ask questions
+                        before making a purchase or agreement.
+                    </p>
+                </article>
+
+                <article class="trust-card">
+                    <span>📍</span>
+                    <h3>Check the Location</h3>
+                    <p>
+                        Confirm the seller's location and arrange
+                        appropriate ways to view products or services.
+                    </p>
+                </article>
+
+                <article class="trust-card">
+                    <span>🤝</span>
+                    <h3>Communicate Clearly</h3>
+                    <p>
+                        Confirm prices, terms and important details
+                        directly with the advertiser.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
 
     </main>
 
     <div id="site-footer"></div>
 
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@29.0.0"></script>
+    <script src="appwrite-config.js"></script>
     <script src="layout.js" defer></script>
 
     <script>
-        const filterForm = document.getElementById("listingFilters");
-        const searchInput = document.getElementById("listingSearch");
-        const categorySelect = document.getElementById("listingCategory");
-        const listingCards = document.querySelectorAll(".listing-card");
-        const emptyResults = document.getElementById("emptyResults");
+        /* CATEGORY INFORMATION */
 
-        function filterListings() {
-            const search = searchInput.value.trim().toLowerCase();
-            const category = categorySelect.value;
+        const categories = [
+            {
+                name: "Electronics",
+                slug: "electronics",
+                icon: "💻",
+                description: "Phones, computers, accessories and technology.",
+                image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                name: "Fashion",
+                slug: "fashion",
+                icon: "👕",
+                description: "Clothing, footwear, bags and accessories.",
+                image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                name: "Food & Groceries",
+                slug: "food-groceries",
+                icon: "🛒",
+                description: "Food products, groceries and supplies.",
+                image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                name: "Vehicles",
+                slug: "vehicles",
+                icon: "🚗",
+                description: "Cars, motorcycles and transport products.",
+                image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                name: "Real Estate",
+                slug: "real-estate",
+                icon: "🏡",
+                description: "Land, houses, rentals and commercial property.",
+                image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                name: "Services",
+                slug: "services",
+                icon: "💼",
+                description: "Professional and business services.",
+                image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                name: "Education",
+                slug: "education",
+                icon: "🎓",
+                description: "Learning, tutoring and training opportunities.",
+                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                name: "Jobs & Careers",
+                slug: "jobs-careers",
+                icon: "📋",
+                description: "Employment and career opportunities.",
+                image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                name: "Home & Furniture",
+                slug: "home-furniture",
+                icon: "🛋️",
+                description: "Furniture, home equipment and appliances.",
+                image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                name: "Sports & Outdoors",
+                slug: "sports-outdoors",
+                icon: "⚽",
+                description: "Sports equipment, fitness and recreation.",
+                image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                name: "Beauty & Personal Care",
+                slug: "beauty-personal-care",
+                icon: "✨",
+                description: "Beauty products and personal care services.",
+                image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                name: "Books & Stationery",
+                slug: "books-stationery",
+                icon: "📚",
+                description: "Books, school supplies and stationery.",
+                image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                name: "Agriculture & Farming",
+                slug: "agriculture-farming",
+                icon: "🌱",
+                description: "Farm produce, equipment and supplies.",
+                image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                name: "Baby & Kids",
+                slug: "baby-kids",
+                icon: "🧸",
+                description: "Baby products, toys and children's items.",
+                image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                name: "Other Products & Services",
+                slug: "other-products-services",
+                icon: "🌍",
+                description: "Explore additional products and services.",
+                image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80"
+            }
+        ];
 
-            let visibleCount = 0;
+        /* GET SELECTED CATEGORY */
 
-            listingCards.forEach(function(card) {
-                const text = card.textContent.toLowerCase();
-                const cardCategory = card.dataset.category;
+        const params = new URLSearchParams(window.location.search);
+        const selectedSlug = params.get("category");
 
-                const matchesSearch = text.includes(search);
-                const matchesCategory =
-                    !category || cardCategory === category;
-
-                const visible = matchesSearch && matchesCategory;
-
-                card.style.display = visible ? "block" : "none";
-
-                if (visible) visibleCount++;
-            });
-
-            emptyResults.style.display =
-                visibleCount === 0 ? "block" : "none";
-
-            document.querySelectorAll(".listing-section").forEach(function(section) {
-                const visibleCards = section.querySelectorAll(
-                    '.listing-card:not([style*="display: none"])'
-                );
-
-                section.style.display =
-                    visibleCards.length ? "block" : "none";
-            });
-        }
-
-        filterForm.addEventListener("submit", function(event) {
-            event.preventDefault();
-            filterListings();
+        const selectedCategory = categories.find(function(category) {
+            return category.slug === selectedSlug;
         });
 
-        searchInput.addEventListener("input", filterListings);
-        categorySelect.addEventListener("change", filterListings);
+        const currentCategory = selectedCategory || null;
 
-        // Read category from homepage or categories page.
-        const params = new URLSearchParams(window.location.search);
-        const selectedCategory = params.get("category");
-        const selectedSearch = params.get("search");
+        /* UPDATE PAGE */
 
-        if (selectedCategory) {
-            categorySelect.value = selectedCategory;
+        const hero = document.getElementById("marketHero");
+
+        const heroTitle = document.getElementById("heroTitle");
+        const heroDescription = document.getElementById("heroDescription");
+
+        const categoryTitle = document.getElementById("categoryTitle");
+        const categoryDescription = document.getElementById("categoryDescription");
+        const categoryIcon = document.getElementById("categoryIcon");
+
+        if (currentCategory) {
+
+            heroTitle.textContent = "Discover " + currentCategory.name;
+
+            heroDescription.textContent =
+                "Explore products, services and opportunities in " +
+                currentCategory.name + " on GLOBAL MARKET.";
+
+            categoryTitle.textContent = currentCategory.name;
+
+            categoryDescription.textContent =
+                currentCategory.description;
+
+            categoryIcon.textContent = currentCategory.icon;
+
+            hero.style.backgroundImage =
+                "linear-gradient(90deg, rgba(12,31,53,.96), rgba(17,49,79,.65)), url('" +
+                currentCategory.image + "')";
+
+            document.title =
+                currentCategory.name + " | GLOBAL MARKET";
+
         }
 
-        if (selectedSearch) {
-            searchInput.value = selectedSearch;
+        /* CREATE RELATED CATEGORY CARDS */
+
+        const relatedCategories =
+            document.getElementById("relatedCategories");
+
+        function createCategoryCard(category) {
+
+            const card = document.createElement("a");
+            card.className = "category-card";
+            card.href =
+                "category-listings.html?category=" +
+                encodeURIComponent(category.slug);
+
+            const imageWrap = document.createElement("div");
+            imageWrap.className = "category-image";
+
+            const image = document.createElement("img");
+            image.src = category.image;
+            image.alt = category.name;
+            image.loading = "lazy";
+
+            image.onerror = function() {
+                image.onerror = null;
+                image.src =
+                    "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80";
+            };
+
+            imageWrap.appendChild(image);
+
+            const content = document.createElement("div");
+            content.className = "category-card-content";
+
+            const heading = document.createElement("h3");
+            heading.textContent = category.icon + " " + category.name;
+
+            const paragraph = document.createElement("p");
+            paragraph.textContent = category.description;
+
+            const explore = document.createElement("div");
+            explore.className = "explore";
+
+            const exploreText = document.createElement("span");
+            exploreText.textContent = "Explore Category";
+
+            const arrow = document.createElement("span");
+            arrow.textContent = "→";
+
+            explore.appendChild(exploreText);
+            explore.appendChild(arrow);
+
+            content.appendChild(heading);
+            content.appendChild(paragraph);
+            content.appendChild(explore);
+
+            card.appendChild(imageWrap);
+            card.appendChild(content);
+
+            return card;
         }
 
-        if (selectedCategory || selectedSearch) {
-            filterListings();
+        categories.forEach(function(category) {
+
+            if (
+                currentCategory &&
+                category.slug === currentCategory.slug
+            ) {
+                return;
+            }
+
+            relatedCategories.appendChild(
+                createCategoryCard(category)
+            );
+
+        });
+
+        /* SEARCH */
+
+        document.getElementById("marketSearch")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                const keyword =
+                    document.getElementById("searchKeyword").value.trim();
+
+                const location =
+                    document.getElementById("searchLocation").value.trim();
+
+                const searchParams = new URLSearchParams();
+
+                if (currentCategory) {
+                    searchParams.set("category", currentCategory.slug);
+                }
+
+                if (keyword) {
+                    searchParams.set("search", keyword);
+                }
+
+                if (location) {
+                    searchParams.set("location", location);
+                }
+
+                window.location.href =
+                    "category-listings.html?" + searchParams.toString();
+
+            });
+
+        /* APPWRITE CATEGORY CHECK */
+
+        async function verifyCategoryFromDatabase() {
+
+            if (!currentCategory || !window.GMAppwrite) {
+                return;
+            }
+
+            try {
+
+                const result = await GMAppwrite.tablesDB.listRows({
+                    databaseId: "global_market_db",
+                    tableId: "categories",
+                    queries: [
+                        GMAppwrite.Query.equal(
+                            "slug",
+                            currentCategory.slug
+                        ),
+                        GMAppwrite.Query.equal("isActive", true),
+                        GMAppwrite.Query.limit(1)
+                    ]
+                });
+
+                if (result.rows && result.rows.length > 0) {
+
+                    const databaseCategory = result.rows[0];
+
+                    if (databaseCategory.name) {
+                        categoryTitle.textContent = databaseCategory.name;
+                    }
+
+                    if (databaseCategory.description) {
+                        categoryDescription.textContent =
+                            databaseCategory.description;
+                    }
+
+                }
+
+            } catch (error) {
+
+                console.warn(
+                    "Could not verify category from Appwrite:",
+                    error
+                );
+
+            }
         }
+
+        verifyCategoryFromDatabase();
+
     </script>
 
 </body>
