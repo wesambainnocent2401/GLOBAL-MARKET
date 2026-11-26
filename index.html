@@ -4,562 +4,842 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f5f6f8">
-<title>Marketplace | GLOBAL MARKET</title>
-<meta name="description" content="Discover products, services and businesses across Kenya on GLOBAL MARKET.">
+<meta name="theme-color" content="#123b70">
+<title>GLOBAL MARKET | Discover. Connect. Trade.</title>
+<meta name="description" content="Discover products, services, businesses and opportunities across Kenya with GLOBAL MARKET.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --bg:#f4f6f8;
+:root{
+  --bg:#f4f7fb;
   --surface:#ffffff;
-  --surface2:#f8f9fb;
-  --text:#172338;
-  --muted:#748094;
-  --navy:#102b4e;
-  --navy2:#183c65;
-  --gold:#c49a45;
-  --border:#e8ebef;
-  --shadow:0 12px 35px rgba(20,39,64,.07);
-  --green:#16865b;
-  --danger:#c44747;
+  --surface2:#edf2f8;
+  --text:#17263b;
+  --muted:#748197;
+  --blue:#123b70;
+  --blue2:#20558f;
+  --gold:#c5a04d;
+  --border:#e1e7ef;
+  --shadow:0 12px 35px rgba(18,49,83,.08);
 }
 
-body.dark {
-  --bg:#101923;
-  --surface:#192635;
-  --surface2:#202f40;
-  --text:#edf2f8;
-  --muted:#a6b2c1;
-  --navy:#d9e7f8;
-  --navy2:#c4d9ef;
-  --border:#304154;
-  --shadow:0 12px 35px rgba(0,0,0,.2);
+body.dark-theme{
+  --bg:#101a29;
+  --surface:#19283b;
+  --surface2:#22354c;
+  --text:#edf3fa;
+  --muted:#aab8c9;
+  --blue:#dce9f8;
+  --blue2:#c5d9ef;
+  --gold:#e2bd70;
+  --border:#30435a;
+  --shadow:0 12px 35px rgba(0,0,0,.22);
 }
 
-* {box-sizing:border-box;margin:0;padding:0}
-html {scroll-behavior:smooth}
-body {
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
   font-family:"DM Sans",sans-serif;
   background:var(--bg);
   color:var(--text);
   line-height:1.6;
   transition:background .25s,color .25s;
 }
-button,input,select {font:inherit}
-button {cursor:pointer}
-a {color:inherit;text-decoration:none}
-img {display:block;max-width:100%}
-.container {width:min(1200px,92%);margin:auto}
+a{text-decoration:none;color:inherit}
+button,input,select{font:inherit}
+button{cursor:pointer}
+img{display:block;max-width:100%}
+.container{width:min(1200px,92%);margin:auto}
+
+/* TOP STRIP */
+.top-strip{
+  background:#102c4e;
+  color:#eaf1f8;
+  padding:8px 0;
+  text-align:center;
+  font-size:11px;
+  letter-spacing:.3px;
+}
+.top-strip span{color:#e5c477;font-weight:800}
 
 /* HEADER */
-header {
-  background:var(--surface);
-  border-bottom:1px solid var(--border);
+header{
   position:sticky;
   top:0;
-  z-index:50;
+  z-index:100;
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  box-shadow:0 4px 20px rgba(15,40,70,.04);
 }
-.navbar {
+.navbar{
   min-height:76px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:20px;
+  gap:18px;
 }
-.brand {
+.brand{
   display:flex;
   align-items:center;
   gap:10px;
+  flex-shrink:0;
+}
+.brand-mark{
+  width:43px;
+  height:43px;
+  display:grid;
+  place-items:center;
+  border-radius:13px;
+  background:#123b70;
+  color:#fff;
   font-family:Manrope,sans-serif;
-  font-weight:800;
   font-size:21px;
-  color:var(--navy);
-  white-space:nowrap;
+  font-weight:800;
+  box-shadow:0 5px 13px rgba(18,59,112,.2);
 }
-.brand-mark {
-  width:39px;height:39px;
-  display:grid;place-items:center;
-  background:var(--navy2);
-  color:white;
-  border-radius:12px;
-  font-size:20px;
+.brand-name{
+  font-family:Manrope,sans-serif;
+  font-size:19px;
+  font-weight:800;
+  letter-spacing:-.7px;
+  color:var(--text);
 }
-.brand span {color:var(--gold)}
-.nav-links {
-  display:flex;align-items:center;gap:25px;
-  color:var(--muted);font-size:14px;font-weight:600;
-}
-.nav-links a:hover,.nav-links a.active {color:var(--gold)}
-.nav-actions {display:flex;align-items:center;gap:10px}
-.icon-btn {
-  width:40px;height:40px;border-radius:12px;
-  border:1px solid var(--border);
-  background:var(--surface2);color:var(--text);
-  display:grid;place-items:center;font-size:18px;
-}
-.primary-btn {
-  border:0;border-radius:11px;
-  background:#102b4e;color:white;
-  padding:12px 18px;font-weight:700;
-  transition:.2s;
-}
-.primary-btn:hover {background:#234b78;transform:translateY(-1px)}
-.gold-btn {background:var(--gold);color:#172338}
-.mobile-menu {display:none}
+.brand-name span{color:var(--gold)}
 
-/* HERO */
-.hero {
-  margin:26px auto 0;
-  min-height:340px;
-  border-radius:24px;
-  overflow:hidden;
-  position:relative;
+.nav-links{
   display:flex;
   align-items:center;
-  background:
-    linear-gradient(90deg,rgba(9,29,53,.94),rgba(9,29,53,.78) 52%,rgba(9,29,53,.16)),
-    url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1800&q=85") center/cover;
+  gap:23px;
+  font-size:13px;
+  font-weight:700;
 }
-.hero-content {padding:48px;max-width:650px;color:white;position:relative;z-index:1}
-.eyebrow {
-  display:inline-flex;align-items:center;gap:8px;
-  color:#f0d18c;font-size:12px;font-weight:800;
-  letter-spacing:1.7px;text-transform:uppercase;
-  margin-bottom:15px;
+.nav-links a{
+  color:var(--text);
+  transition:.2s;
 }
-.eyebrow:before {content:"";width:24px;height:2px;background:var(--gold)}
-.hero h1 {
-  font-family:Manrope,sans-serif;
-  font-size:clamp(32px,5vw,52px);
-  line-height:1.12;font-weight:800;
-  margin-bottom:15px;letter-spacing:-1.5px;
+.nav-links a:hover{color:var(--gold)}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:9px;
 }
-.hero p {font-size:15px;color:#e1e8f1;max-width:490px}
-.hero-actions {display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
-.outline-btn {
-  border:1px solid rgba(255,255,255,.55);
+.theme-button,.mobile-menu-button{
+  width:41px;
+  height:41px;
+  border-radius:11px;
+  border:1px solid var(--border);
+  background:var(--surface2);
+  color:var(--text);
+  font-size:17px;
+}
+.mobile-menu-button{display:none}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  border:0;
+  border-radius:10px;
+  padding:12px 18px;
+  font-size:13px;
+  font-weight:800;
+  transition:.2s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:#123b70;color:#fff}
+.btn-primary:hover{background:#20558f}
+.btn-gold{background:#d3ae60;color:#17263b}
+.btn-outline{
+  border:1px solid rgba(255,255,255,.7);
+  color:#fff;
   background:rgba(255,255,255,.08);
-  color:white;padding:11px 17px;
-  border-radius:11px;font-weight:700;
 }
-.hero-stats {
-  display:flex;gap:26px;flex-wrap:wrap;
-  margin-top:27px;color:#e5ebf3;font-size:12px;
+
+/* HERO */
+.hero{
+  position:relative;
+  overflow:hidden;
+  min-height:490px;
+  display:flex;
+  align-items:center;
+  color:white;
+  background:
+    linear-gradient(90deg,rgba(8,30,56,.96),rgba(13,48,85,.82) 55%,rgba(12,39,69,.26)),
+    url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1900&q=90") center/cover;
 }
-.hero-stats strong {display:block;font-size:18px;color:white}
+.hero-content{
+  max-width:710px;
+  padding:65px 0 90px;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  color:#e7c77e;
+  text-transform:uppercase;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+  margin-bottom:17px;
+}
+.eyebrow:before{
+  content:"";
+  width:27px;
+  height:2px;
+  background:var(--gold);
+}
+.hero h1{
+  font-family:Manrope,sans-serif;
+  font-size:clamp(36px,5.5vw,62px);
+  line-height:1.1;
+  letter-spacing:-2px;
+  margin-bottom:19px;
+}
+.hero h1 span{color:#e7c77e}
+.hero p{
+  color:#e2eaf3;
+  font-size:15px;
+  max-width:570px;
+  line-height:1.8;
+}
+.hero-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:28px;
+}
+.hero-highlights{
+  display:flex;
+  gap:30px;
+  flex-wrap:wrap;
+  margin-top:38px;
+}
+.hero-highlight strong{
+  display:block;
+  font-family:Manrope,sans-serif;
+  font-size:16px;
+  color:white;
+}
+.hero-highlight span{
+  font-size:11px;
+  color:#c8d5e4;
+}
 
 /* SEARCH */
-.search-panel {
+.search-section{
+  position:relative;
+  z-index:4;
+  margin-top:-35px;
+}
+.search-box{
   background:var(--surface);
   border:1px solid var(--border);
   box-shadow:var(--shadow);
   border-radius:17px;
-  padding:15px;
-  margin-top:-28px;
-  position:relative;z-index:2;
+  padding:19px;
+  display:grid;
+  grid-template-columns:1.5fr 1fr auto;
+  gap:13px;
 }
-.search-row {display:flex;gap:10px}
-.search-input-wrap {
-  flex:1;display:flex;align-items:center;gap:11px;
-  background:var(--surface2);border:1px solid var(--border);
-  border-radius:12px;padding:0 15px;min-width:0;
+.search-field label{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  margin:0 0 6px 3px;
 }
-.search-input-wrap span {font-size:20px;color:var(--muted)}
-.search-input-wrap input {
-  width:100%;height:49px;border:0;outline:0;
-  background:transparent;color:var(--text);font-size:14px;
+.search-field input,.search-field select{
+  width:100%;
+  min-height:48px;
+  border:1px solid var(--border);
+  background:var(--bg);
+  color:var(--text);
+  padding:12px;
+  border-radius:10px;
+  outline:none;
 }
-.search-row button {min-width:120px}
-.search-hint {font-size:11px;color:var(--muted);margin:9px 3px 0}
+.search-field input:focus,.search-field select:focus{
+  border-color:var(--gold);
+}
+.search-submit{
+  align-self:end;
+  min-height:48px;
+  padding-left:26px;
+  padding-right:26px;
+}
 
 /* GENERAL SECTIONS */
-.section {padding:42px 0 0}
-.section-heading {
-  display:flex;justify-content:space-between;
-  align-items:end;gap:15px;margin-bottom:19px;
+section{padding:65px 0}
+.section-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px;
+  margin-bottom:25px;
 }
-.section-heading h2 {
+.section-heading h2{
   font-family:Manrope,sans-serif;
-  font-size:24px;letter-spacing:-.5px;
+  font-size:clamp(23px,3vw,31px);
+  letter-spacing:-.8px;
 }
-.section-heading p {font-size:13px;color:var(--muted);margin-top:3px}
-.text-link {color:var(--gold);font-size:13px;font-weight:800}
-.category-grid {
-  display:grid;grid-template-columns:repeat(6,1fr);gap:13px;
+.section-heading p{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:5px;
 }
-.category-card {
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:15px;padding:18px 10px;text-align:center;
-  transition:.2s;cursor:pointer;
+.text-link{
+  color:var(--blue);
+  font-size:13px;
+  font-weight:800;
+  white-space:nowrap;
 }
-.category-card:hover,.category-card.selected {
-  border-color:var(--gold);transform:translateY(-3px);
+
+/* CATEGORY CARDS */
+.category-grid{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:14px;
+}
+.category-card{
+  display:block;
+  text-align:center;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:21px 12px;
+  box-shadow:0 5px 20px rgba(20,43,70,.025);
+  transition:.25s;
+}
+.category-card:hover{
+  transform:translateY(-5px);
+  border-color:var(--gold);
   box-shadow:var(--shadow);
 }
-.category-icon {
-  width:48px;height:48px;border-radius:15px;
-  display:grid;place-items:center;
-  background:#f5f0e5;color:#9a742d;
-  font-size:23px;margin:0 auto 9px;
+.category-icon{
+  width:49px;
+  height:49px;
+  display:grid;
+  place-items:center;
+  border-radius:15px;
+  margin:0 auto 12px;
+  background:#eaf1fa;
+  color:#123b70;
+  font-size:23px;
 }
-body.dark .category-icon {background:#3b3428;color:#e7c77f}
-.category-card strong {font-size:12px;display:block}
-.category-card small {font-size:10px;color:var(--muted)}
-
-/* FEATURE BANNER */
-.promo {
-  min-height:190px;border-radius:20px;overflow:hidden;
-  background:
-   linear-gradient(90deg,rgba(13,38,66,.95),rgba(13,38,66,.72),rgba(13,38,66,.15)),
-   url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1500&q=85") center/cover;
-  display:flex;align-items:center;margin-top:40px;
+body.dark-theme .category-icon{
+  background:#2b3c50;
 }
-.promo-content {padding:30px 36px;color:white;max-width:560px}
-.promo h2 {font-family:Manrope;font-size:26px;line-height:1.2;margin-bottom:9px}
-.promo p {font-size:13px;color:#e0e8f1}
-.promo .primary-btn {margin-top:17px}
-
-/* LISTINGS */
-.listing-toolbar {
-  display:flex;justify-content:space-between;align-items:center;
-  gap:12px;flex-wrap:wrap;margin-bottom:17px;
+.category-card h3{font-size:12px;line-height:1.5}
+.category-card p{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:5px;
 }
-.filter-row {display:flex;gap:9px;flex-wrap:wrap}
-.filter-select {
-  background:var(--surface);color:var(--text);
-  border:1px solid var(--border);border-radius:10px;
-  padding:10px 12px;font-size:12px;outline:none;
-  max-width:190px;
-}
-.results-count {font-size:12px;color:var(--muted)}
-.product-grid {
-  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px;
-}
-.product-card {
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:16px;overflow:hidden;min-width:0;
-  transition:.22s;position:relative;
-}
-.product-card:hover {transform:translateY(-4px);box-shadow:var(--shadow)}
-.product-image {
-  height:190px;background:var(--surface2);
-  position:relative;overflow:hidden;
-}
-.product-image img {
-  width:100%;height:100%;object-fit:cover;
-  transition:transform .35s;
-}
-.product-card:hover .product-image img {transform:scale(1.05)}
-.product-badge {
-  position:absolute;top:11px;left:11px;
-  background:var(--gold);color:#182338;
-  padding:5px 9px;border-radius:7px;
-  font-size:9px;font-weight:800;text-transform:uppercase;
-}
-.favorite-btn {
-  position:absolute;top:10px;right:10px;
-  width:33px;height:33px;border:0;border-radius:50%;
-  background:rgba(255,255,255,.94);color:#29364a;
-  font-size:17px;
-}
-.favorite-btn.saved {color:#d64d61}
-.product-info {padding:14px}
-.product-category {
-  color:var(--gold);font-size:10px;font-weight:800;
-  text-transform:uppercase;letter-spacing:.7px;
-}
-.product-info h3 {
-  font-family:Manrope;font-size:14px;
-  line-height:1.4;margin:5px 0 7px;
-  display:-webkit-box;-webkit-line-clamp:2;
-  -webkit-box-orient:vertical;overflow:hidden;
-}
-.product-description {
-  color:var(--muted);font-size:11px;line-height:1.5;
-  display:-webkit-box;-webkit-line-clamp:2;
-  -webkit-box-orient:vertical;overflow:hidden;min-height:33px;
-}
-.product-location {
-  display:flex;align-items:center;gap:5px;
-  color:var(--muted);font-size:10px;margin-top:11px;
-}
-.product-footer {
-  display:flex;justify-content:space-between;align-items:center;
-  border-top:1px solid var(--border);padding-top:11px;margin-top:11px;
-}
-.product-footer small {font-size:10px;color:var(--muted)}
-.view-btn {
-  background:var(--navy2);color:white;border:0;
-  padding:8px 11px;border-radius:8px;font-size:10px;font-weight:800;
-}
-body.dark .view-btn {color:#102338;background:#d9e7f8}
-.empty-state {
-  background:var(--surface);border:1px dashed var(--border);
-  border-radius:17px;text-align:center;padding:48px 20px;
+.category-status{
   grid-column:1/-1;
+  text-align:center;
+  padding:25px;
+  color:var(--muted);
 }
-.empty-state .empty-icon {font-size:38px;margin-bottom:10px}
-.empty-state h3 {font-family:Manrope;font-size:18px}
-.empty-state p {color:var(--muted);font-size:13px;margin-top:6px}
-.loading {grid-column:1/-1;text-align:center;padding:40px;color:var(--muted)}
 
-/* TRUST STRIP */
-.trust-grid {
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:15px;margin-top:40px;
+/* PHOTO SHOWCASE */
+.photo-showcase{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:17px;
 }
-.trust-card {
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:15px;padding:20px;display:flex;gap:13px;
+.photo-card{
+  height:220px;
+  border-radius:16px;
+  overflow:hidden;
+  position:relative;
+  background:var(--surface2);
+  isolation:isolate;
 }
-.trust-icon {
-  width:43px;height:43px;flex-shrink:0;
-  border-radius:12px;background:#f5f0e5;
-  display:grid;place-items:center;font-size:20px;
+.photo-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .45s;
 }
-body.dark .trust-icon {background:#3b3428}
-.trust-card h3 {font-size:13px;margin-bottom:3px}
-.trust-card p {font-size:11px;color:var(--muted)}
+.photo-card:hover img{transform:scale(1.08)}
+.photo-card:after{
+  content:"";
+  position:absolute;
+  inset:35% 0 0;
+  background:linear-gradient(transparent,rgba(7,24,44,.88));
+  z-index:0;
+}
+.photo-card div{
+  position:absolute;
+  bottom:15px;
+  left:16px;
+  right:12px;
+  color:white;
+  z-index:1;
+}
+.photo-card strong{
+  display:block;
+  font-family:Manrope,sans-serif;
+  font-size:15px;
+}
+.photo-card span{
+  color:#e2eaf3;
+  font-size:10px;
+}
+
+/* FEATURE CARDS */
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.feature-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition:.25s;
+}
+.feature-card:hover{transform:translateY(-5px)}
+.feature-image{
+  width:100%;
+  height:205px;
+  object-fit:cover;
+}
+.feature-body{padding:20px}
+.feature-body small{
+  color:var(--gold);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+.feature-body h3{
+  font-family:Manrope,sans-serif;
+  font-size:17px;
+  margin:7px 0;
+}
+.feature-body p{
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* HOW IT WORKS */
+.how-section{
+  background:var(--surface2);
+}
+.steps-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.step-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:25px;
+}
+.step-number{
+  width:39px;
+  height:39px;
+  display:grid;
+  place-items:center;
+  border-radius:11px;
+  background:#123b70;
+  color:white;
+  font-weight:800;
+  margin-bottom:15px;
+}
+.step-card h3{font-size:15px;margin-bottom:7px}
+.step-card p{font-size:12px;color:var(--muted)}
+
+/* SELLER BANNER */
+.seller-banner{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(100deg,rgba(10,37,69,.97),rgba(18,59,105,.86)),
+    url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1500&q=85") center/cover;
+  color:white;
+  padding:43px;
+  border-radius:19px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:25px;
+}
+.seller-banner h2{
+  font-family:Manrope,sans-serif;
+  font-size:clamp(23px,3vw,32px);
+  margin-bottom:8px;
+}
+.seller-banner p{
+  color:#dce7f1;
+  font-size:13px;
+  max-width:570px;
+}
 
 /* FOOTER */
-footer {
-  background:#102338;color:#dce5ef;
-  margin-top:55px;padding:42px 0 20px;
+footer{
+  background:#102c4e;
+  color:white;
+  padding:48px 0 20px;
+  margin-top:35px;
 }
-.footer-grid {
-  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr 1fr;
   gap:30px;
+  margin-bottom:35px;
 }
-.footer-brand {font-family:Manrope;font-size:21px;font-weight:800;color:white}
-.footer-brand span {color:var(--gold)}
-.footer-about {font-size:12px;color:#aebdcd;max-width:320px;margin-top:12px}
-footer h4 {font-size:12px;color:white;margin-bottom:13px}
-.footer-links {display:grid;gap:9px}
-.footer-links a {font-size:11px;color:#aebdcd}
-.footer-links a:hover {color:#e7c77f}
-.footer-bottom {
-  border-top:1px solid #304154;margin-top:30px;padding-top:17px;
-  display:flex;justify-content:space-between;gap:10px;
-  color:#9cabbc;font-size:10px;flex-wrap:wrap;
+.footer-brand-name{
+  font-family:Manrope,sans-serif;
+  font-size:21px;
+  font-weight:800;
 }
-
-/* MODAL */
-.modal-backdrop {
-  position:fixed;inset:0;background:rgba(5,16,29,.68);
-  z-index:100;display:none;align-items:center;justify-content:center;
-  padding:18px;
+.footer-brand-name span{color:#e4bf6c}
+.footer-brand p{
+  color:#c1cfdd;
+  font-size:12px;
+  max-width:290px;
+  margin-top:13px;
 }
-.modal-backdrop.show {display:flex}
-.modal {
-  background:var(--surface);color:var(--text);
-  width:min(760px,100%);max-height:90vh;overflow:auto;
-  border-radius:19px;position:relative;
-  box-shadow:0 25px 80px rgba(0,0,0,.25);
+footer h3{
+  font-size:13px;
+  margin-bottom:13px;
+  color:#e6c477;
 }
-.modal-close {
-  position:absolute;right:13px;top:13px;z-index:2;
-  width:37px;height:37px;border:0;border-radius:50%;
-  background:rgba(255,255,255,.95);color:#172338;font-size:20px;
+footer a{
+  display:block;
+  color:#c1cfdd;
+  font-size:12px;
+  margin:9px 0;
 }
-.modal-content {display:grid;grid-template-columns:1fr 1fr}
-.modal-photo {min-height:330px;background:var(--surface2)}
-.modal-photo img {width:100%;height:100%;object-fit:cover}
-.modal-details {padding:30px}
-.modal-details h2 {font-family:Manrope;font-size:22px;line-height:1.25;margin:8px 0}
-.modal-details p {font-size:13px;color:var(--muted);white-space:pre-wrap}
-.modal-meta {margin:18px 0;display:grid;gap:9px;font-size:12px}
-.modal-actions {display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
-.secondary-btn {
-  background:var(--surface2);border:1px solid var(--border);
-  color:var(--text);padding:11px 14px;border-radius:10px;
-  font-weight:700;font-size:12px;
-}
-.notice {
-  padding:12px 14px;border-radius:10px;
-  background:var(--surface2);color:var(--muted);
-  font-size:11px;margin-top:13px;
-}
-.toast {
-  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
-  background:#142b43;color:white;padding:12px 18px;
-  border-radius:10px;font-size:12px;z-index:200;
-  display:none;box-shadow:var(--shadow);
+footer a:hover{color:white}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.15);
+  padding-top:18px;
+  color:#b6c5d4;
+  font-size:11px;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
 }
 
 /* RESPONSIVE */
-@media(max-width:950px) {
-  .category-grid {grid-template-columns:repeat(3,1fr)}
-  .product-grid {grid-template-columns:repeat(3,minmax(0,1fr))}
-  .nav-links {gap:14px}
+@media(max-width:950px){
+  .nav-links{gap:13px}
+  .category-grid{grid-template-columns:repeat(3,1fr)}
+  .photo-showcase{grid-template-columns:repeat(2,1fr)}
 }
-@media(max-width:700px) {
-  .navbar {min-height:66px}
-  .nav-links {
-    display:none;position:absolute;top:66px;left:0;right:0;
-    background:var(--surface);padding:18px 5%;
+@media(max-width:700px){
+  .navbar{min-height:67px}
+  .mobile-menu-button{display:block}
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:67px;
+    left:0;
+    right:0;
+    background:var(--surface);
     border-bottom:1px solid var(--border);
-    flex-direction:column;align-items:flex-start;gap:17px;
+    padding:15px 4%;
+    flex-direction:column;
+    align-items:stretch;
+    gap:5px;
   }
-  .nav-links.open {display:flex}
-  .mobile-menu {display:grid}
-  .nav-actions .desktop-create {display:none}
-  .hero {min-height:370px;border-radius:18px}
-  .hero-content {padding:28px 23px}
-  .hero h1 {font-size:35px}
-  .hero-stats {gap:17px}
-  .search-panel {margin-top:-18px}
-  .search-row {flex-direction:column}
-  .search-row button {height:46px}
-  .category-grid {grid-template-columns:repeat(3,1fr);gap:9px}
-  .category-card {padding:14px 5px}
-  .category-icon {width:42px;height:42px}
-  .section {padding-top:32px}
-  .section-heading h2 {font-size:21px}
-  .product-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
-  .product-image {height:145px}
-  .product-info {padding:11px}
-  .product-info h3 {font-size:12px}
-  .promo {min-height:210px}
-  .promo-content {padding:24px}
-  .trust-grid {grid-template-columns:1fr}
-  .footer-grid {grid-template-columns:1fr 1fr}
-  .modal-content {grid-template-columns:1fr}
-  .modal-photo {height:230px;min-height:0}
-  .modal-details {padding:21px}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:10px}
+  .nav-actions .sign-in{display:none}
+  .brand-name{font-size:16px}
+  .brand-mark{width:38px;height:38px}
+  .hero{min-height:480px}
+  .hero-content{padding:55px 0 80px}
+  .hero h1{letter-spacing:-1px}
+  .hero-highlights{gap:18px}
+  .search-box{grid-template-columns:1fr}
+  .search-submit{width:100%}
+  section{padding:48px 0}
+  .category-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .photo-showcase{gap:10px}
+  .photo-card{height:175px}
+  .feature-grid,.steps-grid{grid-template-columns:1fr}
+  .section-heading{align-items:start}
+  .seller-banner{
+    padding:27px;
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .footer-grid{grid-template-columns:repeat(2,1fr)}
 }
-@media(max-width:390px) {
-  .brand {font-size:18px}
-  .category-card strong {font-size:10px}
-  .product-image {height:125px}
-  .product-footer {align-items:flex-start;flex-direction:column;gap:8px}
-  .footer-grid {grid-template-columns:1fr}
+@media(max-width:390px){
+  .top-strip{font-size:10px}
+  .brand-name{font-size:14px}
+  .photo-card{height:145px}
+  .footer-grid{gap:18px}
 }
 </style>
 </head>
 
 <body>
 
+<div class="top-strip">
+  Your marketplace for products, services and opportunities in <span>Kenya</span>.
+</div>
+
 <header>
   <div class="container navbar">
-    <a class="brand" href="index.html">
-      <span class="brand-mark">G</span>
-      GLOBAL <span>MARKET</span>
+
+    <a class="brand" href="index.html" aria-label="GLOBAL MARKET homepage">
+      <div class="brand-mark">G</div>
+      <div class="brand-name">GLOBAL <span>MARKET</span></div>
     </a>
 
     <nav class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
-      <a href="marketplace.html" class="active">Marketplace</a>
+      <a href="marketplace.html">Marketplace</a>
       <a href="bussiness-registration.html">Register Business</a>
       <a href="profile.html">My Account</a>
-      <a href="about.html">About</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
     </nav>
 
     <div class="nav-actions">
-      <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">☾</button>
-      <a class="primary-btn desktop-create" href="create-ad.html">+ Post an Ad</a>
-      <button class="icon-btn mobile-menu" id="menuBtn" aria-label="Open menu">☰</button>
+      <button class="theme-button" id="themeToggle" type="button" aria-label="Toggle theme">☾</button>
+      <a class="btn btn-primary sign-in" href="login.html">Sign In</a>
+      <a class="btn btn-gold sign-in" href="create-ad.html">+ Post an Ad</a>
+      <button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-label="Open navigation">☰</button>
     </div>
+
   </div>
 </header>
 
-<main class="container">
+<main>
 
   <section class="hero">
-    <div class="hero-content">
-      <div class="eyebrow">Kenya's marketplace</div>
-      <h1>Discover more.<br>Buy better. Sell smarter.</h1>
-      <p>Explore products, services and businesses from sellers across Kenya. Find what you need and connect directly with the people behind it.</p>
-      <div class="hero-actions">
-        <a href="#listings" class="primary-btn gold-btn">Explore Marketplace →</a>
-        <a href="create-ad.html" class="outline-btn">Start Selling</a>
-      </div>
-      <div class="hero-stats">
-        <div><strong>Discover</strong>Products and services</div>
-        <div><strong>Connect</strong>Direct seller contact</div>
-        <div><strong>Across Kenya</strong>Local opportunities</div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">Discover. Connect. Trade.</div>
+        <h1>Everything you need, <span>in one marketplace.</span></h1>
+        <p>
+          Discover products, connect with businesses, explore services
+          and find new opportunities — all from one convenient marketplace.
+        </p>
+        <div class="hero-buttons">
+          <a href="marketplace.html" class="btn btn-gold">Explore Marketplace →</a>
+          <a href="register.html" class="btn btn-outline">Join GLOBAL MARKET</a>
+        </div>
+
+        <div class="hero-highlights">
+          <div class="hero-highlight">
+            <strong>Discover</strong>
+            <span>Products and services</span>
+          </div>
+          <div class="hero-highlight">
+            <strong>Connect</strong>
+            <span>Find sellers and businesses</span>
+          </div>
+          <div class="hero-highlight">
+            <strong>Grow</strong>
+            <span>Promote your business</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="search-panel">
-    <form class="search-row" id="searchForm">
-      <div class="search-input-wrap">
-        <span>⌕</span>
-        <input id="searchInput" type="search" placeholder="What are you looking for today?">
+  <div class="container search-section">
+    <form class="search-box" id="marketSearch">
+
+      <div class="search-field">
+        <label for="searchKeyword">What are you looking for?</label>
+        <input id="searchKeyword" type="search" placeholder="Search products, services or businesses...">
       </div>
-      <button class="primary-btn" type="submit">Search listings</button>
-    </form>
-    <p class="search-hint">Search products, services, businesses or locations.</p>
-  </section>
 
-  <section class="section">
-    <div class="section-heading">
-      <div>
-        <h2>Explore categories</h2>
-        <p>Find the right section for what you need.</p>
-      </div>
-      <a href="#listings" class="text-link">View listings →</a>
-    </div>
-    <div class="category-grid" id="categoryGrid">
-      <div class="loading">Loading categories...</div>
-    </div>
-  </section>
-
-  <section class="promo">
-    <div class="promo-content">
-      <div class="eyebrow">Grow your business</div>
-      <h2>Put your products in front of more customers.</h2>
-      <p>Create an advertisement, showcase your products with photos and videos, and help customers discover your business.</p>
-      <a href="create-ad.html" class="primary-btn gold-btn">Advertise with us →</a>
-    </div>
-  </section>
-
-  <section class="section" id="listings">
-    <div class="section-heading">
-      <div>
-        <h2>Discover listings</h2>
-        <p>Explore advertisements available on GLOBAL MARKET.</p>
-      </div>
-      <a href="create-ad.html" class="text-link">Post your ad +</a>
-    </div>
-
-    <div class="listing-toolbar">
-      <div class="filter-row">
-        <select class="filter-select" id="categoryFilter">
+      <div class="search-field">
+        <label for="searchCategory">Choose a category</label>
+        <select id="searchCategory">
           <option value="">All categories</option>
         </select>
-        <select class="filter-select" id="countyFilter">
-          <option value="">All counties</option>
-        </select>
-        <select class="filter-select" id="sortFilter">
-          <option value="newest">Newest first</option>
-          <option value="oldest">Oldest first</option>
-        </select>
       </div>
-      <div class="results-count" id="resultsCount">Loading listings...</div>
-    </div>
 
-    <div class="product-grid" id="productGrid">
-      <div class="loading">Loading marketplace listings...</div>
+      <button class="btn btn-primary search-submit" type="submit">Search →</button>
+
+    </form>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <h2>Browse Marketplace Categories</h2>
+          <p>Find the right products and services in one place.</p>
+        </div>
+        <a href="marketplace.html" class="text-link">Visit marketplace →</a>
+      </div>
+
+      <div class="category-grid" id="categoryGrid">
+        <div class="category-status">Loading marketplace categories...</div>
+      </div>
     </div>
   </section>
 
-  <section class="trust-grid">
-    <div class="trust-card">
-      <div class="trust-icon">🔎</div>
-      <div><h3>Easy discovery</h3><p>Search and explore listings across different categories.</p></div>
+  <section style="padding-top:0">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <h2>Explore What's Available</h2>
+          <p>Discover products, services and businesses across different industries.</p>
+        </div>
+      </div>
+
+      <div class="photo-showcase">
+
+        <a class="photo-card" href="marketplace.html">
+          <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=800&q=85" alt="Electronics and technology">
+          <div><strong>Electronics</strong><span>Technology and gadgets</span></div>
+        </a>
+
+        <a class="photo-card" href="marketplace.html">
+          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=85" alt="Fashion clothing">
+          <div><strong>Fashion</strong><span>Style and clothing</span></div>
+        </a>
+
+        <a class="photo-card" href="marketplace.html">
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=85" alt="Modern furniture">
+          <div><strong>Home & Furniture</strong><span>Make your space beautiful</span></div>
+        </a>
+
+        <a class="photo-card" href="marketplace.html">
+          <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=85" alt="Vehicle">
+          <div><strong>Vehicles</strong><span>Explore transport options</span></div>
+        </a>
+
+        <a class="photo-card" href="marketplace.html">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=85" alt="Fresh groceries">
+          <div><strong>Food & Groceries</strong><span>Fresh products and food</span></div>
+        </a>
+
+        <a class="photo-card" href="marketplace.html">
+          <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=800&q=85" alt="Beauty products">
+          <div><strong>Beauty</strong><span>Personal care products</span></div>
+        </a>
+
+        <a class="photo-card" href="marketplace.html">
+          <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=85" alt="Books and stationery">
+          <div><strong>Books & Stationery</strong><span>Learning and creativity</span></div>
+        </a>
+
+        <a class="photo-card" href="marketplace.html">
+          <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&q=85" alt="Professional services">
+          <div><strong>Professional Services</strong><span>Skills and solutions</span></div>
+        </a>
+
+      </div>
     </div>
-    <div class="trust-card">
-      <div class="trust-icon">🤝</div>
-      <div><h3>Connect with sellers</h3><p>Get in touch with advertisers directly about their listings.</p></div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <h2>Explore the Marketplace</h2>
+          <p>Discover different ways to shop, connect and grow.</p>
+        </div>
+      </div>
+
+      <div class="feature-grid">
+
+        <a href="marketplace.html" class="feature-card">
+          <img class="feature-image"
+            src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85"
+            alt="Headphones and electronics">
+          <div class="feature-body">
+            <small>Shop and discover</small>
+            <h3>Products & Goods</h3>
+            <p>Explore products offered by sellers and businesses.</p>
+          </div>
+        </a>
+
+        <a href="marketplace.html" class="feature-card">
+          <img class="feature-image"
+            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=85"
+            alt="Professionals working together">
+          <div class="feature-body">
+            <small>Find the right help</small>
+            <h3>Services</h3>
+            <p>Discover service providers and professional solutions.</p>
+          </div>
+        </a>
+
+        <a href="bussiness-registration.html" class="feature-card">
+          <img class="feature-image"
+            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=85"
+            alt="Modern business workspace">
+          <div class="feature-body">
+            <small>Grow your business</small>
+            <h3>Business Directory</h3>
+            <p>Connect with businesses and introduce your own.</p>
+          </div>
+        </a>
+
+      </div>
     </div>
-    <div class="trust-card">
-      <div class="trust-icon">📍</div>
-      <div><h3>Find local opportunities</h3><p>Discover products and services in different counties.</p></div>
+  </section>
+
+  <section class="how-section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <h2>How GLOBAL MARKET Works</h2>
+          <p>A simple way to discover opportunities and reach customers.</p>
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <h3>Create Your Account</h3>
+          <p>Register and set up your account to access marketplace features.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <h3>Discover or Advertise</h3>
+          <p>Explore available listings or create advertisements for your products and services.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <h3>Connect</h3>
+          <p>Use the available contact and messaging features to connect with other users.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="seller-banner">
+        <div>
+          <h2>Have something to sell or promote?</h2>
+          <p>
+            Introduce your products, services or business to people
+            exploring GLOBAL MARKET.
+          </p>
+        </div>
+        <a href="create-ad.html" class="btn btn-gold">Create an Advertisement →</a>
+      </div>
     </div>
   </section>
 
@@ -567,71 +847,53 @@ footer h4 {font-size:12px;color:white;margin-bottom:13px}
 
 <footer>
   <div class="container">
+
     <div class="footer-grid">
-      <div>
-        <div class="footer-brand">GLOBAL <span>MARKET</span></div>
-        <p class="footer-about">A marketplace connecting customers, advertisers and businesses across Kenya. Discover opportunities and grow together.</p>
+
+      <div class="footer-brand">
+        <div class="footer-brand-name">GLOBAL <span>MARKET</span></div>
+        <p>
+          A marketplace designed to help people discover products,
+          services, businesses and opportunities across Kenya.
+        </p>
       </div>
+
       <div>
-        <h4>Explore</h4>
-        <div class="footer-links">
-          <a href="marketplace.html">Marketplace</a>
-          <a href="index.html">Home</a>
-          <a href="bussiness-registration.html">Businesses</a>
-          <a href="create-ad.html">Post an advertisement</a>
-        </div>
+        <h3>Marketplace</h3>
+        <a href="marketplace.html">Browse Marketplace</a>
+        <a href="marketplace.html">All Categories</a>
+        <a href="advertise.html">Advertise</a>
+        <a href="bussiness-registration.html">Register Business</a>
       </div>
+
       <div>
-        <h4>Your account</h4>
-        <div class="footer-links">
-          <a href="profile.html">My profile</a>
-          <a href="my-ads.html">My advertisements</a>
-          <a href="messages.html">Messages</a>
-          <a href="favourites.html">Favourites</a>
-        </div>
+        <h3>My Account</h3>
+        <a href="register.html">Create Account</a>
+        <a href="login.html">Sign In</a>
+        <a href="profile.html">My Dashboard</a>
+        <a href="my-ads.html">My Advertisements</a>
+        <a href="messages.html">Messages</a>
+        <a href="favourites.html">Favourites</a>
       </div>
+
       <div>
-        <h4>Information</h4>
-        <div class="footer-links">
-          <a href="about.html">About us</a>
-          <a href="contact.html">Contact</a>
-          <a href="help.html">Help centre</a>
-          <a href="privacy.html">Privacy</a>
-        </div>
+        <h3>Information</h3>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="help.html">Help Centre</a>
+        <a href="terms.html">Terms & Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
       </div>
+
     </div>
+
     <div class="footer-bottom">
-      <span>© <span id="year"></span> GLOBAL MARKET. All rights reserved.</span>
-      <span>Connecting Kenya to opportunity.</span>
+      <span>© <span id="currentYear"></span> GLOBAL MARKET. All rights reserved.</span>
+      <span>Discover. Connect. Trade.</span>
     </div>
+
   </div>
 </footer>
-
-<!-- LISTING DETAILS POPUP -->
-<div class="modal-backdrop" id="detailsModal">
-  <div class="modal">
-    <button class="modal-close" id="closeModal" aria-label="Close">×</button>
-    <div class="modal-content">
-      <div class="modal-photo"><img id="modalImage" src="" alt="Advertisement image"></div>
-      <div class="modal-details">
-        <div class="product-category" id="modalCategory"></div>
-        <h2 id="modalTitle"></h2>
-        <p id="modalDescription"></p>
-        <div class="modal-meta">
-          <div>📍 <span id="modalLocation"></span></div>
-          <div>☎ <span id="modalPhone"></span></div>
-        </div>
-        <div class="modal-actions">
-          <a class="primary-btn" id="whatsappBtn" href="#" target="_blank" rel="noopener">Contact seller</a>
-          <button class="secondary-btn" id="copyPhoneBtn">Copy phone</button>
-        </div>
-        <div class="notice">Please confirm product availability, details and any agreed terms directly with the advertiser before making a purchase.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/appwrite@29.0.0"></script>
 <script src="appwrite-config.js"></script>
@@ -639,455 +901,147 @@ footer h4 {font-size:12px;color:white;margin-bottom:13px}
 <script>
 "use strict";
 
-/* GLOBAL MARKET MARKETPLACE */
+/* MOBILE NAVIGATION */
+const mobileMenuButton = document.getElementById("mobileMenuButton");
+const navLinks = document.getElementById("navLinks");
 
-const DATABASE_ID = "global_market_db";
-const CATEGORY_TABLE = "categories";
-const AD_TABLE = "advertisements";
-const MEDIA_TABLE = "advertisement_media";
+mobileMenuButton.addEventListener("click",()=>{
+  const opened = navLinks.classList.toggle("open");
+  mobileMenuButton.setAttribute("aria-expanded",String(opened));
+});
 
-const $ = id => document.getElementById(id);
+navLinks.querySelectorAll("a").forEach(link=>{
+  link.addEventListener("click",()=>{
+    navLinks.classList.remove("open");
+    mobileMenuButton.setAttribute("aria-expanded","false");
+  });
+});
 
-let categories = [];
-let advertisements = [];
-let mediaItems = [];
-let selectedCategory = "";
-let searchTerm = "";
-let selectedCounty = "";
-let sortOrder = "newest";
-let currentListing = null;
-let favouriteIds = new Set();
+/* THEME */
+const themeToggle = document.getElementById("themeToggle");
+
+function applyTheme(theme){
+  document.body.classList.toggle("dark-theme",theme==="dark");
+  themeToggle.textContent = theme==="dark" ? "☀" : "☾";
+  localStorage.setItem("gm-theme",theme);
+}
+
+applyTheme(localStorage.getItem("gm-theme")||"light");
+
+themeToggle.addEventListener("click",()=>{
+  const dark = document.body.classList.contains("dark-theme");
+  applyTheme(dark ? "light" : "dark");
+});
+
+/* SEARCH */
+document.getElementById("marketSearch").addEventListener("submit",event=>{
+  event.preventDefault();
+
+  const keyword = document.getElementById("searchKeyword").value.trim();
+  const category = document.getElementById("searchCategory").value;
+
+  const params = new URLSearchParams();
+
+  if(keyword) params.set("search",keyword);
+  if(category) params.set("category",category);
+
+  window.location.href = "marketplace.html"+
+    (params.toString() ? "?"+params.toString() : "");
+});
+
+/* APPWRITE CATEGORIES */
+const categoryGrid = document.getElementById("categoryGrid");
+const searchCategory = document.getElementById("searchCategory");
 
 const categoryIcons = {
-  "Electronics":"📱",
-  "Fashion":"👕",
-  "Food & Groceries":"🛒",
-  "Vehicles":"🚗",
-  "Real Estate":"🏠",
-  "Services":"🛠️",
-  "Education":"🎓",
-  "Jobs & Careers":"💼",
-  "Home & Furniture":"🛋️",
-  "Sports & Outdoors":"⚽",
-  "Beauty & Personal Care":"💄",
-  "Books & Stationery":"📚",
-  "Agriculture & Farming":"🌱",
-  "Baby & Kids":"🧸",
-  "Other Products & Services":"✨"
+  "electronics":"💻",
+  "fashion":"👕",
+  "food & groceries":"🧺",
+  "vehicles":"🚗",
+  "real estate":"🏠",
+  "services":"🛠️",
+  "education":"🎓",
+  "jobs & careers":"💼",
+  "home & furniture":"🛋️",
+  "sports & outdoors":"⚽",
+  "beauty & personal care":"✨",
+  "books & stationery":"📚",
+  "agriculture & farming":"🌱",
+  "baby & kids":"🧸",
+  "other products & services":"🛍️"
 };
 
-const fallbackPhotos = [
-  "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80"
-];
-
-function escapeHTML(value) {
-  return String(value ?? "").replace(/[&<>"']/g, char => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-  })[char]);
+function getCategoryIcon(category){
+  const key = (category.name||"").toLowerCase();
+  return category.icon || categoryIcons[key] || "🛍️";
 }
 
-function showToast(message) {
-  const toast = $("toast");
-  toast.textContent = message;
-  toast.style.display = "block";
-  clearTimeout(showToast.timer);
-  showToast.timer = setTimeout(() => toast.style.display = "none", 2800);
+function createCategoryCard(category){
+  const link = document.createElement("a");
+  link.className = "category-card";
+  link.href = "marketplace.html?category="+encodeURIComponent(category.$id);
+
+  const icon = document.createElement("div");
+  icon.className = "category-icon";
+  icon.textContent = getCategoryIcon(category);
+
+  const name = document.createElement("h3");
+  name.textContent = category.name || "Category";
+
+  const description = document.createElement("p");
+  description.textContent = category.description || "Explore listings";
+
+  link.append(icon,name,description);
+  return link;
 }
 
-function themeSetup() {
-  const saved = localStorage.getItem("gm-theme");
-  if (saved === "dark") document.body.classList.add("dark");
-  updateThemeIcon();
-}
+async function loadCategories(){
+  try{
+    if(!window.GMAppwrite){
+      throw new Error("Appwrite connection is not available.");
+    }
 
-function updateThemeIcon() {
-  $("themeBtn").textContent = document.body.classList.contains("dark") ? "☀" : "☾";
-}
-
-$("themeBtn").addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  localStorage.setItem("gm-theme",
-    document.body.classList.contains("dark") ? "dark" : "light"
-  );
-  updateThemeIcon();
-});
-
-$("menuBtn").addEventListener("click", () => {
-  $("navLinks").classList.toggle("open");
-});
-
-$("year").textContent = new Date().getFullYear();
-
-function getRows(response) {
-  return response?.rows || response?.documents || [];
-}
-
-function getCategoryName(categoryId) {
-  const category = categories.find(item => item.$id === categoryId);
-  return category?.name || "Other Products & Services";
-}
-
-function getMediaFor(adId) {
-  return mediaItems
-    .filter(item => item.advertisementId === adId)
-    .sort((a,b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
-}
-
-function getAdImage(ad, index) {
-  const media = getMediaFor(ad.$id);
-  const photo = media.find(item =>
-    String(item.mediaType || "").toLowerCase().includes("image") &&
-    item.fileUrl
-  );
-  return photo?.fileUrl || fallbackPhotos[index % fallbackPhotos.length];
-}
-
-function isPublicListing(ad) {
-  const status = String(ad.status || "").toLowerCase().trim();
-  return ["active","approved","published","live"].includes(status);
-}
-
-async function loadCategories() {
-  try {
     const response = await GMAppwrite.tablesDB.listRows({
-      databaseId:DATABASE_ID,
-      tableId:CATEGORY_TABLE,
+      databaseId:"global_market_db",
+      tableId:"categories",
       queries:[
-        GMAppwrite.Query.equal("isActive", true),
+        GMAppwrite.Query.equal("isActive",true),
+        GMAppwrite.Query.orderAsc("sortOrder"),
         GMAppwrite.Query.limit(100)
       ]
     });
 
-    categories = getRows(response).sort((a,b) =>
-      Number(a.sortOrder || 0) - Number(b.sortOrder || 0)
-    );
+    const categories = response.rows || [];
+    categoryGrid.innerHTML = "";
 
-    renderCategories();
-    populateCategoryFilter();
-  } catch(error) {
-    console.error("Category loading error:", error);
-    $("categoryGrid").innerHTML =
-      '<div class="empty-state"><h3>Categories unavailable</h3><p>We could not load categories right now.</p></div>';
-  }
-}
+    if(!categories.length){
+      categoryGrid.innerHTML =
+        '<div class="category-status">No active categories are available yet.</div>';
+      return;
+    }
 
-function renderCategories() {
-  const grid = $("categoryGrid");
+    categories.forEach(category=>{
+      categoryGrid.appendChild(createCategoryCard(category));
 
-  if (!categories.length) {
-    grid.innerHTML = '<div class="empty-state"><h3>No categories yet</h3><p>Categories will appear here when available.</p></div>';
-    return;
-  }
-
-  grid.innerHTML = categories.map(category => {
-    const icon = category.icon || categoryIcons[category.name] || "✦";
-    return `
-      <button class="category-card ${selectedCategory === category.$id ? "selected" : ""}"
-        data-category="${escapeHTML(category.$id)}" type="button">
-        <span class="category-icon">${escapeHTML(icon)}</span>
-        <strong>${escapeHTML(category.name)}</strong>
-        <small>Explore listings</small>
-      </button>
-    `;
-  }).join("");
-
-  grid.querySelectorAll("[data-category]").forEach(button => {
-    button.addEventListener("click", () => {
-      selectedCategory = button.dataset.category;
-      $("categoryFilter").value = selectedCategory;
-      renderCategories();
-      renderListings();
-      $("listings").scrollIntoView({behavior:"smooth"});
+      const option = document.createElement("option");
+      option.value = category.$id;
+      option.textContent = category.name;
+      searchCategory.appendChild(option);
     });
-  });
-}
 
-function populateCategoryFilter() {
-  const select = $("categoryFilter");
-  select.innerHTML = '<option value="">All categories</option>' +
-    categories.map(category =>
-      `<option value="${escapeHTML(category.$id)}">${escapeHTML(category.name)}</option>`
-    ).join("");
-}
-
-function populateCountyFilter() {
-  const counties = [...new Set(
-    advertisements.map(ad => String(ad.county || "").trim()).filter(Boolean)
-  )].sort();
-
-  $("countyFilter").innerHTML = '<option value="">All counties</option>' +
-    counties.map(county =>
-      `<option value="${escapeHTML(county)}">${escapeHTML(county)}</option>`
-    ).join("");
-}
-
-async function loadAdvertisements() {
-  $("productGrid").innerHTML = '<div class="loading">Finding advertisements...</div>';
-
-  try {
-    const [adsResponse, mediaResponse] = await Promise.all([
-      GMAppwrite.tablesDB.listRows({
-        databaseId:DATABASE_ID,
-        tableId:AD_TABLE,
-        queries:[GMAppwrite.Query.limit(100)]
-      }),
-      GMAppwrite.tablesDB.listRows({
-        databaseId:DATABASE_ID,
-        tableId:MEDIA_TABLE,
-        queries:[GMAppwrite.Query.limit(500)]
-      }).catch(error => {
-        console.warn("Media could not be loaded:", error);
-        return {rows:[]};
-      })
-    ]);
-
-    advertisements = getRows(adsResponse).filter(isPublicListing);
-    mediaItems = getRows(mediaResponse);
-
-    populateCountyFilter();
-    renderListings();
-  } catch(error) {
-    console.error("Marketplace loading error:", error);
-    $("productGrid").innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon">⚠️</div>
-        <h3>We couldn't load the listings</h3>
-        <p>Please refresh the page. If the problem continues, the Appwrite table permissions or database connection may need checking.</p>
-        <button class="primary-btn" style="margin-top:15px" onclick="loadAdvertisements()">Try again</button>
-      </div>
-    `;
-    $("resultsCount").textContent = "Unable to load listings";
+  }catch(error){
+    console.error("Category loading error:",error);
+    categoryGrid.innerHTML =
+      '<div class="category-status">Categories could not load right now. Please refresh and try again.</div>';
   }
 }
 
-function getFilteredListings() {
-  let list = [...advertisements];
-
-  if (selectedCategory) {
-    list = list.filter(ad => ad.categoryId === selectedCategory);
-  }
-
-  if (selectedCounty) {
-    list = list.filter(ad =>
-      String(ad.county || "").toLowerCase() === selectedCounty.toLowerCase()
-    );
-  }
-
-  if (searchTerm) {
-    const term = searchTerm.toLowerCase();
-    list = list.filter(ad => {
-      const category = getCategoryName(ad.categoryId);
-      const text = [
-        ad.title,ad.description,ad.county,
-        ad.townLocation,category
-      ].join(" ").toLowerCase();
-      return text.includes(term);
-    });
-  }
-
-  list.sort((a,b) => {
-    const dateA = new Date(a.$createdAt || 0).getTime();
-    const dateB = new Date(b.$createdAt || 0).getTime();
-    return sortOrder === "oldest" ? dateA - dateB : dateB - dateA;
-  });
-
-  return list;
-}
-
-function renderListings() {
-  const grid = $("productGrid");
-  const list = getFilteredListings();
-
-  $("resultsCount").textContent =
-    `${list.length} ${list.length === 1 ? "listing" : "listings"} found`;
-
-  if (!list.length) {
-    grid.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon">🛍️</div>
-        <h3>No listings found</h3>
-        <p>There are no published advertisements matching your search yet. Try another category or search term.</p>
-        <button class="secondary-btn" style="margin-top:15px" id="clearFilters">Clear filters</button>
-      </div>
-    `;
-    $("clearFilters").addEventListener("click", clearFilters);
-    return;
-  }
-
-  grid.innerHTML = list.map((ad,index) => {
-    const category = getCategoryName(ad.categoryId);
-    const image = getAdImage(ad,index);
-    const featured = ad.isFeatured === true;
-    const location = [ad.townLocation,ad.county].filter(Boolean).join(", ");
-    const saved = favouriteIds.has(ad.$id);
-
-    return `
-      <article class="product-card">
-        <div class="product-image">
-          <img src="${escapeHTML(image)}"
-               alt="${escapeHTML(ad.title || "Advertisement")}"
-               loading="lazy"
-               onerror="this.onerror=null;this.src='${fallbackPhotos[index % fallbackPhotos.length]}'">
-          ${featured ? '<span class="product-badge">Featured</span>' : ""}
-          <button class="favorite-btn ${saved ? "saved" : ""}"
-            type="button" data-favourite="${escapeHTML(ad.$id)}"
-            aria-label="Save favourite">${saved ? "♥" : "♡"}</button>
-        </div>
-        <div class="product-info">
-          <div class="product-category">${escapeHTML(category)}</div>
-          <h3>${escapeHTML(ad.title || "Untitled advertisement")}</h3>
-          <p class="product-description">${escapeHTML(ad.description || "Contact the advertiser for more information.")}</p>
-          <div class="product-location">📍 ${escapeHTML(location || "Location not specified")}</div>
-          <div class="product-footer">
-            <small>${escapeHTML(ad.listingType || "Advertisement")}</small>
-            <button class="view-btn" type="button" data-view="${escapeHTML(ad.$id)}">View details →</button>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join("");
-
-  grid.querySelectorAll("[data-view]").forEach(button => {
-    button.addEventListener("click", () => openDetails(button.dataset.view));
-  });
-
-  grid.querySelectorAll("[data-favourite]").forEach(button => {
-    button.addEventListener("click", () => toggleFavourite(button.dataset.favourite));
-  });
-}
-
-function clearFilters() {
-  selectedCategory = "";
-  selectedCounty = "";
-  searchTerm = "";
-  $("searchInput").value = "";
-  $("categoryFilter").value = "";
-  $("countyFilter").value = "";
-  renderCategories();
-  renderListings();
-}
-
-function toggleFavourite(id) {
-  if (favouriteIds.has(id)) {
-    favouriteIds.delete(id);
-    showToast("Removed from this session's favourites.");
-  } else {
-    favouriteIds.add(id);
-    showToast("Saved to favourites for this session.");
-  }
-  renderListings();
-}
-
-function openDetails(id) {
-  const ad = advertisements.find(item => item.$id === id);
-  if (!ad) return;
-
-  currentListing = ad;
-  const index = advertisements.indexOf(ad);
-  const phone = String(ad.contactPhone || "").trim();
-  const digits = phone.replace(/\D/g,"");
-  let internationalPhone = digits;
-
-  if (digits.startsWith("0")) internationalPhone = "254" + digits.slice(1);
-  else if (digits.startsWith("7") || digits.startsWith("1")) internationalPhone = "254" + digits;
-
-  $("modalImage").src = getAdImage(ad,index);
-  $("modalImage").alt = ad.title || "Advertisement image";
-  $("modalCategory").textContent = getCategoryName(ad.categoryId);
-  $("modalTitle").textContent = ad.title || "Advertisement";
-  $("modalDescription").textContent = ad.description || "No description provided.";
-  $("modalLocation").textContent =
-    [ad.townLocation,ad.county].filter(Boolean).join(", ") || "Not specified";
-  $("modalPhone").textContent = phone || "Not provided";
-
-  const whatsapp = $("whatsappBtn");
-  if (internationalPhone) {
-    whatsapp.href = "https://wa.me/" + internationalPhone +
-      "?text=" + encodeURIComponent("Hello, I saw your advertisement on GLOBAL MARKET: " + (ad.title || ""));
-    whatsapp.style.display = "inline-block";
-  } else {
-    whatsapp.removeAttribute("href");
-    whatsapp.style.display = "none";
-  }
-
-  $("detailsModal").classList.add("show");
-}
-
-function closeDetails() {
-  $("detailsModal").classList.remove("show");
-  currentListing = null;
-}
-
-$("closeModal").addEventListener("click",closeDetails);
-$("detailsModal").addEventListener("click",event => {
-  if (event.target === $("detailsModal")) closeDetails();
-});
-document.addEventListener("keydown",event => {
-  if (event.key === "Escape") closeDetails();
-});
-
-$("copyPhoneBtn").addEventListener("click",async () => {
-  const phone = currentListing?.contactPhone;
-  if (!phone) {
-    showToast("No phone number was provided.");
-    return;
-  }
-  try {
-    await navigator.clipboard.writeText(String(phone));
-    showToast("Phone number copied.");
-  } catch {
-    showToast("Please copy the phone number manually: " + phone);
-  }
-});
-
-$("searchForm").addEventListener("submit",event => {
-  event.preventDefault();
-  searchTerm = $("searchInput").value.trim();
-  renderListings();
-  $("listings").scrollIntoView({behavior:"smooth"});
-});
-
-$("searchInput").addEventListener("input",event => {
-  searchTerm = event.target.value.trim();
-  renderListings();
-});
-
-$("categoryFilter").addEventListener("change",event => {
-  selectedCategory = event.target.value;
-  renderCategories();
-  renderListings();
-});
-
-$("countyFilter").addEventListener("change",event => {
-  selectedCounty = event.target.value;
-  renderListings();
-});
-
-$("sortFilter").addEventListener("change",event => {
-  sortOrder = event.target.value;
-  renderListings();
-});
+/* FOOTER YEAR */
+document.getElementById("currentYear").textContent =
+  new Date().getFullYear();
 
 /* START */
-async function startMarketplace() {
-  themeSetup();
-
-  if (!window.GMAppwrite) {
-    $("categoryGrid").innerHTML =
-      '<div class="empty-state"><h3>Connection not ready</h3><p>Check that appwrite-config.js is present and loads correctly.</p></div>';
-    $("productGrid").innerHTML =
-      '<div class="empty-state"><h3>Marketplace connection unavailable</h3><p>Please check your Appwrite configuration.</p></div>';
-    return;
-  }
-
-  await loadCategories();
-  await loadAdvertisements();
-}
-
-startMarketplace();
+loadCategories();
 </script>
 
 </body>
