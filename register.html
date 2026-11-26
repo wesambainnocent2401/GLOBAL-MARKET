@@ -477,14 +477,12 @@
 
 <body>
 
-    <!-- Shared website header -->
     <div id="site-header"></div>
 
     <main class="register-page">
 
         <div class="register-container">
 
-            <!-- Welcome photograph and introduction -->
             <section class="register-welcome">
 
                 <div class="welcome-brand">
@@ -547,7 +545,6 @@
 
             </section>
 
-            <!-- Registration form -->
             <section class="register-form-section">
 
                 <div class="form-top">
@@ -563,7 +560,6 @@
 
                 <form id="registerForm">
 
-                    <!-- Personal details -->
                     <div class="section-heading">
                         <span class="section-number">1</span>
                         <h3>Personal Information</h3>
@@ -694,7 +690,6 @@
 
                     </div>
 
-                    <!-- Account details -->
                     <div class="section-heading">
                         <span class="section-number">2</span>
                         <h3>Account Information</h3>
@@ -788,7 +783,6 @@
 
                     </div>
 
-                    <!-- Terms -->
                     <div class="terms-area">
 
                         <label class="terms-check">
@@ -848,86 +842,19 @@
 
     </main>
 
-    <!-- Shared public footer -->
     <div id="site-footer"></div>
 
+    <!-- Shared website layout -->
     <script src="layout.js" defer></script>
 
-    <script>
-        // Password visibility controls
-        document.querySelectorAll(".password-toggle").forEach(function(button) {
+    <!-- Appwrite SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@29.0.0"></script>
 
-            button.addEventListener("click", function() {
+    <!-- Shared Appwrite configuration -->
+    <script src="appwrite-config.js"></script>
 
-                const targetId = button.dataset.target;
-                const input = document.getElementById(targetId);
-
-                if (input.type === "password") {
-                    input.type = "text";
-                    button.textContent = "Hide";
-                } else {
-                    input.type = "password";
-                    button.textContent = "Show";
-                }
-
-            });
-
-        });
-
-        // Registration form validation
-        const registerForm = document.getElementById("registerForm");
-        const registerButton = document.getElementById("registerButton");
-        const formMessage = document.getElementById("formMessage");
-
-        registerForm.addEventListener("submit", function(event) {
-
-            event.preventDefault();
-
-            formMessage.className = "form-message";
-            formMessage.textContent = "";
-
-            const firstName = document.getElementById("firstName").value.trim();
-            const lastName = document.getElementById("lastName").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const phone = document.getElementById("phone").value.trim();
-            const accountType = document.getElementById("accountType").value;
-            const password = document.getElementById("password").value;
-            const confirmPassword = document.getElementById("confirmPassword").value;
-            const agreeTerms = document.getElementById("agreeTerms").checked;
-
-            if (!firstName || !lastName || !email || !phone || !accountType) {
-                showMessage("Please complete all required personal and account details.", "error");
-                return;
-            }
-
-            if (password.length < 8) {
-                showMessage("Your password must contain at least 8 characters.", "error");
-                return;
-            }
-
-            if (password !== confirmPassword) {
-                showMessage("Your passwords do not match. Please check them.", "error");
-                return;
-            }
-
-            if (!agreeTerms) {
-                showMessage("Please agree to the Terms and Conditions before continuing.", "error");
-                return;
-            }
-
-            showMessage(
-                "Your form has passed the basic checks. Supabase account registration will be connected during backend integration.",
-                "success"
-            );
-
-        });
-
-        function showMessage(message, type) {
-            formMessage.textContent = message;
-            formMessage.className = "form-message " + type;
-        }
-    </script>
+    <!-- Registration functionality -->
+    <script src="register.js"></script>
 
 </body>
 </html>
-
