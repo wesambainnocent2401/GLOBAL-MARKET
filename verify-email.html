@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email | GLOBAL MARKET</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f3f5f8;
+            color: #17243a;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 440px;
+            padding: 35px 25px;
+            text-align: center;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,.07);
+        }
+
+        h1 {
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: #667085;
+            line-height: 1.6;
+        }
+
+        button {
+            border: 0;
+            padding: 14px 22px;
+            margin-top: 15px;
+            border-radius: 8px;
+            background: #172b4d;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #message {
+            margin-top: 20px;
+        }
+
+        .gold {
+            color: #b58a32;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="card">
+        <h1>GLOBAL <span class="gold">MARKET</span></h1>
+        <h2>Email verification</h2>
+        <p id="message">Verifying your email address. Please wait...</p>
+        <button id="loginButton" hidden
+            onclick="window.location.href='login.html'">
+            Go to Login
+        </button>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@29.0.0"></script>
+    <script src="appwrite-config.js"></script>
+
+    <script>
+        (async function () {
+            const message = document.getElementById("message");
+            const loginButton = document.getElementById("loginButton");
+
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const userId = params.get("userId");
+                const secret = params.get("secret");
+
+                if (!userId || !secret) {
+                    throw new Error("The verification link is incomplete.");
+                }
+
+                await window.GMAppwrite.account.updateEmailVerification({
+                    userId: userId,
+                    secret: secret
+                });
+
+                message.textContent =
+                    "Your email has been successfully verified! You can now log in.";
+
+                loginButton.hidden = false;
+
+            } catch (error) {
+                console.error(error);
+                message.textContent =
+                    error.message || "Verification failed. Please request a new verification email.";
+            }
+        })();
+    </script>
+
+</body>
+</html>
