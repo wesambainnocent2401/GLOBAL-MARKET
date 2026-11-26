@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
+    // Registration form submission
     form.addEventListener("submit", async function (event) {
 
         event.preventDefault();
@@ -57,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const confirmPassword = document.getElementById("confirmPassword").value;
         const agreeTerms = document.getElementById("agreeTerms").checked;
 
+        // Validate required fields
         if (!firstName || !lastName || !email || !phone || !accountType) {
             showMessage("Please complete all required fields.", "error");
             return;
@@ -82,14 +84,17 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        if (!window.GMAppwrite || !window.GMAppwrite.account ||
-            !window.GMAppwrite.tablesDB || !window.Appwrite) {
-
+        // Check Appwrite connection
+        if (
+            !window.GMAppwrite ||
+            !window.GMAppwrite.account ||
+            !window.GMAppwrite.tablesDB ||
+            !window.Appwrite
+        ) {
             showMessage(
                 "The registration service is not ready. Please refresh the page.",
                 "error"
             );
-
             return;
         }
 
@@ -102,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const fullName = firstName + " " + lastName;
 
-            // 1. Create the Appwrite account
+            // 1. Create Appwrite account
             const user = await window.GMAppwrite.account.create({
                 userId: window.GMAppwrite.ID.unique(),
                 email: email,
@@ -112,13 +117,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
             accountCreated = true;
 
-            // 2. Create a session so the user can create their profile row
+            // 2. Sign in the newly created user
             await window.GMAppwrite.account.createEmailPasswordSession({
                 email: email,
                 password: password
             });
 
-            // 3. Save the user's profile
+            // 3. Save the user's profile in Appwrite
             await window.GMAppwrite.tablesDB.createRow({
                 databaseId: "global_market_db",
                 tableId: "profiles",
@@ -146,16 +151,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 ]
             });
 
+            // 4. Registration successful
             showMessage(
-                "Your GLOBAL MARKET account has been created successfully! Redirecting to sign in...",
+                "Your GLOBAL MARKET account has been created successfully! Opening your profile...",
                 "success"
             );
 
             form.reset();
 
+            // 5. Redirect directly to the profile page
             setTimeout(function () {
-                window.location.href = "login.html";
-            }, 2500);
+                window.location.href = "profile.html";
+            }, 1500);
 
         } catch (error) {
 
@@ -164,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (accountCreated) {
 
                 showMessage(
-                    "Your account was created, but we could not save your profile. Please contact support before trying to register again.",
+                    "Your account was created, but we could not save your profile. Please sign in and contact support if the problem continues.",
                     "error"
                 );
 
