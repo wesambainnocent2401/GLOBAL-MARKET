@@ -4,230 +4,1064 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f4f7fb">
-<meta name="description" content="Create an advertisement on GLOBAL MARKET.">
+<meta name="theme-color" content="#f4f6f9">
+<meta name="description" content="Advertise your products and services on GLOBAL MARKET. Connect with customers across Kenya.">
 <title>Create Advertisement | GLOBAL MARKET</title>
 
 <link rel="stylesheet" href="style.css">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#f3f6fa;color:#263950;font-family:Arial,sans-serif}
-.hero{background:linear-gradient(110deg,#142b49,#294b70);color:white;padding:38px 20px}
-.hero-inner{max-width:1100px;margin:auto}
-.hero h1{margin:0 0 10px;font-size:29px}
-.hero p{max-width:650px;color:#dce5ef;font-size:13px;line-height:1.8}
-.container{max-width:1100px;margin:30px auto;padding:0 16px}
-.card{background:white;border:1px solid #e2e8ef;border-radius:14px;padding:26px;box-shadow:0 6px 22px #192d4608}
-.section{margin-bottom:30px}
-.section h2{font-size:17px;color:#1c3655;border-bottom:1px solid #e9edf2;padding-bottom:12px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.field{margin-bottom:15px}
-.field.full{grid-column:1/-1}
-label{display:block;margin-bottom:7px;font-size:12px;font-weight:bold;color:#34465d}
-input,select,textarea{width:100%;padding:12px;border:1px solid #dce3ec;border-radius:8px;background:#fbfcfe;color:#293c54;font:13px Arial;min-height:44px}
-textarea{min-height:120px;resize:vertical;line-height:1.6}
-input:focus,select:focus,textarea:focus{outline:2px solid #d9bd82;border-color:#c49b49}
-small{display:block;color:#8995a5;font-size:11px;line-height:1.6;margin-top:6px}
-.upload-box{padding:18px;border:1px dashed #bdcbdc;border-radius:10px;background:#f8fafc}
-.upload-box input{background:white}
-.preview{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-top:14px}
-.preview-item{border:1px solid #e1e7ee;border-radius:8px;overflow:hidden;background:white}
-.preview-item img,.preview-item video{width:100%;height:95px;object-fit:cover;display:block;background:#e8edf4}
-.preview-name{padding:7px;font-size:10px;color:#617188;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.note{padding:13px;background:#fff8e9;border-radius:8px;color:#80602b;font-size:11px;line-height:1.7;margin-top:12px}
-.agreement{display:flex;gap:9px;align-items:flex-start;font-size:11px;line-height:1.7;color:#718198;margin:20px 0}
-.agreement input{width:auto;min-height:0;margin-top:3px}
-.submit{width:100%;padding:16px;border:0;border-radius:9px;background:#142b49;color:white;font-weight:bold;cursor:pointer}
-.submit:disabled{opacity:.6;cursor:not-allowed}
-.status{display:none;margin-top:15px;padding:14px;border-radius:8px;font-size:12px;line-height:1.7}
-.status.error{display:block;background:#fff0f0;color:#a33232;border:1px solid #efcccc}
-.status.info{display:block;background:#eef5ff;color:#315d91;border:1px solid #d7e4f3}
-.status.success{display:block;background:#edf9f0;color:#27633b;border:1px solid #cdebd5}
-@media(max-width:600px){.hero{padding:30px 17px}.hero h1{font-size:24px}.container{padding:0 10px;margin:20px auto}.card{padding:17px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+:root{
+    --bg:#f3f6fa;
+    --surface:#ffffff;
+    --surface-soft:#f8fafc;
+    --text:#263950;
+    --muted:#78879a;
+    --navy:#142b49;
+    --navy-light:#294b70;
+    --gold:#c49b49;
+    --gold-soft:#f7f0e2;
+    --border:#e3e9f0;
+    --success:#267342;
+    --danger:#b43b3b;
+    --shadow:0 12px 35px rgba(20,43,73,.07);
+}
+
+body.dark-theme{
+    --bg:#101a27;
+    --surface:#172537;
+    --surface-soft:#1d2d40;
+    --text:#e7edf5;
+    --muted:#a2b0c1;
+    --navy:#dce8f7;
+    --navy-light:#b9cde6;
+    --gold:#d6b46d;
+    --gold-soft:#3a3325;
+    --border:#304157;
+    --shadow:0 12px 35px rgba(0,0,0,.2);
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"DM Sans",Arial,sans-serif;
+    transition:background .25s,color .25s;
+}
+
+button,input,select,textarea{
+    font-family:inherit;
+}
+
+.hero{
+    position:relative;
+    overflow:hidden;
+    background:
+        linear-gradient(90deg,rgba(13,34,58,.96),rgba(18,46,75,.78)),
+        url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1800&q=85");
+    background-position:center;
+    background-size:cover;
+    color:white;
+    padding:55px 20px;
+}
+
+.hero-inner{
+    max-width:1150px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.3fr .7fr;
+    gap:35px;
+    align-items:center;
+}
+
+.hero-copy{
+    max-width:680px;
+}
+
+.hero-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 13px;
+    border:1px solid rgba(255,255,255,.25);
+    background:rgba(255,255,255,.09);
+    border-radius:30px;
+    color:#f3dba8;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.5px;
+}
+
+.hero h1{
+    font-family:Manrope,Arial,sans-serif;
+    font-size:clamp(30px,5vw,46px);
+    line-height:1.15;
+    margin:18px 0 12px;
+    font-weight:800;
+}
+
+.hero p{
+    max-width:610px;
+    color:#dce5ef;
+    font-size:14px;
+    line-height:1.9;
+    margin:0;
+}
+
+.hero-highlight{
+    color:#e8c783;
+}
+
+.hero-images{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:11px;
+    align-items:center;
+}
+
+.hero-images img{
+    width:100%;
+    height:145px;
+    object-fit:cover;
+    border-radius:13px;
+    border:2px solid rgba(255,255,255,.2);
+}
+
+.hero-images img:first-child{
+    height:190px;
+    grid-row:span 2;
+}
+
+.hero-images img:last-child{
+    height:120px;
+}
+
+.hero-tools{
+    max-width:1150px;
+    margin:24px auto 0;
+    display:flex;
+    justify-content:flex-end;
+}
+
+.theme-toggle{
+    border:1px solid rgba(255,255,255,.3);
+    border-radius:30px;
+    background:rgba(255,255,255,.1);
+    color:white;
+    padding:10px 15px;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:700;
+}
+
+.container{
+    max-width:1100px;
+    margin:35px auto;
+    padding:0 17px;
+}
+
+.intro-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.intro-row h2{
+    margin:0 0 5px;
+    color:var(--navy);
+    font-family:Manrope,Arial,sans-serif;
+    font-size:21px;
+}
+
+.intro-row p{
+    margin:0;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.7;
+}
+
+.secure-note{
+    padding:10px 13px;
+    border-radius:9px;
+    background:var(--gold-soft);
+    color:var(--text);
+    font-size:11px;
+    white-space:nowrap;
+}
+
+.card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:28px;
+    box-shadow:var(--shadow);
+}
+
+.section{
+    margin-bottom:33px;
+}
+
+.section-heading{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+    padding-bottom:13px;
+    border-bottom:1px solid var(--border);
+}
+
+.section-number{
+    width:33px;
+    height:33px;
+    display:grid;
+    place-items:center;
+    flex-shrink:0;
+    border-radius:10px;
+    background:var(--gold-soft);
+    color:var(--gold);
+    font-size:12px;
+    font-weight:800;
+}
+
+.section-heading h2{
+    margin:0;
+    color:var(--navy);
+    font-size:16px;
+    font-family:Manrope,Arial,sans-serif;
+}
+
+.section-heading p{
+    margin:4px 0 0;
+    color:var(--muted);
+    font-size:11px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:17px;
+}
+
+.field{
+    min-width:0;
+    margin-bottom:14px;
+}
+
+.field.full{
+    grid-column:1/-1;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    color:var(--text);
+    font-size:12px;
+    font-weight:700;
+}
+
+input,select,textarea{
+    width:100%;
+    min-height:46px;
+    padding:12px 13px;
+    border:1px solid var(--border);
+    border-radius:9px;
+    background:var(--surface-soft);
+    color:var(--text);
+    font-size:13px;
+    outline:none;
+    transition:border .2s,box-shadow .2s;
+}
+
+input:focus,select:focus,textarea:focus{
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(196,155,73,.12);
+}
+
+textarea{
+    min-height:125px;
+    resize:vertical;
+    line-height:1.7;
+}
+
+input::placeholder,textarea::placeholder{
+    color:var(--muted);
+}
+
+small{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.7;
+    margin-top:6px;
+}
+
+.upload-box{
+    padding:20px;
+    border:1px dashed var(--gold);
+    border-radius:12px;
+    background:var(--surface-soft);
+}
+
+.upload-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:14px;
+}
+
+.upload-icon{
+    width:43px;
+    height:43px;
+    display:grid;
+    place-items:center;
+    border-radius:12px;
+    background:var(--gold-soft);
+    font-size:20px;
+}
+
+.upload-title{
+    font-size:13px;
+    font-weight:800;
+    color:var(--navy);
+}
+
+.upload-description{
+    font-size:11px;
+    color:var(--muted);
+    margin-top:4px;
+}
+
+.upload-box input[type=file]{
+    padding:10px;
+    background:var(--surface);
+}
+
+.preview{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(115px,1fr));
+    gap:11px;
+    margin-top:15px;
+}
+
+.preview-item{
+    min-width:0;
+    overflow:hidden;
+    border:1px solid var(--border);
+    border-radius:9px;
+    background:var(--surface);
+}
+
+.preview-item img,
+.preview-item video{
+    width:100%;
+    height:100px;
+    object-fit:cover;
+    display:block;
+    background:#e8edf4;
+}
+
+.preview-name{
+    padding:8px;
+    color:var(--muted);
+    font-size:10px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.media-count{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:12px;
+    color:var(--muted);
+    font-size:11px;
+}
+
+.media-count strong{
+    color:var(--navy);
+}
+
+.note{
+    padding:14px;
+    background:var(--gold-soft);
+    border-left:3px solid var(--gold);
+    border-radius:8px;
+    color:var(--text);
+    font-size:11px;
+    line-height:1.8;
+    margin-top:14px;
+}
+
+.photo-strip{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin:22px 0 30px;
+}
+
+.photo-strip img{
+    width:100%;
+    height:120px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.agreement{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin:20px 0;
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.8;
+}
+
+.agreement input{
+    width:16px;
+    min-height:16px;
+    flex-shrink:0;
+    margin-top:3px;
+    accent-color:var(--gold);
+}
+
+.agreement a{
+    color:var(--gold);
+    font-weight:700;
+}
+
+.submit{
+    width:100%;
+    min-height:53px;
+    padding:15px;
+    border:0;
+    border-radius:10px;
+    background:linear-gradient(110deg,#142b49,#294b70);
+    color:white;
+    font-size:14px;
+    font-weight:800;
+    cursor:pointer;
+    transition:transform .2s,opacity .2s;
+}
+
+.submit:hover{
+    transform:translateY(-2px);
+}
+
+.submit:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+    transform:none;
+}
+
+.status{
+    display:none;
+    margin-top:15px;
+    padding:14px;
+    border-radius:9px;
+    font-size:12px;
+    line-height:1.8;
+    overflow-wrap:anywhere;
+}
+
+.status.error{
+    display:block;
+    background:#fff0f0;
+    color:#a33232;
+    border:1px solid #efcccc;
+}
+
+.status.info{
+    display:block;
+    background:#eef5ff;
+    color:#315d91;
+    border:1px solid #d7e4f3;
+}
+
+.status.success{
+    display:block;
+    background:#edf9f0;
+    color:#27633b;
+    border:1px solid #cdebd5;
+}
+
+body.dark-theme .status.error{
+    background:#392326;
+    color:#ffc2c2;
+}
+
+body.dark-theme .status.info{
+    background:#1e344e;
+    color:#c9dfff;
+}
+
+body.dark-theme .status.success{
+    background:#1d382a;
+    color:#b8efc7;
+}
+
+.bottom-information{
+    margin-top:25px;
+    padding:20px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:var(--surface);
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.bottom-information .info-icon{
+    width:42px;
+    height:42px;
+    flex-shrink:0;
+    display:grid;
+    place-items:center;
+    background:var(--gold-soft);
+    border-radius:12px;
+    font-size:19px;
+}
+
+.bottom-information strong{
+    display:block;
+    color:var(--navy);
+    font-size:12px;
+    margin-bottom:4px;
+}
+
+.bottom-information p{
+    margin:0;
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.7;
+}
+
+@media(max-width:750px){
+    .hero-inner{
+        grid-template-columns:1fr;
+    }
+
+    .hero-images{
+        max-width:470px;
+    }
+
+    .hero-images img{
+        height:115px;
+    }
+
+    .hero-images img:first-child{
+        height:155px;
+    }
+
+    .hero-images img:last-child{
+        height:100px;
+    }
+
+    .hero-tools{
+        margin-top:15px;
+    }
+}
+
+@media(max-width:600px){
+    .hero{
+        padding:35px 17px;
+    }
+
+    .hero h1{
+        font-size:29px;
+    }
+
+    .container{
+        padding:0 11px;
+        margin:23px auto;
+    }
+
+    .card{
+        padding:17px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .field.full{
+        grid-column:auto;
+    }
+
+    .intro-row{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .secure-note{
+        white-space:normal;
+    }
+
+    .photo-strip img{
+        height:85px;
+    }
+
+    .upload-box{
+        padding:13px;
+    }
+}
 </style>
 </head>
 
 <body>
 
+<!-- Navigation is supplied by the existing layout.js menu -->
 <div id="site-header"></div>
 
 <main>
+
 <section class="hero">
-<div class="hero-inner">
-<h1>Create Your Advertisement</h1>
-<p>Showcase your products or services to customers across Kenya. Add accurate details, clear photographs and videos.</p>
-</div>
+    <div class="hero-inner">
+
+        <div class="hero-copy">
+            <span class="hero-tag">✦ GLOBAL MARKET ADVERTISING</span>
+
+            <h1>Give Your Business <span class="hero-highlight">More Visibility.</span></h1>
+
+            <p>
+                Showcase your products and services with photographs and videos.
+                Create an advertisement and introduce your business to customers
+                across Kenya.
+            </p>
+        </div>
+
+        <div class="hero-images">
+            <img
+                src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=700&q=85"
+                alt="Customer shopping"
+                loading="lazy"
+            >
+            <img
+                src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=85"
+                alt="Fashion products"
+                loading="lazy"
+            >
+            <img
+                src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=600&q=85"
+                alt="Business workspace"
+                loading="lazy"
+            >
+        </div>
+
+    </div>
+
+    <div class="hero-tools">
+        <button class="theme-toggle" id="themeToggle" type="button">
+            ☀️ Light / Dark Theme
+        </button>
+    </div>
 </section>
 
 <div class="container">
-<section class="card">
 
-<form id="createAdForm">
+    <div class="intro-row">
+        <div>
+            <h2>Publish Your Advertisement</h2>
+            <p>Complete the information below to submit your listing for review.</p>
+        </div>
 
-<div class="section">
-<h2>01. Advertisement Information</h2>
+        <div class="secure-note">🔒 Account login required</div>
+    </div>
 
-<div class="grid">
+    <section class="card">
 
-<div class="field full">
-<label for="title">Advertisement title *</label>
-<input id="title" maxlength="120" required placeholder="Example: Samsung Galaxy phone for sale">
+        <form id="createAdForm">
+
+            <!-- ADVERTISEMENT INFORMATION -->
+
+            <div class="section">
+
+                <div class="section-heading">
+                    <div class="section-number">01</div>
+                    <div>
+                        <h2>Advertisement Information</h2>
+                        <p>Tell customers what you are offering.</p>
+                    </div>
+                </div>
+
+                <div class="grid">
+
+                    <div class="field full">
+                        <label for="title">Advertisement title *</label>
+                        <input
+                            id="title"
+                            maxlength="120"
+                            required
+                            placeholder="Example: Samsung Galaxy phone for sale"
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label for="category">Category *</label>
+                        <select id="category" required>
+                            <option value="">Loading categories...</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="listingType">Listing type *</label>
+                        <select id="listingType" required>
+                            <option value="">Select listing type</option>
+                            <option value="sale">For Sale</option>
+                            <option value="service">Service Offered</option>
+                            <option value="rent">For Rent</option>
+                            <option value="wanted">Wanted</option>
+                            <option value="job">Job Opportunity</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="condition">Condition</label>
+                        <select id="condition">
+                            <option value="not_applicable">Not applicable</option>
+                            <option value="new">Brand New</option>
+                            <option value="used">Used</option>
+                            <option value="refurbished">Refurbished</option>
+                            <option value="service">Service</option>
+                        </select>
+                    </div>
+
+                    <div class="field full">
+                        <label for="description">Detailed description *</label>
+                        <textarea
+                            id="description"
+                            minlength="20"
+                            maxlength="5000"
+                            required
+                            placeholder="Describe your product or service, its features and important details..."
+                        ></textarea>
+                        <small>Provide clear and accurate information. Minimum 20 characters.</small>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- PHOTOS -->
+
+            <div class="section">
+
+                <div class="section-heading">
+                    <div class="section-number">02</div>
+                    <div>
+                        <h2>Advertisement Photos</h2>
+                        <p>Show customers what you are advertising.</p>
+                    </div>
+                </div>
+
+                <div class="upload-box">
+
+                    <div class="upload-top">
+                        <div class="upload-icon">📷</div>
+                        <div>
+                            <div class="upload-title">Product and service photographs</div>
+                            <div class="upload-description">Choose clear photographs of your offering.</div>
+                        </div>
+                    </div>
+
+                    <label for="photos">Choose photos *</label>
+
+                    <input
+                        id="photos"
+                        type="file"
+                        accept="image/jpeg,image/png,image/gif"
+                        multiple
+                        required
+                    >
+
+                    <small>Upload 1–20 JPG, PNG or GIF photos. Maximum 5 MB per photo.</small>
+
+                    <div class="media-count">
+                        <strong id="photoCount">No photos selected.</strong>
+                    </div>
+
+                    <div class="preview" id="photoPreview"></div>
+
+                </div>
+            </div>
+
+            <!-- VIDEOS -->
+
+            <div class="section">
+
+                <div class="section-heading">
+                    <div class="section-number">03</div>
+                    <div>
+                        <h2>Advertisement Videos</h2>
+                        <p>Use videos to demonstrate your products or services.</p>
+                    </div>
+                </div>
+
+                <div class="upload-box">
+
+                    <div class="upload-top">
+                        <div class="upload-icon">🎬</div>
+                        <div>
+                            <div class="upload-title">Upload advertisement videos</div>
+                            <div class="upload-description">Show how your product or service works.</div>
+                        </div>
+                    </div>
+
+                    <label for="videos">Choose videos *</label>
+
+                    <input
+                        id="videos"
+                        type="file"
+                        accept="video/mp4"
+                        multiple
+                        required
+                    >
+
+                    <small>At least 5 videos are required. Maximum 10 videos, 50 MB each. MP4 only.</small>
+
+                    <div class="media-count">
+                        <strong id="videoCount">0 of 5 required videos selected.</strong>
+                    </div>
+
+                    <div class="preview" id="videoPreview"></div>
+
+                </div>
+
+                <div class="note">
+                    <strong>Media guidelines</strong><br>
+                    Upload genuine photographs and videos that relate to the advertised
+                    product or service. Only upload media you have permission to use.
+                </div>
+
+            </div>
+
+            <!-- LOCATION -->
+
+            <div class="section">
+
+                <div class="section-heading">
+                    <div class="section-number">04</div>
+                    <div>
+                        <h2>Location</h2>
+                        <p>Help customers identify where your offering is available.</p>
+                    </div>
+                </div>
+
+                <div class="grid">
+
+                    <div class="field">
+                        <label for="county">County *</label>
+
+                        <select id="county" required>
+                            <option value="">Select county</option>
+                            <option>Mombasa</option>
+                            <option>Kwale</option>
+                            <option>Kilifi</option>
+                            <option>Tana River</option>
+                            <option>Lamu</option>
+                            <option>Taita Taveta</option>
+                            <option>Garissa</option>
+                            <option>Wajir</option>
+                            <option>Mandera</option>
+                            <option>Marsabit</option>
+                            <option>Isiolo</option>
+                            <option>Meru</option>
+                            <option>Tharaka Nithi</option>
+                            <option>Embu</option>
+                            <option>Kitui</option>
+                            <option>Machakos</option>
+                            <option>Makueni</option>
+                            <option>Nyandarua</option>
+                            <option>Nyeri</option>
+                            <option>Kirinyaga</option>
+                            <option>Murang'a</option>
+                            <option>Kiambu</option>
+                            <option>Turkana</option>
+                            <option>West Pokot</option>
+                            <option>Samburu</option>
+                            <option>Trans Nzoia</option>
+                            <option>Uasin Gishu</option>
+                            <option>Elgeyo Marakwet</option>
+                            <option>Nandi</option>
+                            <option>Baringo</option>
+                            <option>Laikipia</option>
+                            <option>Nakuru</option>
+                            <option>Narok</option>
+                            <option>Kajiado</option>
+                            <option>Kericho</option>
+                            <option>Bomet</option>
+                            <option>Kakamega</option>
+                            <option>Vihiga</option>
+                            <option>Bungoma</option>
+                            <option>Busia</option>
+                            <option>Siaya</option>
+                            <option>Kisumu</option>
+                            <option>Homa Bay</option>
+                            <option>Migori</option>
+                            <option>Kisii</option>
+                            <option>Nyamira</option>
+                            <option>Nairobi</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="townLocation">Town / Area *</label>
+                        <input
+                            id="townLocation"
+                            maxlength="100"
+                            required
+                            placeholder="Example: Bungoma Town"
+                        >
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- CONTACT -->
+
+            <div class="section">
+
+                <div class="section-heading">
+                    <div class="section-number">05</div>
+                    <div>
+                        <h2>Contact Information</h2>
+                        <p>Provide a number customers can use for enquiries.</p>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="contactPhone">Contact phone number *</label>
+
+                    <input
+                        id="contactPhone"
+                        type="tel"
+                        maxlength="16"
+                        required
+                        placeholder="0712345678"
+                        pattern="(\+254|0)(7|1)[0-9]{8}"
+                        title="Enter a valid Kenyan mobile number."
+                    >
+
+                    <small>Use a valid Kenyan mobile number.</small>
+                </div>
+
+            </div>
+
+            <!-- AGREEMENT -->
+
+            <label class="agreement">
+                <input id="confirmAccuracy" type="checkbox" required>
+
+                <span>
+                    I confirm that the advertisement information is accurate and that
+                    I have permission to use the uploaded media. I agree to the
+                    <a href="terms.html">Terms and Conditions</a> and
+                    <a href="privacy.html">Privacy Policy</a>.
+                </span>
+            </label>
+
+            <button class="submit" id="submitButton" type="submit">
+                Submit Advertisement →
+            </button>
+
+            <div class="status" id="formStatus" role="status" aria-live="polite"></div>
+
+        </form>
+
+    </section>
+
+    <div class="photo-strip">
+        <img
+            src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=500&q=80"
+            alt="Retail products"
+            loading="lazy"
+        >
+
+        <img
+            src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=500&q=80"
+            alt="Retail business"
+            loading="lazy"
+        >
+
+        <img
+            src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=500&q=80"
+            alt="Online shopping"
+            loading="lazy"
+        >
+    </div>
+
+    <div class="bottom-information">
+        <div class="info-icon">✓</div>
+        <div>
+            <strong>What happens after submission?</strong>
+            <p>
+                Your advertisement is saved with a pending review status.
+                It should only become publicly available after the appropriate
+                review and approval process.
+            </p>
+        </div>
+    </div>
+
 </div>
 
-<div class="field">
-<label for="category">Category *</label>
-<select id="category" required>
-<option value="">Loading categories...</option>
-</select>
-</div>
-
-<div class="field">
-<label for="listingType">Listing type *</label>
-<select id="listingType" required>
-<option value="">Select listing type</option>
-<option value="sale">For Sale</option>
-<option value="service">Service Offered</option>
-<option value="rent">For Rent</option>
-<option value="wanted">Wanted</option>
-<option value="job">Job Opportunity</option>
-<option value="other">Other</option>
-</select>
-</div>
-
-<div class="field">
-<label for="condition">Condition</label>
-<select id="condition">
-<option value="not_applicable">Not applicable</option>
-<option value="new">Brand New</option>
-<option value="used">Used</option>
-<option value="refurbished">Refurbished</option>
-<option value="service">Service</option>
-</select>
-</div>
-
-<div class="field full">
-<label for="description">Detailed description *</label>
-<textarea id="description" minlength="20" maxlength="5000" required placeholder="Describe what you are offering, its features and important details..."></textarea>
-<small>Use clear and accurate information. Minimum 20 characters.</small>
-</div>
-
-</div>
-</div>
-
-<div class="section">
-<h2>02. Advertisement Photos</h2>
-
-<div class="upload-box">
-<label for="photos">Choose photos *</label>
-<input id="photos" type="file" accept="image/jpeg,image/png,image/gif" multiple required>
-<small>Upload 1–20 JPG, PNG or GIF photos. Maximum 5 MB per photo.</small>
-<div id="photoCount">No photos selected.</div>
-<div class="preview" id="photoPreview"></div>
-</div>
-</div>
-
-<div class="section">
-<h2>03. Advertisement Videos</h2>
-
-<div class="upload-box">
-<label for="videos">Choose videos *</label>
-<input id="videos" type="file" accept="video/mp4" multiple required>
-<small>At least 5 videos are required. Maximum 10 videos, 50 MB each. MP4 only.</small>
-<div id="videoCount">0 of 5 required videos selected.</div>
-<div class="preview" id="videoPreview"></div>
-</div>
-
-<div class="note">
-<strong>Media requirements</strong>
-Your photos and videos should genuinely show the product or service being advertised. Do not upload content you do not have permission to use.
-</div>
-</div>
-
-<div class="section">
-<h2>04. Location</h2>
-
-<div class="grid">
-<div class="field">
-<label for="county">County *</label>
-<select id="county" required>
-<option value="">Select county</option>
-<option>Mombasa</option><option>Kwale</option><option>Kilifi</option>
-<option>Tana River</option><option>Lamu</option><option>Taita Taveta</option>
-<option>Garissa</option><option>Wajir</option><option>Mandera</option>
-<option>Marsabit</option><option>Isiolo</option><option>Meru</option>
-<option>Tharaka Nithi</option><option>Embu</option><option>Kitui</option>
-<option>Machakos</option><option>Makueni</option><option>Nyandarua</option>
-<option>Nyeri</option><option>Kirinyaga</option><option>Murang'a</option>
-<option>Kiambu</option><option>Turkana</option><option>West Pokot</option>
-<option>Samburu</option><option>Trans Nzoia</option><option>Uasin Gishu</option>
-<option>Elgeyo Marakwet</option><option>Nandi</option><option>Baringo</option>
-<option>Laikipia</option><option>Nakuru</option><option>Narok</option>
-<option>Kajiado</option><option>Kericho</option><option>Bomet</option>
-<option>Kakamega</option><option>Vihiga</option><option>Bungoma</option>
-<option>Busia</option><option>Siaya</option><option>Kisumu</option>
-<option>Homa Bay</option><option>Migori</option><option>Kisii</option>
-<option>Nyamira</option><option>Nairobi</option>
-</select>
-</div>
-
-<div class="field">
-<label for="townLocation">Town / Area *</label>
-<input id="townLocation" maxlength="100" required placeholder="Example: Bungoma Town">
-</div>
-</div>
-</div>
-
-<div class="section">
-<h2>05. Contact Information</h2>
-<div class="field">
-<label for="contactPhone">Contact phone number *</label>
-<input id="contactPhone" type="tel" maxlength="16" required placeholder="0712345678" pattern="(\+254|0)(7|1)[0-9]{8}" title="Enter a valid Kenyan mobile number.">
-<small>Use a Kenyan mobile number customers can contact.</small>
-</div>
-</div>
-
-<label class="agreement">
-<input id="confirmAccuracy" type="checkbox" required>
-<span>I confirm that the advertisement information and uploaded media are accurate and that I have permission to use the media. I agree to the <a href="terms.html">Terms and Conditions</a> and <a href="privacy.html">Privacy Policy</a>.</span>
-</label>
-
-<button class="submit" id="submitButton" type="submit">Submit Advertisement</button>
-<div class="status" id="formStatus" role="status" aria-live="polite"></div>
-
-</form>
-</section>
-</div>
 </main>
 
 <div id="site-footer"></div>
 
+<!-- APPWRITE SDK AND PROJECT CONFIGURATION -->
+
 <script src="https://cdn.jsdelivr.net/npm/appwrite@29.0.0"></script>
 <script src="appwrite-config.js"></script>
+
+<!-- SHARED WEBSITE LAYOUT -->
+
 <script src="layout.js" defer></script>
+
+<!-- ADVERTISEMENT MEDIA MODULE -->
+
+<script src="advertisement-media.js"></script>
 
 <script>
 "use strict";
 
+/* =========================================
+   GLOBAL MARKET - CREATE ADVERTISEMENT
+========================================= */
+
 const DATABASE_ID = "global_market_db";
 const AD_TABLE_ID = "advertisements";
-const MEDIA_TABLE_ID = "advertisement_media";
 const CATEGORY_TABLE_ID = "categories";
-const BUCKET_ID = "advertisement_media";
 
 const MAX_PHOTOS = 20;
 const MIN_VIDEOS = 5;
 const MAX_VIDEOS = 10;
+
 const MAX_PHOTO_SIZE = 5 * 1024 * 1024;
 const MAX_VIDEO_SIZE = 50 * 1024 * 1024;
 
 const form = document.getElementById("createAdForm");
 const photosInput = document.getElementById("photos");
 const videosInput = document.getElementById("videos");
+
 const photoPreview = document.getElementById("photoPreview");
 const videoPreview = document.getElementById("videoPreview");
+
 const photoCount = document.getElementById("photoCount");
 const videoCount = document.getElementById("videoCount");
+
 const categorySelect = document.getElementById("category");
 const statusBox = document.getElementById("formStatus");
 const submitButton = document.getElementById("submitButton");
@@ -235,6 +1069,48 @@ const submitButton = document.getElementById("submitButton");
 let selectedPhotos = [];
 let selectedVideos = [];
 let categoriesBySlug = {};
+
+/* =========================================
+   THEME CONTROL
+========================================= */
+
+const themeToggle = document.getElementById("themeToggle");
+
+function applyTheme(theme) {
+    document.body.classList.toggle("dark-theme", theme === "dark");
+
+    try {
+        localStorage.setItem("gm-theme", theme);
+    } catch (error) {
+        console.warn("Theme preference could not be saved.");
+    }
+
+    themeToggle.textContent = theme === "dark"
+        ? "☀️ Switch to Light Theme"
+        : "🌙 Switch to Dark Theme";
+}
+
+let savedTheme = "light";
+
+try {
+    savedTheme = localStorage.getItem("gm-theme") || "light";
+} catch (error) {
+    savedTheme = "light";
+}
+
+applyTheme(savedTheme);
+
+themeToggle.addEventListener("click", () => {
+    const nextTheme = document.body.classList.contains("dark-theme")
+        ? "light"
+        : "dark";
+
+    applyTheme(nextTheme);
+});
+
+/* =========================================
+   STATUS MESSAGES
+========================================= */
 
 function showStatus(message, type = "info") {
     statusBox.className = "status " + type;
@@ -246,12 +1122,18 @@ function clearStatus() {
     statusBox.textContent = "";
 }
 
+/* =========================================
+   FILE HELPERS
+========================================= */
+
 function uniqueFiles(files) {
     const seen = new Set();
 
     return files.filter(file => {
         const key = `${file.name}-${file.size}-${file.lastModified}`;
+
         if (seen.has(key)) return false;
+
         seen.add(key);
         return true;
     });
@@ -259,12 +1141,24 @@ function uniqueFiles(files) {
 
 function updateInputFiles(input, files) {
     const transfer = new DataTransfer();
+
     files.forEach(file => transfer.items.add(file));
+
     input.files = transfer.files;
 }
 
-function renderPreview(files, container, isVideo) {
+function clearPreviews(container) {
+    container.querySelectorAll("video, img").forEach(media => {
+        if (media.dataset.objectUrl) {
+            URL.revokeObjectURL(media.dataset.objectUrl);
+        }
+    });
+
     container.innerHTML = "";
+}
+
+function renderPreview(files, container, isVideo) {
+    clearPreviews(container);
 
     files.forEach(file => {
         const item = document.createElement("div");
@@ -276,15 +1170,14 @@ function renderPreview(files, container, isVideo) {
         const objectUrl = URL.createObjectURL(file);
 
         media.src = objectUrl;
+        media.dataset.objectUrl = objectUrl;
+
         if (isVideo) {
             media.controls = true;
             media.preload = "metadata";
         } else {
             media.alt = file.name;
         }
-
-        media.addEventListener("loadedmetadata", () => URL.revokeObjectURL(objectUrl), {once:true});
-        media.addEventListener("load", () => URL.revokeObjectURL(objectUrl), {once:true});
 
         name.className = "preview-name";
         name.textContent = file.name;
@@ -294,12 +1187,21 @@ function renderPreview(files, container, isVideo) {
     });
 }
 
+/* =========================================
+   PHOTO VALIDATION
+========================================= */
+
 photosInput.addEventListener("change", () => {
+    clearStatus();
+
     const files = uniqueFiles(Array.from(photosInput.files || []));
 
     if (files.length > MAX_PHOTOS) {
         showStatus("You can upload a maximum of 20 photos.", "error");
         photosInput.value = "";
+        selectedPhotos = [];
+        clearPreviews(photoPreview);
+        photoCount.textContent = "No photos selected.";
         return;
     }
 
@@ -308,164 +1210,175 @@ photosInput.addEventListener("change", () => {
     );
 
     if (invalid) {
-        showStatus("Only JPG, PNG and GIF photos are allowed by your Storage bucket.", "error");
+        showStatus("Only JPG, PNG and GIF photos are accepted.", "error");
         photosInput.value = "";
+        selectedPhotos = [];
+        clearPreviews(photoPreview);
+        photoCount.textContent = "No photos selected.";
         return;
     }
 
     if (files.some(file => file.size > MAX_PHOTO_SIZE)) {
         showStatus("Each photo must be 5 MB or smaller.", "error");
         photosInput.value = "";
+        selectedPhotos = [];
+        clearPreviews(photoPreview);
+        photoCount.textContent = "No photos selected.";
         return;
     }
 
     selectedPhotos = files;
+
     updateInputFiles(photosInput, selectedPhotos);
+
     photoCount.textContent = `${files.length} photo(s) selected.`;
+
     renderPreview(files, photoPreview, false);
-    clearStatus();
 });
 
+/* =========================================
+   VIDEO VALIDATION
+========================================= */
+
 videosInput.addEventListener("change", () => {
+    clearStatus();
+
     const files = uniqueFiles(Array.from(videosInput.files || []));
 
     if (files.length > MAX_VIDEOS) {
         showStatus("You can upload a maximum of 10 videos.", "error");
         videosInput.value = "";
+        selectedVideos = [];
+        clearPreviews(videoPreview);
+        videoCount.textContent = "0 of 5 required videos selected.";
         return;
     }
 
     if (files.some(file => file.type !== "video/mp4")) {
-        showStatus("Your Storage bucket currently allows MP4 videos. Please choose MP4 files.", "error");
+        showStatus("Only MP4 videos are accepted.", "error");
         videosInput.value = "";
+        selectedVideos = [];
+        clearPreviews(videoPreview);
+        videoCount.textContent = "0 of 5 required videos selected.";
         return;
     }
 
     if (files.some(file => file.size > MAX_VIDEO_SIZE)) {
         showStatus("Each video must be 50 MB or smaller.", "error");
         videosInput.value = "";
+        selectedVideos = [];
+        clearPreviews(videoPreview);
+        videoCount.textContent = "0 of 5 required videos selected.";
         return;
     }
 
     selectedVideos = files;
+
     updateInputFiles(videosInput, selectedVideos);
-    videoCount.textContent = `${files.length} of ${MIN_VIDEOS} required videos selected.`;
+
+    videoCount.textContent =
+        `${files.length} of ${MIN_VIDEOS} required videos selected.`;
+
     renderPreview(files, videoPreview, true);
-    clearStatus();
 });
+
+/* =========================================
+   LOAD ACTIVE CATEGORIES
+========================================= */
 
 async function loadCategories() {
     try {
+        if (!window.GMAppwrite) {
+            throw new Error("Appwrite configuration is unavailable.");
+        }
+
         const result = await GMAppwrite.tablesDB.listRows({
             databaseId: DATABASE_ID,
             tableId: CATEGORY_TABLE_ID,
             queries: [
-                GMAppwrite.Query.equal("isActive", [true]),
+                GMAppwrite.Query.equal("isActive", true),
                 GMAppwrite.Query.orderAsc("sortOrder"),
                 GMAppwrite.Query.limit(100)
             ]
         });
 
-        categorySelect.innerHTML = '<option value="">Select category</option>';
+        categorySelect.innerHTML =
+            '<option value="">Select category</option>';
+
+        categoriesBySlug = {};
 
         (result.rows || []).forEach(category => {
             categoriesBySlug[category.slug] = category;
 
             const option = document.createElement("option");
+
             option.value = category.slug;
             option.textContent = category.name;
+
             categorySelect.appendChild(option);
         });
 
         if (!result.rows || result.rows.length === 0) {
-            showStatus("No active categories were found. Please check your categories table.", "error");
+            showStatus(
+                "No active categories were found. Please check your categories table.",
+                "error"
+            );
         }
+
     } catch (error) {
         console.error("Category loading error:", error);
-        categorySelect.innerHTML = '<option value="">Could not load categories</option>';
-        showStatus("We could not load categories. Check your Appwrite categories table read permissions.", "error");
+
+        categorySelect.innerHTML =
+            '<option value="">Could not load categories</option>';
+
+        showStatus(
+            "Categories could not be loaded. Check your Appwrite categories table permissions.",
+            "error"
+        );
     }
 }
+
+/* =========================================
+   ROW PERMISSIONS
+========================================= */
 
 function ownerPermissions(userId) {
     return [
-        Appwrite.Permission.read(Appwrite.Role.user(userId)),
-        Appwrite.Permission.update(Appwrite.Role.user(userId)),
-        Appwrite.Permission.delete(Appwrite.Role.user(userId))
+        Appwrite.Permission.read(
+            Appwrite.Role.user(userId)
+        ),
+        Appwrite.Permission.update(
+            Appwrite.Role.user(userId)
+        ),
+        Appwrite.Permission.delete(
+            Appwrite.Role.user(userId)
+        )
     ];
 }
 
-function getFileViewUrl(fileId) {
-    return GMAppwrite.storage.getFileView({
-        bucketId: BUCKET_ID,
-        fileId: fileId
-    }).toString();
-}
+/* =========================================
+   CLEANUP IF SUBMISSION FAILS
+========================================= */
 
-function getImagePreviewUrl(fileId) {
-    return GMAppwrite.storage.getFilePreview({
-        bucketId: BUCKET_ID,
-        fileId: fileId,
-        width: 500,
-        height: 500
-    }).toString();
-}
-
-async function uploadOneMedia(file, mediaType, userId, advertisementId, sortOrder) {
-    const fileId = Appwrite.ID.unique();
-
-    const uploadedFile = await GMAppwrite.storage.createFile({
-        bucketId: BUCKET_ID,
-        fileId: fileId,
-        file: file,
-        permissions: ownerPermissions(userId)
-    });
-
-    const fileUrl = getFileViewUrl(uploadedFile.$id);
-    const thumbnailUrl = mediaType === "image"
-        ? getImagePreviewUrl(uploadedFile.$id)
-        : "";
-
-    try {
-        await GMAppwrite.tablesDB.createRow({
-            databaseId: DATABASE_ID,
-            tableId: MEDIA_TABLE_ID,
-            rowId: Appwrite.ID.unique(),
-            data: {
-                advertisementId: advertisementId,
-                ownerId: userId,
-                mediaType: mediaType,
-                fileUrl: fileUrl,
-                thumbnailUrl: thumbnailUrl,
-                fileName: file.name,
-                sortOrder: sortOrder
-            },
-            permissions: ownerPermissions(userId)
-        });
-    } catch (error) {
+async function rollbackAdvertisement(advertisementId, uploadedMedia) {
+    for (const media of uploadedMedia) {
         try {
-            await GMAppwrite.storage.deleteFile({
-                bucketId: BUCKET_ID,
-                fileId: uploadedFile.$id
-            });
-        } catch (cleanupError) {
-            console.error("Could not remove an unlinked media file:", cleanupError);
-        }
-        throw error;
-    }
-
-    return uploadedFile.$id;
-}
-
-async function rollbackAdvertisement(advertisementId, uploadedFileIds) {
-    for (const fileId of uploadedFileIds) {
-        try {
-            await GMAppwrite.storage.deleteFile({
-                bucketId: BUCKET_ID,
-                fileId: fileId
+            await GMAppwrite.tablesDB.deleteRow({
+                databaseId: DATABASE_ID,
+                tableId: "advertisement_media",
+                rowId: media.mediaId
             });
         } catch (error) {
-            console.error("Media cleanup issue:", error);
+            console.error("Media record cleanup failed:", error);
+        }
+
+        try {
+            await GMAppwrite.storage.deleteFile({
+                bucketId: "advertisement_media",
+                fileId: media.fileId
+            });
+        } catch (error) {
+            console.error("Storage cleanup failed:", error);
         }
     }
 
@@ -477,19 +1390,24 @@ async function rollbackAdvertisement(advertisementId, uploadedFileIds) {
                 rowId: advertisementId
             });
         } catch (error) {
-            console.error("Advertisement cleanup issue:", error);
+            console.error("Advertisement cleanup failed:", error);
         }
     }
 }
 
+/* =========================================
+   SUBMIT ADVERTISEMENT
+========================================= */
+
 form.addEventListener("submit", async event => {
     event.preventDefault();
+
     clearStatus();
 
     if (!form.reportValidity()) return;
 
     if (selectedPhotos.length < 1) {
-        showStatus("Please select at least one photo.", "error");
+        showStatus("Please select at least one photograph.", "error");
         return;
     }
 
@@ -499,7 +1417,20 @@ form.addEventListener("submit", async event => {
     }
 
     if (!window.GMAppwrite) {
-        showStatus("Appwrite did not initialize. Please refresh the page and try again.", "error");
+        showStatus(
+            "Appwrite configuration is unavailable. Refresh and try again.",
+            "error"
+        );
+        return;
+    }
+
+    if (!window.GMAdvertisementMedia ||
+        typeof GMAdvertisementMedia.uploadMedia !== "function") {
+
+        showStatus(
+            "Advertisement media module could not load. Check advertisement-media.js.",
+            "error"
+        );
         return;
     }
 
@@ -507,10 +1438,14 @@ form.addEventListener("submit", async event => {
     submitButton.textContent = "Submitting advertisement...";
 
     let advertisementId = null;
-    const uploadedFileIds = [];
+    const uploadedMedia = [];
 
     try {
+        /* GET LOGGED-IN USER */
+
         const user = await GMAppwrite.account.get();
+
+        /* GET SELECTED CATEGORY */
 
         const selectedCategory = categoriesBySlug[categorySelect.value];
 
@@ -518,10 +1453,13 @@ form.addEventListener("submit", async event => {
             throw new Error("Please select a valid active category.");
         }
 
+        /* CREATE ADVERTISEMENT RECORD */
+
         const adRow = await GMAppwrite.tablesDB.createRow({
             databaseId: DATABASE_ID,
             tableId: AD_TABLE_ID,
             rowId: Appwrite.ID.unique(),
+
             data: {
                 ownerId: user.$id,
                 businessId: "",
@@ -537,15 +1475,27 @@ form.addEventListener("submit", async event => {
                 status: "pending",
                 isFeatured: false
             },
+
             permissions: ownerPermissions(user.$id)
         });
 
         advertisementId = adRow.$id;
 
+        /* PREPARE ALL SELECTED MEDIA */
+
         const allMedia = [
-            ...selectedPhotos.map(file => ({file, type:"image"})),
-            ...selectedVideos.map(file => ({file, type:"video"}))
+            ...selectedPhotos.map(file => ({
+                file,
+                type: "image"
+            })),
+
+            ...selectedVideos.map(file => ({
+                file,
+                type: "video"
+            }))
         ];
+
+        /* UPLOAD MEDIA USING THE SHARED MODULE */
 
         for (let index = 0; index < allMedia.length; index++) {
             const item = allMedia[index];
@@ -555,27 +1505,35 @@ form.addEventListener("submit", async event => {
                 "info"
             );
 
-            const fileId = await uploadOneMedia(
+            const result = await GMAdvertisementMedia.uploadMedia(
                 item.file,
-                item.type,
-                user.$id,
                 advertisementId,
                 index
             );
 
-            uploadedFileIds.push(fileId);
+            uploadedMedia.push({
+                fileId: result.fileId,
+                mediaId: result.mediaId
+            });
         }
 
+        /* SUCCESS */
+
         showStatus(
-            "Your advertisement and all its media have been submitted successfully. Your advertisement is pending review and is not yet publicly published.",
+            "Your advertisement and all its media have been submitted successfully. Your advertisement is pending review.",
             "success"
         );
 
+        /* RESET FORM */
+
         form.reset();
+
         selectedPhotos = [];
         selectedVideos = [];
-        photoPreview.innerHTML = "";
-        videoPreview.innerHTML = "";
+
+        clearPreviews(photoPreview);
+        clearPreviews(videoPreview);
+
         photoCount.textContent = "No photos selected.";
         videoCount.textContent = "0 of 5 required videos selected.";
 
@@ -583,28 +1541,42 @@ form.addEventListener("submit", async event => {
         console.error("Advertisement submission error:", error);
 
         if (advertisementId) {
-            await rollbackAdvertisement(advertisementId, uploadedFileIds);
+            await rollbackAdvertisement(
+                advertisementId,
+                uploadedMedia
+            );
         }
 
-        if (error.code === 401 || error.type === "user_unauthorized") {
-            showStatus("Please sign in to your GLOBAL MARKET account before creating an advertisement.", "error");
+        if (
+            error.code === 401 ||
+            error.type === "user_unauthorized"
+        ) {
+            showStatus(
+                "Please sign in to your GLOBAL MARKET account before creating an advertisement.",
+                "error"
+            );
         } else {
             showStatus(
                 "We could not complete your submission. Appwrite reported: " +
                 (error.message || "Unknown error") +
-                ". Please check your table and bucket permissions before trying again.",
+                ". Check your database fields, permissions and storage settings.",
                 "error"
             );
         }
+
     } finally {
         submitButton.disabled = false;
-        submitButton.textContent = "Submit Advertisement";
+        submitButton.textContent = "Submit Advertisement →";
     }
 });
 
+/* =========================================
+   INITIALIZE PAGE
+========================================= */
+
 loadCategories();
+
 </script>
-    <script src="advertisement-media.js"></script>
 
 </body>
 </html>
