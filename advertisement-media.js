@@ -1,3 +1,4 @@
+
 /* ==========================================
    GLOBAL MARKET
    ADVERTISEMENT MEDIA MANAGEMENT
@@ -21,22 +22,10 @@
         MAX_PHOTO_SIZE: 5 * 1024 * 1024,
         MAX_VIDEO_SIZE: 50 * 1024 * 1024,
 
-        // Common video formats.
         VIDEO_EXTENSIONS: [
-            "mp4",
-            "mov",
-            "m4v",
-            "webm",
-            "ogv",
-            "ogg",
-            "avi",
-            "mkv",
-            "3gp",
-            "mpeg",
-            "mpg",
-            "wmv",
-            "flv",
-            "ts"
+            "mp4", "mov", "m4v", "webm", "ogv",
+            "ogg", "avi", "mkv", "3gp", "mpeg",
+            "mpg", "wmv", "flv", "ts"
         ]
     };
 
@@ -101,17 +90,12 @@
     function isSupportedVideo(file) {
         if (!file) return false;
 
-        const mimeType = (file.type || "").toLowerCase();
-
         const extension = file.name
             .split(".")
             .pop()
             .toLowerCase();
 
-        return (
-            mimeType.startsWith("video/") ||
-            CONFIG.VIDEO_EXTENSIONS.includes(extension)
-        );
+        return CONFIG.VIDEO_EXTENSIONS.includes(extension);
     }
 
     // ==========================================
@@ -127,29 +111,16 @@
             throw new Error("The selected file is empty.");
         }
 
-        const mimeType = (file.type || "").toLowerCase();
+        const extension = file.name
+            .split(".")
+            .pop()
+            .toLowerCase();
 
-        if (
-            mimeType.startsWith("image/") ||
-            /\.(jpg|jpeg|png|gif)$/i.test(file.name)
-        ) {
-            const extension = file.name
-                .split(".")
-                .pop()
-                .toLowerCase();
+        const supportedImages = [
+            "jpg", "jpeg", "png", "gif"
+        ];
 
-            const supportedImages = [
-                "jpg",
-                "jpeg",
-                "png",
-                "gif"
-            ];
-
-            if (!supportedImages.includes(extension)) {
-                throw new Error(
-                    "Only JPG, PNG and GIF photos are accepted."
-                );
-            }
+        if (supportedImages.includes(extension)) {
 
             if (file.size > CONFIG.MAX_PHOTO_SIZE) {
                 throw new Error(
@@ -161,6 +132,7 @@
         }
 
         if (isSupportedVideo(file)) {
+
             if (file.size > CONFIG.MAX_VIDEO_SIZE) {
                 throw new Error(
                     "Each video must be 50 MB or smaller."
@@ -171,7 +143,7 @@
         }
 
         throw new Error(
-            "Unsupported file. Select a JPG, PNG, GIF photo or a supported video."
+            "Unsupported file. Select a JPG, JPEG, PNG or GIF photo, or a supported video."
         );
     }
 
@@ -181,6 +153,7 @@
     // ==========================================
 
     async function uploadMedia(file, advertisementId, sortOrder = 0) {
+
         if (!advertisementId) {
             throw new Error("Advertisement ID is required.");
         }
@@ -193,6 +166,9 @@
         let uploadedFile = null;
 
         try {
+
+            // Upload the actual file to Appwrite Storage.
+
             uploadedFile = await storage.createFile({
                 bucketId: CONFIG.BUCKET_ID,
                 fileId: fileId,
@@ -205,6 +181,8 @@
                 fileId: uploadedFile.$id
             }).toString();
 
+            // Save media information in the database.
+
             const mediaRecord = await tablesDB.createRow({
                 databaseId: CONFIG.DATABASE_ID,
                 tableId: CONFIG.MEDIA_TABLE_ID,
@@ -214,6 +192,11 @@
                     advertisementId: advertisementId,
                     ownerId: user.$id,
                     mediaType: mediaType,
+
+                    // IMPORTANT:
+                    // This field is required by your Appwrite table.
+                    fileId: uploadedFile.$id,
+
                     fileUrl: fileUrl,
                     thumbnailUrl: mediaType === "image" ? fileUrl : "",
                     fileName: file.name,
@@ -233,6 +216,8 @@
             };
 
         } catch (error) {
+
+            // Remove uploaded file if database saving fails.
 
             if (uploadedFile && uploadedFile.$id) {
                 try {
@@ -262,6 +247,7 @@
         photos = [],
         videos = []
     ) {
+
         if (!advertisementId) {
             throw new Error("Advertisement ID is required.");
         }
@@ -288,7 +274,7 @@
             );
         }
 
-        // Validate every file before starting uploads.
+        // Validate all files before uploading.
 
         photos.forEach(file => {
             if (validateFile(file) !== "image") {
@@ -307,6 +293,7 @@
         try {
 
             // Upload photos.
+
             for (let i = 0; i < photos.length; i++) {
                 results.push(
                     await uploadMedia(
@@ -318,6 +305,7 @@
             }
 
             // Upload videos.
+
             for (let i = 0; i < videos.length; i++) {
                 results.push(
                     await uploadMedia(
@@ -332,7 +320,8 @@
 
         } catch (error) {
 
-            // Clean up files already uploaded in this batch.
+            // Clean up previously uploaded media.
+
             for (const media of results) {
                 try {
                     await deleteAdvertisementMedia(
@@ -353,13 +342,13 @@
 
     // ==========================================
     // PUBLISH MEDIA
-    // Called only after successful submission.
     // ==========================================
 
     async function publishAdvertisementMedia(
         advertisementId,
         uploadedMedia
     ) {
+
         if (!advertisementId || !Array.isArray(uploadedMedia)) {
             throw new Error(
                 "Invalid advertisement publishing request."
@@ -403,6 +392,7 @@
     // ==========================================
 
     async function getAdvertisementMedia(advertisementId) {
+
         if (!advertisementId) {
             throw new Error("Advertisement ID is required.");
         }
@@ -426,6 +416,7 @@
     // ==========================================
 
     async function deleteAdvertisementMedia(mediaId, fileId) {
+
         if (!mediaId || !fileId) {
             throw new Error(
                 "Media record ID and file ID are required."
