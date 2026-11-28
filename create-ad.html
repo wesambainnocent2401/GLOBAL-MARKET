@@ -49,7 +49,6 @@ body.dark-theme{
 }
 
 *{box-sizing:border-box}
-
 html{scroll-behavior:smooth}
 
 body{
@@ -61,7 +60,6 @@ body{
 }
 
 button,input,select,textarea{font-family:inherit}
-
 button{touch-action:manipulation}
 
 .hero{
@@ -612,7 +610,6 @@ body.dark-theme .status.success{
 
 <body>
 
-<!-- SHARED NAVIGATION MENU -->
 <div id="site-header"></div>
 
 <main>
@@ -642,18 +639,9 @@ body.dark-theme .status.success{
         </div>
 
         <div class="hero-images">
-            <img
-                src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=85"
-                alt="Customer shopping"
-            >
-            <img
-                src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=85"
-                alt="Fashion products"
-            >
-            <img
-                src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=85"
-                alt="Modern business workspace"
-            >
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=85" alt="Customer shopping">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=85" alt="Fashion products">
+            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=85" alt="Modern business workspace">
         </div>
 
     </div>
@@ -696,12 +684,7 @@ body.dark-theme .status.success{
 
                     <div class="field full">
                         <label for="title">Advertisement title *</label>
-                        <input
-                            id="title"
-                            maxlength="120"
-                            required
-                            placeholder="Example: Samsung Galaxy phone for sale"
-                        >
+                        <input id="title" maxlength="120" required placeholder="Example: Samsung Galaxy phone for sale">
                     </div>
 
                     <div class="field">
@@ -737,13 +720,7 @@ body.dark-theme .status.success{
 
                     <div class="field full">
                         <label for="description">Detailed description *</label>
-                        <textarea
-                            id="description"
-                            minlength="20"
-                            maxlength="5000"
-                            required
-                            placeholder="Describe your product or service, its features, benefits and important details..."
-                        ></textarea>
+                        <textarea id="description" minlength="20" maxlength="5000" required placeholder="Describe your product or service, its features, benefits and important details..."></textarea>
                         <small>Write a clear description. Minimum 20 characters and maximum 5,000 characters.</small>
                     </div>
 
@@ -782,10 +759,10 @@ body.dark-theme .status.success{
                         required
                     >
 
-                    <small>Upload 1–20 JPG, PNG or GIF photos. Maximum 5 MB per photo.</small>
+                    <small>Upload at least 2 and up to 20 JPG, PNG or GIF photos. Maximum 5 MB per photo.</small>
 
                     <div class="media-count">
-                        <strong id="photoCount">No photos selected.</strong>
+                        <strong id="photoCount">At least 2 photos required.</strong>
                     </div>
 
                     <div class="preview" id="photoPreview"></div>
@@ -820,15 +797,19 @@ body.dark-theme .status.success{
                     <input
                         id="videos"
                         type="file"
-                        accept="video/mp4"
+                        accept="video/*,.mp4,.mov,.m4v,.webm,.ogv,.ogg,.avi,.mkv,.3gp,.mpeg,.mpg,.wmv,.flv,.ts"
                         multiple
                         required
                     >
 
-                    <small>At least 5 videos are required. Maximum 10 videos, 50 MB each. MP4 only.</small>
+                    <small>
+                        Upload at least 1 video and up to 10 videos.
+                        Supported formats include MP4, MOV, MKV, AVI, 3GP and WEBM.
+                        Maximum 50 MB per video.
+                    </small>
 
                     <div class="media-count">
-                        <strong id="videoCount">0 of 5 required videos selected.</strong>
+                        <strong id="videoCount">At least 1 video required.</strong>
                     </div>
 
                     <div class="preview" id="videoPreview"></div>
@@ -915,12 +896,7 @@ body.dark-theme .status.success{
 
                     <div class="field">
                         <label for="townLocation">Town / Area *</label>
-                        <input
-                            id="townLocation"
-                            maxlength="100"
-                            required
-                            placeholder="Example: Bungoma Town"
-                        >
+                        <input id="townLocation" maxlength="100" required placeholder="Example: Bungoma Town">
                     </div>
 
                 </div>
@@ -979,26 +955,10 @@ body.dark-theme .status.success{
 
     </section>
 
-    <!-- ADDITIONAL BUSINESS PHOTOGRAPHS -->
-
     <div class="photo-strip">
-        <img
-            src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=600&q=85"
-            alt="Retail products in a shop"
-            loading="lazy"
-        >
-
-        <img
-            src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=85"
-            alt="Modern retail business"
-            loading="lazy"
-        >
-
-        <img
-            src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=600&q=85"
-            alt="Customer shopping online"
-            loading="lazy"
-        >
+        <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=600&q=85" alt="Retail products in a shop" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=85" alt="Modern retail business" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=600&q=85" alt="Customer shopping online" loading="lazy">
     </div>
 
     <div class="bottom-information">
@@ -1018,7 +978,6 @@ body.dark-theme .status.success{
 
 </main>
 
-<!-- SHARED FOOTER -->
 <div id="site-footer"></div>
 
 <!-- APPWRITE SDK AND PROJECT CONFIGURATION -->
@@ -1044,12 +1003,20 @@ const CATEGORY_TABLE_ID = "categories";
 const MEDIA_TABLE_ID = "advertisement_media";
 const BUCKET_ID = "advertisement_media";
 
+const MIN_PHOTOS = 2;
 const MAX_PHOTOS = 20;
-const MIN_VIDEOS = 5;
+
+const MIN_VIDEOS = 1;
 const MAX_VIDEOS = 10;
 
 const MAX_PHOTO_SIZE = 5 * 1024 * 1024;
 const MAX_VIDEO_SIZE = 50 * 1024 * 1024;
+
+const VIDEO_EXTENSIONS = [
+    "mp4", "mov", "m4v", "webm", "ogv", "ogg",
+    "avi", "mkv", "3gp", "mpeg", "mpg",
+    "wmv", "flv", "ts"
+];
 
 const form = document.getElementById("createAdForm");
 const photosInput = document.getElementById("photos");
@@ -1193,36 +1160,63 @@ function renderPreview(files, container, isVideo) {
 photosInput.addEventListener("change", () => {
     clearStatus();
 
-    const files = uniqueFiles(Array.from(photosInput.files || []));
+    const files = uniqueFiles(
+        Array.from(photosInput.files || [])
+    );
+
+    if (files.length < MIN_PHOTOS) {
+        showStatus("Please select at least 2 photos.", "error");
+        selectedPhotos = [];
+        photosInput.value = "";
+        clearPreviews(photoPreview);
+        photoCount.textContent = "At least 2 photos required.";
+        return;
+    }
 
     if (files.length > MAX_PHOTOS) {
         showStatus("You can upload a maximum of 20 photos.", "error");
-        photosInput.value = "";
         selectedPhotos = [];
+        photosInput.value = "";
         clearPreviews(photoPreview);
-        photoCount.textContent = "No photos selected.";
+        photoCount.textContent = "Maximum 20 photos allowed.";
         return;
     }
 
-    const invalid = files.find(file =>
-        !["image/jpeg", "image/png", "image/gif"].includes(file.type)
-    );
+    const validExtensions = ["jpg", "jpeg", "png", "gif"];
+
+    const invalid = files.find(file => {
+        const extension = file.name.split(".").pop().toLowerCase();
+        const mimeType = (file.type || "").toLowerCase();
+
+        return (
+            !validExtensions.includes(extension) ||
+            (
+                mimeType &&
+                !["image/jpeg", "image/png", "image/gif"].includes(mimeType)
+            )
+        );
+    });
 
     if (invalid) {
         showStatus("Only JPG, PNG and GIF photos are accepted.", "error");
-        photosInput.value = "";
         selectedPhotos = [];
+        photosInput.value = "";
         clearPreviews(photoPreview);
-        photoCount.textContent = "No photos selected.";
+        photoCount.textContent = "Invalid photo format.";
         return;
     }
 
-    if (files.some(file => file.size === 0 || file.size > MAX_PHOTO_SIZE)) {
-        showStatus("Each photo must be greater than 0 bytes and no larger than 5 MB.", "error");
-        photosInput.value = "";
+    if (files.some(file =>
+        file.size === 0 || file.size > MAX_PHOTO_SIZE
+    )) {
+        showStatus(
+            "Each photo must be greater than 0 bytes and no larger than 5 MB.",
+            "error"
+        );
         selectedPhotos = [];
+        photosInput.value = "";
         clearPreviews(photoPreview);
-        photoCount.textContent = "No photos selected.";
+        photoCount.textContent = "Invalid photo size.";
         return;
     }
 
@@ -1230,7 +1224,8 @@ photosInput.addEventListener("change", () => {
 
     updateInputFiles(photosInput, selectedPhotos);
 
-    photoCount.textContent = `${files.length} photo(s) selected.`;
+    photoCount.textContent =
+        `${files.length} of ${MAX_PHOTOS} maximum photos selected.`;
 
     renderPreview(files, photoPreview, false);
 });
@@ -1242,32 +1237,61 @@ photosInput.addEventListener("change", () => {
 videosInput.addEventListener("change", () => {
     clearStatus();
 
-    const files = uniqueFiles(Array.from(videosInput.files || []));
+    const files = uniqueFiles(
+        Array.from(videosInput.files || [])
+    );
+
+    if (files.length < MIN_VIDEOS) {
+        showStatus("Please select at least 1 video.", "error");
+        selectedVideos = [];
+        videosInput.value = "";
+        clearPreviews(videoPreview);
+        videoCount.textContent = "At least 1 video required.";
+        return;
+    }
 
     if (files.length > MAX_VIDEOS) {
         showStatus("You can upload a maximum of 10 videos.", "error");
-        videosInput.value = "";
         selectedVideos = [];
+        videosInput.value = "";
         clearPreviews(videoPreview);
-        videoCount.textContent = "0 of 5 required videos selected.";
+        videoCount.textContent = "Maximum 10 videos allowed.";
         return;
     }
 
-    if (files.some(file => file.type !== "video/mp4")) {
-        showStatus("Only MP4 videos are accepted.", "error");
-        videosInput.value = "";
+    const invalid = files.find(file => {
+        const extension = file.name.split(".").pop().toLowerCase();
+        const mimeType = (file.type || "").toLowerCase();
+
+        return (
+            !mimeType.startsWith("video/") &&
+            !VIDEO_EXTENSIONS.includes(extension)
+        );
+    });
+
+    if (invalid) {
+        showStatus(
+            "Unsupported video format. Please select a supported video.",
+            "error"
+        );
         selectedVideos = [];
+        videosInput.value = "";
         clearPreviews(videoPreview);
-        videoCount.textContent = "0 of 5 required videos selected.";
+        videoCount.textContent = "Unsupported video format.";
         return;
     }
 
-    if (files.some(file => file.size === 0 || file.size > MAX_VIDEO_SIZE)) {
-        showStatus("Each video must be greater than 0 bytes and no larger than 50 MB.", "error");
-        videosInput.value = "";
+    if (files.some(file =>
+        file.size === 0 || file.size > MAX_VIDEO_SIZE
+    )) {
+        showStatus(
+            "Each video must be greater than 0 bytes and no larger than 50 MB.",
+            "error"
+        );
         selectedVideos = [];
+        videosInput.value = "";
         clearPreviews(videoPreview);
-        videoCount.textContent = "0 of 5 required videos selected.";
+        videoCount.textContent = "Invalid video size.";
         return;
     }
 
@@ -1276,7 +1300,7 @@ videosInput.addEventListener("change", () => {
     updateInputFiles(videosInput, selectedVideos);
 
     videoCount.textContent =
-        `${files.length} of ${MIN_VIDEOS} required videos selected.`;
+        `${files.length} of ${MAX_VIDEOS} maximum videos selected.`;
 
     renderPreview(files, videoPreview, true);
 });
@@ -1419,24 +1443,29 @@ form.addEventListener("submit", async event => {
 
     if (!form.reportValidity()) return;
 
-    if (selectedPhotos.length < 1) {
-        showStatus("Please select at least one photograph.", "error");
+    if (selectedPhotos.length < MIN_PHOTOS) {
+        showStatus("Please select at least 2 photos.", "error");
         return;
     }
 
     if (selectedVideos.length < MIN_VIDEOS) {
-        showStatus("Please select at least five MP4 videos.", "error");
+        showStatus("Please select at least 1 video.", "error");
         return;
     }
 
-    if (selectedPhotos.length > MAX_PHOTOS ||
-        selectedVideos.length > MAX_VIDEOS) {
+    if (
+        selectedPhotos.length > MAX_PHOTOS ||
+        selectedVideos.length > MAX_VIDEOS
+    ) {
         showStatus("Your selected media exceeds the allowed limits.", "error");
         return;
     }
 
     if (!window.GMAppwrite) {
-        showStatus("Appwrite configuration is unavailable. Refresh and try again.", "error");
+        showStatus(
+            "Appwrite configuration is unavailable. Refresh and try again.",
+            "error"
+        );
         return;
     }
 
@@ -1576,8 +1605,8 @@ form.addEventListener("submit", async event => {
         clearPreviews(photoPreview);
         clearPreviews(videoPreview);
 
-        photoCount.textContent = "No photos selected.";
-        videoCount.textContent = "0 of 5 required videos selected.";
+        photoCount.textContent = "At least 2 photos required.";
+        videoCount.textContent = "At least 1 video required.";
 
     } catch (error) {
         console.error("Advertisement submission error:", error);
@@ -1626,4 +1655,4 @@ loadCategories();
 </script>
 
 </body>
-                        </html>
+    </html>
