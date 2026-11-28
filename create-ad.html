@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f4f6f9">
+<meta name="theme-color" content="#142b49">
 <meta name="description" content="Advertise your products and services on GLOBAL MARKET. Connect with customers across Kenya.">
 <title>Create Advertisement | GLOBAL MARKET</title>
 
@@ -16,38 +15,42 @@
 
 <style>
 :root{
-    --bg:#f3f6fa;
+    --bg:#f1f5f9;
     --surface:#ffffff;
-    --surface-soft:#f8fafc;
+    --soft:#f7f9fc;
     --text:#263950;
-    --muted:#78879a;
+    --muted:#748399;
     --navy:#142b49;
-    --navy-light:#294b70;
+    --navy2:#25496e;
+    --teal:#087e83;
+    --teal-soft:#e5f5f3;
     --gold:#c49b49;
-    --gold-soft:#f7f0e2;
-    --border:#e3e9f0;
+    --gold-soft:#f8f1e4;
+    --border:#e2e8f0;
     --success:#267342;
     --danger:#b43b3b;
-    --shadow:0 12px 35px rgba(20,43,73,.07);
+    --shadow:0 15px 40px rgba(20,43,73,.07);
 }
 
 body.dark-theme{
     --bg:#101a27;
     --surface:#172537;
-    --surface-soft:#1d2d40;
+    --soft:#1d2d40;
     --text:#e7edf5;
     --muted:#a2b0c1;
-    --navy:#dce8f7;
-    --navy-light:#b9cde6;
+    --navy:#e2ebf7;
+    --navy2:#c1d4ed;
+    --teal:#55c6c1;
+    --teal-soft:#1d3b3d;
     --gold:#d6b46d;
     --gold-soft:#3a3325;
     --border:#304157;
-    --shadow:0 12px 35px rgba(0,0,0,.2);
+    --shadow:0 15px 40px rgba(0,0,0,.2);
 }
 
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
 
 body{
     margin:0;
@@ -57,68 +60,94 @@ body{
     transition:background .25s,color .25s;
 }
 
-button,input,select,textarea{
-    font-family:inherit;
-}
+button,input,select,textarea{font-family:inherit}
+
+button{touch-action:manipulation}
 
 .hero{
     position:relative;
     overflow:hidden;
+    color:#fff;
+    padding:58px 20px 35px;
     background:
-        linear-gradient(90deg,rgba(13,34,58,.96),rgba(18,46,75,.78)),
+        linear-gradient(110deg,rgba(9,29,52,.97),rgba(12,65,77,.88)),
         url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1800&q=85");
     background-position:center;
     background-size:cover;
-    color:white;
-    padding:55px 20px;
+}
+
+.hero:after{
+    content:"";
+    position:absolute;
+    width:320px;
+    height:320px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:50%;
+    right:-100px;
+    top:-130px;
+    pointer-events:none;
 }
 
 .hero-inner{
-    max-width:1150px;
+    position:relative;
+    z-index:1;
+    max-width:1160px;
     margin:auto;
     display:grid;
-    grid-template-columns:1.3fr .7fr;
-    gap:35px;
+    grid-template-columns:1.2fr .8fr;
+    gap:45px;
     align-items:center;
 }
 
-.hero-copy{
-    max-width:680px;
-}
+.hero-copy{max-width:680px}
 
 .hero-tag{
     display:inline-flex;
     align-items:center;
     gap:8px;
-    padding:8px 13px;
+    padding:9px 14px;
     border:1px solid rgba(255,255,255,.25);
     background:rgba(255,255,255,.09);
     border-radius:30px;
-    color:#f3dba8;
+    color:#f2d69c;
     font-size:11px;
-    font-weight:700;
-    letter-spacing:.5px;
+    font-weight:800;
+    letter-spacing:1px;
 }
 
 .hero h1{
     font-family:Manrope,Arial,sans-serif;
-    font-size:clamp(30px,5vw,46px);
-    line-height:1.15;
-    margin:18px 0 12px;
+    font-size:clamp(32px,5vw,49px);
+    line-height:1.13;
+    margin:20px 0 14px;
     font-weight:800;
+    letter-spacing:-1.2px;
 }
 
+.hero-highlight{color:#e9c77e}
+
 .hero p{
-    max-width:610px;
-    color:#dce5ef;
+    max-width:590px;
+    color:#d8e4ef;
     font-size:14px;
     line-height:1.9;
     margin:0;
 }
 
-.hero-highlight{
-    color:#e8c783;
+.hero-points{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 18px;
+    margin-top:22px;
 }
+
+.hero-points span{
+    color:#e4edf5;
+    font-size:11px;
+    font-weight:600;
+}
+
+.hero-points span:first-letter{color:#e9c77e}
 
 .hero-images{
     display:grid;
@@ -128,42 +157,46 @@ button,input,select,textarea{
 }
 
 .hero-images img{
+    display:block;
     width:100%;
     height:145px;
     object-fit:cover;
-    border-radius:13px;
-    border:2px solid rgba(255,255,255,.2);
+    border-radius:15px;
+    border:2px solid rgba(255,255,255,.22);
+    box-shadow:0 12px 25px rgba(0,0,0,.2);
 }
 
 .hero-images img:first-child{
-    height:190px;
+    height:205px;
     grid-row:span 2;
 }
 
-.hero-images img:last-child{
-    height:120px;
-}
+.hero-images img:last-child{height:125px}
 
 .hero-tools{
-    max-width:1150px;
-    margin:24px auto 0;
+    position:relative;
+    z-index:2;
+    max-width:1160px;
+    margin:25px auto 0;
     display:flex;
     justify-content:flex-end;
 }
 
 .theme-toggle{
-    border:1px solid rgba(255,255,255,.3);
+    border:1px solid rgba(255,255,255,.35);
     border-radius:30px;
-    background:rgba(255,255,255,.1);
-    color:white;
-    padding:10px 15px;
+    background:rgba(255,255,255,.12);
+    color:#fff;
+    padding:11px 16px;
     cursor:pointer;
     font-size:12px;
-    font-weight:700;
+    font-weight:800;
 }
 
+.theme-toggle:hover{background:rgba(255,255,255,.2)}
+
 .container{
-    max-width:1100px;
+    max-width:1080px;
     margin:35px auto;
     padding:0 17px;
 }
@@ -177,10 +210,10 @@ button,input,select,textarea{
 }
 
 .intro-row h2{
-    margin:0 0 5px;
+    margin:0 0 6px;
     color:var(--navy);
     font-family:Manrope,Arial,sans-serif;
-    font-size:21px;
+    font-size:23px;
 }
 
 .intro-row p{
@@ -191,45 +224,43 @@ button,input,select,textarea{
 }
 
 .secure-note{
-    padding:10px 13px;
-    border-radius:9px;
-    background:var(--gold-soft);
-    color:var(--text);
+    padding:11px 15px;
+    border-radius:10px;
+    background:var(--teal-soft);
+    color:var(--teal);
     font-size:11px;
-    white-space:nowrap;
+    font-weight:700;
 }
 
 .card{
     background:var(--surface);
     border:1px solid var(--border);
-    border-radius:16px;
-    padding:28px;
+    border-radius:18px;
+    padding:30px;
     box-shadow:var(--shadow);
 }
 
-.section{
-    margin-bottom:33px;
-}
+.section{margin-bottom:35px}
 
 .section-heading{
     display:flex;
     align-items:center;
-    gap:12px;
-    margin-bottom:18px;
-    padding-bottom:13px;
+    gap:13px;
+    margin-bottom:20px;
+    padding-bottom:14px;
     border-bottom:1px solid var(--border);
 }
 
 .section-number{
-    width:33px;
-    height:33px;
+    width:37px;
+    height:37px;
     display:grid;
     place-items:center;
     flex-shrink:0;
-    border-radius:10px;
+    border-radius:11px;
     background:var(--gold-soft);
     color:var(--gold);
-    font-size:12px;
+    font-size:13px;
     font-weight:800;
 }
 
@@ -252,81 +283,73 @@ button,input,select,textarea{
     gap:17px;
 }
 
-.field{
-    min-width:0;
-    margin-bottom:14px;
-}
-
-.field.full{
-    grid-column:1/-1;
-}
+.field{min-width:0;margin-bottom:15px}
+.field.full{grid-column:1/-1}
 
 label{
     display:block;
     margin-bottom:8px;
     color:var(--text);
     font-size:12px;
-    font-weight:700;
+    font-weight:800;
 }
 
 input,select,textarea{
     width:100%;
-    min-height:46px;
-    padding:12px 13px;
+    min-height:47px;
+    padding:12px 14px;
     border:1px solid var(--border);
-    border-radius:9px;
-    background:var(--surface-soft);
+    border-radius:10px;
+    background:var(--soft);
     color:var(--text);
     font-size:13px;
     outline:none;
-    transition:border .2s,box-shadow .2s;
+    transition:border .2s,box-shadow .2s,background .2s;
 }
 
 input:focus,select:focus,textarea:focus{
-    border-color:var(--gold);
-    box-shadow:0 0 0 3px rgba(196,155,73,.12);
+    border-color:var(--teal);
+    box-shadow:0 0 0 3px rgba(8,126,131,.12);
 }
 
 textarea{
-    min-height:125px;
+    min-height:135px;
     resize:vertical;
     line-height:1.7;
 }
 
-input::placeholder,textarea::placeholder{
-    color:var(--muted);
-}
+input::placeholder,textarea::placeholder{color:var(--muted)}
 
 small{
     display:block;
     color:var(--muted);
     font-size:11px;
     line-height:1.7;
-    margin-top:6px;
+    margin-top:7px;
 }
 
 .upload-box{
     padding:20px;
-    border:1px dashed var(--gold);
-    border-radius:12px;
-    background:var(--surface-soft);
+    border:1px dashed var(--teal);
+    border-radius:14px;
+    background:var(--soft);
 }
 
 .upload-top{
     display:flex;
     align-items:center;
-    gap:12px;
-    margin-bottom:14px;
+    gap:13px;
+    margin-bottom:16px;
 }
 
 .upload-icon{
-    width:43px;
-    height:43px;
+    width:47px;
+    height:47px;
     display:grid;
     place-items:center;
-    border-radius:12px;
-    background:var(--gold-soft);
-    font-size:20px;
+    border-radius:13px;
+    background:var(--teal-soft);
+    font-size:21px;
 }
 
 .upload-title{
@@ -357,17 +380,16 @@ small{
     min-width:0;
     overflow:hidden;
     border:1px solid var(--border);
-    border-radius:9px;
+    border-radius:10px;
     background:var(--surface);
 }
 
-.preview-item img,
-.preview-item video{
+.preview-item img,.preview-item video{
     width:100%;
-    height:100px;
+    height:105px;
     object-fit:cover;
     display:block;
-    background:#e8edf4;
+    background:var(--soft);
 }
 
 .preview-name{
@@ -390,15 +412,13 @@ small{
     font-size:11px;
 }
 
-.media-count strong{
-    color:var(--navy);
-}
+.media-count strong{color:var(--navy)}
 
 .note{
-    padding:14px;
+    padding:15px;
     background:var(--gold-soft);
-    border-left:3px solid var(--gold);
-    border-radius:8px;
+    border-left:4px solid var(--gold);
+    border-radius:9px;
     color:var(--text);
     font-size:11px;
     line-height:1.8;
@@ -408,21 +428,21 @@ small{
 .photo-strip{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:10px;
-    margin:22px 0 30px;
+    gap:12px;
+    margin:25px 0;
 }
 
 .photo-strip img{
     width:100%;
-    height:120px;
+    height:145px;
     object-fit:cover;
-    border-radius:10px;
+    border-radius:12px;
 }
 
 .agreement{
     display:flex;
     align-items:flex-start;
-    gap:10px;
+    gap:11px;
     margin:20px 0;
     color:var(--muted);
     font-size:11px;
@@ -430,34 +450,39 @@ small{
 }
 
 .agreement input{
-    width:16px;
-    min-height:16px;
+    width:17px;
+    min-height:17px;
     flex-shrink:0;
     margin-top:3px;
-    accent-color:var(--gold);
+    accent-color:var(--teal);
 }
 
 .agreement a{
-    color:var(--gold);
-    font-weight:700;
+    color:var(--teal);
+    font-weight:800;
+    text-decoration:none;
 }
+
+.agreement a:hover{text-decoration:underline}
 
 .submit{
     width:100%;
-    min-height:53px;
+    min-height:55px;
     padding:15px;
     border:0;
-    border-radius:10px;
-    background:linear-gradient(110deg,#142b49,#294b70);
+    border-radius:11px;
+    background:linear-gradient(110deg,#142b49,#087e83);
     color:white;
     font-size:14px;
     font-weight:800;
     cursor:pointer;
-    transition:transform .2s,opacity .2s;
+    transition:transform .2s,opacity .2s,box-shadow .2s;
+    box-shadow:0 8px 20px rgba(8,126,131,.17);
 }
 
 .submit:hover{
     transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(8,126,131,.23);
 }
 
 .submit:disabled{
@@ -470,7 +495,7 @@ small{
     display:none;
     margin-top:15px;
     padding:14px;
-    border-radius:9px;
+    border-radius:10px;
     font-size:12px;
     line-height:1.8;
     overflow-wrap:anywhere;
@@ -514,108 +539,72 @@ body.dark-theme .status.success{
 
 .bottom-information{
     margin-top:25px;
-    padding:20px;
+    padding:21px;
     border:1px solid var(--border);
-    border-radius:12px;
+    border-radius:14px;
     background:var(--surface);
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     gap:15px;
+    box-shadow:var(--shadow);
 }
 
 .bottom-information .info-icon{
-    width:42px;
-    height:42px;
+    width:43px;
+    height:43px;
     flex-shrink:0;
     display:grid;
     place-items:center;
-    background:var(--gold-soft);
+    background:var(--teal-soft);
+    color:var(--teal);
     border-radius:12px;
     font-size:19px;
+    font-weight:800;
 }
 
 .bottom-information strong{
     display:block;
     color:var(--navy);
     font-size:12px;
-    margin-bottom:4px;
+    margin-bottom:5px;
 }
 
 .bottom-information p{
     margin:0;
     color:var(--muted);
     font-size:11px;
-    line-height:1.7;
+    line-height:1.8;
 }
 
 @media(max-width:750px){
-    .hero-inner{
-        grid-template-columns:1fr;
-    }
-
-    .hero-images{
-        max-width:470px;
-    }
-
-    .hero-images img{
-        height:115px;
-    }
-
-    .hero-images img:first-child{
-        height:155px;
-    }
-
-    .hero-images img:last-child{
-        height:100px;
-    }
-
-    .hero-tools{
-        margin-top:15px;
-    }
+    .hero-inner{grid-template-columns:1fr;gap:25px}
+    .hero-images{max-width:470px}
+    .hero-images img{height:120px}
+    .hero-images img:first-child{height:165px}
+    .hero-images img:last-child{height:105px}
 }
 
 @media(max-width:600px){
-    .hero{
-        padding:35px 17px;
-    }
+    .hero{padding:37px 17px 25px}
+    .hero h1{font-size:30px}
+    .hero p{font-size:13px}
+    .container{padding:0 11px;margin:24px auto}
+    .card{padding:17px}
+    .grid{grid-template-columns:1fr;gap:0}
+    .field.full{grid-column:auto}
+    .intro-row{align-items:flex-start;flex-direction:column}
+    .secure-note{white-space:normal}
+    .photo-strip img{height:90px}
+    .upload-box{padding:13px}
+    .section{margin-bottom:28px}
+    .hero-tools{margin-top:18px}
+    .bottom-information{padding:15px}
+}
 
-    .hero h1{
-        font-size:29px;
-    }
-
-    .container{
-        padding:0 11px;
-        margin:23px auto;
-    }
-
-    .card{
-        padding:17px;
-    }
-
-    .grid{
-        grid-template-columns:1fr;
-        gap:0;
-    }
-
-    .field.full{
-        grid-column:auto;
-    }
-
-    .intro-row{
-        align-items:flex-start;
-        flex-direction:column;
-    }
-
-    .secure-note{
-        white-space:normal;
-    }
-
-    .photo-strip img{
-        height:85px;
-    }
-
-    .upload-box{
-        padding:13px;
+@media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+        scroll-behavior:auto!important;
+        transition:none!important;
     }
 }
 </style>
@@ -623,7 +612,7 @@ body.dark-theme .status.success{
 
 <body>
 
-<!-- Navigation is supplied by the existing layout.js menu -->
+<!-- SHARED NAVIGATION MENU -->
 <div id="site-header"></div>
 
 <main>
@@ -634,30 +623,36 @@ body.dark-theme .status.success{
         <div class="hero-copy">
             <span class="hero-tag">✦ GLOBAL MARKET ADVERTISING</span>
 
-            <h1>Give Your Business <span class="hero-highlight">More Visibility.</span></h1>
+            <h1>
+                Give Your Business
+                <span class="hero-highlight">More Visibility.</span>
+            </h1>
 
             <p>
-                Showcase your products and services with photographs and videos.
-                Create an advertisement and introduce your business to customers
-                across Kenya.
+                Showcase your products and services using photographs and videos.
+                Reach customers, introduce your business and connect with people
+                across Kenya through GLOBAL MARKET.
             </p>
+
+            <div class="hero-points">
+                <span>✓ Product promotion</span>
+                <span>✓ Business visibility</span>
+                <span>✓ Nationwide reach</span>
+            </div>
         </div>
 
         <div class="hero-images">
             <img
-                src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=700&q=85"
+                src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=85"
                 alt="Customer shopping"
-                loading="lazy"
             >
             <img
-                src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=85"
+                src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=85"
                 alt="Fashion products"
-                loading="lazy"
             >
             <img
-                src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=600&q=85"
-                alt="Business workspace"
-                loading="lazy"
+                src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=85"
+                alt="Modern business workspace"
             >
         </div>
 
@@ -665,7 +660,7 @@ body.dark-theme .status.success{
 
     <div class="hero-tools">
         <button class="theme-toggle" id="themeToggle" type="button">
-            ☀️ Light / Dark Theme
+            🌙 Switch to Dark Theme
         </button>
     </div>
 </section>
@@ -674,18 +669,18 @@ body.dark-theme .status.success{
 
     <div class="intro-row">
         <div>
-            <h2>Publish Your Advertisement</h2>
-            <p>Complete the information below to submit your listing for review.</p>
+            <h2>Create Your Advertisement</h2>
+            <p>Complete the sections below and publish your advertisement.</p>
         </div>
 
-        <div class="secure-note">🔒 Account login required</div>
+        <div class="secure-note">🔒 Sign in required</div>
     </div>
 
     <section class="card">
 
         <form id="createAdForm">
 
-            <!-- ADVERTISEMENT INFORMATION -->
+            <!-- 01: ADVERTISEMENT INFORMATION -->
 
             <div class="section">
 
@@ -747,15 +742,15 @@ body.dark-theme .status.success{
                             minlength="20"
                             maxlength="5000"
                             required
-                            placeholder="Describe your product or service, its features and important details..."
+                            placeholder="Describe your product or service, its features, benefits and important details..."
                         ></textarea>
-                        <small>Provide clear and accurate information. Minimum 20 characters.</small>
+                        <small>Write a clear description. Minimum 20 characters and maximum 5,000 characters.</small>
                     </div>
 
                 </div>
             </div>
 
-            <!-- PHOTOS -->
+            <!-- 02: PHOTOS -->
 
             <div class="section">
 
@@ -763,7 +758,7 @@ body.dark-theme .status.success{
                     <div class="section-number">02</div>
                     <div>
                         <h2>Advertisement Photos</h2>
-                        <p>Show customers what you are advertising.</p>
+                        <p>Give customers a clear view of your offering.</p>
                     </div>
                 </div>
 
@@ -773,7 +768,7 @@ body.dark-theme .status.success{
                         <div class="upload-icon">📷</div>
                         <div>
                             <div class="upload-title">Product and service photographs</div>
-                            <div class="upload-description">Choose clear photographs of your offering.</div>
+                            <div class="upload-description">Choose clear photographs that represent your offering.</div>
                         </div>
                     </div>
 
@@ -798,7 +793,7 @@ body.dark-theme .status.success{
                 </div>
             </div>
 
-            <!-- VIDEOS -->
+            <!-- 03: VIDEOS -->
 
             <div class="section">
 
@@ -806,7 +801,7 @@ body.dark-theme .status.success{
                     <div class="section-number">03</div>
                     <div>
                         <h2>Advertisement Videos</h2>
-                        <p>Use videos to demonstrate your products or services.</p>
+                        <p>Demonstrate your products and services.</p>
                     </div>
                 </div>
 
@@ -816,7 +811,7 @@ body.dark-theme .status.success{
                         <div class="upload-icon">🎬</div>
                         <div>
                             <div class="upload-title">Upload advertisement videos</div>
-                            <div class="upload-description">Show how your product or service works.</div>
+                            <div class="upload-description">Help customers understand what you offer.</div>
                         </div>
                     </div>
 
@@ -842,13 +837,14 @@ body.dark-theme .status.success{
 
                 <div class="note">
                     <strong>Media guidelines</strong><br>
-                    Upload genuine photographs and videos that relate to the advertised
-                    product or service. Only upload media you have permission to use.
+                    Upload genuine photographs and videos related to your product
+                    or service. Only upload media that you own or have permission
+                    to use. Avoid misleading images and videos.
                 </div>
 
             </div>
 
-            <!-- LOCATION -->
+            <!-- 04: LOCATION -->
 
             <div class="section">
 
@@ -856,7 +852,7 @@ body.dark-theme .status.success{
                     <div class="section-number">04</div>
                     <div>
                         <h2>Location</h2>
-                        <p>Help customers identify where your offering is available.</p>
+                        <p>Help customers find where your offering is available.</p>
                     </div>
                 </div>
 
@@ -930,7 +926,7 @@ body.dark-theme .status.success{
                 </div>
             </div>
 
-            <!-- CONTACT -->
+            <!-- 05: CONTACT -->
 
             <div class="section">
 
@@ -938,7 +934,7 @@ body.dark-theme .status.success{
                     <div class="section-number">05</div>
                     <div>
                         <h2>Contact Information</h2>
-                        <p>Provide a number customers can use for enquiries.</p>
+                        <p>Give interested customers a way to reach you.</p>
                     </div>
                 </div>
 
@@ -955,7 +951,7 @@ body.dark-theme .status.success{
                         title="Enter a valid Kenyan mobile number."
                     >
 
-                    <small>Use a valid Kenyan mobile number.</small>
+                    <small>Use a valid Kenyan mobile number, for example 0712345678 or +254712345678.</small>
                 </div>
 
             </div>
@@ -966,15 +962,15 @@ body.dark-theme .status.success{
                 <input id="confirmAccuracy" type="checkbox" required>
 
                 <span>
-                    I confirm that the advertisement information is accurate and that
-                    I have permission to use the uploaded media. I agree to the
-                    <a href="terms.html">Terms and Conditions</a> and
+                    I confirm that the advertisement information is accurate and
+                    that I have permission to use the uploaded media. I agree to
+                    the <a href="terms.html">Terms and Conditions</a> and
                     <a href="privacy.html">Privacy Policy</a>.
                 </span>
             </label>
 
             <button class="submit" id="submitButton" type="submit">
-                Submit Advertisement →
+                Publish Advertisement →
             </button>
 
             <div class="status" id="formStatus" role="status" aria-live="polite"></div>
@@ -983,22 +979,24 @@ body.dark-theme .status.success{
 
     </section>
 
+    <!-- ADDITIONAL BUSINESS PHOTOGRAPHS -->
+
     <div class="photo-strip">
         <img
-            src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=500&q=80"
-            alt="Retail products"
+            src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=600&q=85"
+            alt="Retail products in a shop"
             loading="lazy"
         >
 
         <img
-            src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=500&q=80"
-            alt="Retail business"
+            src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=85"
+            alt="Modern retail business"
             loading="lazy"
         >
 
         <img
-            src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=500&q=80"
-            alt="Online shopping"
+            src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=600&q=85"
+            alt="Customer shopping online"
             loading="lazy"
         >
     </div>
@@ -1006,11 +1004,12 @@ body.dark-theme .status.success{
     <div class="bottom-information">
         <div class="info-icon">✓</div>
         <div>
-            <strong>What happens after submission?</strong>
+            <strong>What happens after publishing?</strong>
             <p>
-                Your advertisement is saved with a pending review status.
-                It should only become publicly available after the appropriate
-                review and approval process.
+                Your advertisement and its media are uploaded privately first.
+                Once submission and publishing finish successfully, they become
+                publicly viewable on GLOBAL MARKET. Your account retains control
+                over editing and deleting your advertisement.
             </p>
         </div>
     </div>
@@ -1019,19 +1018,17 @@ body.dark-theme .status.success{
 
 </main>
 
+<!-- SHARED FOOTER -->
 <div id="site-footer"></div>
 
 <!-- APPWRITE SDK AND PROJECT CONFIGURATION -->
-
 <script src="https://cdn.jsdelivr.net/npm/appwrite@29.0.0"></script>
 <script src="appwrite-config.js"></script>
 
-<!-- SHARED WEBSITE LAYOUT -->
-
+<!-- SHARED WEBSITE MENU AND FOOTER -->
 <script src="layout.js" defer></script>
 
 <!-- ADVERTISEMENT MEDIA MODULE -->
-
 <script src="advertisement-media.js"></script>
 
 <script>
@@ -1044,6 +1041,8 @@ body.dark-theme .status.success{
 const DATABASE_ID = "global_market_db";
 const AD_TABLE_ID = "advertisements";
 const CATEGORY_TABLE_ID = "categories";
+const MEDIA_TABLE_ID = "advertisement_media";
+const BUCKET_ID = "advertisement_media";
 
 const MAX_PHOTOS = 20;
 const MIN_VIDEOS = 5;
@@ -1218,8 +1217,8 @@ photosInput.addEventListener("change", () => {
         return;
     }
 
-    if (files.some(file => file.size > MAX_PHOTO_SIZE)) {
-        showStatus("Each photo must be 5 MB or smaller.", "error");
+    if (files.some(file => file.size === 0 || file.size > MAX_PHOTO_SIZE)) {
+        showStatus("Each photo must be greater than 0 bytes and no larger than 5 MB.", "error");
         photosInput.value = "";
         selectedPhotos = [];
         clearPreviews(photoPreview);
@@ -1263,8 +1262,8 @@ videosInput.addEventListener("change", () => {
         return;
     }
 
-    if (files.some(file => file.size > MAX_VIDEO_SIZE)) {
-        showStatus("Each video must be 50 MB or smaller.", "error");
+    if (files.some(file => file.size === 0 || file.size > MAX_VIDEO_SIZE)) {
+        showStatus("Each video must be greater than 0 bytes and no larger than 50 MB.", "error");
         videosInput.value = "";
         selectedVideos = [];
         clearPreviews(videoPreview);
@@ -1356,6 +1355,20 @@ function ownerPermissions(userId) {
     ];
 }
 
+function publicAdvertisementPermissions(userId) {
+    return [
+        Appwrite.Permission.read(
+            Appwrite.Role.any()
+        ),
+        Appwrite.Permission.update(
+            Appwrite.Role.user(userId)
+        ),
+        Appwrite.Permission.delete(
+            Appwrite.Role.user(userId)
+        )
+    ];
+}
+
 /* =========================================
    CLEANUP IF SUBMISSION FAILS
 ========================================= */
@@ -1365,7 +1378,7 @@ async function rollbackAdvertisement(advertisementId, uploadedMedia) {
         try {
             await GMAppwrite.tablesDB.deleteRow({
                 databaseId: DATABASE_ID,
-                tableId: "advertisement_media",
+                tableId: MEDIA_TABLE_ID,
                 rowId: media.mediaId
             });
         } catch (error) {
@@ -1374,7 +1387,7 @@ async function rollbackAdvertisement(advertisementId, uploadedMedia) {
 
         try {
             await GMAppwrite.storage.deleteFile({
-                bucketId: "advertisement_media",
+                bucketId: BUCKET_ID,
                 fileId: media.fileId
             });
         } catch (error) {
@@ -1396,7 +1409,7 @@ async function rollbackAdvertisement(advertisementId, uploadedMedia) {
 }
 
 /* =========================================
-   SUBMIT ADVERTISEMENT
+   SUBMIT AND PUBLISH ADVERTISEMENT
 ========================================= */
 
 form.addEventListener("submit", async event => {
@@ -1416,19 +1429,24 @@ form.addEventListener("submit", async event => {
         return;
     }
 
-    if (!window.GMAppwrite) {
-        showStatus(
-            "Appwrite configuration is unavailable. Refresh and try again.",
-            "error"
-        );
+    if (selectedPhotos.length > MAX_PHOTOS ||
+        selectedVideos.length > MAX_VIDEOS) {
+        showStatus("Your selected media exceeds the allowed limits.", "error");
         return;
     }
 
-    if (!window.GMAdvertisementMedia ||
-        typeof GMAdvertisementMedia.uploadMedia !== "function") {
+    if (!window.GMAppwrite) {
+        showStatus("Appwrite configuration is unavailable. Refresh and try again.", "error");
+        return;
+    }
 
+    if (
+        !window.GMAdvertisementMedia ||
+        typeof GMAdvertisementMedia.uploadMedia !== "function" ||
+        typeof GMAdvertisementMedia.publishAdvertisementMedia !== "function"
+    ) {
         showStatus(
-            "Advertisement media module could not load. Check advertisement-media.js.",
+            "The advertisement media module is missing a required publishing function. Check advertisement-media.js.",
             "error"
         );
         return;
@@ -1453,7 +1471,9 @@ form.addEventListener("submit", async event => {
             throw new Error("Please select a valid active category.");
         }
 
-        /* CREATE ADVERTISEMENT RECORD */
+        /* CREATE ADVERTISEMENT PRIVATELY */
+
+        showStatus("Creating your advertisement...", "info");
 
         const adRow = await GMAppwrite.tablesDB.createRow({
             databaseId: DATABASE_ID,
@@ -1481,7 +1501,7 @@ form.addEventListener("submit", async event => {
 
         advertisementId = adRow.$id;
 
-        /* PREPARE ALL SELECTED MEDIA */
+        /* PREPARE ALL MEDIA */
 
         const allMedia = [
             ...selectedPhotos.map(file => ({
@@ -1495,7 +1515,7 @@ form.addEventListener("submit", async event => {
             }))
         ];
 
-        /* UPLOAD MEDIA USING THE SHARED MODULE */
+        /* UPLOAD MEDIA PRIVATELY */
 
         for (let index = 0; index < allMedia.length; index++) {
             const item = allMedia[index];
@@ -1517,10 +1537,32 @@ form.addEventListener("submit", async event => {
             });
         }
 
+        /* PUBLISH MEDIA */
+
+        showStatus(
+            "All media uploaded. Making your advertisement publicly available...",
+            "info"
+        );
+
+        await GMAdvertisementMedia.publishAdvertisementMedia(
+            advertisementId,
+            uploadedMedia
+        );
+
+        /* PUBLISH ADVERTISEMENT RECORD */
+
+        await GMAppwrite.tablesDB.updateRow({
+            databaseId: DATABASE_ID,
+            tableId: AD_TABLE_ID,
+            rowId: advertisementId,
+            data: {},
+            permissions: publicAdvertisementPermissions(user.$id)
+        });
+
         /* SUCCESS */
 
         showStatus(
-            "Your advertisement and all its media have been submitted successfully. Your advertisement is pending review.",
+            "Your advertisement has been published successfully! It is now publicly viewable on GLOBAL MARKET. You can manage it from your account.",
             "success"
         );
 
@@ -1541,6 +1583,11 @@ form.addEventListener("submit", async event => {
         console.error("Advertisement submission error:", error);
 
         if (advertisementId) {
+            showStatus(
+                "Submission was not completed. Attempting to clean up the incomplete advertisement...",
+                "info"
+            );
+
             await rollbackAdvertisement(
                 advertisementId,
                 uploadedMedia
@@ -1566,7 +1613,7 @@ form.addEventListener("submit", async event => {
 
     } finally {
         submitButton.disabled = false;
-        submitButton.textContent = "Submit Advertisement →";
+        submitButton.textContent = "Publish Advertisement →";
     }
 });
 
@@ -1579,4 +1626,4 @@ loadCategories();
 </script>
 
 </body>
-</html>
+                        </html>
