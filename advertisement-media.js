@@ -1,4 +1,3 @@
-
 /* ==========================================
    GLOBAL MARKET
    ADVERTISEMENT MEDIA MANAGEMENT
@@ -13,14 +12,32 @@
         MEDIA_TABLE_ID: "advertisement_media",
         ADVERTISEMENTS_TABLE_ID: "advertisements",
 
-        MIN_PHOTOS: 1,
+        MIN_PHOTOS: 2,
         MAX_PHOTOS: 20,
 
-        MIN_VIDEOS: 5,
+        MIN_VIDEOS: 1,
         MAX_VIDEOS: 10,
 
         MAX_PHOTO_SIZE: 5 * 1024 * 1024,
-        MAX_VIDEO_SIZE: 50 * 1024 * 1024
+        MAX_VIDEO_SIZE: 50 * 1024 * 1024,
+
+        // Common video formats.
+        VIDEO_EXTENSIONS: [
+            "mp4",
+            "mov",
+            "m4v",
+            "webm",
+            "ogv",
+            "ogg",
+            "avi",
+            "mkv",
+            "3gp",
+            "mpeg",
+            "mpg",
+            "wmv",
+            "flv",
+            "ts"
+        ]
     };
 
     const GM = window.GMAppwrite;
@@ -78,6 +95,26 @@
     }
 
     // ==========================================
+    // CHECK VIDEO FORMAT
+    // ==========================================
+
+    function isSupportedVideo(file) {
+        if (!file) return false;
+
+        const mimeType = (file.type || "").toLowerCase();
+
+        const extension = file.name
+            .split(".")
+            .pop()
+            .toLowerCase();
+
+        return (
+            mimeType.startsWith("video/") ||
+            CONFIG.VIDEO_EXTENSIONS.includes(extension)
+        );
+    }
+
+    // ==========================================
     // VALIDATE FILE
     // ==========================================
 
@@ -90,31 +127,52 @@
             throw new Error("The selected file is empty.");
         }
 
-        if (file.type.startsWith("image/")) {
-            if (!["image/jpeg", "image/png", "image/gif"].includes(file.type)) {
-                throw new Error("Only JPG, PNG and GIF photos are accepted.");
+        const mimeType = (file.type || "").toLowerCase();
+
+        if (
+            mimeType.startsWith("image/") ||
+            /\.(jpg|jpeg|png|gif)$/i.test(file.name)
+        ) {
+            const extension = file.name
+                .split(".")
+                .pop()
+                .toLowerCase();
+
+            const supportedImages = [
+                "jpg",
+                "jpeg",
+                "png",
+                "gif"
+            ];
+
+            if (!supportedImages.includes(extension)) {
+                throw new Error(
+                    "Only JPG, PNG and GIF photos are accepted."
+                );
             }
 
             if (file.size > CONFIG.MAX_PHOTO_SIZE) {
-                throw new Error("Each photo must be 5 MB or smaller.");
+                throw new Error(
+                    "Each photo must be 5 MB or smaller."
+                );
             }
 
             return "image";
         }
 
-        if (file.type.startsWith("video/")) {
-            if (file.type !== "video/mp4") {
-                throw new Error("Only MP4 videos are accepted.");
-            }
-
+        if (isSupportedVideo(file)) {
             if (file.size > CONFIG.MAX_VIDEO_SIZE) {
-                throw new Error("Each video must be 50 MB or smaller.");
+                throw new Error(
+                    "Each video must be 50 MB or smaller."
+                );
             }
 
             return "video";
         }
 
-        throw new Error("Only JPG, PNG, GIF and MP4 files are supported.");
+        throw new Error(
+            "Unsupported file. Select a JPG, PNG, GIF photo or a supported video."
+        );
     }
 
     // ==========================================
@@ -135,7 +193,6 @@
         let uploadedFile = null;
 
         try {
-            // Upload privately.
             uploadedFile = await storage.createFile({
                 bucketId: CONFIG.BUCKET_ID,
                 fileId: fileId,
@@ -148,7 +205,6 @@
                 fileId: uploadedFile.$id
             }).toString();
 
-            // Save private media record.
             const mediaRecord = await tablesDB.createRow({
                 databaseId: CONFIG.DATABASE_ID,
                 tableId: CONFIG.MEDIA_TABLE_ID,
@@ -178,7 +234,6 @@
 
         } catch (error) {
 
-            // Remove storage file if record creation fails.
             if (uploadedFile && uploadedFile.$id) {
                 try {
                     await storage.deleteFile({
@@ -186,7 +241,10 @@
                         fileId: uploadedFile.$id
                     });
                 } catch (cleanupError) {
-                    console.error("File cleanup failed:", cleanupError);
+                    console.error(
+                        "File cleanup failed:",
+                        cleanupError
+                    );
                 }
             }
 
@@ -216,17 +274,22 @@
             photos.length < CONFIG.MIN_PHOTOS ||
             photos.length > CONFIG.MAX_PHOTOS
         ) {
-            throw new Error("Upload between 1 and 20 photos.");
+            throw new Error(
+                "Upload at least 2 photos and no more than 20 photos."
+            );
         }
 
         if (
             videos.length < CONFIG.MIN_VIDEOS ||
             videos.length > CONFIG.MAX_VIDEOS
         ) {
-            throw new Error("Upload between 5 and 10 videos.");
+            throw new Error(
+                "Upload at least 1 video and no more than 10 videos."
+            );
         }
 
-        // Validate everything before uploading.
+        // Validate every file before starting uploads.
+
         photos.forEach(file => {
             if (validateFile(file) !== "image") {
                 throw new Error("Invalid photo selected.");
@@ -241,23 +304,51 @@
 
         const results = [];
 
-        for (let i = 0; i < photos.length; i++) {
-            results.push(
-                await uploadMedia(photos[i], advertisementId, i)
-            );
-        }
+        try {
 
-        for (let i = 0; i < videos.length; i++) {
-            results.push(
-                await uploadMedia(
-                    videos[i],
-                    advertisementId,
-                    photos.length + i
-                )
-            );
-        }
+            // Upload photos.
+            for (let i = 0; i < photos.length; i++) {
+                results.push(
+                    await uploadMedia(
+                        photos[i],
+                        advertisementId,
+                        i
+                    )
+                );
+            }
 
-        return results;
+            // Upload videos.
+            for (let i = 0; i < videos.length; i++) {
+                results.push(
+                    await uploadMedia(
+                        videos[i],
+                        advertisementId,
+                        photos.length + i
+                    )
+                );
+            }
+
+            return results;
+
+        } catch (error) {
+
+            // Clean up files already uploaded in this batch.
+            for (const media of results) {
+                try {
+                    await deleteAdvertisementMedia(
+                        media.mediaId,
+                        media.fileId
+                    );
+                } catch (cleanupError) {
+                    console.error(
+                        "Uploaded media cleanup failed:",
+                        cleanupError
+                    );
+                }
+            }
+
+            throw error;
+        }
     }
 
     // ==========================================
@@ -270,31 +361,32 @@
         uploadedMedia
     ) {
         if (!advertisementId || !Array.isArray(uploadedMedia)) {
-            throw new Error("Invalid advertisement publishing request.");
+            throw new Error(
+                "Invalid advertisement publishing request."
+            );
         }
 
         const user = await getCurrentUser();
 
         for (const media of uploadedMedia) {
+
             if (!media.fileId || !media.mediaId) {
-                throw new Error("An uploaded media reference is missing.");
+                throw new Error(
+                    "An uploaded media reference is missing."
+                );
             }
 
-            // Make storage file publicly readable.
             await storage.updateFile({
                 bucketId: CONFIG.BUCKET_ID,
                 fileId: media.fileId,
                 permissions: publicPermissions(user.$id)
             });
 
-            // Make its database record publicly readable.
             await tablesDB.updateRow({
                 databaseId: CONFIG.DATABASE_ID,
                 tableId: CONFIG.MEDIA_TABLE_ID,
                 rowId: media.mediaId,
-
                 data: {},
-
                 permissions: publicPermissions(user.$id)
             });
         }
@@ -335,7 +427,9 @@
 
     async function deleteAdvertisementMedia(mediaId, fileId) {
         if (!mediaId || !fileId) {
-            throw new Error("Media record ID and file ID are required.");
+            throw new Error(
+                "Media record ID and file ID are required."
+            );
         }
 
         await getCurrentUser();
