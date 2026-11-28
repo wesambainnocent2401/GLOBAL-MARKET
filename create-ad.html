@@ -759,7 +759,7 @@ body.dark-theme .status.success{
                         required
                     >
 
-                    <small>Upload at least 2 and up to 20 JPG, PNG or GIF photos. Maximum 5 MB per photo.</small>
+                    <small>Upload at least 2 and up to 20 JPG, PNG or GIF photos. Maximum 5 MB per photo. You can add photos in several picks.</small>
 
                     <div class="media-count">
                         <strong id="photoCount">At least 2 photos required.</strong>
@@ -805,7 +805,7 @@ body.dark-theme .status.success{
                     <small>
                         Upload at least 1 video and up to 10 videos.
                         Supported formats include MP4, MOV, MKV, AVI, 3GP and WEBM.
-                        Maximum 50 MB per video.
+                        Maximum 50 MB per video. You can add videos in several picks.
                     </small>
 
                     <div class="media-count">
@@ -1123,12 +1123,13 @@ function clearPreviews(container) {
     container.innerHTML = "";
 }
 
-function renderPreview(files, container, isVideo) {
+function renderPreview(files, container, isVideo, onRemove) {
     clearPreviews(container);
 
-    files.forEach(file => {
+    files.forEach((file, index) => {
         const item = document.createElement("div");
         item.className = "preview-item";
+        item.style.position = "relative";
 
         const media = document.createElement(isVideo ? "video" : "img");
         const name = document.createElement("div");
@@ -1148,161 +1149,134 @@ function renderPreview(files, container, isVideo) {
         name.className = "preview-name";
         name.textContent = file.name;
 
-        item.append(media, name);
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.textContent = "✕";
+        remove.setAttribute("aria-label", "Remove " + file.name);
+        remove.style.cssText =
+            "position:absolute;top:5px;right:5px;width:26px;height:26px;" +
+            "border:0;border-radius:50%;background:rgba(0,0,0,.7);" +
+            "color:#fff;cursor:pointer;font-size:13px;line-height:1;";
+        remove.addEventListener("click", () => onRemove(index));
+
+        item.append(media, name, remove);
         container.appendChild(item);
     });
 }
 
 /* =========================================
-   PHOTO VALIDATION
+   PHOTO AND VIDEO SELECTION
 ========================================= */
 
-photosInput.addEventListener("change", () => {
-    clearStatus();
+function isValidPhoto(file) {
+    const extension = file.name.split(".").pop().toLowerCase();
+    const mimeType = (file.type || "").toLowerCase();
 
-    const files = uniqueFiles(
-        Array.from(photosInput.files || [])
+    return (
+        ["jpg", "jpeg", "png", "gif"].includes(extension) &&
+        (!mimeType ||
+            ["image/jpeg", "image/png", "image/gif"].includes(mimeType))
     );
+}
 
-    if (files.length < MIN_PHOTOS) {
-        showStatus("Please select at least 2 photos.", "error");
-        selectedPhotos = [];
-        photosInput.value = "";
-        clearPreviews(photoPreview);
-        photoCount.textContent = "At least 2 photos required.";
-        return;
-    }
+function isValidVideo(file) {
+    const extension = file.name.split(".").pop().toLowerCase();
+    const mimeType = (file.type || "").toLowerCase();
 
-    if (files.length > MAX_PHOTOS) {
-        showStatus("You can upload a maximum of 20 photos.", "error");
-        selectedPhotos = [];
-        photosInput.value = "";
-        clearPreviews(photoPreview);
-        photoCount.textContent = "Maximum 20 photos allowed.";
-        return;
-    }
+    return (
+        mimeType.startsWith("video/") ||
+        VIDEO_EXTENSIONS.includes(extension)
+    );
+}
 
-    const validExtensions = ["jpg", "jpeg", "png", "gif"];
-
-    const invalid = files.find(file => {
-        const extension = file.name.split(".").pop().toLowerCase();
-        const mimeType = (file.type || "").toLowerCase();
-
-        return (
-            !validExtensions.includes(extension) ||
-            (
-                mimeType &&
-                !["image/jpeg", "image/png", "image/gif"].includes(mimeType)
-            )
-        );
-    });
-
-    if (invalid) {
-        showStatus("Only JPG, PNG and GIF photos are accepted.", "error");
-        selectedPhotos = [];
-        photosInput.value = "";
-        clearPreviews(photoPreview);
-        photoCount.textContent = "Invalid photo format.";
-        return;
-    }
-
-    if (files.some(file =>
-        file.size === 0 || file.size > MAX_PHOTO_SIZE
-    )) {
-        showStatus(
+const mediaGroups = {
+    photos: {
+        input: photosInput,
+        preview: photoPreview,
+        countEl: photoCount,
+        isVideo: false,
+        min: MIN_PHOTOS,
+        max: MAX_PHOTOS,
+        maxSize: MAX_PHOTO_SIZE,
+        singular: "photo",
+        plural: "photos",
+        isValid: isValidPhoto,
+        formatMessage: "Only JPG, PNG and GIF photos are accepted.",
+        sizeMessage:
             "Each photo must be greater than 0 bytes and no larger than 5 MB.",
-            "error"
-        );
-        selectedPhotos = [];
-        photosInput.value = "";
-        clearPreviews(photoPreview);
-        photoCount.textContent = "Invalid photo size.";
-        return;
+        get list() { return selectedPhotos; },
+        set list(value) { selectedPhotos = value; }
+    },
+    videos: {
+        input: videosInput,
+        preview: videoPreview,
+        countEl: videoCount,
+        isVideo: true,
+        min: MIN_VIDEOS,
+        max: MAX_VIDEOS,
+        maxSize: MAX_VIDEO_SIZE,
+        singular: "video",
+        plural: "videos",
+        isValid: isValidVideo,
+        formatMessage:
+            "Unsupported video format. Please select a supported video.",
+        sizeMessage:
+            "Each video must be greater than 0 bytes and no larger than 50 MB.",
+        get list() { return selectedVideos; },
+        set list(value) { selectedVideos = value; }
     }
+};
 
-    selectedPhotos = files;
+function refreshGroup(group) {
+    updateInputFiles(group.input, group.list);
 
-    updateInputFiles(photosInput, selectedPhotos);
-
-    photoCount.textContent =
-        `${files.length} of ${MAX_PHOTOS} maximum photos selected.`;
-
-    renderPreview(files, photoPreview, false);
-});
-
-/* =========================================
-   VIDEO VALIDATION
-========================================= */
-
-videosInput.addEventListener("change", () => {
-    clearStatus();
-
-    const files = uniqueFiles(
-        Array.from(videosInput.files || [])
-    );
-
-    if (files.length < MIN_VIDEOS) {
-        showStatus("Please select at least 1 video.", "error");
-        selectedVideos = [];
-        videosInput.value = "";
-        clearPreviews(videoPreview);
-        videoCount.textContent = "At least 1 video required.";
-        return;
-    }
-
-    if (files.length > MAX_VIDEOS) {
-        showStatus("You can upload a maximum of 10 videos.", "error");
-        selectedVideos = [];
-        videosInput.value = "";
-        clearPreviews(videoPreview);
-        videoCount.textContent = "Maximum 10 videos allowed.";
-        return;
-    }
-
-    const invalid = files.find(file => {
-        const extension = file.name.split(".").pop().toLowerCase();
-        const mimeType = (file.type || "").toLowerCase();
-
-        return (
-            !mimeType.startsWith("video/") &&
-            !VIDEO_EXTENSIONS.includes(extension)
-        );
+    renderPreview(group.list, group.preview, group.isVideo, index => {
+        group.list = group.list.filter((_, i) => i !== index);
+        refreshGroup(group);
     });
 
-    if (invalid) {
-        showStatus(
-            "Unsupported video format. Please select a supported video.",
-            "error"
-        );
-        selectedVideos = [];
-        videosInput.value = "";
-        clearPreviews(videoPreview);
-        videoCount.textContent = "Unsupported video format.";
-        return;
+    const total = group.list.length;
+    const minLabel = group.min === 1 ? group.singular : group.plural;
+
+    if (total === 0) {
+        group.countEl.textContent =
+            `At least ${group.min} ${minLabel} required.`;
+    } else if (total < group.min) {
+        group.countEl.textContent =
+            `${total} selected. At least ${group.min} ${minLabel} required.`;
+    } else {
+        group.countEl.textContent =
+            `${total} of ${group.max} maximum ${group.plural} selected.`;
+    }
+}
+
+function handleMediaChange(group) {
+    clearStatus();
+
+    const picked = Array.from(group.input.files || []);
+    const combined = uniqueFiles([...group.list, ...picked]);
+
+    let message = "";
+
+    if (picked.some(file => !group.isValid(file))) {
+        message = group.formatMessage;
+    } else if (picked.some(file => file.size === 0 || file.size > group.maxSize)) {
+        message = group.sizeMessage;
+    } else if (combined.length > group.max) {
+        message = `You can upload a maximum of ${group.max} ${group.plural}.`;
     }
 
-    if (files.some(file =>
-        file.size === 0 || file.size > MAX_VIDEO_SIZE
-    )) {
-        showStatus(
-            "Each video must be greater than 0 bytes and no larger than 50 MB.",
-            "error"
-        );
-        selectedVideos = [];
-        videosInput.value = "";
-        clearPreviews(videoPreview);
-        videoCount.textContent = "Invalid video size.";
-        return;
+    if (message) {
+        showStatus(message, "error");
+    } else {
+        group.list = combined;
     }
 
-    selectedVideos = files;
+    refreshGroup(group);
+}
 
-    updateInputFiles(videosInput, selectedVideos);
-
-    videoCount.textContent =
-        `${files.length} of ${MAX_VIDEOS} maximum videos selected.`;
-
-    renderPreview(files, videoPreview, true);
+Object.values(mediaGroups).forEach(group => {
+    group.input.addEventListener("change", () => handleMediaChange(group));
 });
 
 /* =========================================
@@ -1587,7 +1561,7 @@ form.addEventListener("submit", async event => {
             databaseId: DATABASE_ID,
             tableId: AD_TABLE_ID,
             rowId: advertisementId,
-            data: {},
+            data: { status: "active" },
             permissions: publicAdvertisementPermissions(user.$id)
         });
 
@@ -1658,4 +1632,4 @@ loadCategories();
 </script>
 
 </body>
-    </html>
+</html>
