@@ -1519,7 +1519,10 @@ form.addEventListener("submit", async event => {
                 listingType: document.getElementById("listingType").value,
                 condition: document.getElementById("condition").value,
                 county: document.getElementById("county").value,
-                townLocation: document.getElementById("townLocation").value.trim(),
+
+                /* FIX: Appwrite requires the attribute named "town". */
+                town: document.getElementById("townLocation").value.trim(),
+
                 contactPhone: document.getElementById("contactPhone").value.trim(),
                 status: "pending",
                 isFeatured: false
