@@ -1,4 +1,3 @@
-
 /* ==========================================
    GLOBAL MARKET
    ADVERTISEMENT MEDIA MANAGEMENT
@@ -95,7 +94,12 @@
             .pop()
             .toLowerCase();
 
-        return CONFIG.VIDEO_EXTENSIONS.includes(extension);
+        const mimeType = (file.type || "").toLowerCase();
+
+        return (
+            mimeType.startsWith("video/") ||
+            CONFIG.VIDEO_EXTENSIONS.includes(extension)
+        );
     }
 
     // ==========================================
@@ -375,7 +379,6 @@
                 databaseId: CONFIG.DATABASE_ID,
                 tableId: CONFIG.MEDIA_TABLE_ID,
                 rowId: media.mediaId,
-                data: {},
                 permissions: publicPermissions(user.$id)
             });
         }
